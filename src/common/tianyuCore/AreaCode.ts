@@ -1,3 +1,5 @@
+/**@format */
+
 export enum AreaCode {
     // Afrikaans (South Africa)
     af_ZA = 1078,
@@ -11,9 +13,9 @@ export enum AreaCode {
     ar_BH = 15361,
     // Arabic (Egypt)
     ar_EG = 3073,
-    // Arabic (Iraq)    
+    // Arabic (Iraq)
     ar_IQ = 2049,
-    // Arabic (Jordan)    
+    // Arabic (Jordan)
     ar_JO = 11265,
     // Arabic (Kuwait)
     ar_KW = 13313,
@@ -258,5 +260,15 @@ export enum AreaCode {
     // Uzbek (Uzbekistan - Latin)
     uz_UZ_Latn = 1091,
     // Vietnamese (Vietnam)
-    vi_VN = 1066
+    vi_VN = 1066,
+}
+
+export function getAreaString(areaCode: AreaCode): string {
+    switch (areaCode) {
+        case AreaCode.en_US:
+            return "en_US";
+        case AreaCode.zh_CN:
+        default:
+            return "zh_CN";
+    }
 }

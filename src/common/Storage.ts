@@ -1,52 +1,120 @@
-import { fnIStorageValueChange, IStorage, IStorageInstance } from "./IStorage";
+/** @format */
+
 import { AreaCode } from "./tianyuCore/AreaCode";
-import { IKey, IValue } from "./tianyuCore/IKeyValueCommon";
+import { Environment } from "./tianyuCore/Environment";
 
-export class Storage implements IStorage {
-    private _eArea: AreaCode;
+export type fnIStorageValueChange = (sKey: string, changedValue: any) => boolean;
 
-    constructor() {
-        this._eArea = AreaCode.zh_CN;
-    }
-    clearAll(): void;
-    clearAll(oInstance: IStorageInstance): void;
-    clearAll(oInstance?: any): void {
-        throw new Error("Method not implemented.");
-    }
-    clearValues(): void;
-    clearValues(oInstance: IStorageInstance): void;
-    clearValues(oInstance?: any): void {
-        throw new Error("Method not implemented.");
-    }
-    clearRegisters(): void;
-    clearRegisters(oInstance: IStorageInstance): void;
-    clearRegisters(oInstance?: any): void {
-        throw new Error("Method not implemented.");
-    }
+export const sStorageAreaString: string = "Tianyu::Storage::Area";
 
-    getArea(): AreaCode {
-        return this._eArea;
-    }
-    setArea(areaCode: AreaCode): void {
-        this._eArea = areaCode;
-    }
-    registerValueChange(key: IKey, fnAction: fnIStorageValueChange, oInstance: IStorageInstance): boolean {
-        throw new Error("Method not implemented.");
-    }
-    unRegisterValueChange(key: IKey, oInstance: IStorageInstance): boolean {
-        throw new Error("Method not implemented.");
-    }
-    setValue(key: IKey, changedValue: IValue, oInstance: IStorageInstance, isPrivate: boolean): boolean {
-        throw new Error("Method not implemented.");
-    }
-    getValue(key: IKey, oInstance: IStorageInstance, allowPublic: boolean): IValue {
-        throw new Error("Method not implemented.");
-    }
-    delValue(key: IKey, oInstance: IStorageInstance, isPrivate: boolean, isAll: boolean): boolean {
-        throw new Error("Method not implemented.");
-    }
-    contains(key: IKey, oInstance: IStorageInstance, allowPublic: boolean): boolean {
-        throw new Error("Method not implemented.");
-    }
-    
+interface IValueSet {
+    [key: string]: any;
 }
+interface IValueRegisters {
+    [key: string]: fnIStorageValueChange[];
+}
+
+export class StorageBase {
+    private _oEnvironment: Environment;
+    private _oValues: IValueSet;
+
+    constructor(environment: Environment = Environment.DEVELOP) {
+        this._oEnvironment = environment;
+
+        this._oValues = {};
+        this._oValues[sStorageAreaString] = {
+            value: AreaCode.zh_CN,
+            callback: {},
+        };
+    }
+
+    public getArea(): AreaCode {
+        return this._oValues[sStorageAreaString].value;
+    }
+    public setArea(area: AreaCode): void {
+        this._oValues[sStorageAreaString].value = area;
+        this._valueChanged(sStorageAreaString);
+    }
+
+    public getEnvironment(): Environment {
+        return this._oEnvironment;
+    }
+
+    public clear(): void {
+        const oAreaCache: any = this._oValues[sStorageAreaString];
+
+        this._oValues = {};
+        this._oValues[sStorageAreaString] = oAreaCache;
+    }
+
+    public getValue(sKey: string): any {
+        if (!!sKey) {
+            const isValueExist: boolean = !!this._oValues[sKey];
+            return isValueExist ? this._oValues[sKey].value : null;
+        }
+
+        return undefined;
+    }
+    public setValue(sKey: string, oValue: any): void {
+        if (!!sKey && this._checkValueOperatble(sKey)) {
+            if (!!this._oValues[sKey]) {
+                this._oValues[sKey].value = oValue;
+                setTimeout(this._valueChanged.bind(this), 0);
+            } else {
+                this._oValues[sKey] = {
+                    value: oValue,
+                    callback: {},
+                };
+            }
+        }
+    }
+    public delValue(sKey: string): void {
+        if (!!sKey && this._checkValueOperatble(sKey) && this._oValues[sKey]) {
+            delete this._oValues[sKey];
+        }
+    }
+
+    public addWatcher(sKey: string, sWatcher: string, fnCallback: fnIStorageValueChange): boolean {
+        if (!!sKey && !!sWatcher && !!fnCallback) {
+            if (!!!this._oValues[sKey]) {
+                this._oValues[sKey] = {
+                    value: null,
+                    callback: {},
+                };
+            }
+            this._oValues[sKey].callback[sWatcher] = fnCallback;
+        }
+
+        return false;
+    }
+    public delWatcher(sKey: string, sWatcher: string): void {
+        if (!!sKey && !!sWatcher) {
+            !!this._oValues[sKey] && !!this._oValues[sKey].callback[sWatcher] && delete this._oValues[sKey].callback[sWatcher];
+        }
+    }
+
+    private _valueChanged(sKey: string) {
+        if (!!!sKey) {
+            return;
+        }
+
+        const newValue = this._oValues[sKey].value;
+        const watchers = this._oValues[sKey].callback;
+        Object.keys(watchers).forEach((watcher) => {
+            if (!!watchers[watcher]) {
+                setTimeout(() => {
+                    const fnCallback = watchers[watcher];
+                    fnCallback(sKey, newValue);
+                }, 0);
+            }
+        });
+    }
+    private _checkValueOperatble(sKey: string): boolean {
+        if (sKey === sStorageAreaString) {
+            return false;
+        }
+        return true;
+    }
+}
+
+export const sAreaCodeKey: string = "AITIANYU::STORAGE::AREACODE";
