@@ -1,7 +1,6 @@
 /** @format */
 
-import { StorageBase } from "../Storage";
-import { Storage, isDebugMode, isDevelopMode } from "../../aitianyu.app/Runtime";
+import { IStorage } from "../tianyuCore/api/IStorage";
 import { getAreaString } from "../tianyuCore/AreaCode";
 
 export const LanguagePartDefault: string = "Core";
@@ -12,9 +11,13 @@ interface ILanguageRequireCache {
 const iLanguageRequireCacheLimit: number = 10;
 
 export class LanguageBase {
+    private static sRootFolder: string = "./resources/";
+
+    private _oStorage: IStorage;
     private pLangRequires: ILanguageRequireCache;
 
-    public constructor() {
+    public constructor(storage: IStorage) {
+        this._oStorage = storage;
         this.pLangRequires = {};
     }
     public destroy(): void {
@@ -22,7 +25,7 @@ export class LanguageBase {
     }
 
     public getMessage(sPart: string, sSource: string): string {
-        if (isDebugMode() || isDevelopMode()) {
+        if (this._oStorage.isDebugMode() || this._oStorage.isDevelopMode()) {
             return sPart + "::" + sSource;
         }
 
@@ -36,7 +39,7 @@ export class LanguageBase {
         return oLoadResource ? oLoadResource[sSource] ?? sUnknownMsg : sUnknownMsg;
     }
     private loadResource(sPart: string): any {
-        const sI18nPath = generateI18nSourceId(sPart);
+        const sI18nPath = LanguageBase.generateI18nSourceId(this, sPart);
         if (this.pLangRequires[sI18nPath]) {
             return this.pLangRequires[sI18nPath].source;
         }
@@ -81,10 +84,8 @@ export class LanguageBase {
             lifeTime: Date.now(),
         };
     }
-}
-
-const sRootFolder: string = "./resources/";
-function generateI18nSourceId(sPart: string): string {
-    const sAreaFolder: string = getAreaString(Storage.getArea());
-    return sRootFolder + sAreaFolder + "/" + (!!sPart ? sPart : LanguagePartDefault) + ".ts";
+    private static generateI18nSourceId(oThis: LanguageBase, sPart: string): string {
+        const sAreaFolder: string = getAreaString(oThis._oStorage.getArea());
+        return LanguageBase.sRootFolder + sAreaFolder + "/" + (!!sPart ? sPart : LanguagePartDefault) + ".ts";
+    }
 }

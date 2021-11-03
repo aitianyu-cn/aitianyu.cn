@@ -5,3 +5,10 @@ export enum Environment {
     DEBUG,
     RELEASE,
 }
+
+export enum MessageType {
+    NOTIFY,
+    LOG,
+    WARNING,
+    ERROR,
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './aitianyu.view/css/index.css';
-import { TYIndex } from './aitianyu.view/TYIndex';
+import { TianyuViewShell } from './aitianyu.view/TianyuViewShell';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TYIndex />
+    <TianyuViewShell />
   </React.StrictMode>,
   document.getElementById('root')
 );

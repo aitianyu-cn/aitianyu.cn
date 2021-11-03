@@ -1,9 +1,8 @@
 /** @format */
 
-import { AreaCode } from "./tianyuCore/AreaCode";
-import { Environment } from "./tianyuCore/Environment";
-
-export type fnIStorageValueChange = (sKey: string, changedValue: any) => boolean;
+import { AreaCode } from "../AreaCode";
+import { Environment } from "../EnvirDefs";
+import { IStorage, fnIStorageValueChange } from "../api/IStorage";
 
 export const sStorageAreaString: string = "Tianyu::Storage::Area";
 
@@ -14,7 +13,7 @@ interface IValueRegisters {
     [key: string]: fnIStorageValueChange[];
 }
 
-export class StorageBase {
+export class StorageBase implements IStorage {
     private _oEnvironment: Environment;
     private _oValues: IValueSet;
 
@@ -26,6 +25,16 @@ export class StorageBase {
             value: AreaCode.zh_CN,
             callback: {},
         };
+    }
+
+    public isReleaseMode(): boolean {
+        return this._oEnvironment === Environment.RELEASE;
+    }
+    public isDevelopMode(): boolean {
+        return this._oEnvironment === Environment.DEVELOP;
+    }
+    public isDebugMode(): boolean {
+        return this._oEnvironment === Environment.DEBUG;
     }
 
     public getArea(): AreaCode {

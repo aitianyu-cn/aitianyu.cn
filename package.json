@@ -15,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jtest": "jasmine-browser-runner runSpecs"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "jasmine-browser-runner": "^0.9.0",
+    "jasmine-core": "^3.10.1",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   }
