@@ -3,6 +3,10 @@
 import { AreaCode } from "../AreaCode";
 import { Environment } from "../EnvirDefs";
 
+export const StorageKeys: any = {
+    Area: "Tianyu::Storage::Area",
+};
+
 export type fnIStorageValueChange = (sKey: string, changedValue: any) => boolean;
 
 export interface IStorage {

@@ -2,16 +2,16 @@
 
 import { AreaCode } from "../AreaCode";
 import { Environment } from "../EnvirDefs";
-import { IStorage, fnIStorageValueChange } from "../api/IStorage";
-
-export const sStorageAreaString: string = "Tianyu::Storage::Area";
+import { IStorage, fnIStorageValueChange, StorageKeys } from "../api/IStorage";
 
 interface IValueSet {
     [key: string]: any;
 }
-interface IValueRegisters {
-    [key: string]: fnIStorageValueChange[];
-}
+// interface IValueRegisters {
+//     [key: string]: fnIStorageValueChange[];
+// }
+
+const aUnableOperate: string[] = [StorageKeys.Area];
 
 export class StorageBase implements IStorage {
     private _oEnvironment: Environment;
@@ -21,7 +21,7 @@ export class StorageBase implements IStorage {
         this._oEnvironment = environment;
 
         this._oValues = {};
-        this._oValues[sStorageAreaString] = {
+        this._oValues[StorageKeys.Area] = {
             value: AreaCode.zh_CN,
             callback: {},
         };
@@ -38,11 +38,11 @@ export class StorageBase implements IStorage {
     }
 
     public getArea(): AreaCode {
-        return this._oValues[sStorageAreaString].value;
+        return this._oValues[StorageKeys.Area].value;
     }
     public setArea(area: AreaCode): void {
-        this._oValues[sStorageAreaString].value = area;
-        this._valueChanged(sStorageAreaString);
+        this._oValues[StorageKeys.Area].value = area;
+        this._valueChanged(StorageKeys.Area);
     }
 
     public getEnvironment(): Environment {
@@ -50,10 +50,10 @@ export class StorageBase implements IStorage {
     }
 
     public clear(): void {
-        const oAreaCache: any = this._oValues[sStorageAreaString];
+        const oAreaCache: any = this._oValues[StorageKeys.Area];
 
         this._oValues = {};
-        this._oValues[sStorageAreaString] = oAreaCache;
+        this._oValues[StorageKeys.Area] = oAreaCache;
     }
 
     public getValue(sKey: string): any {
@@ -65,10 +65,12 @@ export class StorageBase implements IStorage {
         return undefined;
     }
     public setValue(sKey: string, oValue: any): void {
-        if (!!sKey && this._checkValueOperatble(sKey)) {
+        if (!!sKey && this._checkValueOperateable(sKey)) {
             if (!!this._oValues[sKey]) {
                 this._oValues[sKey].value = oValue;
-                setTimeout(this._valueChanged.bind(this), 0);
+                setTimeout(() => {
+                    this._valueChanged.apply(this, [sKey]);
+                }, 0);
             } else {
                 this._oValues[sKey] = {
                     value: oValue,
@@ -78,7 +80,7 @@ export class StorageBase implements IStorage {
         }
     }
     public delValue(sKey: string): void {
-        if (!!sKey && this._checkValueOperatble(sKey) && this._oValues[sKey]) {
+        if (!!sKey && this._checkValueOperateable(sKey) && this._oValues[sKey]) {
             delete this._oValues[sKey];
         }
     }
@@ -118,11 +120,8 @@ export class StorageBase implements IStorage {
             }
         });
     }
-    private _checkValueOperatble(sKey: string): boolean {
-        if (sKey === sStorageAreaString) {
-            return false;
-        }
-        return true;
+    private _checkValueOperateable(sKey: string): boolean {
+        return !aUnableOperate.includes(sKey);
     }
 }
 
