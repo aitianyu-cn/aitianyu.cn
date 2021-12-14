@@ -14,7 +14,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "aitianyu-app/*": ["dty-app/*"],
+      "aitianyu-common/*": ["dty-common/*"],
+      "aitianyu-view/*": ["dty-view/*"]
+    }
   },
   "include": ["src", "src/aitianyu.app", "src/aitianyu.view", "src/common"]
 }
