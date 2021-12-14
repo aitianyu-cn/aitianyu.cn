@@ -7,7 +7,7 @@ import "./css/App.css";
 import { ITianyuViewShell } from "../aitianyu.app/model/ITianyuViewShell";
 
 export class TianyuViewShell extends React.Component<any, any> implements ITianyuViewShell {
-    public render() {
+    public render(): JSX.Element {
         return <div></div>;
     }
     // public render() {
