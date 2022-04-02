@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './aitianyu.view/css/index.css';
-import { TianyuViewShell } from './aitianyu.view/TianyuViewShell';
+import './view/css/index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TianyuViewShell />
   </React.StrictMode>,
   document.getElementById('root')
 );

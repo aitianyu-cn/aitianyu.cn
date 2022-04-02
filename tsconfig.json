@@ -1,26 +1,28 @@
 {
-  "compilerOptions": {
-    "target": "es2021",
-    "module": "esnext",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "src",
-    "paths": {
-      "aitianyu-app/*": ["dty-app/*"],
-      "aitianyu-common/*": ["dty-common/*"],
-      "aitianyu-view/*": ["dty-view/*"]
-    }
-  },
-  "include": ["src", "src/aitianyu.app", "src/aitianyu.view", "src/common"]
+    "compilerOptions": {
+        "target": "es2021",
+        "module": "esnext",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "baseUrl": "/",
+        "paths": {
+            "aitianyu-root": ["src/*"],
+            "aitianyu-app": ["dty/app/*"],
+            "aitianyu-bundles": ["dty/bundles/*"],
+            "aitianyu-common": ["dty/common/*"],
+            "aitianyu-config": ["dty/common/*"]
+        }
+    },
+    "include": ["src", "src/view", "dty/common"]
 }

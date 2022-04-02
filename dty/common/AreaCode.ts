@@ -262,19 +262,3 @@ export enum AreaCode {
     // Vietnamese (Vietnam)
     vi_VN = 1066,
 }
-
-export enum Environment {
-    DEVELOP,
-    DEBUG,
-    RELEASE,
-}
-
-export function getAreaString(areaCode: AreaCode): string {
-    switch (areaCode) {
-        case AreaCode.en_US:
-            return "en_US";
-        case AreaCode.zh_CN:
-        default:
-            return "zh_CN";
-    }
-}
