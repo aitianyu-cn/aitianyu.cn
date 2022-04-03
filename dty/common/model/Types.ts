@@ -1,5 +1,5 @@
 /**@format */
 
-export interface IDefineKeys {
+export interface IKeyValuePair {
     [key: string]: string;
 }
