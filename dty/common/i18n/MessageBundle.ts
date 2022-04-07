@@ -1,9 +1,9 @@
 /**@format */
 
 import { getAreaString } from "dty-common/AreaHelper";
-import { IMessageBundle } from "dty-common/core/IMessageBundle";
+import { IMessageBundle } from "dty-common/model/IMessageBundle";
 import { Environment } from "dty-common/Environment";
-import { Configure } from "dty-common/model/Configure";
+import { Configure } from "dty-common/core/Configure";
 
 export class MessageBundle implements IMessageBundle {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

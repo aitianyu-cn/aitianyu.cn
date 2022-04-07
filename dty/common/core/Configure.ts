@@ -2,9 +2,9 @@
 
 import { AreaCode } from "dty-common/AreaCode";
 import { getAreaFromString } from "dty-common/AreaHelper";
-import { EventAdapter, IEventListener } from "dty-common/core/Events";
+import { EventAdapter, IEventListener } from "dty-common/model/Events";
 import { Environment, getEnvironmentFromString } from "dty-common/Environment";
-import { Version } from "./Version";
+import { Version } from "../model/Version";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const StaticConfigJson = require("dty-config/config.json");

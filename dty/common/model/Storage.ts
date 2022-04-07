@@ -1,21 +1,75 @@
 /**@format */
 
-import { EventAdapter, IEventListener } from "dty-common/core/Events";
-import { IStorageBase, IStorageValue } from "dty-common/core/IStorage";
-import { generateStorageValue } from "./StorageValue";
+import { EventAdapter, IEventListener } from "dty-common/model/Events";
+import { IStorageBase, IStorageValue, StorageValueType } from "dty-common/model/IStorage";
+import { StorageValueHelper } from "./StorageValue";
 
 class StorageItem {
     private _Value: IStorageValue;
     private _Adapter: EventAdapter<IStorageValue>;
 
     public constructor(value: string | number | boolean | object) {
-        this._Value = generateStorageValue(value);
+        switch (typeof value) {
+            case "number":
+                this._Value = StorageValueHelper.generateNumber(value as number);
+                break;
+            case "boolean":
+                this._Value = StorageValueHelper.generateBoolean(value as boolean);
+                break;
+            case "object":
+                this._Value = StorageValueHelper.generateObject(value as object);
+                break;
+            case "string":
+                this._Value = StorageValueHelper.generateString(value as string);
+                break;
+            default:
+                this._Value = StorageValueHelper.generateString();
+                break;
+        }
+
         this._Adapter = new EventAdapter<IStorageValue>();
     }
 
     public setValue(value: string | number | boolean | object): void {
-        this._Value.setValue(value);
-        this._Adapter.fireEvents(this._Value);
+        let hasValueChanged = true;
+        switch (typeof value) {
+            case "number":
+                if (this._Value.getType() === StorageValueType.Number) {
+                    hasValueChanged = this._Value.getNumber() !== (value as number);
+                    hasValueChanged && this._Value.setNumber(value as number);
+                } else {
+                    this._Value = StorageValueHelper.generateNumber(value as number);
+                }
+                break;
+            case "boolean":
+                if (this._Value.getType() === StorageValueType.Boolean) {
+                    hasValueChanged = this._Value.getBoolean() !== (value as boolean);
+                    hasValueChanged && this._Value.setBoolean(value as boolean);
+                } else {
+                    this._Value = StorageValueHelper.generateBoolean(value as boolean);
+                }
+                break;
+            case "object":
+                if (this._Value.getType() === StorageValueType.Object) {
+                    this._Value.setObject(value as object);
+                } else {
+                    this._Value = StorageValueHelper.generateObject(value as object);
+                }
+                break;
+            case "string":
+                if (this._Value.getType() === StorageValueType.String) {
+                    hasValueChanged = this._Value.getString() === (value as string);
+                    hasValueChanged && this._Value.setString(value as string);
+                } else {
+                    this._Value = StorageValueHelper.generateString(value as string);
+                }
+                break;
+            default:
+                this._Value = StorageValueHelper.generateString();
+                break;
+        }
+
+        hasValueChanged && this._Adapter.fireEvents(this._Value);
     }
 
     public getString(): string {
@@ -30,7 +84,7 @@ class StorageItem {
     public getBoolean(): boolean {
         return this._Value.getBoolean();
     }
-    public getObject(): object {
+    public getObject(): object | null {
         return this._Value.getObject();
     }
 

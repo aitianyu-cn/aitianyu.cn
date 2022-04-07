@@ -1,6 +1,6 @@
 /**@format */
 
-import { IMessageBundle } from "dty-common/core/IMessageBundle";
+import { IMessageBundle } from "dty-common/model/IMessageBundle";
 import { IKeyValuePair } from "./Types";
 
 export class MemoryMessageBundle implements IMessageBundle {

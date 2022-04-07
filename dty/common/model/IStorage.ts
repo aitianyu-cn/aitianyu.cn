@@ -12,8 +12,6 @@ export enum StorageValueType {
 }
 
 export interface IStorageValue {
-    setValue(value: string | number | boolean | object): void;
-
     setString(value: string): void;
     setNumber(value: number): void;
     setBoolean(value: boolean): void;
@@ -24,7 +22,7 @@ export interface IStorageValue {
     getNumber(): number;
     getFloat(): number;
     getBoolean(): boolean;
-    getObject(): object;
+    getObject(): object | null;
 }
 
 export interface IStorageBase {
@@ -39,7 +37,7 @@ export interface IStorageBase {
     getNumber(storageKey: string): number;
     getFloat(storageKey: string): number;
     getBoolean(storageKey: string): boolean;
-    getObject(storageKey: string): object;
+    getObject(storageKey: string): object | null;
 
     clear(storageKey?: string): void;
     containsKey(storageKey: string): boolean;
