@@ -13,6 +13,7 @@ export class TianyuShell extends React.Component<IShellProperty, IShellState> {
         super(props);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public initialShell(): void {}
 
     public render(): React.ReactNode {

@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { TianyuShell } from 'tyshell/TianyuShell';
 import './view/css/index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
+    <React.StrictMode>
+        <TianyuShell/>
   </React.StrictMode>,
   document.getElementById('root')
 );
