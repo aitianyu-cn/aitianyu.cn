@@ -17,13 +17,6 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "baseUrl": ".",
-        "paths": {
-            "tyshell/*": ["../dty/frame/shell/*"],
-            "dty-view/*": ["../src/view/*"],
-            "dty-app/*": ["../dty/app/*"],
-            "dty-bundles/*": ["../dty/bundles/*"],
-            "dty-common/*": ["../dty/common/*"],
-            "dty-config/*": ["../dty/config/*"]
-        }
+        "paths": {}
     }
 }

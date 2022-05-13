@@ -1,0 +1,259 @@
+.magnet_tip_main_container {
+  background-color: #ababab;
+  border-radius: 15px;
+  height: max-content;
+  width: 100%;
+  max-width: 1200px;
+
+  margin-bottom: 10px;
+
+  display: block;
+}
+
+.magnet_tip_main_container_inner {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  border-radius: 15px;
+
+  grid-template-rows: max-content 0px max-content max-content;
+}
+
+.magnet_tip_project_link_container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+
+  grid-row: 1;
+
+  background-color: #3d3d3d;
+  border-radius: 10px 10px 0 0;
+
+  color: #fff;
+}
+
+.magnet_tip_project_link {
+  height: 100%;
+  width: 100%;
+
+  text-decoration: none;
+
+  display: grid;
+
+  color: #fff;
+}
+
+.magnet_tip_project_name {
+  height: 100%;
+  width: 100%;
+  font-size: 35px;
+
+  display: grid;
+
+  user-select: none;
+}
+
+.name_div {
+  height: 100%;
+  width: 100%;
+
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.magnet_tip_project_des {
+  height: 100%;
+  display: inline-block;
+
+  user-select: none;
+}
+
+.description_div {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.magnet_tip_project_link_container:hover {
+  background-color: #535353;
+
+  opacity: 80%;
+
+  box-shadow: 0px 3px 5px #646464;
+}
+
+.empty_line {
+  grid-row: 2;
+}
+
+.magnet_tip_project_git_repo_container {
+  grid-row: 3;
+
+  display: grid;
+
+  align-items: center;
+  align-content: center;
+
+  grid-template-rows: 2px max-content max-content 10px;
+  grid-template-columns: auto auto 10px auto auto;
+
+  background-color: #3d3d3d;
+}
+
+.git_repo_empty_1 {
+  grid-row: 2;
+  grid-column: 1;
+
+  min-width: 3px;
+}
+
+.git_repo_empty_2 {
+  grid-row: 2;
+  grid-column: 5;
+
+  min-width: 3px;
+}
+
+.magnet_tip_project_git_repo_title {
+  grid-row: 2;
+  grid-column: 2;
+
+  user-select: none;
+
+  color: #ffffff;
+
+  text-align: right;
+}
+
+.magnet_tip_project_git_repo_git {
+  width: auto;
+  grid-row: 2;
+  grid-column: 4;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+  border-bottom: #fff;
+  border-width: 0 0 1px 0;
+  /* border-style: solid; */
+}
+
+.magnet_tip_project_git_clone_title {
+  grid-row: 3;
+  grid-column: 2;
+
+  user-select: none;
+
+  color: #ffffff;
+
+  text-align: right;
+}
+
+.magnet_tip_project_git_clone_git {
+  grid-row: 3;
+  grid-column: 4;
+
+  text-align: left;
+
+  color: #ffffff;
+
+  word-wrap: break-word;
+  word-break: normal;
+
+  border-bottom: #fff;
+  border-width: 0 0 1px 0;
+  /* border-style: solid; */
+}
+
+.download_magnet_section_container {
+  display: grid;
+
+  grid-template-rows: 10px max-content 10px;
+
+  height: 100%;
+  width: 100%;
+
+  grid-row: 4;
+}
+
+.download_magnet_section_shell {
+  grid-row: 2;
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.download_magnet_section_nodown {
+  grid-row: 2;
+  width: 100%;
+
+  display: grid;
+
+  text-align: center;
+  align-items: center;
+  align-content: center;
+
+  color: #fff;
+
+  user-select: none;
+}
+
+.download_magnet_section_inner {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+
+  grid-template-rows: max-content max-content max-content;
+}
+
+.download_magnet_section_title {
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+
+  height: 25px;
+
+  user-select: none;
+}
+
+.download_magnet_section_link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+
+  color: #919191;
+}
+
+.download_magnet_section_link_div {
+  background-color: #737373;
+
+  height: 30px;
+  margin: 10px;
+
+  border-radius: 5px;
+
+  color: #fff;
+
+  user-select: none;
+}
+
+.download_magnet_section_link_div:hover {
+  background-color: #bebdbd;
+
+  opacity: 80%;
+
+  box-shadow: 3px 5px 5px #646464;
+}
+
+@media screen and (min-width: 700px) {
+  .magnet_tip_main_container {
+    margin-bottom: 20px;
+  }
+}

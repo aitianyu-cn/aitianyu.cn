@@ -1,0 +1,46 @@
+#Footer {
+  height: 85px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+}
+
+.footerContent {
+  color: rgba(255, 255, 255, 75%);
+  white-space: nowrap;
+  line-height: 30px;
+  background-color: #6f89a2;
+  width: 100%;
+}
+
+#footerContent_ContactToUs,
+#footerContent_CR_ICP_DCP {
+  color: rgba(255, 255, 255, 75%);
+  white-space: nowrap;
+  line-height: 30px;
+  width: 100%;
+  background-color: #646464;
+  user-select: none;
+}
+
+#footerContent_CR_ICP_DCP {
+  display: inline-flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+#footerContent_CR_ICP_DCP > div > a {
+  color: rgba(255, 255, 255, 100%);
+  text-decoration: none;
+}
+
+#Footer > div > a,
+#footerContent_CR_ICP_DCP > div > a {
+  color: rgba(255, 255, 255, 100%);
+  text-decoration: none;
+}
+
+#footerContent_EndBeforeColorBalance {
+  height: 25px;
+  background-color: #efefef;
+}

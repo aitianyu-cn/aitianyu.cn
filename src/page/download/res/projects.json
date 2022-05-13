@@ -1,0 +1,42 @@
+{
+    "projects": [
+        {
+            "key": "tianyu-native",
+            "name": "PROJECT_NAME_TIANYU_NATIVE",
+            "desc": "PROJECT_NAME_TIANYU_NATIVE_DESC",
+            "github": "https://github.com/aitianyu-cn/tianyu-native",
+            "repo": "https://github.com/aitianyu-cn/tianyu-native.git",
+            "package": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip",
+            "bin": [
+                {
+                    "system": "SOURCE",
+                    "binary": {
+                        "master": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip",
+                        "release": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/rel.zip"
+                    }
+                },
+                {
+                    "system": "WINDOWS",
+                    "binary": {
+                        "x64": "download/tianyu-native/tianyu-native-win-x64.zip",
+                        "ARM64": "download/tianyu-native/tianyu-native-win-arm64.zip"
+                    }
+                },
+                {
+                    "system": "LINUX",
+                    "binary": {
+                        "x64": "download/tianyu-native/tianyu-native-linux-x64.zip",
+                        "ARM64": "download/tianyu-native/tianyu-native-linux-arm64.zip"
+                    }
+                },
+                {
+                    "system": "MACOS",
+                    "binary": {
+                        "Intel": "download/tianyu-native/tianyu-native-mac-intel.zip",
+                        "M1": "download/tianyu-native/tianyu-native-linux-m1.zip"
+                    }
+                }
+            ]
+        }
+    ]
+}
