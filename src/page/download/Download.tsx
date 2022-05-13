@@ -8,42 +8,6 @@ import "./css/main.css";
 import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./DownloadMagnet";
 import { MsgHelper } from "./MsgHelper";
 
-/**
- * "projects": [
-        {
-            "key": "tianyu-native",
-            "name": "PROJECT_NAME_TIANYU_NATIVE",
-            "desc": "PROJECT_NAME_TIANYU_NATIVE_DESC",
-            "github": "https://github.com/aitianyu-cn/tianyu-native",
-            "repo": "https://github.com/aitianyu-cn/tianyu-native.git",
-            "package": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip",
-            "bin": [
-                {
-                    "system": "Windows",
-                    "binary": {
-                        "x64": "tianyu-native-win-x64.zip",
-                        "ARM64": "tianyu-native-win-arm64.zip"
-                    }
-                },
-                {
-                    "system": "Linux",
-                    "binary": {
-                        "x64": "tianyu-native-linux-x64.zip",
-                        "ARM64": "tianyu-native-linux-arm64.zip"
-                    }
-                },
-                {
-                    "system": "MacOS",
-                    "binary": {
-                        "Intel": "tianyu-native-mac-intel.zip",
-                        "M1": "tianyu-native-linux-m1.zip"
-                    }
-                }
-            ]
-        }
-    ]
- */
-
 export class DownLoad extends React.Component<IShellProperty, IShellState> {
     private msgHelper: MsgHelper;
 

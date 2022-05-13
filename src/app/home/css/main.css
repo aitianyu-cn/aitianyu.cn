@@ -1,9 +1,9 @@
-.homePage {
+.home_page_def_homePage {
   height: 100vh !important;
   display: block;
 }
 
-.navigationBar {
+.home_page_def_navigationBar {
   margin-top: 0;
   background-color: #2f2f2f;
   opacity: 90%;
@@ -13,7 +13,7 @@
   box-shadow: 0px 2px 5px #4f4f4f;
 }
 
-.contentMain {
+.home_page_def_contentMain {
   height: 100%;
 
   width: 100%;
@@ -24,7 +24,7 @@
   grid-template-rows: 60px auto;
 }
 
-.appContentForward {
+.home_page_def_appContentForward {
   height: 60px;
   background-color: #ffffff;
   opacity: 20%;
@@ -35,7 +35,7 @@
   grid-row: 1;
 }
 
-.appContent {
+.home_page_def_appContent {
   height: 100%;
   width: 100% !important;
   margin: 0;
@@ -46,15 +46,15 @@
 }
 
 @media screen and (max-width: 800px) {
-  .navigationBar {
+  .home_page_def_navigationBar {
     height: 50px;
   }
 
-  .contentMain {
+  .home_page_def_contentMain {
     grid-template-rows: 50px auto;
   }
 
-  .appContentForward {
+  .home_page_def_appContentForward {
     height: 50px;
   }
 }

@@ -1,7 +1,8 @@
 /**@format */
 
 import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { IShellState } from "../../dty/frame/shell/model/IShellState";
 import { DownLoad } from "../../page/download/Download";
@@ -11,6 +12,34 @@ import { Project } from "../../page/project/Project";
 
 import "./css/main.css";
 
+const routers = [
+    {
+        title: "home",
+        path: "/",
+        component: Home,
+    },
+    {
+        title: "home",
+        path: "/home",
+        component: Home,
+    },
+    {
+        title: "download",
+        path: "/download",
+        component: DownLoad,
+    },
+    {
+        title: "project",
+        path: "/project",
+        component: Project,
+    },
+    {
+        title: "language",
+        path: "/language",
+        component: Language,
+    },
+];
+
 export class Application extends React.Component<IShellProperty, IShellState> {
     public constructor(props: IShellProperty) {
         super(props);
@@ -18,16 +47,14 @@ export class Application extends React.Component<IShellProperty, IShellState> {
 
     public render(): React.ReactNode {
         return (
-            <div className="main">
-                <HashRouter>
-                    <Switch>
-                        <Route path="/" component={Home} exact />
-                        <Route path="/home" component={Home} exact />
-                        <Route path="/download" component={DownLoad} exact />
-                        <Route path="/project" component={Project} exact />
-                        <Route path="/language" component={Language} exact />
-                    </Switch>
-                </HashRouter>
+            <div className="application_main_def_main">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/download" element={<DownLoad />} />
+                    <Route path="/project" element={<Project />} />
+                    <Route path="/language" element={<Language />} />
+                </Routes>
             </div>
         );
     }

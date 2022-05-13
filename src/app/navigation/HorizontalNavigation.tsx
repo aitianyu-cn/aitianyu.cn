@@ -7,7 +7,7 @@ import { NavigationBase } from "./NavigationBase";
 
 import "./css/horiz.main.css";
 import { NavigationItem } from "./NavigationItem";
-import { HashRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getDecodeHash, getLocationHash } from "../../dty/common/RouteHelp";
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";
 import { Configure } from "../../dty/common/core/Configure";
@@ -84,22 +84,20 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         config.listenArea("horizontal_navigation", this);
 
         return (
-            <div className="navigate">
-                <div className="navigateBase">
-                    <div className="headerTitle">
+            <div className="navigation_horiz_default_navigate">
+                <div className="navigation_horiz_default_navigateBase">
+                    <div className="navigation_horiz_default_headerTitle">
                         <h3>Development</h3>
                     </div>
-                    <div className="headerNavigateBase">
-                        <HashRouter>
-                            <div className="navigationItemList">{aItems}</div>
-                        </HashRouter>
+                    <div className="navigation_horiz_default_headerNavigateBase">
+                            <div className="navigation_horiz_default_navigationItemList">{aItems}</div>
+                        
                     </div>
-                    <div className="headerLangs">
-                        <HashRouter>
+                    <div className="navigation_horiz_default_headerLangs">
                             <Link to="/language">
-                                <div className="headerLangsSub">
+                                <div className="navigation_horiz_default_headerLangsSub">
                                     <img
-                                        className="languagePic"
+                                        className="navigation_horiz_default_languagePic"
                                         src="assert/language.png"
                                         alt={this.getI18nText("LANGUAGE_PAGE_ALT")}
                                         title={this.getI18nText("LANGUAGE_PAGE_ALT")}
@@ -107,7 +105,6 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                                     />
                                 </div>
                             </Link>
-                        </HashRouter>
                     </div>
                 </div>
             </div>
@@ -162,7 +159,7 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
 
         for (const item of titleFile["items"] || []) {
             const sText = this.getI18nText(item["text"] || "");
-            this.addItem(item["key"], <div className="oNavigationItemStyle">{sText}</div>);
+            this.addItem(item["key"], <div className="navigation_horiz_default_oNavigationItemStyle">{sText}</div>);
         }
     }
 

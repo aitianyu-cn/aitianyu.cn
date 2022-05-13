@@ -1,29 +1,15 @@
 /**@format */
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { HomePage } from "./app/home/HomePage";
 import "./view/css/index.css";
 
-ReactDOM.render(
-    <React.StrictMode>
-        {/* <TianyuShell/>
-        <HashRouter>
-            <Link to="/Page1">Page One</Link>
-            <Link to="/Page2">Page Two</Link>
-        </HashRouter>
-        <div>
-            <Title />
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
-            <HashRouter>
-                {<Redirect path="/" to="Page1" />}
-                <Route path="/" component={Page1} exact />
-                <Route path="/Page1" component={Page1} />
-                <Route path="/Page2" component={Page2} />
-            </HashRouter>
-        </div> */}
+root.render(
+    <React.StrictMode>
         <HomePage />
     </React.StrictMode>,
-    document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function

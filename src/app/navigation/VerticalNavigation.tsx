@@ -2,7 +2,6 @@
 
 import React from "react";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
-import { IShellState } from "../../dty/frame/shell/model/IShellState";
 import { NavigationBase } from "./NavigationBase";
 
 export class VerticalNavigation extends NavigationBase {

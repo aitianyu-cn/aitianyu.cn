@@ -10,6 +10,7 @@ import { HomeNavigation } from "../navigation/HomeNavigation";
 import { Error } from "../../page/error/Error";
 
 import "./css/main.css";
+import { HashRouter } from "react-router-dom";
 
 export class HomePage extends React.Component<IShellProperty, IShellState> {
     public constructor(props: IShellProperty) {
@@ -23,23 +24,25 @@ export class HomePage extends React.Component<IShellProperty, IShellState> {
         const isPathValid = validatePath();
         if (!isPathValid) {
             return (
-                <div className="homePage">
+                <div className="home_page_def_homePage">
                     <Error />
                 </div>
             );
         }
 
         return (
-            <div className="homePage">
-                <div className="navigationBar">
-                    <HomeNavigation />
-                </div>
-                <div className="contentMain">
-                    <div className="appContentForward"></div>
-                    <div className="appContent">
-                        <Application />
+            <div className="home_page_def_homePage">
+                <HashRouter>
+                    <div className="home_page_def_navigationBar">
+                        <HomeNavigation />
                     </div>
-                </div>
+                    <div className="home_page_def_contentMain">
+                        <div className="home_page_def_appContentForward"></div>
+                        <div className="home_page_def_appContent">
+                            <Application />
+                        </div>
+                    </div>
+                </HashRouter>
             </div>
         );
     }

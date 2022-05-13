@@ -41,10 +41,10 @@ export class NavigationItem extends React.Component<IShellProperty, IShellState>
         const content: React.ReactNode = this.oContent ?? <h1>空</h1>;
         const path = `/${this.sKey}`;
         return (
-            <Link key={this.sKey} to={path} className="itemLink" onClick={this.onClick.bind(this)}>
-                <div className="itemBase">
-                    <div className="itemContainer">{content}</div>
-                    {this.isSelected && <div className="selected"></div>}
+            <Link key={this.sKey} to={path} className="navigation_item_default_itemLink" onClick={this.onClick.bind(this)}>
+                <div className="navigation_item_default_itemBase">
+                    <div className="navigation_item_default_itemContainer">{content}</div>
+                    {this.isSelected && <div className="navigation_item_default_selected"></div>}
                 </div>
             </Link>
         );

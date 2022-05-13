@@ -27,10 +27,10 @@ export class Home extends React.Component<IShellProperty, IShellState> {
         for (let i = 0; i < 5; ++i) aNodes.push(<h1 key={i}>1234567890</h1>);
 
         return (
-            <div className="baseGrid">
-                <div className="content"></div>
-                <div className="content">{aNodes}</div>
-                <div className="footer">
+            <div className="page_home_main_def_baseGrid">
+                <div className="page_home_main_def_content"></div>
+                <div className="page_home_main_def_content">{aNodes}</div>
+                <div className="page_home_main_def_footer">
                     <Footer />
                 </div>
             </div>
