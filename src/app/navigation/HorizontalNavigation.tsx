@@ -83,6 +83,8 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         const config = Configure.generateConfigure();
         config.listenArea("horizontal_navigation", this);
 
+        const imgPath = `${process.env.PUBLIC_URL}/assert/language.png`;
+
         return (
             <div className="navigation_horiz_default_navigate">
                 <div className="navigation_horiz_default_navigateBase">
@@ -98,7 +100,7 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                                 <div className="navigation_horiz_default_headerLangsSub">
                                     <img
                                         className="navigation_horiz_default_languagePic"
-                                        src="assert/language.png"
+                                        src={imgPath}
                                         alt={this.getI18nText("LANGUAGE_PAGE_ALT")}
                                         title={this.getI18nText("LANGUAGE_PAGE_ALT")}
                                         onClick={this.onChangeLanguage.bind(this)}

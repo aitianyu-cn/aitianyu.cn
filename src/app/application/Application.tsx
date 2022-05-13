@@ -1,7 +1,7 @@
 /**@format */
 
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate } from "react-router-dom";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { IShellState } from "../../dty/frame/shell/model/IShellState";
@@ -9,6 +9,7 @@ import { DownLoad } from "../../page/download/Download";
 import { Home } from "../../page/Home/Home";
 import { Language } from "../../page/language/Language";
 import { Project } from "../../page/project/Project";
+import { Error } from "../../page/error/Error";
 
 import "./css/main.css";
 
@@ -54,6 +55,9 @@ export class Application extends React.Component<IShellProperty, IShellState> {
                     <Route path="/download" element={<DownLoad />} />
                     <Route path="/project" element={<Project />} />
                     <Route path="/language" element={<Language />} />
+                    <Route element={<Error />} />
+
+                    {/* <Route path="*" element={<Navigate to="/error" replace />} /> */}
                 </Routes>
             </div>
         );
