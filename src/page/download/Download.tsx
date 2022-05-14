@@ -2,13 +2,13 @@
 
 import React from "react";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
-import { IShellState } from "../../dty/frame/shell/model/IShellState";
+import { PageBase } from "../common/PageBase";
 
 import "./css/main.css";
 import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./DownloadMagnet";
 import { MsgHelper } from "./MsgHelper";
 
-export class DownLoad extends React.Component<IShellProperty, IShellState> {
+export class DownLoad extends PageBase {
     private msgHelper: MsgHelper;
 
     public constructor(props: IShellProperty) {
@@ -91,10 +91,7 @@ export class DownLoad extends React.Component<IShellProperty, IShellState> {
         const oMagnetSource: IDMagnetItem = {
             key: oProject["key"],
             name: oProject["name"],
-            desc: oProject["desc"],
             github: oProject["github"],
-            repo: oProject["repo"],
-            package: oProject["package"],
             bin: oPlatforms,
         };
 

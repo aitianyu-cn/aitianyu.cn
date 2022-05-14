@@ -1,5 +1,5 @@
 .navigation_horiz_default_navigate {
-  width: 100%;
+  width: 100vw;
   height: 60px;
   display: inline-flex;
 
@@ -19,7 +19,7 @@
   width: 100%;
   margin: 0;
 
-  grid-template-columns: 180px 5px auto 5px 80px;
+  grid-template-columns: max-content 5px auto 5px 80px;
   grid-template-rows: none;
 }
 

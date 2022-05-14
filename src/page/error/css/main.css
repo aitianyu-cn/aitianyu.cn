@@ -1,0 +1,39 @@
+.error_page_base_container {
+  background-color: rgb(132, 132, 132);
+}
+
+.error_page_base_msg {
+  color: #fff;
+}
+
+.error_page_base_404 {
+  font-size: 200px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.error_page_base_error {
+  font-size: 70px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.error_page_base_desc {
+  font-size: 30px;
+
+  color: rgb(186, 186, 186);
+}
+
+@media screen and (max-width: 500px) {
+  .error_page_base_404 {
+    font-size: 100px;
+  }
+
+  .error_page_base_error {
+    font-size: 35px;
+  }
+
+  .error_page_base_desc {
+    font-size: 20px;
+  }
+}

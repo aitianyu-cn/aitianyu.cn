@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**@format */
 
@@ -8,13 +9,14 @@ import { NavigationBase } from "./NavigationBase";
 import "./css/horiz.main.css";
 import { NavigationItem } from "./NavigationItem";
 import { Link } from "react-router-dom";
-import { getDecodeHash, getLocationHash } from "../../dty/common/RouteHelp";
+import { getLocationPath } from "../../dty/common/RouteHelp";
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";
 import { Configure } from "../../dty/common/core/Configure";
 import { AreaCode } from "../../dty/common/AreaCode";
 import { IEventListener } from "../../dty/common/model/Events";
+import { isMobile } from "react-device-detect";
 
-export class HorizontalNavigation extends NavigationBase implements IEventListener<AreaCode> {
+export class HorizontalNavigation extends NavigationBase implements IEventListener<AreaCode>,  IEventListener<string> {
     private isLanguagePage: boolean;
     private msgBundle: MessageBundle;
 
@@ -80,16 +82,15 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         const aItemKeys: string[] = Object.keys(this.navigationItems);
         for (const key of aItemKeys) aItems.push(this.navigationItems[key].render());
 
-        const config = Configure.generateConfigure();
-        config.listenArea("horizontal_navigation", this);
-
         const imgPath = `${process.env.PUBLIC_URL}/assert/language.png`;
 
         return (
             <div className="navigation_horiz_default_navigate">
                 <div className="navigation_horiz_default_navigateBase">
                     <div className="navigation_horiz_default_headerTitle">
-                        <h3>Development</h3>
+                        {
+                            isMobile ? <h3>DEV</h3> : <h3>Development</h3>
+                        }
                     </div>
                     <div className="navigation_horiz_default_headerNavigateBase">
                             <div className="navigation_horiz_default_navigationItemList">{aItems}</div>
@@ -103,7 +104,7 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                                         src={imgPath}
                                         alt={this.getI18nText("LANGUAGE_PAGE_ALT")}
                                         title={this.getI18nText("LANGUAGE_PAGE_ALT")}
-                                        onClick={this.onChangeLanguage.bind(this)}
+                                        onClick={this.toChangeLanguage.bind(this)}
                                     />
                                 </div>
                             </Link>
@@ -116,26 +117,33 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
     public unMount(): void {
         const config = Configure.generateConfigure();
         config.notListenArea("horizontal_navigation");
+        config.removeTrigger("horizontal_navigation");
+    }
+
+    public componentWillUnmount(): void {
+        this.unMount();
+    }
+
+    public componentDidMount(): void {
+        const config = Configure.generateConfigure();
+        config.listenArea("horizontal_navigation", this);
+        config.addTrigger("horizontal_navigation", this);
     }
 
     private beforeRender(): void {
-        const hash = getLocationHash(0);
-        if (hash === null) {
-            return;
-        }
+        const path = getLocationPath();
 
-        const oHAP = getDecodeHash(hash);
-        if (oHAP.hash === "language") {
+        if (path === "language") {
             return;
         } else {
-            const oNavigationItem = this.navigationItems[oHAP.hash ?? this.defaultNavigation ?? ""];
+            const oNavigationItem = this.navigationItems[path || this.defaultNavigation || ""];
             if (oNavigationItem) {
                 oNavigationItem.setSelected(true);
             }
         }
     }
 
-    private onChangeLanguage(): void {
+    private toChangeLanguage(): void {
         if (this.isLanguagePage) {
             return;
         }
@@ -143,12 +151,14 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         this.switchNavigation("language");
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public fire(event: AreaCode, sender?: any): void {
-        this.switchNavigation(this.defaultNavigation ?? "");
+    public fire(event: AreaCode | string, sender?: any): void {
+        if (typeof event === 'string') {
+            this.switchNavigation(event as string);
+        } else {
+            this.switchNavigation(this.defaultNavigation ?? "");
+        }
     }
     
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public removed(_sender?: any): void{
         // 
     }
@@ -169,7 +179,6 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         return this.msgBundle.getText(text) || text;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private static getI18nObject(): any {
         const oConfig = Configure.generateConfigure();
         switch (oConfig.getArea()) {

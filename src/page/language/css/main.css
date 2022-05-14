@@ -110,8 +110,31 @@
 }
 
 @media screen and (max-width: 500px) {
+  .language_title_div {
+    font-size: 50px;
+  }
+
+  .language_start_empty_div_title {
+    height: 50px !important;
+  }
+
+  .language_start_empty_div {
+    height: 45px !important;
+  }
+
+  .language_supported_title {
+    font-size: 16px;
+  }
+
   .language_tip_container {
     width: 100%;
+  }
+
+  .language_tip_div,
+  .language_tip_div_unsupport {
+    height: 60px;
+
+    font-size: 15px;
   }
 }
 

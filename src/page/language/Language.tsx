@@ -1,7 +1,6 @@
 /**@format */
 
 import React from "react";
-import { HashRouter, Link } from "react-router-dom";
 import { AreaCode } from "../../dty/common/AreaCode";
 import { Configure } from "../../dty/common/core/Configure";
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";

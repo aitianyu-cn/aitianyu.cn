@@ -3,10 +3,7 @@
         {
             "key": "tianyu-native",
             "name": "PROJECT_NAME_TIANYU_NATIVE",
-            "desc": "PROJECT_NAME_TIANYU_NATIVE_DESC",
             "github": "https://github.com/aitianyu-cn/tianyu-native",
-            "repo": "https://github.com/aitianyu-cn/tianyu-native.git",
-            "package": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip",
             "bin": [
                 {
                     "system": "SOURCE",
@@ -37,6 +34,12 @@
                     }
                 }
             ]
+        },
+        {
+            "key": "tianyu-native_long",
+            "name": "PROJECT_NAME_TIANYU_NATIVE_LONG",
+            "github": "https://github.com/aitianyu-cn/tianyu-native",
+            "bin": []
         }
     ]
 }

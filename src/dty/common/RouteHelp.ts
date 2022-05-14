@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**@format */
 
-import { AreaCode } from "./AreaCode";
-import { getAreaFromString, validateAreaString } from "./AreaHelper";
 import { Configure } from "./core/Configure";
 
 export interface IHashParameter {
@@ -13,6 +11,21 @@ export interface IHashParameter {
 export interface IHashDecode {
     hash: string | null;
     params: IHashParameter[];
+}
+
+export function getLocationPath(level = 0): string {
+    const sUrlHash = location.pathname;
+
+    const aPathes: string[] = [];
+    for (const path of sUrlHash.split("/")) {
+        path && aPathes.push(path);
+    }
+
+    if (aPathes.length <= level) {
+        return "";
+    }
+
+    return aPathes[level];
 }
 
 export function getLocationHash(level = 0): string | null {
@@ -77,52 +90,10 @@ export function getDecodeHash(hash: string): IHashDecode {
     return hashResult;
 }
 
-export function getLanguage(): AreaCode {
-    const sUrlSearch = location.search.replace("?", "");
-
-    let areaString = "";
-    for (const search of sUrlSearch.split("&")) {
-        if (search.match(/lang=/)) {
-            areaString = search.replace(/lang=/, "");
-            break;
-        }
-    }
-
-    return getAreaFromString(areaString);
-}
-
 export function setLanguage(areaCode: string): void {
-    const sUrlSearch = location.search.replace("?", "");
-    const oSearches: {
-        [key: string]: string;
-    } = {};
-
-    for (const search of sUrlSearch.split("&")) {
-        if (!search) {
-            continue;
-        }
-
-        const matched = search.match(/=/);
-        if (!matched || !matched.index) {
-            continue;
-        }
-
-        const sKey = search.substring(0, matched.index);
-        const sValue = search.substring(matched.index + 1, search.length);
-        oSearches[sKey] = sValue;
-    }
-
-    oSearches["lang"] = areaCode;
-
-    const aNewSearches = [];
-    for (const key of Object.keys(oSearches)) {
-        aNewSearches.push(`${key}=${oSearches[key] ?? ""}`);
-    }
-
-    const sNewSearch = aNewSearches.join("&");
-    const newUrl = `${location.origin}${location.pathname}?${sNewSearch}#/`;
+    const newUrl = `${location.origin}/`;
     
-    Configure.generateConfigure().setArea(getAreaFromString(areaCode), true);
+    Configure.generateConfigure().setArea(areaCode, true);
     window.location.replace(newUrl);
 }
 

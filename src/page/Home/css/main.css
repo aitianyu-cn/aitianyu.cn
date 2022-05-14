@@ -4,26 +4,43 @@
   text-align: center;
   display: grid;
 
-  grid-template-rows: auto min-content;
+  grid-template-rows: 30px min-content 80px;
+  grid-template-columns: 10% 80% 10%;
 }
 
 .page_home_main_def_content {
-  display: block;
   width: 100%;
   height: 100%;
 
-  grid-row: 1;
-  grid-column: 1;
+  grid-row: 2;
+  grid-column: 2;
 }
 
 .page_home_main_def_footer {
-  display: block;
-  height: 85px;
+  position: fixed;
+  bottom: 0px;
+  height: max-content;
   width: 100%;
-  text-align: center;
   font-size: 13px;
 
-  box-shadow: 0px -2px 3px #646464;
-  grid-row: 2;
-  grid-column: 1;
+  box-shadow: 0px -3px 3px #646464;
+  opacity: 80%;
+  /* grid-row: 3;
+  grid-column-start: 1;
+  grid-column-end: 5; */
+}
+
+.page_home_main_def_base_container {
+  width: 100% !important;
+  height: 100%;
+}
+
+.page_home_main_def_inner_container {
+  width: 100% !important;
+
+  height: 100%;
+}
+
+.page_home_main_def_player_bottom {
+  height: 100px;
 }

@@ -4,7 +4,8 @@ import ReactDOM from "react-dom/client";
 import { HomePage } from "./app/home/HomePage";
 import "./view/css/index.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const rootElement = document.getElementById("root") as HTMLElement;
+const root = ReactDOM.createRoot(rootElement);
 
 root.render(
     <React.StrictMode>

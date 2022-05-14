@@ -1,10 +1,8 @@
 /**@format */
 
 import React from "react";
-import { mobileFooter } from "./MobileFooter";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { IShellState } from "../../dty/frame/shell/model/IShellState";
-import { isMobile } from "react-device-detect";
 
 import "./css/footer.main.css";
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";
@@ -21,10 +19,6 @@ export class Footer extends React.Component<IShellProperty, IShellState> {
     }
 
     public render(): React.ReactNode {
-        if (isMobile) {
-            return mobileFooter();
-        }
-
         return this.renderNormal();
     }
 

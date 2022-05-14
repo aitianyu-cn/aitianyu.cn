@@ -1,7 +1,7 @@
 /**@format */
 
 import { AreaCode } from "../AreaCode";
-import { getAreaFromString } from "../AreaHelper";
+import { getAreaFromString, getLocationArea } from "../AreaHelper";
 import { EventAdapter, IEventListener } from "../model/Events";
 import { Environment, getEnvironmentFromString } from "../Environment";
 import { Version } from "../model/Version";
@@ -9,6 +9,9 @@ import { Version } from "../model/Version";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const StaticConfigJson = require("../../config/config.json");
 
+interface ITriggers {
+    [key: string]: IEventListener<string>;
+}
 export class Configure {
     private static configObject: Configure | null = null;
 
@@ -18,33 +21,43 @@ export class Configure {
 
     private _AreaListener: EventAdapter<AreaCode>;
 
+    private _Triggers: ITriggers;
+
     private constructor() {
         this._Version = new Version(StaticConfigJson?.version || "0.0.1");
-        this._Area = getAreaFromString(StaticConfigJson.language);
+        this._Area = (localStorage["language"] && getAreaFromString(localStorage["language"])) || getLocationArea();
         this._Environment = getEnvironmentFromString(StaticConfigJson.runtime);
 
         this._AreaListener = new EventAdapter<AreaCode>();
+        this._Triggers = {};
     }
 
     public getVersion(): Version {
         return this._Version;
     }
     public getArea(): AreaCode {
+        if (localStorage["language"]) {
+            return getAreaFromString(localStorage["language"]);
+        }
+
         return this._Area;
     }
     public getEnvironment(): Environment {
         return this._Environment;
     }
 
-    public setArea(area: AreaCode, forceFire = false): void {
+    public setArea(area: string, forceFire = false): void {
+        const areaCode = getAreaFromString(area);
+
         let setArea = false;
-        if (this._Area != area) {
-            this._Area = area;
+        if (this._Area != areaCode) {
             setArea = true;
+            this._Area = areaCode;
+            localStorage["language"] = area;
         }
 
         if (setArea || forceFire) {
-            this._AreaListener.fireEventsAsync(area);
+            this._AreaListener.fireEventsAsync(areaCode);
         }
     }
 
@@ -53,6 +66,23 @@ export class Configure {
     }
     public notListenArea(listener: string): void {
         this._AreaListener.removeListener(listener);
+    }
+
+    public addTrigger(triggerName: string, triggerInstance: IEventListener<string>): void {
+        if (this._Triggers[triggerName]) {
+            this._Triggers[triggerName].removed();
+        }
+        this._Triggers[triggerName] = triggerInstance;
+    }
+    public removeTrigger(triggerName: string): void {
+        if (this._Triggers[triggerName]) {
+            delete this._Triggers[triggerName];
+        }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public trig(triggerName: string, eventString: string, sender?: any): void {
+        console.log("fired");
+        this._Triggers[triggerName]?.fire(eventString, sender);
     }
 
     public static generateConfigure(): Configure {

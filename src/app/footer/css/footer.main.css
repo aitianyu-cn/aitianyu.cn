@@ -16,11 +16,14 @@
 #footerContent_ContactToUs,
 #footerContent_CR_ICP_DCP {
   color: rgba(255, 255, 255, 75%);
-  white-space: nowrap;
+  /* white-space: nowrap; */
   line-height: 30px;
   width: 100%;
   background-color: #646464;
   user-select: none;
+
+  word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
 #footerContent_CR_ICP_DCP {

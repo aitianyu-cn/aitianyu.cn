@@ -17,7 +17,7 @@ export class Project extends React.Component<IShellProperty, IShellState> {
 
     private renderNormal(): React.ReactNode {
         const aNodes: React.ReactNode[] = [];
-        for (let i = 0; i < 5; ++i) aNodes.push(<h1 key={i}>Project</h1>);
+        for (let i = 0; i < 1; ++i) aNodes.push(<h1 key={i}>开发中</h1>);
 
         return (
             <div className="baseGrid">

@@ -30,3 +30,15 @@ export function getAreaFromString(areaString?: string): AreaCode {
             return AreaCode.zh_CN;
     }
 }
+
+export function getLocationArea(): AreaCode {
+    const sLocalArea = navigator.language;
+
+    switch (sLocalArea) {
+        case "en-US":
+            return AreaCode.en_US;
+        case "zh-CN":
+        default:
+            return AreaCode.zh_CN;
+    }
+}
