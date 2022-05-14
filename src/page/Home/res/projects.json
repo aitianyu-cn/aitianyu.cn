@@ -7,8 +7,17 @@
             "github": "https://github.com/aitianyu-cn/tianyu-native",
             "repo": "https://github.com/aitianyu-cn/tianyu-native.git",
             "style": {
-                "color": "#ababab"
-            }
+                "color": "#ababab",
+                "fontColor": "#ffabcd",
+                "background": {
+                    "brush": "img",
+                    "src": {
+                        "addr": "inner",
+                        "url": ""
+                    }
+                }
+            },
+            "content": {}
         },
         {
             "key": "tianyu-platform",
@@ -17,7 +26,12 @@
             "github": "https://github.com/aitianyu-cn/Tianyu-Platform",
             "repo": "https://github.com/aitianyu-cn/Tianyu-Platform.git",
             "style": {
-                "color": "#ababab"
+                "color": "#ababab",
+                "fontColor": "#fff",
+                "background": {
+                    "brush": "color",
+                    "src": "#ababab"
+                }
             }
         },
         {
@@ -27,7 +41,8 @@
             "github": "https://github.com/aitianyu-cn/tianyu-file-system",
             "repo": "https://github.com/aitianyu-cn/tianyu-file-system.git",
             "style": {
-                "color": "#ababab"
+                "color": "#ababab",
+                "fontColor": "#000"
             }
         }
     ]

@@ -102,8 +102,8 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                                     <img
                                         className="navigation_horiz_default_languagePic"
                                         src={imgPath}
-                                        alt={this.getI18nText("LANGUAGE_PAGE_ALT")}
-                                        title={this.getI18nText("LANGUAGE_PAGE_ALT")}
+                                        alt={this.getText("LANGUAGE_PAGE_ALT")}
+                                        title={this.getText("LANGUAGE_PAGE_ALT")}
                                         onClick={this.toChangeLanguage.bind(this)}
                                     />
                                 </div>
@@ -170,12 +170,12 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         this.defaultNavigation = titleFile["default"];
 
         for (const item of titleFile["items"] || []) {
-            const sText = this.getI18nText(item["text"] || "");
+            const sText = this.getText(item["text"] || "");
             this.addItem(item["key"], <div className="navigation_horiz_default_oNavigationItemStyle">{sText}</div>);
         }
     }
 
-    private getI18nText(text: string): string {
+    private getText(text: string): string {
         return this.msgBundle.getText(text) || text;
     }
 

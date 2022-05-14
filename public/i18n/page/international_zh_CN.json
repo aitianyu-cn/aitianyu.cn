@@ -1,0 +1,34 @@
+{
+    "PROJECT_NAME_TIANYU_NATIVE": "天宇开发库",
+    "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
+
+    "PROJECT_NAME_TIANYU_PLATFORM": "天宇平台",
+    "PROJECT_NAME_TIANYU_PLATFORM_DESC": "基于“天宇开发库”所开发的跨平台通用开发平台，可以使用多种语言、支持图形化代码以及图形化源代码管理。",
+
+    "PROJECT_NAME_TIANYU_FILE_SYSTEM": "天宇文件系统",
+    "PROJECT_NAME_TIANYU_FILE_SYSTEM_DESC": "基于“天宇开发库”所开发的跨平台多用途文件系统，支持物理磁盘、虚拟磁盘、数据库文件等多种使用场景。",
+
+    "PROJECT_NAME_TIANYU_NATIVE_LONG": "天宇网页测试 - 超长名称: 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库 - 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库",
+
+    "NO_DOWNLOAD_PROJECT": "当前没有项目可供下载",
+    "DOWNLOAD_INVALID": "当前项目没有可用的下载 您可以从储存库中拉取最新的源代码",
+
+    "PROJECT_TITLE_GITHUB_REPO": "储存库",
+    "PROJECT_TITLE_GITHUB_CLONE": "克隆",
+    "SOURCE": "源代码",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "404_OPS_MSG": "咦",
+    "404_DES_MSG": "好像出问题咯",
+    "404_OP1_MSG": "当前请求的数据不存在或无权访问",
+    "404_OP2_MSG": "您可以切换到其他页面继续浏览 ^_v_^",
+
+    "LANGUAGE_TITLE": "多语言",
+    "LANGUAGE_SUPPORT_TITLE": "天宇当前支持的语言",
+    "LANGUAGE_PENDING_TITLE": "进行中",
+    "zh_CN": "简体中文",
+    "zh_NC": "繁体中文",
+    "en_US": "英文（美国）"
+}

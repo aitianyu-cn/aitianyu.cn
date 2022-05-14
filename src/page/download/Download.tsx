@@ -80,9 +80,22 @@ export class DownLoad extends PageBase {
             const aBinaries: IBinarySource[] = [];
             const oBinariesSource = platformSource["binary"];
             for (const binarySource of Object.keys(oBinariesSource)) {
+                const url = oBinariesSource[binarySource];
+
+                let link = "";
+                switch (url["addr"]) {
+                    case "inner":
+                        link = `${process.env.PUBLIC_URL}/download/${url["url"]}`;
+                        break;
+                    case "web":
+                    default:
+                        link = url["url"];
+                        break;
+                }
+
                 aBinaries.push({
                     name: binarySource,
-                    url: oBinariesSource[binarySource],
+                    url: link,
                 });
             }
             oPlatforms[platform] = aBinaries;

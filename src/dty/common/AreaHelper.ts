@@ -5,6 +5,7 @@ import { AreaCode } from "./AreaCode";
 const AreaStrings = ["zh_CN", "en_US"];
 
 export function validateAreaString(areaString: string): boolean {
+    // this function should not be used
     return AreaStrings.includes(areaString);
 }
 

@@ -1,0 +1,34 @@
+{
+    "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Native",
+    "PROJECT_NAME_TIANYU_NATIVE_DESC": "Tianyu Native Description",
+
+    "PROJECT_NAME_TIANYU_PLATFORM": "Tianyu Platform",
+    "PROJECT_NAME_TIANYU_PLATFORM_DESC": "Tianyu Platform Description",
+
+    "PROJECT_NAME_TIANYU_FILE_SYSTEM": "Tianyu File System",
+    "PROJECT_NAME_TIANYU_FILE_SYSTEM_DESC": "Tianyu File System Description",
+
+    "PROJECT_NAME_TIANYU_NATIVE_LONG": "Webpage Test Long: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+
+    "NO_DOWNLOAD_PROJECT": "No Project Can be Downloaded",
+    "DOWNLOAD_INVALID": "Download Source is not provided",
+
+    "PROJECT_TITLE_GITHUB_REPO": "REPO",
+    "PROJECT_TITLE_GITHUB_CLONE": "CLONE",
+    "SOURCE": "SRC",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "404_OPS_MSG": "404",
+    "404_DES_MSG": "Error",
+    "404_OP1_MSG": "RESOURCE DOWN",
+    "404_OP2_MSG": "SWITCH TO OTHER PAGE",
+
+    "LANGUAGE_TITLE": "LANGUAGES",
+    "LANGUAGE_SUPPORT_TITLE": "SUPPORTED",
+    "LANGUAGE_PENDING_TITLE": "WORKING",
+    "zh_CN": "zh_CN",
+    "zh_NC": "zh_Not_Sim",
+    "en_US": "en_US"
+}

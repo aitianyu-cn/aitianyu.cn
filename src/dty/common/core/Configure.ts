@@ -80,7 +80,7 @@ export class Configure {
         }
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public trig(triggerName: string, eventString: string, sender?: any): void {
+    public trigger(triggerName: string, eventString: string, sender?: any): void {
         console.log("fired");
         this._Triggers[triggerName]?.fire(eventString, sender);
     }

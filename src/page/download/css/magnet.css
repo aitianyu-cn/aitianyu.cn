@@ -5,6 +5,8 @@
   width: 100%;
   max-width: 1200px;
 
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
 
   display: block;
@@ -64,8 +66,8 @@
   word-wrap: break-word;
   overflow: hidden;
 
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .magnet_tip_project_des {
@@ -178,7 +180,7 @@
 .download_magnet_section_container {
   display: grid;
 
-  grid-template-rows: 10px max-content 10px;
+  grid-template-rows: 20px max-content 20px;
 
   height: 100%;
   width: 100%;

@@ -8,29 +8,53 @@
                 {
                     "system": "SOURCE",
                     "binary": {
-                        "master": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip",
-                        "release": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/rel.zip"
+                        "master": {
+                            "addr": "web",
+                            "url": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip"
+                        },
+                        "release": {
+                            "addr": "web",
+                            "url": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/rel.zip"
+                        }
                     }
                 },
                 {
                     "system": "WINDOWS",
                     "binary": {
-                        "x64": "download/tianyu-native/tianyu-native-win-x64.zip",
-                        "ARM64": "download/tianyu-native/tianyu-native-win-arm64.zip"
+                        "x64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-win-x64.zip"
+                        },
+                        "ARM64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-win-arm64.zip"
+                        }
                     }
                 },
                 {
                     "system": "LINUX",
                     "binary": {
-                        "x64": "download/tianyu-native/tianyu-native-linux-x64.zip",
-                        "ARM64": "download/tianyu-native/tianyu-native-linux-arm64.zip"
+                        "x64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-x64.zip"
+                        },
+                        "ARM64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-arm64.zip"
+                        }
                     }
                 },
                 {
                     "system": "MACOS",
                     "binary": {
-                        "Intel": "download/tianyu-native/tianyu-native-mac-intel.zip",
-                        "M1": "download/tianyu-native/tianyu-native-linux-m1.zip"
+                        "Intel": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-mac-intel.zip"
+                        },
+                        "M1": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-m1.zip"
+                        }
                     }
                 }
             ]
