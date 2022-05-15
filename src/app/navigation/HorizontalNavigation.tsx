@@ -82,7 +82,8 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         const aItemKeys: string[] = Object.keys(this.navigationItems);
         for (const key of aItemKeys) aItems.push(this.navigationItems[key].render());
 
-        const imgPath = `${process.env.PUBLIC_URL}/assert/language.png`;
+        // const imgPath = `${process.env.PUBLIC_URL}/assert/language.png`;
+        const imgPath = `/assert/language.png`;
 
         return (
             <div className="navigation_horiz_default_navigate">
