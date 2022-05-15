@@ -25,20 +25,20 @@ export class Footer extends React.Component<IShellProperty, IShellState> {
     private renderNormal(): React.ReactNode {
         return (
             <div id="Footer">
+                <div className="footerContent_spile_line"></div>
+                <div id="footerContent_empty_line"></div>
                 <div id="footerContent_ContactToUs">
                     {this.getI18nText("CONTACT_US")}&nbsp; &nbsp;
                     <a href="mailto:public@aitianyu.cn">{this.getI18nText("EMAIL_TEXT")}</a>&nbsp;&amp;&nbsp;
                     <a href="tel:+8615685154601">{this.getI18nText("PHONE_TEXT")}</a>&nbsp; &nbsp;
                     {this.getI18nText("LOOKING_FORWARD_CONTACT")}
                 </div>
+                <div id="footerContent_CR_ICP_DCP">{this.getI18nText("COPYRIGHT_TEXT")} © aitianyu.cn 2021-2024</div>
                 <div id="footerContent_CR_ICP_DCP">
-                    &nbsp;{this.getI18nText("COPYRIGHT_TEXT")} © aitianyu.cn 2021-2024 &nbsp;
                     <div>
-                        &nbsp;
                         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
                             黔ICP备2021004555号-1
                         </a>
-                        &nbsp;
                     </div>
                 </div>
                 <div id="footerContent_EndBeforeColorBalance"></div>

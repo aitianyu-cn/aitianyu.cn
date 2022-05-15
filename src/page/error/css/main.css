@@ -1,5 +1,7 @@
 .error_page_base_container {
   background-color: rgb(132, 132, 132);
+
+  user-select: none;
 }
 
 .error_page_base_msg {

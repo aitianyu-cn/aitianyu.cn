@@ -22,22 +22,20 @@ export class Home extends PageBase {
     private renderNormal(): React.ReactNode {
         const items = this.renderItems();
         return (
-            <div>
+            <div className="page_home_main_def_baseGrid">
+                <div className="page_home_main_def_content">
+                    <div className="page_home_main_def_base_container">
+                        <div className="page_home_main_def_inner_container">
+                            {items.length ? items : this.renderEmtpy()}
+                            {/* <div className="page_home_main_def_player_bottom"></div> */}
+                        </div>
+                    </div>
+                </div>
                 {!isMobile && (
                     <div className="page_home_main_def_footer">
                         <Footer />
                     </div>
                 )}
-                <div className="page_home_main_def_baseGrid">
-                    <div className="page_home_main_def_content">
-                        <div className="page_home_main_def_base_container">
-                            <div className="page_home_main_def_inner_container">
-                                {items.length ? items : this.renderEmtpy()}
-                                {/* <div className="page_home_main_def_player_bottom"></div> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         );
     }
@@ -54,7 +52,11 @@ export class Home extends PageBase {
     }
 
     private renderEmtpy(): React.ReactNode {
-        return <div>当前没有项目</div>;
+        return (
+            <div>
+                <div>当前没有项目</div>
+            </div>
+        );
     }
 
     private createItemSource(): IProject[] {

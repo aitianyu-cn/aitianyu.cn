@@ -18,32 +18,6 @@
                 }
             },
             "content": {}
-        },
-        {
-            "key": "tianyu-platform",
-            "name": "PROJECT_NAME_TIANYU_PLATFORM",
-            "desc": "PROJECT_NAME_TIANYU_PLATFORM_DESC",
-            "github": "https://github.com/aitianyu-cn/Tianyu-Platform",
-            "repo": "https://github.com/aitianyu-cn/Tianyu-Platform.git",
-            "style": {
-                "color": "#ababab",
-                "fontColor": "#fff",
-                "background": {
-                    "brush": "color",
-                    "src": "#ababab"
-                }
-            }
-        },
-        {
-            "key": "tianyu-file-system",
-            "name": "PROJECT_NAME_TIANYU_FILE_SYSTEM",
-            "desc": "PROJECT_NAME_TIANYU_FILE_SYSTEM_DESC",
-            "github": "https://github.com/aitianyu-cn/tianyu-file-system",
-            "repo": "https://github.com/aitianyu-cn/tianyu-file-system.git",
-            "style": {
-                "color": "#ababab",
-                "fontColor": "#000"
-            }
         }
     ]
 }

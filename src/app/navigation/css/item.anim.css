@@ -1,0 +1,30 @@
+@keyframes navigation_item_Container_less_than_1200 {
+  from {
+    font-size: 18px;
+  }
+  to {
+    font-size: 16px;
+  }
+}
+
+@keyframes navigation_item_Container_less_than_800 {
+  from {
+    margin: 0px 20px 0px 20px;
+    font-size: 16px;
+  }
+  to {
+    margin: 0px 15px 0px 15px;
+    font-size: 14px;
+  }
+}
+
+@keyframes navigation_item_Container_less_than_600 {
+  from {
+    margin: 0px 15px 0px 15px;
+    font-size: 14px;
+  }
+  to {
+    margin: 0px 10px 0px 10px;
+    font-size: 12px;
+  }
+}
