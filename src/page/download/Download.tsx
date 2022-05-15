@@ -1,6 +1,7 @@
 /**@format */
 
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { PageBase } from "../common/PageBase";
 
@@ -26,7 +27,19 @@ export class DownLoad extends PageBase {
 
         return (
             <div className="download_base">
-                <div className="download_empty_start"></div>
+                <div className="download_search_container">
+                    <div className="download_search_input_box_container">
+                        <input className="download_search_input_box" />
+                    </div>
+                    <div className={isMobile ? "download_search_button_mob" : "download_search_button"}>
+                        <div
+                            className="download_search_button_text"
+                            style={{ backgroundImage: `url("/assert/search-icon.png")` }}>
+                            {/* <img src="/assert/search-icon.png" /> */}
+                            {/* 搜索 */}
+                        </div>
+                    </div>
+                </div>
                 <div className="download_baseGrid">
                     <div className="download_replace download_replace_1"></div>
                     <div className="download_content">{aProjects.length === 0 ? this.renderEmpty() : aProjects}</div>
@@ -104,7 +117,7 @@ export class DownLoad extends PageBase {
         const oMagnetSource: IDMagnetItem = {
             key: oProject["key"],
             name: oProject["name"],
-            github: oProject["github"],
+            desc: oProject["desc"],
             bin: oPlatforms,
         };
 

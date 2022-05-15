@@ -62,6 +62,7 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                     isNeedRedraw = true;
                 }
             } else {
+                isNeedRedraw = isNeedRedraw || oItem.getSelected();
                 oItem.setSelected(false);
             }
         }

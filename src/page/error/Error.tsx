@@ -1,6 +1,7 @@
 /**@format */
 
 import React from "react";
+import { Configure } from "../../dty/common/core/Configure";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { PageBase } from "../common/PageBase";
 
@@ -20,6 +21,10 @@ export class Error extends PageBase {
         return this.renderNormal();
     }
 
+    public componentDidMount() {
+        this.triggerNavigation();
+    }
+
     private renderNormal(): React.ReactNode {
         return (
             <div className="error_page_base_container">
@@ -29,5 +34,10 @@ export class Error extends PageBase {
                 <div className="error_page_base_msg error_page_base_desc">{this.msgBundle.getI18nText("404_OP2_MSG")}</div>
             </div>
         );
+    }
+
+    private triggerNavigation(): void {
+        const config = Configure.generateConfigure();
+        config.trigger("horizontal_navigation", "error", this);
     }
 }
