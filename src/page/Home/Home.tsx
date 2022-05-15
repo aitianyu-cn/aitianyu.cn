@@ -8,6 +8,7 @@ import "./css/home.main.css";
 import { PageBase } from "../common/PageBase";
 import { HomeItem } from "./HomeItem";
 import { IProject, IProjectStyle } from "../../dty/model/Interfaces";
+import { isMobile } from "react-device-detect";
 
 export class Home extends PageBase {
     public constructor(props: IShellProperty) {
@@ -22,9 +23,11 @@ export class Home extends PageBase {
         const items = this.renderItems();
         return (
             <div>
-                <div className="page_home_main_def_footer">
-                    <Footer />
-                </div>
+                {!isMobile && (
+                    <div className="page_home_main_def_footer">
+                        <Footer />
+                    </div>
+                )}
                 <div className="page_home_main_def_baseGrid">
                     <div className="page_home_main_def_content">
                         <div className="page_home_main_def_base_container">
