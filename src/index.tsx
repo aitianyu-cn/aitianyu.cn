@@ -1,6 +1,7 @@
 /**@format */
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import { HomePage } from "./app/home/HomePage";
 import "./view/css/index.css";
 
@@ -9,7 +10,9 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
     <React.StrictMode>
-        <HomePage />
+        <BrowserRouter>
+            <HomePage />
+        </BrowserRouter>
     </React.StrictMode>,
 );
 

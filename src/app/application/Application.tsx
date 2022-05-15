@@ -26,6 +26,7 @@ export class Application extends React.Component<IShellProperty, IShellState> {
                     <Route path="download" element={<DownLoad />} />
                     <Route path="project" element={<Project />} />
                     <Route path="language" element={<Language />} />
+                    <Route path="/*" element={<Error />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
             </div>
