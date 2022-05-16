@@ -43,7 +43,7 @@ export class HomeItem extends React.Component<IShellProperty, IShellState> {
         };
 
         return (
-            <div key={this.key}>
+            <div key={this.key} className="item_base_magnet_main_linker_container">
                 <Link to={path} onClick={this.triggerNavigation.bind(this)} className="item_base_magnet_main_linker">
                     <div className="item_base_magnet_main_container" style={baseMagnetInlineStyle}>
                         <div style={textInlineStyle}>{this.msgBundle.getI18nText(this.name)}</div>
@@ -55,6 +55,6 @@ export class HomeItem extends React.Component<IShellProperty, IShellState> {
 
     private triggerNavigation(): void {
         const config = Configure.generateConfigure();
-        config.trigger("horizontal_navigation", "project", this);
+        config.trigger("horizontal_navigation", { obj: "project" }, this);
     }
 }

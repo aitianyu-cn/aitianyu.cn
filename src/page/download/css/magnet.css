@@ -27,7 +27,7 @@
   height: 100%;
   width: 100%;
 
-  display: inline;
+  display: block;
 
   grid-row: 1;
 
@@ -57,6 +57,8 @@
   width: 100%;
   font-size: 35px;
 
+  max-width: 100%;
+
   display: grid;
 
   user-select: none;
@@ -66,10 +68,14 @@
   height: max-content;
   width: calc(100% - 10px);
 
+  max-width: calc(100% - 10px);
+
   display: inline;
 
   word-wrap: break-word;
+  word-break: break-all;
   overflow: hidden;
+  flex-wrap: wrap;
 
   text-align: left;
 
@@ -93,6 +99,7 @@
 .description_div {
   height: max-content;
   width: calc(100% - 10px);
+  max-width: calc(100% - 10px);
   display: block;
 
   margin-top: 15px;
@@ -100,6 +107,7 @@
   margin-left: 10px;
 
   word-wrap: break-word;
+  word-break: break-all;
   overflow: hidden;
   text-align: left;
 

@@ -13,5 +13,8 @@
     "SOURCE": "源代码",
     "WINDOWS": "Windows",
     "LINUX": "Linux",
-    "MACOS": "MacOS"
+    "MACOS": "MacOS",
+
+    "DOWNLOAD_DIALOG_EMPTY_SEARCH": "请输入数据用于搜索！",
+    "": ""
 }

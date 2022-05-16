@@ -4,5 +4,8 @@
     "LANGUAGE_PENDING_TITLE": "Working",
     "zh_CN": "Chinese Simplified",
     "zh_NC": "Chinese Traditional",
-    "en_US": "English (United States)"
+    "en_US": "English (United States)",
+
+    "LANGUAGE_PENDING_MOUSE_HOLDER": "The language is being adapted and is not currently supported.",
+    "": ""
 }

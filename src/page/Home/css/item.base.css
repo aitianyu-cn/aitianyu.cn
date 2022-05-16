@@ -1,5 +1,21 @@
+.item_base_magnet_main_linker_container {
+  height: 100%;
+  width: 100;
+  display: grid;
+}
+
 .item_base_magnet_main_linker {
   text-decoration: none;
+  display: grid;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100% !important;
+  max-width: 1200px;
+
+  height: calc(100vh - 200px);
+  margin: 0 auto 20px auto;
 }
 
 .item_base_magnet_main_container {

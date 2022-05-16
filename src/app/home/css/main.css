@@ -1,6 +1,7 @@
 .home_page_def_homePage {
   height: 100vh !important;
   display: block;
+  z-index: -1;
 }
 
 .home_page_def_navigationBar {
@@ -12,7 +13,9 @@
   width: 100%;
   box-shadow: 0px 2px 5px #4f4f4f;
 
-  animation: page_home_main_def_navigate_in 0.9s both;
+  z-index: 90000;
+
+  animation: page_home_main_def_navigate_in 0.75s backwards linear;
 }
 
 .home_page_def_contentMain {
@@ -24,6 +27,8 @@
 
   grid-template-columns: none;
   grid-template-rows: 50px auto;
+
+  animation: home_page_def_contentMain_in 0.5s both;
 }
 
 .home_page_def_appContentForward {
@@ -91,5 +96,21 @@
 
   to {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes home_page_def_contentMain_in {
+  /* form {
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    transform: translate3d(0, 10%, 0);
+  } */
+  form {
+    /* transform: translate3d(0, -10%, 0); */
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
   }
 }

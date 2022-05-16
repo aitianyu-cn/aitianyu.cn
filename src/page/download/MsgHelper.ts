@@ -3,8 +3,9 @@
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";
 import { Configure } from "../../dty/common/core/Configure";
 import { AreaCode } from "../../dty/common/AreaCode";
+import { IMessageBundle } from "../../dty/common/model/IMessageBundle";
 
-export class MsgHelper {
+export class MsgHelper implements IMessageBundle {
     private static generatedHelper: MsgHelper | null = null;
 
     private msgBundle: MessageBundle;
@@ -12,9 +13,12 @@ export class MsgHelper {
     public constructor() {
         this.msgBundle = new MessageBundle(MsgHelper.getI18nObject());
     }
+    public getText(key: string): string | null {
+        return this.msgBundle.getText(key);
+    }
 
     public getI18nText(text: string): string {
-        return this.msgBundle.getText(text) || text;
+        return this.getText(text) || text;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

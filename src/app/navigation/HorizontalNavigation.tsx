@@ -1,6 +1,6 @@
+/**@format */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/**@format */
 
 import React from "react";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
@@ -11,12 +11,12 @@ import { NavigationItem } from "./NavigationItem";
 import { Link } from "react-router-dom";
 import { getLocationPath } from "../../dty/common/RouteHelp";
 import { MessageBundle } from "../../dty/common/i18n/MessageBundle";
-import { Configure } from "../../dty/common/core/Configure";
+import { Configure, ITriggerData } from "../../dty/common/core/Configure";
 import { AreaCode } from "../../dty/common/AreaCode";
 import { IEventListener } from "../../dty/common/model/Events";
 import { isMobile } from "react-device-detect";
 
-export class HorizontalNavigation extends NavigationBase implements IEventListener<AreaCode>,  IEventListener<string> {
+export class HorizontalNavigation extends NavigationBase implements IEventListener<AreaCode>, IEventListener<ITriggerData> {
     private isLanguagePage: boolean;
     private msgBundle: MessageBundle;
 
@@ -25,7 +25,7 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
     public constructor(props: IShellProperty) {
         super(props);
 
-        this.isLanguagePage = false;
+        this.isLanguagePage = location.pathname === "/language";
         this.defaultNavigation = null;
         this.state = {};
 
@@ -89,18 +89,14 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         return (
             <div className="navigation_horiz_default_navigate">
                 <div className="navigation_horiz_default_navigateBase">
-                    <div className="navigation_horiz_default_headerTitle">
-                        {
-                            isMobile ? <h3>DEV</h3> : <h3>Development</h3>
-                        }
-                    </div>
+                    <div className="navigation_horiz_default_headerTitle">{isMobile ? <h3>DEV</h3> : <h3>Development</h3>}</div>
                     <div className="navigation_horiz_default_headerNavigateBase">
-                            <div className="navigation_horiz_default_navigationItemList">{aItems}</div>
-                        
+                        <div className="navigation_horiz_default_navigationItemList">{aItems}</div>
                     </div>
                     <div className="navigation_horiz_default_headerLangs">
-                            <Link to="/language">
-                                <div className="navigation_horiz_default_headerLangsSub">
+                        <div className="navigation_horiz_default_headerLangsSub">
+                            <div className="navigation_horiz_default_language_anim">
+                                <Link to="/language" className="navigation_horiz_default_language_link">
                                     <img
                                         className="navigation_horiz_default_languagePic"
                                         src={imgPath}
@@ -108,8 +104,16 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
                                         title={this.getText("LANGUAGE_PAGE_ALT")}
                                         onClick={this.toChangeLanguage.bind(this)}
                                     />
-                                </div>
-                            </Link>
+                                </Link>
+                                {/* <img
+                                    className="navigation_horiz_default_languagePic"
+                                    src={imgPath}
+                                    alt={this.getText("LANGUAGE_PAGE_ALT")}
+                                    title={this.getText("LANGUAGE_PAGE_ALT")}
+                                    onClick={this.toChangeLanguage.bind(this)}
+                                /> */}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,7 +122,6 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
 
     public unMount(): void {
         const config = Configure.generateConfigure();
-        config.notListenArea("horizontal_navigation");
         config.removeTrigger("horizontal_navigation");
     }
 
@@ -128,7 +131,6 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
 
     public componentDidMount(): void {
         const config = Configure.generateConfigure();
-        config.listenArea("horizontal_navigation", this);
         config.addTrigger("horizontal_navigation", this);
     }
 
@@ -153,16 +155,16 @@ export class HorizontalNavigation extends NavigationBase implements IEventListen
         this.switchNavigation("language");
     }
 
-    public fire(event: AreaCode | string, sender?: any): void {
-        if (typeof event === 'string') {
-            this.switchNavigation(event as string);
-        } else {
+    public fire(event: AreaCode | ITriggerData, sender?: any): void {
+        if (typeof (event as ITriggerData)?.obj === "string") {
+            this.switchNavigation((event as ITriggerData).obj as string);
+        } else if (typeof (event as ITriggerData)?.obj !== "object") {
             this.switchNavigation(this.defaultNavigation ?? "");
         }
     }
-    
-    public removed(_sender?: any): void{
-        // 
+
+    public removed(_sender?: any): void {
+        //
     }
 
     private loadNavigationItem(): void {

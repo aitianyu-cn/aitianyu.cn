@@ -13,5 +13,8 @@
     "SOURCE": "SRC",
     "WINDOWS": "Windows",
     "LINUX": "Linux",
-    "MACOS": "MacOS"
+    "MACOS": "MacOS",
+
+    "DOWNLOAD_DIALOG_EMPTY_SEARCH": "Empty Search",
+    "": ""
 }

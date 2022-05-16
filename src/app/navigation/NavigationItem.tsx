@@ -7,6 +7,7 @@ import { IContentCallback } from "./interface/ContentCallback";
 
 import "./css/item.default.css";
 import { Link } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 export class NavigationItem extends React.Component<IShellProperty, IShellState> {
     private sKey: string;
@@ -42,9 +43,14 @@ export class NavigationItem extends React.Component<IShellProperty, IShellState>
         const path = `/${this.sKey}`;
         return (
             <Link key={this.sKey} to={path} className="navigation_item_default_itemLink" onClick={this.onClick.bind(this)}>
-                <div className="navigation_item_default_itemBase">
+                <div className={isMobile ? "navigation_item_default_itemBase_mob" : "navigation_item_default_itemBase"}>
                     <div className="navigation_item_default_itemContainer">{content}</div>
-                    {this.isSelected && <div className="navigation_item_default_selected"></div>}
+                    {this.isSelected && (
+                        <div
+                            className={
+                                isMobile ? "navigation_item_default_selected_mob" : "navigation_item_default_selected"
+                            }></div>
+                    )}
                 </div>
             </Link>
         );

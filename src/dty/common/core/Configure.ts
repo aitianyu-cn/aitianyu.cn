@@ -5,12 +5,20 @@ import { getAreaFromString, getLocationArea } from "../AreaHelper";
 import { EventAdapter, IEventListener } from "../model/Events";
 import { Environment, getEnvironmentFromString } from "../Environment";
 import { Version } from "../model/Version";
+import { IMessageBundle } from "../model/IMessageBundle";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const StaticConfigJson = require("../../config/config.json");
 
+export interface ITriggerData {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    obj: string | any;
+    msgBundle?: IMessageBundle;
+}
+
 interface ITriggers {
-    [key: string]: IEventListener<string>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: IEventListener<ITriggerData>;
 }
 export class Configure {
     private static configObject: Configure | null = null;
@@ -68,7 +76,8 @@ export class Configure {
         this._AreaListener.removeListener(listener);
     }
 
-    public addTrigger(triggerName: string, triggerInstance: IEventListener<string>): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public addTrigger(triggerName: string, triggerInstance: IEventListener<ITriggerData>): void {
         if (this._Triggers[triggerName]) {
             this._Triggers[triggerName].removed();
         }
@@ -80,7 +89,7 @@ export class Configure {
         }
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public trigger(triggerName: string, eventString: string, sender?: any): void {
+    public trigger(triggerName: string, eventString: ITriggerData, sender?: any): void {
         console.log("fired");
         this._Triggers[triggerName]?.fire(eventString, sender);
     }

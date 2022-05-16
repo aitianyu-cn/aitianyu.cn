@@ -127,6 +127,6 @@ export class DownloadMagnet extends React.Component<IShellProperty, IShellState>
 
     private triggerNavigation(): void {
         const config = Configure.generateConfigure();
-        // config.trigger("horizontal_navigation", "project", this);
+        config.trigger("horizontal_navigation", { obj: "project" }, this);
     }
 }

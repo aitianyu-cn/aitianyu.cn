@@ -1,30 +1,17 @@
-@keyframes navigation_item_Container_less_than_1200 {
-  from {
-    font-size: 18px;
+@keyframes navigation_item_default_itemBase_selected_hover {
+  form {
+    box-shadow: 0px 0px 0px #64646400;
   }
   to {
-    font-size: 16px;
+    box-shadow: 0px 0px 6px #646464ff;
   }
 }
 
-@keyframes navigation_item_Container_less_than_800 {
-  from {
-    margin: 0px 20px 0px 20px;
-    font-size: 16px;
+@keyframes navigation_item_default_itemBase_hover {
+  form {
+    box-shadow: 0px 0px 0px #f9f9f900;
   }
   to {
-    margin: 0px 15px 0px 15px;
-    font-size: 14px;
-  }
-}
-
-@keyframes navigation_item_Container_less_than_600 {
-  from {
-    margin: 0px 15px 0px 15px;
-    font-size: 14px;
-  }
-  to {
-    margin: 0px 10px 0px 10px;
-    font-size: 12px;
+    box-shadow: 0px 0px 6px #f9f9f9ff;
   }
 }

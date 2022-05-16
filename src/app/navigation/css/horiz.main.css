@@ -84,17 +84,46 @@
 .navigation_horiz_default_headerLangsSub {
   align-items: center;
   width: 100% !important;
+  width: 100% !important;
 
   grid-template-columns: auto max-content 40px;
 
   display: grid;
 }
 
+.navigation_horiz_default_language_anim {
+  width: 20px;
+  height: 20px !important;
+
+  margin-right: 0;
+  margin-left: auto;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  background-color: #00000000;
+}
+
+.navigation_horiz_default_language_link {
+  width: 20px;
+  height: 20px !important;
+
+  display: inline-block;
+}
+
 .navigation_horiz_default_languagePic {
   user-select: none;
-  height: 25px !important;
+  height: 20px !important;
+
+  margin-top: auto;
+  margin-bottom: auto;
   opacity: 95%;
   grid-column: 2;
+}
+
+/* .navigation_horiz_default_language_link :hover, */
+.navigation_horiz_default_language_anim :hover {
+  animation: navigation_horiz_default_languagePic_hover 0.25s forwards;
 }
 
 .navigation_horiz_default_oNavigationItemStyle {
@@ -107,48 +136,35 @@
   text-align: center;
 }
 
-/* @media screen and (min-width: 800px) {
-  .navigation_horiz_default_navigate,
-  .navigation_horiz_default_navigateBase,
-  .navigation_horiz_default_headerNavigateBase {
-    height: 50px;
-    animation: navigation_horiz_default_great 0.3s forwards;
-  }
-
-  .navigation_horiz_default_headerTitle {
-    animation: navigation_horiz_default_headerTitle_great_than_800 0.3s forwards;
-  }
-} */
-
 @media screen and (max-width: 800px) {
   .navigation_horiz_default_navigate,
   .navigation_horiz_default_navigateBase,
   .navigation_horiz_default_headerNavigateBase {
     height: 40px;
-    /* animation: navigation_horiz_default_less 0.3s forwards; */
   }
 
   .navigation_horiz_default_headerTitle {
     font-size: 14px;
     height: 40px !important;
     margin-left: 10px;
-    /* animation: navigation_horiz_default_headerTitle_less_than_800 0.3s forwards; */
   }
 
   .navigation_horiz_default_oNavigationItemStyle {
     font-size: 100%;
   }
-}
 
-/* @media screen and (min-width: 500px) {
-  .navigation_horiz_default_headerTitle {
-    animation: navigation_horiz_default_headerTitle_great_than_500 0.3s forwards;
+  .navigation_horiz_default_headerLangsSub {
+    grid-template-columns: auto max-content 30px;
   }
-} */
+}
 
 @media screen and (max-width: 500px) {
   .navigation_horiz_default_headerTitle {
     margin-left: 5px;
     font-size: 12px;
+  }
+
+  .navigation_horiz_default_headerLangsSub {
+    grid-template-columns: auto max-content 20px;
   }
 }

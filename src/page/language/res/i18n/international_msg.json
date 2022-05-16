@@ -4,5 +4,8 @@
     "LANGUAGE_PENDING_TITLE": "WORKING",
     "zh_CN": "zh_CN",
     "zh_NC": "zh_Not_Sim",
-    "en_US": "en_US"
+    "en_US": "en_US",
+
+    "LANGUAGE_PENDING_MOUSE_HOLDER": "UNSUPPORTED",
+    "": ""
 }

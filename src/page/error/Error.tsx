@@ -38,6 +38,6 @@ export class Error extends PageBase {
 
     private triggerNavigation(): void {
         const config = Configure.generateConfigure();
-        config.trigger("horizontal_navigation", "error", this);
+        config.trigger("horizontal_navigation", { obj: "error" }, this);
     }
 }

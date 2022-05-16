@@ -5,6 +5,8 @@
   display: grid;
 
   grid-template-rows: auto min-content;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
 }
 
 .content {

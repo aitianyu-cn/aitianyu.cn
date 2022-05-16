@@ -11,6 +11,7 @@ import { Project } from "../../page/project/Project";
 import { Error } from "../../page/error/Error";
 
 import "./css/main.css";
+import { Search } from "../../page/search/Search";
 
 export class Application extends React.Component<IShellProperty, IShellState> {
     public constructor(props: IShellProperty) {
@@ -26,6 +27,7 @@ export class Application extends React.Component<IShellProperty, IShellState> {
                     <Route path="download" element={<DownLoad />} />
                     <Route path="project" element={<Project />} />
                     <Route path="language" element={<Language />} />
+                    <Route path="search" element={<Search />} />
 
                     <Route path="/error" element={<Error />}>
                         <Route path="/error/404" element={<Error />} />

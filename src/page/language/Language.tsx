@@ -82,7 +82,9 @@ export class Language extends React.Component<IShellProperty, IShellState> {
                         {languageName}
                     </div>
                 ) : (
-                    <div className="language_tip_div_unsupport">{languageName}</div>
+                    <div className="language_tip_div_unsupport" placeholder={this.getI18nText("LANGUAGE_PENDING_MOUSE_HOLDER")}>
+                        {languageName}
+                    </div>
                 )}
             </li>
         );

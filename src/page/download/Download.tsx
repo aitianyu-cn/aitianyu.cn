@@ -2,11 +2,13 @@
 
 import React from "react";
 import { isMobile } from "react-device-detect";
+import { Configure } from "../../dty/common/core/Configure";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { PageBase } from "../common/PageBase";
 
 import "./css/main.css";
 import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./DownloadMagnet";
+import { SearchEmptyDialog } from "./DownloadSearchDialog";
 import { MsgHelper } from "./MsgHelper";
 
 export class DownLoad extends PageBase {
@@ -29,15 +31,14 @@ export class DownLoad extends PageBase {
             <div className="download_base">
                 <div className="download_search_container">
                     <div className="download_search_input_box_container">
-                        <input className="download_search_input_box" />
+                        <input id="search_input_box" className="download_search_input_box" type="text" />
                     </div>
-                    <div className={isMobile ? "download_search_button_mob" : "download_search_button"}>
+                    <div
+                        className={isMobile ? "download_search_button_mob" : "download_search_button"}
+                        onClick={this.onSearch.bind(this)}>
                         <div
                             className="download_search_button_text"
-                            style={{ backgroundImage: `url("/assert/search-icon.png")` }}>
-                            {/* <img src="/assert/search-icon.png" /> */}
-                            {/* 搜索 */}
-                        </div>
+                            style={{ backgroundImage: `url("/assert/search-icon.png")` }}></div>
                     </div>
                 </div>
                 <div className="download_baseGrid">
@@ -47,6 +48,22 @@ export class DownLoad extends PageBase {
                 </div>
             </div>
         );
+    }
+
+    private onSearch(): void {
+        const searchBox = document.getElementById("search_input_box") as HTMLInputElement;
+        const searchValue = searchBox?.value || "";
+
+        if (!searchValue) {
+            const config = Configure.generateConfigure();
+            config.trigger("global_message_dialog_open", { msgBundle: this.msgHelper, obj: SearchEmptyDialog });
+            return;
+        }
+
+        const jumpUrl = `${location.origin}/search?wd=${searchValue}#download`;
+        location.href = jumpUrl;
+
+        // window.open(jumpUrl);
     }
 
     private renderEmpty(): React.ReactNode {

@@ -1,6 +1,6 @@
 {
-    "PROJECT_NAME_TIANYU_NATIVE": "天宇开发库",
-    "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
+    "HOME_PAGE_TIANYU": "天宇",
+    "HOME_PAGE_DESCRIPTION": "完全开源的原生开发周边",
 
     "PROJECT_NAME_TIANYU_PLATFORM": "天宇平台",
     "PROJECT_NAME_TIANYU_PLATFORM_DESC": "基于“天宇开发库”所开发的跨平台通用开发平台，可以使用多种语言、支持图形化代码以及图形化源代码管理。",

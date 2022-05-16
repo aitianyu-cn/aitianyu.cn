@@ -1,5 +1,7 @@
 .language_base_grid {
   margin-top: 0px;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
 }
 
 .language_div_splite {
@@ -105,8 +107,14 @@
   text-align: center;
 }
 
+.language_tip_div_unsupport {
+  background-color: #666666;
+  color: #fff;
+}
+
 .language_tip_div:hover {
-  box-shadow: 1px 1px 10px #cfcfcf;
+  /* box-shadow: 1px 1px 10px #cfcfcf; */
+  animation: language_tip_div_hover 0.35s forwards;
 }
 
 @media screen and (max-width: 500px) {
@@ -153,6 +161,15 @@
 @media screen and (min-width: 1200px) {
   .language_tip_container {
     width: 25%;
+  }
+}
+
+@keyframes language_tip_div_hover {
+  from {
+    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
+  }
+  to {
+    box-shadow: 0px 0px 10px #808080;
   }
 }
 
