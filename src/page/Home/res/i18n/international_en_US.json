@@ -2,6 +2,19 @@
     "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.en.png",
     "HOME_PAGE_DESCRIPTION": "Open source native development library and peripheral tools",
     "HOME_PAGE_SOURCE_EMPTY": "No item found at present~ Please come back later~",
+    "HOME_PAGE_MOB_ABOUT_TIANYU": "About Tianyu",
+
+    "ABOUT_TIANYU_FIRST_TITLE": "FIRST",
+    "ABOUT_TIANYU_FIRST_P_ONE": "P1",
+    "ABOUT_TIANYU_FIRST_P_TWO": "P2",
+
+    "ABOUT_TIANYU_SECOND_TITLE": "SECOND",
+    "ABOUT_TIANYU_SECOND_P_ONE": "P1",
+    "ABOUT_TIANYU_SECOND_P_TWO": "P2",
+
+    "ABOUT_TIANYU_THIRD_TITLE": "THIRD",
+    "ABOUT_TIANYU_THIRD_P_ONE": "P1",
+    "ABOUT_TIANYU_THIRD_P_TWO": "P2",
 
     "": ""
 }

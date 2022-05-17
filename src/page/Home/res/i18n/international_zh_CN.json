@@ -2,6 +2,19 @@
     "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.cn.png",
     "HOME_PAGE_DESCRIPTION": "开源的原生开发库与周边工具",
     "HOME_PAGE_SOURCE_EMPTY": "当前没有找到项目哦~ 请过会儿再来吧~",
+    "HOME_PAGE_MOB_ABOUT_TIANYU": "关于天宇",
+
+    "ABOUT_TIANYU_FIRST_TITLE": "FIRST",
+    "ABOUT_TIANYU_FIRST_P_ONE": "P1",
+    "ABOUT_TIANYU_FIRST_P_TWO": "P2",
+
+    "ABOUT_TIANYU_SECOND_TITLE": "SECOND",
+    "ABOUT_TIANYU_SECOND_P_ONE": "P1",
+    "ABOUT_TIANYU_SECOND_P_TWO": "P2",
+
+    "ABOUT_TIANYU_THIRD_TITLE": "THIRD",
+    "ABOUT_TIANYU_THIRD_P_ONE": "P1",
+    "ABOUT_TIANYU_THIRD_P_TWO": "P2",
 
     "": ""
 }

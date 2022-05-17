@@ -1,11 +1,11 @@
 .page_home_main_def_baseGrid {
   height: auto;
-  width: 100%;
+  width: 100vw;
   text-align: center;
   display: grid;
 
   grid-template-rows: max-content 15px min-content 15px min-content;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 5% 90% 5%;
 
   animation: inner_page_enter 0.5s forwards ease-in-out;
 }
@@ -85,16 +85,35 @@
 
 .page_home_main_def_base_container {
   width: 100% !important;
-  height: 100%;
+  height: max-content;
 
   grid-row: 3;
   grid-column: 2;
+}
+
+.page_home_main_def_section_projects_summary {
+  width: 100% !important;
+  height: max-content;
+
+  overflow: auto;
+  flex-wrap: nowrap;
+  display: block;
+  white-space: nowrap;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  justify-content: center;
+
+  text-align: center;
 }
 
 .page_home_main_def_inner_container {
   width: 100% !important;
 
   height: max-content;
+
+  margin-top: 15px;
 
   display: grid;
 }

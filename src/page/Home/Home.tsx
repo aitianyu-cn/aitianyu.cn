@@ -6,18 +6,20 @@ import { Footer } from "../../app/footer/Footer";
 
 import "./css/home.main.css";
 import { PageBase } from "../common/PageBase";
-import { HomeItem } from "./HomeItem";
-import { IProject, IProjectStyle } from "../../dty/model/Interfaces";
+import { HomeAboutItem, IHomeAboutItem } from "./HomeAboutItem";
 import { isMobile } from "react-device-detect";
 import { MsgBundle } from "./MsgBundle";
 
 export class Home extends PageBase {
     private msgBundle: MsgBundle;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private oSource: any;
 
     public constructor(props: IShellProperty) {
         super(props);
 
         this.msgBundle = MsgBundle.generateHelper();
+        this.oSource = require("./res/source.json");
     }
 
     public render(): React.ReactNode {
@@ -25,25 +27,14 @@ export class Home extends PageBase {
     }
 
     private renderNormal(): React.ReactNode {
-        const items = this.renderItems();
+        const items = this.renderAboutItems();
         return (
             <div className="page_home_main_def_baseGrid">
-                <div className="page_home_main_def_static">
-                    <div className="page_home_main_def_content">
-                        <div className="page_home_main_def_home_start">
-                            <img
-                                className="page_home_main_def_home_start_logo"
-                                src={this.msgBundle.getI18nText("HOME_PAGE_TIANYU")}
-                            />
-                        </div>
-                        <div className="page_home_main_def_home_follow">
-                            <div className="page_home_main_def_home_follow_desc">
-                                {this.msgBundle.getI18nText("HOME_PAGE_DESCRIPTION")}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {this.renderHeader()}
                 <div className="page_home_main_def_base_container">
+                    {items.length && isMobile && <p>{this.msgBundle.getI18nText("HOME_PAGE_MOB_ABOUT_TIANYU")}</p>}
+                    {items.length && <section className="page_home_main_def_section_projects_summary">{items}</section>}
+                    <section></section>
                     <div className="page_home_main_def_inner_container">{this.renderEmtpy()}</div>
                 </div>
                 {!isMobile && (
@@ -55,12 +46,32 @@ export class Home extends PageBase {
         );
     }
 
-    private renderItems(): React.ReactNode[] {
-        const itemSources = this.createItemSource();
+    private renderHeader(): React.ReactNode {
+        return (
+            <div className="page_home_main_def_static">
+                <div className="page_home_main_def_content">
+                    <div className="page_home_main_def_home_start">
+                        <img
+                            className="page_home_main_def_home_start_logo"
+                            src={this.msgBundle.getI18nText("HOME_PAGE_TIANYU")}
+                        />
+                    </div>
+                    <div className="page_home_main_def_home_follow">
+                        <div className="page_home_main_def_home_follow_desc">
+                            {this.msgBundle.getI18nText("HOME_PAGE_DESCRIPTION")}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    private renderAboutItems(): React.ReactNode[] {
+        const itemSources = this.createAboutItemSource();
 
         const items: React.ReactNode[] = [];
         for (const source of itemSources) {
-            items.push(new HomeItem(source).render());
+            items.push(new HomeAboutItem(source).render());
         }
 
         return items;
@@ -74,34 +85,19 @@ export class Home extends PageBase {
         );
     }
 
-    private createItemSource(): IProject[] {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const oProject = require("./res/projects.json");
-        const aProjects = oProject["projects"];
-        if (!aProjects) {
+    private createAboutItemSource(): IHomeAboutItem[] {
+        const aAbouts = this.oSource["abouts"];
+        if (!aAbouts) {
             return [];
         }
 
-        const itemSources: IProject[] = [];
-        for (const item of aProjects) {
-            const style: IProjectStyle = {
-                color: "#646464",
-                fontColor: "#fff",
-            };
-
-            if (item["style"]) {
-                const styleSource = item["style"];
-                style.color = styleSource["color"] || style.color;
-                style.fontColor = styleSource["fontColor"] || style.fontColor;
-            }
-
+        const itemSources: IHomeAboutItem[] = [];
+        for (const item of aAbouts) {
             itemSources.push({
                 key: item["key"],
-                name: item["name"],
-                desc: item["desc"],
-                github: item["github"],
-                repo: item["repo"],
-                style: style,
+                title: item["title"],
+                p1: item["p1"],
+                p2: item["p2"],
             });
         }
 
