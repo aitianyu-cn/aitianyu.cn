@@ -1,12 +1,7 @@
 {
-    "HOME_PAGE_TIANYU": "Tianyu",
-    "HOME_PAGE_DESCRIPTION": "Fully Open Source Around Native Development",
-
-    "PROJECT_NAME_TIANYU_PLATFORM": "Tianyu Platform",
-    "PROJECT_NAME_TIANYU_PLATFORM_DESC": "The cross-platform general development platform based on \"Tianyu Development Library\" can use multiple languages, support graphical code and graphical source code management.",
-
-    "PROJECT_NAME_TIANYU_FILE_SYSTEM": "Tianyu File System",
-    "PROJECT_NAME_TIANYU_FILE_SYSTEM_DESC": "Based on \"Tianyu Development Library\" developed by the cross-platform multi-purpose file system, support physical disk, virtual disk, database files and other scenarios.",
+    "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.en.png",
+    "HOME_PAGE_DESCRIPTION": "Open source native development library and peripheral tools",
+    "HOME_PAGE_SOURCE_EMPTY": "No item found at present~ Please come back later~",
 
     "": ""
 }

@@ -3,14 +3,14 @@
 
 import { Configure } from "./core/Configure";
 
-export interface IHashParameter {
+export interface IParameter {
     key: string;
     value: string;
 }
 
 export interface IHashDecode {
     hash: string | null;
-    params: IHashParameter[];
+    params: IParameter[];
 }
 
 export function getLocationPath(level = 0): string {
@@ -68,7 +68,7 @@ export function getDecodeHash(hash: string): IHashDecode {
         for (let j = 0; j < aParameters.length; ++j) {
             const aKVPair = aParameters[j].split("=");
             if (aKVPair.length !== 0) {
-                const oParam: IHashParameter = {
+                const oParam: IParameter = {
                     key: aKVPair[0],
                     value: "",
                 };

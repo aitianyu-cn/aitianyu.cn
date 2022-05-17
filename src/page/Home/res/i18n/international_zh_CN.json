@@ -1,12 +1,7 @@
 {
-    "HOME_PAGE_TIANYU": "天宇",
-    "HOME_PAGE_DESCRIPTION": "完全开源的原生开发周边",
-
-    "PROJECT_NAME_TIANYU_PLATFORM": "天宇平台",
-    "PROJECT_NAME_TIANYU_PLATFORM_DESC": "基于“天宇开发库”所开发的跨平台通用开发平台，可以使用多种语言、支持图形化代码以及图形化源代码管理。",
-
-    "PROJECT_NAME_TIANYU_FILE_SYSTEM": "天宇文件系统",
-    "PROJECT_NAME_TIANYU_FILE_SYSTEM_DESC": "基于“天宇开发库”所开发的跨平台多用途文件系统，支持物理磁盘、虚拟磁盘、数据库文件等多种使用场景。",
+    "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.cn.png",
+    "HOME_PAGE_DESCRIPTION": "开源的原生开发库与周边工具",
+    "HOME_PAGE_SOURCE_EMPTY": "当前没有找到项目哦~ 请过会儿再来吧~",
 
     "": ""
 }

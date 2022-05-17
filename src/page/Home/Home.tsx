@@ -31,12 +31,10 @@ export class Home extends PageBase {
                 <div className="page_home_main_def_static">
                     <div className="page_home_main_def_content">
                         <div className="page_home_main_def_home_start">
-                            <div className="page_home_main_def_home_start_inner">
-                                <div className="page_home_main_def_home_start_ai">AI</div>
-                                <div className="page_home_main_def_home_start_tianyu">
-                                    {this.msgBundle.getI18nText("HOME_PAGE_TIANYU")}
-                                </div>
-                            </div>
+                            <img
+                                className="page_home_main_def_home_start_logo"
+                                src={this.msgBundle.getI18nText("HOME_PAGE_TIANYU")}
+                            />
                         </div>
                         <div className="page_home_main_def_home_follow">
                             <div className="page_home_main_def_home_follow_desc">
@@ -46,10 +44,7 @@ export class Home extends PageBase {
                     </div>
                 </div>
                 <div className="page_home_main_def_base_container">
-                    <div className="page_home_main_def_inner_container">
-                        {this.renderEmtpy()}
-                        {/* <div className="page_home_main_def_player_bottom"></div> */}
-                    </div>
+                    <div className="page_home_main_def_inner_container">{this.renderEmtpy()}</div>
                 </div>
                 {!isMobile && (
                     <div className="page_home_main_def_footer">
@@ -74,7 +69,7 @@ export class Home extends PageBase {
     private renderEmtpy(): React.ReactNode {
         return (
             <div>
-                <div>当前没有项目</div>
+                <div>{this.msgBundle.getI18nText("HOME_PAGE_SOURCE_EMPTY")}</div>
             </div>
         );
     }

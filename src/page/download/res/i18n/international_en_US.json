@@ -2,12 +2,6 @@
     "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Development Library",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "The native C++ (Standard 17) development Library without using any other third-party external dependency library.",
 
-    "PROJECT_NAME_TIANYU_NATIVE_LONG": "Tianyu Webpage Test Very Long Name: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-    "PROJECT_NAME_TIANYU_NATIVE_LONG_DESC": "Tianyu Webpage Test Very Long Name: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-
-    "NO_DOWNLOAD_PROJECT": "No items are currently available for download",
-    "DOWNLOAD_INVALID": "There are no downloads available for the current project. You can pull the latest source code from the repository.",
-
     "PROJECT_TITLE_GITHUB_REPO": "Repo",
     "PROJECT_TITLE_GITHUB_CLONE": "Clone",
     "SOURCE": "Source Code",

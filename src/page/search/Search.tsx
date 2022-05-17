@@ -2,12 +2,12 @@
 
 import React from "react";
 import { Configure } from "../../dty/common/core/Configure";
-import { getLocationHash } from "../../dty/common/RouteHelp";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { PageBase } from "../common/PageBase";
 
 import "./css/main.css";
 import { MsgBundle } from "./MsgBundle";
+import { getSearchParameters, getSearchType } from "./SearchHelper";
 
 export class Search extends PageBase {
     private msgBundle: MsgBundle;
@@ -27,14 +27,23 @@ export class Search extends PageBase {
     }
 
     private renderNormal(): React.ReactNode {
-        const hashData = location.hash;
-        const search = location.search;
+        const searchType = getSearchType();
+        const searches = getSearchParameters();
+
+        const searchDivs: React.ReactNode[] = [];
+        for (const search of searches) {
+            searchDivs.push(
+                <div id={search.key}>
+                    {search.key} {search.value}
+                </div>,
+            );
+        }
 
         return (
             <div className="error_page_base_container">
                 <div className="error_page_base_msg error_page_base_404">{this.msgBundle.getI18nText("404_OPS_MSG")}</div>
-                <div className="error_page_base_msg error_page_base_error">{hashData}~</div>
-                <div className="error_page_base_msg error_page_base_desc">{search}</div>
+                <div className="error_page_base_msg error_page_base_error">{searchType}~</div>
+                <div className="error_page_base_msg error_page_base_desc">{searchDivs}</div>
                 <div className="error_page_base_msg error_page_base_desc">{this.msgBundle.getI18nText("404_OP2_MSG")}</div>
             </div>
         );

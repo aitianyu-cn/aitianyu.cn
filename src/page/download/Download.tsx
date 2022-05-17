@@ -11,6 +11,49 @@ import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./Downlo
 import { SearchEmptyDialog } from "./DownloadSearchDialog";
 import { MsgHelper } from "./MsgHelper";
 
+/**
+ * 
+                {
+                    "system": "WINDOWS",
+                    "binary": {
+                        "x64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-win-x64.zip"
+                        },
+                        "ARM64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-win-arm64.zip"
+                        }
+                    }
+                },
+                {
+                    "system": "LINUX",
+                    "binary": {
+                        "x64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-x64.zip"
+                        },
+                        "ARM64": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-arm64.zip"
+                        }
+                    }
+                },
+                {
+                    "system": "MACOS",
+                    "binary": {
+                        "Intel": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-mac-intel.zip"
+                        },
+                        "M1": {
+                            "addr": "inner",
+                            "url": "tianyu-native/tianyu-native-linux-m1.zip"
+                        }
+                    }
+                }
+ */
+
 export class DownLoad extends PageBase {
     private msgHelper: MsgHelper;
 

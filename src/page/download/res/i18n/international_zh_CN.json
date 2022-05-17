@@ -2,12 +2,6 @@
     "PROJECT_NAME_TIANYU_NATIVE": "天宇开发库",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
 
-    "PROJECT_NAME_TIANYU_NATIVE_LONG": "天宇网页测试 - 超长名称: 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库 - 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库",
-    "PROJECT_NAME_TIANYU_NATIVE_LONG_DESC": "天宇网页测试 - 超长名称: 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库 - 原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库",
-
-    "NO_DOWNLOAD_PROJECT": "当前没有项目可供下载",
-    "DOWNLOAD_INVALID": "当前项目没有可用的下载 您可以前往储存库中拉取最新的源代码",
-
     "PROJECT_TITLE_GITHUB_REPO": "储存库",
     "PROJECT_TITLE_GITHUB_CLONE": "克隆",
     "SOURCE": "源代码",
