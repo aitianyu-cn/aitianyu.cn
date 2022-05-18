@@ -29,8 +29,9 @@ export class Footer extends React.Component<IShellProperty, IShellState> {
                 <div id="footerContent_empty_line"></div>
                 <div id="footerContent_ContactToUs">
                     {this.getI18nText("CONTACT_US")}&nbsp; &nbsp;
-                    <a href="mailto:public@aitianyu.cn">{this.getI18nText("EMAIL_TEXT")}</a>&nbsp;&amp;&nbsp;
-                    <a href="tel:+8615685154601">{this.getI18nText("PHONE_TEXT")}</a>&nbsp; &nbsp;
+                    <a href="mailto:dev.aitianyu.cn@outlook.com">{this.getI18nText("EMAIL_TEXT")}</a>&nbsp;
+                    {/* &amp;&nbsp; */}
+                    {/* <a href="tel:+8615685154601">{this.getI18nText("PHONE_TEXT")}</a>&nbsp; &nbsp; */}
                     {this.getI18nText("LOOKING_FORWARD_CONTACT")}
                 </div>
                 <div id="footerContent_CR_ICP_DCP">{this.getI18nText("COPYRIGHT_TEXT")} © aitianyu.cn 2021-2024</div>

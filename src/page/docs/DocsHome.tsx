@@ -25,6 +25,8 @@ export class DocsHome extends PageBase {
 
         this.msgBundle = new MsgBundle();
         this.oSource = require("./res/source.json");
+
+        document.title = this.msgBundle.getI18nText("PROJECT_DOCS_TITLE");
     }
 
     public render(): React.ReactNode {

@@ -116,6 +116,8 @@
   margin-top: 15px;
 
   display: grid;
+
+  user-select: none;
 }
 
 .page_home_main_def_player_bottom {

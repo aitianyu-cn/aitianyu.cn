@@ -1,5 +1,7 @@
 {
-    "PROJECT_NAME_TIANYU_NATIVE": "天宇开发库",
+    "PROJECT_DOWNLOAD_TITLE": "获取项目资源",
+
+    "PROJECT_NAME_TIANYU_NATIVE": "天宇C++开发库",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
 
     "PROJECT_TITLE_GITHUB_REPO": "储存库",
@@ -10,5 +12,6 @@
     "MACOS": "MacOS",
 
     "DOWNLOAD_DIALOG_EMPTY_SEARCH": "请输入数据用于搜索！",
+    "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "搜索功能当前还未支持！",
     "": ""
 }

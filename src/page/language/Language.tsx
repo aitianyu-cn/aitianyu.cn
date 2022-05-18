@@ -17,6 +17,8 @@ export class Language extends React.Component<IShellProperty, IShellState> {
         super(props);
 
         this.msgBundle = new MessageBundle(Language.getI18nObject());
+
+        document.title = this.msgBundle.getText("AITIANYU_DEV_LANGUAGE_TITLE") || "选择语言";
     }
 
     public render(): React.ReactNode {

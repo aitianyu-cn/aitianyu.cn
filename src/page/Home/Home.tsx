@@ -20,6 +20,8 @@ export class Home extends PageBase {
 
         this.msgBundle = MsgBundle.generateHelper();
         this.oSource = require("./res/source.json");
+
+        document.title = "个人编程学习";
     }
 
     public render(): React.ReactNode {

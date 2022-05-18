@@ -8,7 +8,7 @@ import { PageBase } from "../common/PageBase";
 
 import "./css/main.css";
 import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./DownloadMagnet";
-import { SearchEmptyDialog } from "./DownloadSearchDialog";
+import { SearchEmptyDialog, SearchNotSupportDialog } from "./DownloadSearchDialog";
 import { MsgHelper } from "./MsgHelper";
 
 /**
@@ -61,6 +61,8 @@ export class DownLoad extends PageBase {
         super(props);
 
         this.msgHelper = MsgHelper.generateHelper();
+
+        document.title = this.msgHelper.getI18nText("PROJECT_DOWNLOAD_TITLE");
     }
 
     public render(): React.ReactNode {
@@ -94,6 +96,10 @@ export class DownLoad extends PageBase {
     }
 
     private onSearch(): void {
+        const config = Configure.generateConfigure();
+        config.trigger("global_message_dialog_open", { msgBundle: this.msgHelper, obj: SearchNotSupportDialog });
+        return;
+
         const searchBox = document.getElementById("search_input_box") as HTMLInputElement;
         const searchValue = searchBox?.value || "";
 

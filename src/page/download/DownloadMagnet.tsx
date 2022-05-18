@@ -50,7 +50,7 @@ export class DownloadMagnet extends React.Component<IShellProperty, IShellState>
     }
 
     public render(): React.ReactNode {
-        const navigateLink = `/project/${this.key}`;
+        const navigateLink = `/docs/api/${this.key}`;
         const mobProjectLink = isMobile ? "magnet_tip_project_link_container_mob" : "magnet_tip_project_link_container";
 
         return (

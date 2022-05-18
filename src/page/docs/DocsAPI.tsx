@@ -19,6 +19,8 @@ export class DocsAPI extends PageBase {
 
         this.msgBundle = new MsgBundle();
         this.oAPIBase = require("./res/apibase.json");
+
+        document.title = this.msgBundle.getI18nText("PROJECT_DOCS_API_TITLE");
     }
 
     public componentDidMount(): void {

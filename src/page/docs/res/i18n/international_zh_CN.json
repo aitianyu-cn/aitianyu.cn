@@ -1,11 +1,16 @@
 {
+    "PROJECT_DOCS_TITLE": "项目文档",
+    "PROJECT_DOCS_API_TITLE": "API 文档",
+    "PROJECT_DOCS_API_TIANYU_NATIVE_TITLE": "天宇C++原生开发库 - API",
+
     "TIANYU_DEV_DOCS_API": "API 浏览器",
 
-    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "当前没有可用的语言",
-    "TIANYU_DEV_DOCS_API_TITLE": "请选择API参考语言",
+    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "当前没有可用的项目",
+    "TIANYU_DEV_DOCS_API_TITLE": "请选择一个项目",
 
-    "CPP": "C++",
-    "CSharp": "C#",
+    "TIANYU_DEV_DOCS_API_SOURCE_EMPTY": "当前项目还未上传API文档，请耐心等候！",
+
+    "tianyu-native": "天宇C++原生开发库",
 
     "": ""
 }

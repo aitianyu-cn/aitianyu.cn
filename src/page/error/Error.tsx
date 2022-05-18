@@ -15,6 +15,8 @@ export class Error extends PageBase {
         super(props);
 
         this.msgBundle = MsgBundle.generateHelper();
+
+        document.title = "404";
     }
 
     public render(): React.ReactNode {

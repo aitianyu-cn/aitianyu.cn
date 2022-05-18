@@ -1,4 +1,6 @@
 {
+    "PROJECT_DOWNLOAD_TITLE": "PROJECT RESOURCE DOWNLOAD",
+
     "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Native",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "Tianyu Native Description",
 
@@ -10,5 +12,6 @@
     "MACOS": "MacOS",
 
     "DOWNLOAD_DIALOG_EMPTY_SEARCH": "Empty Search",
+    "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "Search Not Support",
     "": ""
 }

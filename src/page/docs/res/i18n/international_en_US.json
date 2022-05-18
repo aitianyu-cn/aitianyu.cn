@@ -1,11 +1,15 @@
 {
+    "PROJECT_DOCS_TITLE": "Project documentation",
+    "PROJECT_DOCS_API_TITLE": "API Documents",
+    "PROJECT_DOCS_API_TIANYU_NATIVE_TITLE": "Tianyu C++ Native Dev Lib - API",
+
     "TIANYU_DEV_DOCS_API": "API Browser",
 
-    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "No language is currently available",
-    "TIANYU_DEV_DOCS_API_TITLE": "Please select an API reference language",
+    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "No Project is currently available",
+    "TIANYU_DEV_DOCS_API_TITLE": "Please select an API reference Project",
 
-    "CPP": "C++",
-    "CSharp": "C#",
+    "TIANYU_DEV_DOCS_API_SOURCE_EMPTY": "The current project has not uploaded THE API document, please wait patiently!",
 
+    "tianyu-native": "Tianyu C++ native development library",
     "": ""
 }

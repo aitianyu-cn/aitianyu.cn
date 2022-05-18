@@ -13,7 +13,7 @@ import "./css/main.css";
 import { Search } from "../../page/search/Search";
 import { DocsHome } from "../../page/docs/DocsHome";
 import { DocsAPI } from "../../page/docs/DocsAPI";
-import { DocsAPICPP } from "../../page/docs/views/api/APICPP";
+import { DocsAPITianyuNative } from "../../page/docs/views/api/APITianyuNative";
 
 export class Application extends React.Component<IShellProperty, IShellState> {
     public constructor(props: IShellProperty) {
@@ -30,7 +30,7 @@ export class Application extends React.Component<IShellProperty, IShellState> {
 
                     <Route path="/docs" element={<DocsHome />} />
                     <Route path="/docs/api" element={<DocsAPI />} />
-                    <Route path="/docs/api/CPP" element={<DocsAPICPP />} />
+                    <Route path="/docs/api/tianyu-native" element={<DocsAPITianyuNative />} />
 
                     <Route path="/language" element={<Language />} />
                     <Route path="/search" element={<Search />} />
