@@ -1,0 +1,8 @@
+.docs_api_base_view_baseGrid {
+  display: grid;
+
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 20px max-content 20px max-content 40px;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
+}

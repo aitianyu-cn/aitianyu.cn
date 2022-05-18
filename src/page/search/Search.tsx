@@ -2,12 +2,13 @@
 
 import React from "react";
 import { Configure } from "../../dty/common/core/Configure";
+import { getSearchParameters } from "../../dty/common/RouteHelp";
 import { IShellProperty } from "../../dty/frame/shell/model/IShellProperty";
 import { PageBase } from "../common/PageBase";
 
 import "./css/main.css";
 import { MsgBundle } from "./MsgBundle";
-import { getSearchParameters, getSearchType } from "./SearchHelper";
+import { getSearchType } from "./SearchHelper";
 
 export class Search extends PageBase {
     private msgBundle: MsgBundle;

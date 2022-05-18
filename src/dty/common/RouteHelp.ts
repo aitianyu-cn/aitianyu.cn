@@ -8,6 +8,10 @@ export interface IParameter {
     value: string;
 }
 
+export interface IParameters {
+    [key: string]: string;
+}
+
 export interface IHashDecode {
     hash: string | null;
     params: IParameter[];
@@ -100,4 +104,69 @@ export function setLanguage(areaCode: string): void {
 export function validatePath(): boolean {
     const sUrlPath = location.pathname;
     return "/" === sUrlPath;
+}
+
+export function getSearchParameters(): IParameter[] {
+    const search = location.search.substring(1, location.search.length);
+
+    const aSearchItems: string[] = [];
+    for (const sourceItem of search.split("&")) {
+        sourceItem && aSearchItems.push(sourceItem);
+    }
+
+    if (!aSearchItems.length) {
+        return [];
+    }
+
+    const aParameters: IParameter[] = [];
+    for (const item of aSearchItems) {
+        const itemMatch = item.match(/=/);
+        if (!itemMatch) {
+            continue;
+        }
+
+        const parameterKey = item.substring(0, itemMatch.index);
+        const parameterValue = item.substring((itemMatch.index || 0) + 1);
+        aParameters.push({
+            key: parameterKey,
+            value: convertParameterValue(parameterValue),
+        });
+    }
+
+    return aParameters;
+}
+
+export function getSearchParameterObj(): IParameters {
+    const search = location.search.substring(1, location.search.length);
+
+    const aSearchItems: string[] = [];
+    for (const sourceItem of search.split("&")) {
+        sourceItem && aSearchItems.push(sourceItem);
+    }
+
+    if (!aSearchItems.length) {
+        return {};
+    }
+
+    const oParameters: IParameters = {};
+    for (const item of aSearchItems) {
+        const itemMatch = item.match(/=/);
+        if (!itemMatch) {
+            continue;
+        }
+
+        const parameterKey = item.substring(0, itemMatch.index);
+        const parameterValue = item.substring((itemMatch.index || 0) + 1);
+        oParameters[parameterKey] = convertParameterValue(parameterValue);
+    }
+
+    return oParameters;
+}
+
+function convertParameterValue(rawValue: string): string {
+    if (!rawValue) {
+        return rawValue;
+    }
+
+    return decodeURI(rawValue);
 }

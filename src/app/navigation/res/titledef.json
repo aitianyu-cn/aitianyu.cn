@@ -10,8 +10,8 @@
             "text": "DOWNLOAD_PAGE_ITEM"
         },
         {
-            "key": "project",
-            "text": "PROJECT_PAGE_ITEM"
+            "key": "docs",
+            "text": "DOCUMENT_PAGE_ITEM"
         }
     ]
 }

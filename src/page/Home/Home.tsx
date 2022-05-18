@@ -32,8 +32,8 @@ export class Home extends PageBase {
             <div className="page_home_main_def_baseGrid">
                 {this.renderHeader()}
                 <div className="page_home_main_def_base_container">
-                    {items.length && isMobile && <p>{this.msgBundle.getI18nText("HOME_PAGE_MOB_ABOUT_TIANYU")}</p>}
-                    {items.length && <section className="page_home_main_def_section_projects_summary">{items}</section>}
+                    {/* {items.length && isMobile && <p>{this.msgBundle.getI18nText("HOME_PAGE_MOB_ABOUT_TIANYU")}</p>} */}
+                    {<section className="page_home_main_def_section_projects_summary">{items.length ? items : ""}</section>}
                     <section></section>
                     <div className="page_home_main_def_inner_container">{this.renderEmtpy()}</div>
                 </div>
