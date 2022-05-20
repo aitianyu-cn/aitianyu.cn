@@ -33,7 +33,7 @@ namespace aitianyu.cn.Controllers
         [HttpGet]
         public IEnumerable<string> GetAPIProjects()
         {
-            JsonReader jsonReader = new JsonReader(@".\res\project\projects.json");
+            JsonReader jsonReader = new JsonReader(@"./res/project/projects.json");
             JArray projects = jsonReader["projects"] as JArray ?? new JArray();
 
             List<string> projectList = new();

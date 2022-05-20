@@ -14,8 +14,10 @@ const context = ["/project_docs"];
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
     // target: target,
-    target: "http://192.168.0.38:5032",
+    // target: "http://139.155.245.234:5000",
+    target: "http://aitianyu.cn:5000",
     secure: false,
+    changeOrigin: true,
     headers: {
       Connection: "Keep-Alive",
     },
