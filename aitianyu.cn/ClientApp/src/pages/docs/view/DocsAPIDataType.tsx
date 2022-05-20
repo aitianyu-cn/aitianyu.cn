@@ -33,7 +33,7 @@ export function renderDataTypeMembers(
                     <div className="docs_api_internal_datatype_container_content_inner">
                         {isNotEmpty
                             ? isEnum
-                                ? renderSection(container.enum, msgBundle, "enum")
+                                ? renderSection(container.enum, msgBundle, "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_ENUM")
                                 : renderSections(container, msgBundle)
                             : renderEmptySpace(msgBundle)}
                     </div>
