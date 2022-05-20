@@ -1,0 +1,111 @@
+{
+    "HOME_PAGE_ITEM": "Home",
+    "DOWNLOAD_PAGE_ITEM": "Download",
+    "DOCUMENT_PAGE_ITEM": "Docs",
+    "LANGUAGE_PAGE_ALT": "Languages",
+
+    "CONTACT_US": "Contact Us",
+    "EMAIL_TEXT": "E-mail",
+    "PHONE_TEXT": "Phone",
+    "LOOKING_FORWARD_CONTACT": "Looking Forward to Communicating With You",
+    "COPYRIGHT_TEXT": "COPYRIGHT",
+
+    "DIALOG_PAGE_CLOSE_BUTTON": "Close",
+
+    "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.en.png",
+    "HOME_PAGE_DESCRIPTION": "Open source native development library and peripheral tools",
+    "HOME_PAGE_SOURCE_EMPTY": "No item found at present~ Please come back later~",
+    "HOME_PAGE_MOB_ABOUT_TIANYU": "About Tianyu",
+
+    "ABOUT_TIANYU_FIRST_TITLE": "FIRST",
+    "ABOUT_TIANYU_FIRST_P_ONE": "P1",
+    "ABOUT_TIANYU_FIRST_P_TWO": "P2",
+
+    "ABOUT_TIANYU_SECOND_TITLE": "SECOND",
+    "ABOUT_TIANYU_SECOND_P_ONE": "P1",
+    "ABOUT_TIANYU_SECOND_P_TWO": "P2",
+
+    "ABOUT_TIANYU_THIRD_TITLE": "THIRD",
+    "ABOUT_TIANYU_THIRD_P_ONE": "P1",
+    "ABOUT_TIANYU_THIRD_P_TWO": "P2",
+
+    "404_OPS_MSG": "Ops!",
+    "404_DES_MSG": "Something seems to be wrong ~",
+    "404_OP1_MSG": "The currently requested data does not exist or is not accessible.",
+    "404_OP2_MSG": "You can switch to another page to continue ^_v_^",
+
+    "AITIANYU_DEV_LANGUAGE_TITLE": "Change Language",
+
+    "LANGUAGE_TITLE": "Language",
+    "LANGUAGE_SUPPORT_TITLE": "The following languages are supported in Tianyu",
+    "LANGUAGE_PENDING_TITLE": "Working",
+    "zh_CN": "Chinese Simplified",
+    "zh_NC": "Chinese Traditional",
+    "en_US": "English (United States)",
+
+    "LANGUAGE_PENDING_MOUSE_HOLDER": "The language is being adapted and is not currently supported.",
+
+    "PROJECT_DOWNLOAD_TITLE": "Obtaining project resources",
+
+    "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Development Library C++",
+    "PROJECT_NAME_TIANYU_NATIVE_DESC": "The native C++ (Standard 17) development Library without using any other third-party external dependency library.",
+
+    "PROJECT_TITLE_GITHUB_REPO": "Repo",
+    "PROJECT_TITLE_GITHUB_CLONE": "Clone",
+    "SOURCE": "Source Code",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "DOWNLOAD_DIALOG_EMPTY_SEARCH": "Search cannot be NULL!",
+    "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "Search is not currently supported!",
+
+    "PROJECT_DOCS_TITLE": "Project documentation",
+    "PROJECT_DOCS_API_TITLE": "API Documents",
+    "PROJECT_DOCS_API_TIANYU_NATIVE_TITLE": "Tianyu C++ Native Dev Lib - API",
+
+    "TIANYU_DEV_DOCS_API": "API Browser",
+
+    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "No Project is currently available",
+    "TIANYU_DEV_DOCS_API_DATA_LOADING": "Please wait while data is loading...",
+    "TIANYU_DEV_DOCS_API_DATA_LOAD_ERROR": "Data loading failed please refresh and try again",
+    "TIANYU_DEV_DOCS_API_TITLE": "Please select an API reference Project",
+
+    "TIANYU_DEV_DOCS_API_SOURCE_EMPTY": "The current project has not uploaded THE API document, please wait patiently!",
+
+    "TIANYU_DEV_DOCS_API_PROJECT_NAMESPACE_EMPTY": "No valid namespace was found for the current project",
+    "TIANYU_DEV_DOCS_API_PROJECT_DATATYPES_EMPTY": "No defined type was found in the current namespace",
+    "TIANYU_DEV_DOCS_API_PROJECT_DATATYPE_EMPTY": "The current type has no custom definition, please query its parent class or interface",
+
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_CLASS": "Class",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_ENUM": "Enum",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_FUNCTION": "Function",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_DELEGATE": "Function Pointer/Delegate",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_INTERFACE": "Interface",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_STRUCT": "Struct",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_PROPERTY": "Public Variable/Constant Value",
+    "TIANYU_DEV_DOCS_API_MACRO_DEF": "Macro Definition",
+
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_CONSTRUCTOR": "Constructor Function",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_OPERATOR": "Operator Override",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_METHOD": "Method",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_PROPERTY": "Property",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_ENUM_VALUE": "Enum Value",
+
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_NAME": "Name",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_FILE": "File",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_DEF": "Def",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_NOTE": "Note",
+
+    "TIANYU_DEV_DOCS_API_MACRO_DEF_VALUE_NOTEKEY": "Value",
+
+    "tianyu-native": "Tianyu C++ native development library",
+    "_": "Namespace - Global",
+    "_dty": "Namespace - dty (Basic)",
+    "_dty_collection": "Namespace - dty::collection (Data Model)",
+    "_dty_except": "Namespace - dty::except (Exceptions)",
+    "_dty_i18n": "Namespace - dty::i18n (International)",
+    "_dty_test": "Namespace - dty::test (Test Utils)",
+
+    "": ""
+}

@@ -1,0 +1,35 @@
+.docs_api_internal_datatype_container_content {
+  width: 100%;
+  grid-row: 3;
+
+  display: grid;
+
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+  grid-template-rows: max-content 10px max-content auto;
+}
+
+.docs_api_internal_datatype_container_title_sub {
+  width: 100%;
+  grid-row: 1;
+
+  font-size: 25px;
+
+  color: #646464;
+
+  text-align: center;
+
+  align-content: center;
+  user-select: none;
+
+  margin-top: 10px;
+}
+
+.docs_api_internal_datatype_container_content_inner {
+  width: 100%;
+  grid-row: 3;
+
+  display: grid;
+}
