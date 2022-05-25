@@ -1,1 +1,0 @@
-export function reportWebVitals(onPerfEntry?: any): void;
