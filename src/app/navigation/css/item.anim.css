@@ -1,0 +1,17 @@
+@keyframes navigation_item_default_itemBase_selected_hover {
+  form {
+    box-shadow: 0px 0px 0px #64646400;
+  }
+  to {
+    box-shadow: 0px 0px 6px #646464ff;
+  }
+}
+
+@keyframes navigation_item_default_itemBase_hover {
+  form {
+    box-shadow: 0px 0px 0px #f9f9f900;
+  }
+  to {
+    box-shadow: 0px 0px 6px #f9f9f9ff;
+  }
+}

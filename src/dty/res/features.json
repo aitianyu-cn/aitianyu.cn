@@ -1,0 +1,14 @@
+{
+    "AITIANYU_CN_WEB_DEBUG_LOG": {
+        "enable": true,
+        "description": "用于aitianyu网页debug使用"
+    },
+    "AITIANYU_CN_WEB_DYNAMIC_PAGE_CACHE": {
+        "enable": true,
+        "description": "用于aitianyu网页动态加载页面的动态缓存"
+    },
+    "AITIANYU_CN_WEB_DYNAMIC_PAGE_STATIC": {
+        "enable": true,
+        "description": "用于aitianyu网页动态加载页面的静态缓存"
+    }
+}

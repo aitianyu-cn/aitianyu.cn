@@ -1,0 +1,44 @@
+.docs_baseGrid,
+.docs_baseGrid_2 {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: grid;
+
+  /* grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto; */
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
+
+  /* overflow: hidden; */
+}
+
+.docs_baseGrid_2 {
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 50px 50px auto;
+}
+
+.docs_api_title_base {
+  grid-row: 2;
+}
+
+.docs_api_selector_list_base_mob,
+.docs_api_selector_list_base {
+  width: 100%;
+
+  grid-row: 3;
+
+  overflow: auto;
+  flex-wrap: wrap;
+  display: block;
+  white-space: wrap;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  justify-content: center;
+
+  text-align: center;
+  align-content: center;
+}

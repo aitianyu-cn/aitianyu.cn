@@ -1,0 +1,125 @@
+{
+    "HOME_PAGE_ITEM": "主页",
+    "DOWNLOAD_PAGE_ITEM": "下载",
+    "DOCUMENT_PAGE_ITEM": "文档",
+    "LANGUAGE_PAGE_ALT": "选择语言",
+
+    "CONTACT_US": "联系我们",
+    "EMAIL_TEXT": "邮件",
+    "PHONE_TEXT": "电话",
+    "LOOKING_FORWARD_CONTACT": "很期待与您的交流",
+    "COPYRIGHT_TEXT": "版权所有",
+
+    "DIALOG_PAGE_CLOSE_BUTTON": "关闭",
+
+    "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.cn.png",
+    "HOME_PAGE_DESCRIPTION": "开源的原生开发库与周边工具",
+    "HOME_PAGE_SOURCE_EMPTY": "当前没有找到项目哦~ 请过会儿再来吧~",
+    "HOME_PAGE_MOB_ABOUT_TIANYU": "关于天宇",
+
+    "ABOUT_TIANYU_FIRST_TITLE": "FIRST",
+    "ABOUT_TIANYU_FIRST_P_ONE": "P1",
+    "ABOUT_TIANYU_FIRST_P_TWO": "P2",
+
+    "ABOUT_TIANYU_SECOND_TITLE": "SECOND",
+    "ABOUT_TIANYU_SECOND_P_ONE": "P1",
+    "ABOUT_TIANYU_SECOND_P_TWO": "P2",
+
+    "ABOUT_TIANYU_THIRD_TITLE": "THIRD",
+    "ABOUT_TIANYU_THIRD_P_ONE": "P1",
+    "ABOUT_TIANYU_THIRD_P_TWO": "P2",
+
+    "404_OPS_MSG": "咦",
+    "404_DES_MSG": "好像出问题咯",
+    "404_OP1_MSG": "当前请求的数据不存在或无权访问",
+    "404_OP2_MSG": "您可以切换到其他页面继续浏览 ^_v_^",
+
+    "AITIANYU_DEV_LANGUAGE_TITLE": "更改语言",
+
+    "REQUEST_WAITING_PAGE_POINT": "等待中...",
+    "REQUEST_WAITING_PAGE_AI": "...",
+    "REQUEST_WAITING_PAGE_TEXT": "载入中...",
+    "REQUEST_WAITING_IS_TIMEOUT": "数据加载超时，是否继续等待？",
+    "REQUEST_WAITING_TIMEOUT_DIALOG_CONTINUE_WAIT": "等待",
+    "REQUEST_WAITING_TIMEOUT_DIALOG_CANCEL_WAIT": "取消",
+
+    "REQUEST_ERROR_PAGE_IMG_ALT": "重试",
+    "REQUEST_ERROR_PAGE_TEXT": "数据加载失败，刷新以重试",
+
+    "LANGUAGE_TITLE": "多语言",
+    "LANGUAGE_SUPPORT_TITLE": "天宇当前支持的语言",
+    "LANGUAGE_PENDING_TITLE": "进行中",
+    "zh_CN": "简体中文",
+    "zh_NC": "繁体中文",
+    "en_US": "英文（美国）",
+
+    "LANGUAGE_PENDING_MOUSE_HOLDER": "当前选择的语言正在适配中",
+
+    "PROJECT_DOWNLOAD_TITLE": "获取项目资源",
+
+    "PROJECT_NAME_TIANYU_NATIVE": "天宇C++原生 开发库",
+    "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生的c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
+
+    "PROJECT_TITLE_GITHUB_REPO": "储存库",
+    "PROJECT_TITLE_GITHUB_CLONE": "克隆",
+    "SOURCE": "源代码",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "DOWNLOAD_DIALOG_EMPTY_SEARCH": "请输入数据用于搜索！",
+    "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "搜索功能当前还未支持！",
+
+    "PROJECT_DOCS_TITLE": "项目文档",
+    "PROJECT_DOCS_API_TITLE": "API 文档",
+    "PROJECT_DOCS_API_TIANYU_NATIVE_TITLE": "天宇C++原生开发库 - API",
+
+    "TIANYU_DEV_DOCS_API": "API 浏览器",
+
+    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "当前没有可用的项目",
+    "TIANYU_DEV_DOCS_API_DATA_LOADING": "数据加载中 请稍后...",
+    "TIANYU_DEV_DOCS_API_DATA_LOAD_ERROR": "数据加载失败 请刷新后重试",
+    "TIANYU_DEV_DOCS_API_TITLE": "请选择一个项目",
+
+    "TIANYU_DEV_DOCS_API_SOURCE_EMPTY": "当前项目还未上传API文档，请耐心等候！",
+
+    "TIANYU_DEV_DOCS_API_PROJECT_TITLE": "项目 - ",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TITLE": "命名空间 - ",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TITLE": "类型 - ",
+
+    "TIANYU_DEV_DOCS_API_PROJECT_NAMESPACE_EMPTY": "当前项目没有找到有效的命名空间",
+    "TIANYU_DEV_DOCS_API_PROJECT_DATATYPES_EMPTY": "当前命名空间中没有找到定义的类型",
+    "TIANYU_DEV_DOCS_API_PROJECT_DATATYPE_EMPTY": "当前类型没有自定义结构，请查询其父类或接口",
+
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_CLASS": "类",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_ENUM": "枚举",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_FUNCTION": "函数",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_DELEGATE": "函数指针/函数委托",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_INTERFACE": "接口",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_STRUCT": "结构体",
+    "TIANYU_DEV_DOCS_API_NAMESPACE_TYPE_PROPERTY": "公共变量/常量",
+    "TIANYU_DEV_DOCS_API_MACRO_DEF": "宏定义",
+
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_CONSTRUCTOR": "构造函数",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_OPERATOR": "运算符重载",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_METHOD": "方法",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_PROPERTY": "属性",
+    "TIANYU_DEV_DOCS_API_DATATYPE_TYPE_ENUM_VALUE": "枚举值",
+
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_NAME": "标识",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_FILE": "文件",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_DEF": "定义",
+    "TIANYU_DEV_DOCS_API_DATATYPE_MEMBER_DISPLAY_NOTEKEY_NOTE": "注释",
+
+    "TIANYU_DEV_DOCS_API_MACRO_DEF_VALUE_NOTEKEY": "等价值",
+
+    "tianyu-native": "天宇C++原生 开发库",
+    "_": "命名空间 - 全局",
+    "_dty": "命名空间 - dty （基础命名空间）",
+    "_dty_collection": "命名空间 - dty::collection （数据结构集）",
+    "_dty_except": "命名空间 - dty::except （异常类型集）",
+    "_dty_i18n": "命名空间 - dty::i18n （多语言集）",
+    "_dty_test": "命名空间 - dty::test （测试组件集）",
+
+    "": ""
+}
