@@ -35,4 +35,8 @@ export const TriggerList: IListenerList = {
         available: true,
         description: "To continue waiting the response if the waiting time out",
     },
+    Docs_Project_Selector_Trigger: {
+        available: true,
+        description: "Project Document to select the navigation",
+    },
 };

@@ -60,6 +60,9 @@
     "PROJECT_NAME_TIANYU_NATIVE": "天宇C++原生 开发库",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "原生的c++ (Standard 17)开发库，不包含任何第三方外部依赖库。",
 
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK": "天宇C++测试框架",
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC": "基于“天宇C++原生开发库”开发的小型单元测试框架，不依赖除C++17基本头文件之外的其他第三方库。",
+
     "PROJECT_TITLE_GITHUB_REPO": "储存库",
     "PROJECT_TITLE_GITHUB_CLONE": "克隆",
     "SOURCE": "源代码",
@@ -67,8 +70,17 @@
     "LINUX": "Linux",
     "MACOS": "MacOS",
 
+    "DOWNLOAD_INVALID": "当前项目没有提供下载资源，请访问资源库获取更多资源",
+    "NO_DOWNLOAD_PROJECT": "当前没有可用于下载的资源",
     "DOWNLOAD_DIALOG_EMPTY_SEARCH": "请输入数据用于搜索！",
     "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "搜索功能当前还未支持！",
+
+    "TIANYU_DEV_DOCS_PROJECT_OPTIONS": "文档选项",
+    "TIANYU_DEV_DOCS_PROJECT_NO_OPTIONS": "当前项目没有文档",
+    "APIDocs": "API文档",
+    "Architecture": "项目架构",
+    "HelperDocs": "帮助",
+    "Macrodef": "宏定义文档",
 
     "PROJECT_DOCS_TITLE": "项目文档",
     "PROJECT_DOCS_API_TITLE": "API 文档",

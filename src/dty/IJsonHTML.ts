@@ -3,9 +3,10 @@
 export interface IJsonHTMLButton {
     id: string;
     content: string;
+    type: string;
     class: string;
-    clickTrigger: string;
-    clickEvent: string;
+    clickTrigger?: string;
+    clickEvent?: string;
 }
 
 export interface IJsonHTMLViewChild {

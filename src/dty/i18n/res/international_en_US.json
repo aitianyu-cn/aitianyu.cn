@@ -60,6 +60,9 @@
     "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Development Library C++",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "The native C++ (Standard 17) development Library without using any other third-party external dependency library.",
 
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK": "Tianyu C++ Test Framework",
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC": "A small unit testing framework based on \"tianyu C++ native development library\" does not rely on any third party libraries other than the basic C++17 header file.",
+
     "PROJECT_TITLE_GITHUB_REPO": "Repo",
     "PROJECT_TITLE_GITHUB_CLONE": "Clone",
     "SOURCE": "Source Code",
@@ -67,8 +70,17 @@
     "LINUX": "Linux",
     "MACOS": "MacOS",
 
+    "DOWNLOAD_INVALID": "The current project does not provide download resources, please visit Github for more resources.",
+    "NO_DOWNLOAD_PROJECT": "There are currently no resources available for download",
     "DOWNLOAD_DIALOG_EMPTY_SEARCH": "Search cannot be NULL!",
     "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "Search is not currently supported!",
+
+    "TIANYU_DEV_DOCS_PROJECT_OPTIONS": "Document options",
+    "TIANYU_DEV_DOCS_PROJECT_NO_OPTIONS": "The current project has no documentation",
+    "APIDocs": "API Document",
+    "Architecture": "Project Architecture",
+    "HelperDocs": "Help",
+    "Macrodef": "Macro Define",
 
     "PROJECT_DOCS_TITLE": "Project documentation",
     "PROJECT_DOCS_API_TITLE": "API Documents",

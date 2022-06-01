@@ -10,8 +10,6 @@ import { DownLoad } from "src/pages/download/Download";
 
 import "./css/main.css";
 import { TYViewComponent } from "src/dty/shell/TYViewComponent";
-import { DocsAPI } from "src/pages/docs/DocsAPI";
-import { DocsAPIProject } from "src/pages/docs/DocsAPIProject";
 import { Docs } from "src/pages/docs/Docs";
 
 export class Application extends TYViewComponent {
@@ -28,8 +26,8 @@ export class Application extends TYViewComponent {
                     <Route path="/download" element={<DownLoad />} />
 
                     <Route path="/docs" element={<Docs />} />
-                    <Route path="/docs/api" element={<DocsAPI />} />
-                    <Route path="/docs/api/*" element={<DocsAPIProject />} />
+                    <Route path="/docs/api" element={<Error />} />
+                    <Route path="/docs/api/*" element={<Error />} />
 
                     <Route path="/language" element={<Language />} />
                     {/* <Route path="/search" element={<Search />} /> */}

@@ -10,14 +10,14 @@ const createProxyMiddleware = require("http-proxy-middleware");
 
 // console.log(target);
 
-const context = ["/project_docs"];
+const context = ["/global", "/project_docs", "/project_download", "/resources"];
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
     // target: target,
     // target: "http://139.155.245.234:5000",
-    target: "http://aitianyu.cn",
-    // target: "http://localhost:5000",
+    // target: "http://aitianyu.cn",
+    target: "http://localhost:5000",
     secure: false,
     changeOrigin: true,
     headers: {

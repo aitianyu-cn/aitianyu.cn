@@ -12,3 +12,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.dynamic_page_loaded_grid {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+}

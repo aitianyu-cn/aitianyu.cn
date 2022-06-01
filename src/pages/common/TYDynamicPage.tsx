@@ -90,6 +90,7 @@ export abstract class TYDynamicPage extends TYViewComponent {
     }
 
     public componentDidMount(): void {
+        this.componmentMounted();
         this.isLoaded = this.getDataFromCache();
 
         if (this.hasError || this.isLoaded) {
@@ -104,17 +105,32 @@ export abstract class TYDynamicPage extends TYViewComponent {
             return;
         }
 
-        this.loadData().finally(this.forceUpdate.bind(this));
+        this.loadData();
+    }
+
+    protected componmentMounted(): void {
+        // Todo: Here is nothing to do
+        // realize it in sub-class
+    }
+
+    protected componmentWillUnmounted(): void {
+        // Todo: Here is nothing to do
+        // realize it in sub-class
     }
 
     public componentWillUnmount(): void {
+        this.componmentWillUnmounted();
         this.endCacheFlush();
     }
 
     public render(): React.ReactNode {
-        const renderContent = this.hasError ? this.renderError() : this.isLoaded ? this.renderLoaded() : this.renderWaiting();
+        if (this.hasError) {
+            return <div className="dynamic_page_baseGrid">{this.renderError()}</div>;
+        } else if (!this.isLoaded) {
+            return <div className="dynamic_page_baseGrid">{this.renderWaiting()}</div>;
+        }
 
-        return <div className="dynamic_page_baseGrid">{renderContent}</div>;
+        return <div className="dynamic_page_loaded_grid">{this.renderLoaded()}</div>;
     }
 
     private renderWaiting(): React.ReactNode {
@@ -156,6 +172,8 @@ export abstract class TYDynamicPage extends TYViewComponent {
             this.isLoaded = false;
             this.hasError = true;
         }
+
+        this.forceUpdate();
     }
 
     private getDataFromCache(): boolean {

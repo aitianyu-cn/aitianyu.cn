@@ -22,6 +22,7 @@ export interface IDMagnetItem {
     name: string;
     desc: string;
     bin: IBinaries;
+    github: string;
 }
 
 export class DownloadMagnet extends TYViewComponent {
@@ -29,6 +30,7 @@ export class DownloadMagnet extends TYViewComponent {
     private name: string;
     private desc: string;
     private bin: IBinaries;
+    private github: string;
 
     private hasDownload: boolean;
 
@@ -39,12 +41,12 @@ export class DownloadMagnet extends TYViewComponent {
         this.name = source.name;
         this.desc = source.desc;
         this.bin = source.bin;
+        this.github = source.github;
 
         this.hasDownload = Object.keys(this.bin).length !== 0;
     }
 
     public render(): React.ReactNode {
-        const navigateLink = `/docs/api/${this.key}`;
         const mobProjectLink = isMobile ? "magnet_tip_project_link_container_mob" : "magnet_tip_project_link_container";
 
         return (
@@ -52,12 +54,9 @@ export class DownloadMagnet extends TYViewComponent {
                 <div className="magnet_tip_main_container_inner">
                     <div className={mobProjectLink}>
                         <div className="magnet_tip_project_name">
-                            <Link
-                                className="magnet_tip_project_link"
-                                to={navigateLink}
-                                onClick={this.triggerNavigation.bind(this)}>
+                            <a className="magnet_tip_project_link" href={this.github} target="_blank" rel="noopener noreferrer">
                                 <div className="name_div">{this.msgBundle.getI18n(this.name) || this.name}</div>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                     <div className="magnet_tip_project_des">
@@ -117,10 +116,5 @@ export class DownloadMagnet extends TYViewComponent {
             );
         }
         return aDownloadNodes;
-    }
-
-    private triggerNavigation(): void {
-        const config = Configure.generateConfigure();
-        config.trigger("Horizontal_Navigation_Listener", { obj: "project" });
     }
 }
