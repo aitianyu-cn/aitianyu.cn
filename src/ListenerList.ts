@@ -35,6 +35,10 @@ export const TriggerList: IListenerList = {
         available: true,
         description: "To continue waiting the response if the waiting time out",
     },
+    Request_Waiting_Timeout_Cancel: {
+        available: true,
+        description: "To cancel the response and set to error",
+    },
     Docs_Project_Selector_Trigger: {
         available: true,
         description: "Project Document to select the navigation",

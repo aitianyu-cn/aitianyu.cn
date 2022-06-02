@@ -69,8 +69,9 @@ export class RequestWaiting extends TYViewComponent {
     private onTimeoutCancel(): void {
         const config = Configure.generateConfigure();
         config.trigger("Message_Dialog_Close", { obj: "Dynamic Page Timeout Cancel" });
+        config.trigger("Request_Waiting_Timeout_Cancel", { obj: "" });
 
-        window.location.reload();
+        // window.location.reload();
     }
 
     private onTimeoutContinue(): void {

@@ -1,0 +1,120 @@
+.macro_define_item_base,
+.macro_define_item_base_mob {
+  width: 90%;
+
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+
+  /* background-color: #efefef81; */
+
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 5px 5px 0px 0px;
+  border-width: 0 0 1px 0;
+  border-color: #e5e5e5;
+  border-style: solid;
+
+  box-shadow: 0px 2px 5px #c1c1c1;
+}
+
+.macro_define_item_base:hover {
+  animation: macro_define_item_base_hover 0.3s forwards;
+}
+
+.macro_define_item_inner {
+  width: 100%;
+  display: grid;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  grid-template-columns: auto 30% 20px 60% auto;
+}
+
+.macro_define_item_def {
+  grid-column: 2;
+
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+
+  word-wrap: break-word;
+
+  color: #5b5b5b;
+
+  font-size: 16px;
+}
+
+.macro_define_item_desc_value,
+.macro_define_item_desc_file,
+.macro_define_item_desc_i18n {
+  word-wrap: break-word;
+
+  color: #a5a5a5;
+
+  border-width: 0 0 0 5px;
+  border-style: solid;
+
+  padding-left: 5px;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  font-size: 14px;
+}
+
+.macro_define_item_desc_value {
+  border-color: #949494;
+}
+
+.macro_define_item_desc_file {
+  border-color: #c7c7c7;
+}
+
+.macro_define_item_desc_i18n {
+  border-color: #f4f4f4;
+  color: #2e2e2e;
+}
+
+.macro_define_item_desc,
+.macro_define_item_desc_no_value {
+  grid-column: 4;
+
+  text-align: left;
+}
+
+@keyframes macro_define_item_base_hover {
+  0% {
+    box-shadow: 0px 2px 5px #c1c1c1;
+  }
+
+  100% {
+    box-shadow: 0px 4px 5px #afafaf;
+    background-color: #efefef81;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .macro_define_item_def {
+    font-size: 14px;
+  }
+
+  .macro_define_item_desc_value,
+  .macro_define_item_desc_file,
+  .macro_define_item_desc_i18n {
+    font-size: 12px;
+
+    padding-left: 3px;
+
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}

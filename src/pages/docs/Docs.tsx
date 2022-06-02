@@ -169,6 +169,6 @@ export class Docs extends TYDynamicPage {
             return;
         }
 
-        window.location.href = `${window.location.href}/${locate}/${project}`;
+        window.location.pathname = `${window.location.pathname}/${locate}/${project}`;
     }
 }

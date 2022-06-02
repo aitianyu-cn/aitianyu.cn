@@ -1,0 +1,129 @@
+.docs_api_member_base {
+  display: grid;
+
+  width: 95%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  grid-template-rows: 30px max-content 20px max-content auto 20px;
+
+  animation: download_base_enter 0.5s forwards ease-in-out;
+}
+
+.docs_api_member_content_base {
+  grid-row: 4;
+
+  display: grid;
+
+  grid-template-columns: 25% 20px 75%;
+}
+
+.docs_api_member_content_member_list {
+  grid-column: 1;
+
+  text-align: left;
+  text-justify: auto;
+
+  max-height: calc(100vh - 220px);
+
+  overflow: scroll;
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  background-color: #f0f0f0;
+
+  border-radius: 10px 0 0 10px;
+
+  border-width: 0 2px 0 0;
+  border-color: #efefef;
+  border-style: solid;
+}
+
+.docs_api_member_content_member_list_item,
+.docs_api_member_content_member_list_item_mob {
+  color: #7f7f7f;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  border-width: 0 0 1px 0;
+  border-color: #cbcbcb1f;
+  border-style: solid;
+
+  user-select: none;
+}
+
+.docs_api_member_content_member_list_item_selected {
+  background-color: #cbcbcb;
+}
+
+.docs_api_member_content_member_list_item:hover {
+  animation: docs_api_member_content_member_list_item_hover 0.3s forwards;
+}
+
+.docs_api_member_content_member_view {
+  grid-column: 3;
+}
+
+@media screen and (max-width: 700px) {
+  .docs_api_member_content_base {
+    grid-template-columns: auto;
+
+    grid-template-rows: auto 20px max-content;
+  }
+
+  .docs_api_member_content_member_list {
+    grid-row: 1;
+    grid-column: 1;
+
+    text-align: left;
+    text-justify: auto;
+
+    max-height: calc(100vh * 0.2);
+
+    overflow: scroll;
+
+    padding-bottom: 20px;
+    padding-top: 10px;
+
+    background-color: #f0f0f0;
+
+    border-radius: 10px 10px 10px 10px;
+
+    border-width: 0 0 2px 0;
+    border-color: #efefef;
+    border-style: solid;
+  }
+
+  .docs_api_member_content_member_list:hover {
+    animation: docs_api_member_content_member_list_hover 0.5s forwards 0.5s;
+  }
+
+  .docs_api_member_content_member_view {
+    grid-row: 3;
+    grid-column: 1;
+  }
+}
+
+@keyframes docs_api_member_content_member_list_item_hover {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 75%;
+    box-shadow: 1px 0 5px #565656;
+  }
+}
+
+@keyframes docs_api_member_content_member_list_hover {
+  0% {
+    max-height: calc(100vh * 0.2);
+  }
+  100% {
+    max-height: calc(100vh * 0.5);
+  }
+}

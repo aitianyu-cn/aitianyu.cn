@@ -1,0 +1,48 @@
+.docs_macro_define_base {
+  width: 100vw;
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: 20px max-content 30px max-content;
+  grid-template-columns: 5% 90% 5%;
+
+  animation: download_base_enter 0.5s forwards ease-in-out;
+}
+
+.docs_macro_define_items_base {
+  width: 100%;
+  display: inline;
+  grid-template-rows: max-content 20px max-content auto;
+}
+
+.docs_macro_define_items_base,
+.docs_macro_define_empty_title {
+  width: 100%;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.docs_macro_define_items_title {
+  margin-bottom: 20px;
+}
+
+.docs_macro_define_items_title,
+.docs_macro_define_empty_title {
+  width: 100%;
+  font-size: 25px;
+  color: #a5a5a5;
+}
+
+.docs_macro_define_items_container {
+  width: 100%;
+  grid-row: 3;
+
+  display: inline;
+}
+
+@media screen and (max-width: 600px) {
+  .docs_macro_define_items_title,
+  .docs_macro_define_empty_title {
+    font-size: 18px;
+  }
+}
