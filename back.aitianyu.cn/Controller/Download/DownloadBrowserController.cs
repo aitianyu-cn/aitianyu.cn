@@ -2,6 +2,7 @@
 using back.aitianyu.cn.Utils;
 using back.aitianyu.cn.Utils.File;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 
 namespace back.aitianyu.cn.Controller.Download
@@ -10,7 +11,7 @@ namespace back.aitianyu.cn.Controller.Download
     [Route("project_download/[controller]")]
     public class DownloadBrowserController
     {
-        private static string RootPath = Path.Combine(FolderHelper.ControllerInternalBaseSource, "Download");
+        private const string ProjectDownloadsSql = "SELECT `system`, `name`, `address`, `url` FROM aitianyu_base.project_downloads where `key`='{0}';";
 
         private readonly ILogger<DownloadBrowserController> _logger;
 
@@ -22,77 +23,61 @@ namespace back.aitianyu.cn.Controller.Download
         [HttpGet]
         public IEnumerable<DownloadItem> GetDownloads()
         {
-            List<DownloadItem> items = new List<DownloadItem>();
+            List<DownloadItem> items = ProjectHelper.GetDownloads();
 
             try
             {
-                string file = Path.Combine(RootPath, "projects.json");
-                JsonReader reader = new(file);
-
-                JArray array = reader.Token as JArray ?? new JArray();
-                foreach (JToken obj in array)
+                foreach (DownloadItem item in items)
                 {
-                    try
+                    DatabaseCenter? db = DBHelper.GetDBCenter(Initial.AiTianyuBaseDB);
+                    if (db != null)
                     {
-                        string key = obj["key"]?.ToString() ?? "";
-                        string name = obj["name"]?.ToString() ?? "";
-                        string desc = obj["desc"]?.ToString() ?? "";
-                        string github = obj["github"]?.ToString() ?? "";
-
-                        if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(desc))
-                            continue;
-
-                        DownloadItem item = new DownloadItem
+                        try
                         {
-                            Key = key,
-                            Name = name,
-                            Description = desc,
-                            Github = github
-                        };
-
-                        JArray binarys = obj["bin"] as JArray ?? new JArray();
-                        foreach (JObject binary in binarys)
-                        {
-                            string system = binary["system"]?.ToString() ?? "";
-                            if (string.IsNullOrEmpty(system))
-                                continue;
-
-                            DownloadItemBinarySource binarySource = new DownloadItemBinarySource
+                            string sql = string.Format(ProjectDownloadsSql, item.Key);
+                            db.Execute(sql, (MySqlDataReader reader) =>
                             {
-                                System = system
-                            };
+                                Dictionary<string, DownloadItemBinarySource> binarys = new Dictionary<string, DownloadItemBinarySource>();
 
-                            JObject binItem = binary["binary"] as JObject ?? new JObject();
-                            IEnumerable<JProperty> binItemKeys = binItem.Properties();
-                            foreach (JProperty binItemKey in binItemKeys)
-                            {
-                                string binItemKeyName = binItemKey.Name;
-                                JObject binItemKeyValue = binItemKey.Value as JObject ?? new JObject();
-
-                                string address = binItemKeyValue["addr"]?.ToString() ?? "";
-                                string url = binItemKeyValue["url"]?.ToString() ?? "";
-
-                                if (string.IsNullOrEmpty(binItemKeyName) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(url))
-                                    continue;
-
-                                DownloadItemBinarySourceItem binarySourceItem = new()
+                                while (reader.Read())
                                 {
-                                    Address = address,
-                                    Url = url
-                                };
+                                    try
+                                    {
+                                        string system = reader.GetString("system");
+                                        string name = reader.GetString("name");
+                                        string address = reader.GetString("address");
+                                        string url = reader.GetString("url");
 
-                                if (!binarySource.Binary.ContainsKey(binItemKeyName))
-                                    binarySource.Binary.Add(binItemKeyName, binarySourceItem);
-                            }
+                                        DownloadItemBinarySource? downloadItemBinarySource = null;
+                                        if (!binarys.TryGetValue(system, out downloadItemBinarySource))
+                                        {
+                                            downloadItemBinarySource = new DownloadItemBinarySource
+                                            {
+                                                System = system
+                                            };
 
-                            item.Binary.Add(binarySource);
+                                            binarys.Add(system, downloadItemBinarySource);
+                                        }
+
+                                        downloadItemBinarySource.Binary.Add(name, new DownloadItemBinarySourceItem
+                                        {
+                                            Address = address,
+                                            Url = url
+                                        });
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                }
+
+                                item.Binary.AddRange(binarys.Values);
+                            });
                         }
+                        catch
+                        {
 
-                        items.Add(item);
-                    }
-                    catch
-                    {
-
+                        }
                     }
                 }
             }

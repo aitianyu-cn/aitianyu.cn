@@ -2,6 +2,7 @@
 using back.aitianyu.cn.Utils;
 using back.aitianyu.cn.Utils.File;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 
 namespace back.aitianyu.cn.Controller
@@ -10,59 +11,49 @@ namespace back.aitianyu.cn.Controller
     [Route("global/[controller]")]
     public class ProjectBrowserController
     {
-        private static string RootPath = Path.Combine(FolderHelper.ControllerInternalBaseSource, "Project");
+        private const string ProjectOptionsSql = "SELECT `item`, `path` FROM aitianyu_base.project_options where `key`='{0}';";
 
 
         [HttpGet]
         public IEnumerable<ProjectItem> GetAPIProjects()
         {
-            List<ProjectItem> result = new List<ProjectItem>();
+            List<ProjectItem> result = ProjectHelper.GetProjects();
 
             try
             {
-                string file = Path.Combine(RootPath, "projects.json");
-                JsonReader reader = new(file);
-
-                JArray array = reader.Token as JArray ?? new JArray();
-                foreach (JToken obj in array)
+                foreach (ProjectItem item in result)
                 {
-                    try
+                    DatabaseCenter? db = DBHelper.GetDBCenter(Initial.AiTianyuBaseDB);
+                    if (db != null)
                     {
-                        bool isEnable = obj["enable"] is JValue @value ? (bool)value : false;
-                        if (!isEnable)
-                            continue;
-
-                        ProjectItem item = new ProjectItem
+                        try
                         {
-                            Name = obj["project"]?.ToString() ?? "",
-                            I18n = obj["i18n"]?.ToString() ?? "",
-                            Path = obj["path"]?.ToString() ?? ""
-                        };
+                            string sql = string.Format(ProjectOptionsSql, item.Path);
+                            db.Execute(sql, (MySqlDataReader reader) =>
+                            {
+                                while (reader.Read())
+                                {
+                                    try
+                                    {
+                                        string op_item = reader.GetString("item");
+                                        string op_path = reader.GetString("path");
 
-                        if (string.IsNullOrEmpty(item.Name) || string.IsNullOrEmpty(item.Path))
-                            continue;
+                                        if (string.IsNullOrEmpty(op_item) || string.IsNullOrEmpty(op_path))
+                                            continue;
 
-                        JArray options = obj["options"] as JArray ?? new JArray();
-                        foreach (JObject option in options)
-                        {
-                            string op_item = option["item"]?.ToString() ?? "";
-                            string op_path = option["path"]?.ToString() ?? "";
+                                        item.Options.Add(new KeyValuePair<string, string>(op_item, op_path));
+                                    }
+                                    catch
+                                    {
 
-                            if (string.IsNullOrEmpty(op_item) || string.IsNullOrEmpty(op_path))
-                                continue;
-
-                            item.Options.Add(new KeyValuePair<string, string>(op_item, op_path));
+                                    }
+                                }
+                            });
                         }
+                        catch
+                        {
 
-                        string dbname = obj["db"]?.ToString() ?? "";
-                        if (!string.IsNullOrEmpty(dbname))
-                            Runtime.Runtime.ProjectDBs.AddOrUpdate(item.Path, dbname, (string key, string value) => dbname);
-
-                        result.Add(item);
-                    }
-                    catch
-                    {
-
+                        }
                     }
                 }
             }
@@ -70,7 +61,6 @@ namespace back.aitianyu.cn.Controller
             {
 
             }
-
 
             return result;
         }

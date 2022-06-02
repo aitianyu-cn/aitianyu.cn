@@ -14,7 +14,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
     {
         private const string NamespaceSql = "SELECT * FROM {0}.namespace;";
         private const string NamespaceMembersSql = "SELECT `name` FROM {0}.types where namespace = '{1}';";
-        private const string NamespaceMemberItemSql = "SELECT `name`, `i18n`, `prototype`, `file`, `define` FROM {0}.types where namespace = '{1}' and name like '%{2}%';";
+        private const string NamespaceMemberItemSql = "SELECT `name`, `i18n`, `prototype`, `file`, `define` FROM {0}.types where namespace = '{1}' and name like '{2}%';";
         private const string NamespaceMemberTypesSql = "SELECT `name`, `i18n`, `prototype`, `define` FROM cpp_api.container where namespace = '{0}' and belong = '{1}';";
         private const string NamespaceMemberTypeItemSql = "SELECT `name`, `i18n`, `prototype`, `define` FROM cpp_api.container where namespace = '{0}' and belong = '{1}' and name = '{2}';";
         private const string NamespaceI18nFormatter = "DTY_PROJECTS_{0}_API_NAMESPACE_{1}";
@@ -306,6 +306,9 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
                                 // To do: to add code example later;
 
                                 namespaceMembers.Add(def);
+
+                                if ("function" != memberPrototype)
+                                    break;
                             }
                             catch
                             {

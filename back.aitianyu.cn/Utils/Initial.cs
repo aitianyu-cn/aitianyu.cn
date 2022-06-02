@@ -1,36 +1,57 @@
 ﻿using back.aitianyu.cn.Utils.File;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 
 namespace back.aitianyu.cn.Utils
 {
     public class Initial
     {
+        public const string AiTianyuBaseDB = "aitianyu_cn_db";
+
+        private const string AITianyuDBProjectSql = "SELECT `key`, `db`, `enable`  FROM aitianyu_base.projects;";
+
         public static void InitDatabase()
         {
-            string path = Path.Combine(FolderHelper.ControllerInternalBaseSource, "Project", "projects.json");
-            JsonReader reader = new(path);
-            JArray array = reader.Token as JArray ?? new JArray();
-            foreach (JToken obj in array)
+            InitDefaultDB();
+            InitProjectDB();
+        }
+
+        private static void InitDefaultDB()
+        {
+            string defaultDBName = "aitianyu_base";
+            Runtime.Runtime.ProjectDBs.AddOrUpdate(AiTianyuBaseDB, defaultDBName, (string key, string value) => defaultDBName);
+        }
+        private static void InitProjectDB()
+        {
+            DatabaseCenter? db = DBHelper.GetDBCenter(AiTianyuBaseDB);
+            if (db == null)
+                return;
+
+            try
             {
-                try
+                db.Execute(AITianyuDBProjectSql, (MySqlDataReader reader) =>
                 {
-                    bool isEnable = obj["enable"] is JValue @value ? (bool)value : false;
-                    if (!isEnable)
-                        continue;
+                    while (reader.Read())
+                    {
+                        try
+                        {
+                            if (reader.IsDBNull(2) || reader.GetInt32("enable") != 1)
+                                continue;
 
-                    string item_path = obj["path"]?.ToString() ?? "";
+                            string project = reader.GetString("key");
+                            string dbname = reader.GetString("db");
+                            Runtime.Runtime.ProjectDBs.AddOrUpdate(project, dbname, (string key, string value) => dbname);
+                        }
+                        catch
+                        {
 
-                    if (string.IsNullOrEmpty(item_path))
-                        continue;
+                        }
+                    }
+                });
+            }
+            catch
+            {
 
-                    string dbname = obj["db"]?.ToString() ?? "";
-                    if (!string.IsNullOrEmpty(dbname))
-                        Runtime.Runtime.ProjectDBs.AddOrUpdate(item_path, dbname, (string key, string value) => dbname);
-                }
-                catch
-                {
-
-                }
             }
         }
     }
