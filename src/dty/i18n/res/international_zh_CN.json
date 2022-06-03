@@ -145,6 +145,14 @@
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_I18N": "命名空间（多语言组件集 - ::dty::i18n） 包含用于多语言操作的基本接口、类型和方法。",
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_TEST": "命名空间（测试核心 - ::dty::test） 包含天宇测试模块的核心类型、方法定义，并为天宇库提供单元测试支持。",
 
+    "class": "类",
+    "interface": "接口",
+    "function": "方法/委托",
+    "enum": "枚举",
+
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE": "定义",
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE": "示例",
+
     "abstract": "抽象类定义前缀",
     "TEST_MAIN": "测试框架入口 main 函数",
     "_enum": "枚举类型定义",

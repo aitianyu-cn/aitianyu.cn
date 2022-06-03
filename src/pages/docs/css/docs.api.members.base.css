@@ -1,0 +1,58 @@
+.docs_api_members_base_root {
+  width: 100%;
+  height: max-content;
+
+  display: grid;
+
+  grid-template-rows: auto 20px auto;
+}
+
+.docs_api_members_base_title_root {
+  grid-row: 1;
+  width: 100%;
+
+  text-align: left;
+
+  border-bottom: 1px #cccccc solid;
+}
+
+.docs_api_members_base_title_type,
+.docs_api_members_base_title_name {
+  display: inline-block;
+}
+
+.docs_api_members_base_title_name {
+  font-size: 40px;
+
+  color: #3f3f3f;
+}
+
+.docs_api_members_base_title_type {
+  font-size: 25px;
+
+  padding-left: 10px;
+
+  color: #8f8f8f;
+}
+
+.docs_api_members_base_define_root {
+  width: 100%;
+
+  grid-row: 3;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px #cccccc82 solid;
+}
+
+.docs_api_members_base_define_title {
+  width: 100%;
+
+  text-align: left;
+
+  padding-left: 20px;
+
+  font-size: 30px;
+
+  color: #707070;
+}

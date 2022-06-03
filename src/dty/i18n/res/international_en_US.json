@@ -141,6 +141,14 @@
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_I18N": "The namespace (multilingual component set - ::dty::i18n) contains the basic interfaces, types, and methods for multilingual operations.",
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_TEST": "The namespace (Test core - ::dty::test) contains the tianyu test module's core types, method definitions, and unit testing support for the Tianyu library.",
 
+    "class": "Class",
+    "interface": "Interface",
+    "function": "Function/Delegate",
+    "enum": "Enum",
+
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE": "Define",
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE": "Example",
+
     "abstract": "abstract class definition prefix",
     "TEST_MAIN": "Test framework entry main function",
     "_enum": "enumeration type definition",

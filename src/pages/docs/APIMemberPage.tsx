@@ -4,9 +4,10 @@ import React from "react";
 import { IShellProperty } from "src/dty/model/IShell";
 import { DynamicInvalidTargetState, TYDynamicPage } from "../common/TYDynamicPage";
 import { getAPIMemberDocsRemote } from "./APIDocsHelper";
+import { INamespaceMember, INamespaceMemberDef, INamespaceMemberItem } from "./interface/INamespaceMemberItem";
 
 import "./css/docs.api.members.css";
-import { INamespaceMember, INamespaceMemberDef, INamespaceMemberItem } from "./interface/INamespaceMemberItem";
+import "./css/docs.api.members.base.css";
 
 export class APIMemberPage extends TYDynamicPage {
     private preHashChanged: ((ev: HashChangeEvent) => void) | null;
@@ -51,7 +52,7 @@ export class APIMemberPage extends TYDynamicPage {
 
     protected override renderLoaded(): React.ReactNode {
         return (
-            <div>
+            <div className="docs_api_members_base_root">
                 {this.renderTitle()}
                 {this.renderDefine()}
                 {this.memberItem.memberItems.constructor.length ? (
@@ -92,9 +93,9 @@ export class APIMemberPage extends TYDynamicPage {
 
     private renderTitle(): React.ReactNode {
         return (
-            <div>
-                <div>{this.memberItem.name}</div>
-                <div>{this.msgBundle.getI18n(this.memberItem.type)}</div>
+            <div className="docs_api_members_base_title_root">
+                <div className="docs_api_members_base_title_name">{this.memberItem.name}</div>
+                <div className="docs_api_members_base_title_type">{this.msgBundle.getI18n(this.memberItem.type)}</div>
             </div>
         );
     }
@@ -123,8 +124,10 @@ export class APIMemberPage extends TYDynamicPage {
         }
 
         return (
-            <div>
-                <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE")}</div>
+            <div className="docs_api_members_base_define_root">
+                <div className="docs_api_members_base_define_title">
+                    {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE")}
+                </div>
                 <div>{defines}</div>
             </div>
         );
