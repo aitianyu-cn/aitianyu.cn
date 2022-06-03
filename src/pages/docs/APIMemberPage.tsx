@@ -105,10 +105,17 @@ export class APIMemberPage extends TYDynamicPage {
 
         for (const item of this.memberItem.memberDefs) {
             const itemDef = (
-                <div key={item.name}>
-                    <div>{item.file}</div>
-                    <div>{item.i18n}</div>
-                    <div>{item.def}</div>
+                <div key={item.name} className="docs_api_members_base_define_content_item">
+                    <div className="docs_api_members_base_define_content_item_file">{`${this.msgBundle.getI18n(
+                        "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_ITEM_FILE",
+                    )} ${item.file}`}</div>
+                    <div className="docs_api_members_base_define_content_item_desc">{item.i18n}</div>
+                    <div className="docs_api_members_base_define_content_item_def">
+                        <div className="docs_api_members_base_define_content_item_def_title">
+                            {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE")}
+                        </div>
+                        <div className="docs_api_members_base_define_content_item_def_code">{item.def}</div>
+                    </div>
                     {item.example.length ? (
                         <div>
                             <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE")}</div>
@@ -128,7 +135,7 @@ export class APIMemberPage extends TYDynamicPage {
                 <div className="docs_api_members_base_define_title">
                     {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE")}
                 </div>
-                <div>{defines}</div>
+                <div className="docs_api_members_base_define_content">{defines}</div>
             </div>
         );
     }

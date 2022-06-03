@@ -148,6 +148,7 @@
 
     "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE": "Define",
     "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE": "Example",
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_ITEM_FILE": "File:",
 
     "abstract": "abstract class definition prefix",
     "TEST_MAIN": "Test framework entry main function",

@@ -152,6 +152,7 @@
 
     "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE": "定义",
     "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE": "示例",
+    "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_ITEM_FILE": "文件：",
 
     "abstract": "抽象类定义前缀",
     "TEST_MAIN": "测试框架入口 main 函数",
