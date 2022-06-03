@@ -7,6 +7,7 @@ namespace back.aitianyu.cn.Utils.File
         private const string DBConnectionStr = "data source=localhost;database={0};user id=root;password=ysy1998ysy[];pooling=false;charset=utf8";
 
         private readonly MySqlConnection MySql;
+        private readonly Mutex Mutex;
 
         public string DatabaseName { get; }
 
@@ -16,26 +17,35 @@ namespace back.aitianyu.cn.Utils.File
             MySql = new MySqlConnection(dbConnectString);
 
             DatabaseName = databaseName;
+
+            Mutex = new Mutex();
         }
 
         public void Execute(string sqlStatement, Action<MySqlDataReader> callback)
         {
-            try
+            if (Mutex.WaitOne(30000))
             {
-                if (MySql.State != System.Data.ConnectionState.Open)
-                    MySql.Open();
-                MySqlCommand command = new MySqlCommand(sqlStatement, MySql);
-                MySqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    if (MySql.State != System.Data.ConnectionState.Open)
+                        MySql.Open();
+                    MySqlCommand command = new MySqlCommand(sqlStatement, MySql);
+                    MySqlDataReader reader = command.ExecuteReader();
 
-                callback(reader);
+                    callback(reader);
 
-                reader.Close();
-                MySql.Close();
+                    reader.Close();
+                    MySql.Close();
+                }
+                catch
+                {
+
+                }
+
+                Mutex.ReleaseMutex();
             }
-            catch
-            {
-
-            }
+            else
+                Console.WriteLine("Database {0} is using, can not access over 30s.", DatabaseName);
         }
     }
 }
