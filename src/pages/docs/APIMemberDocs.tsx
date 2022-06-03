@@ -27,6 +27,7 @@ export class APIMemberDocs extends TYViewComponent {
     private selectedMember: string;
 
     private memberList: string[];
+    private preHashChanged: ((ev: HashChangeEvent) => void) | null;
 
     public constructor(props: IShellProperty) {
         super(props);
@@ -43,6 +44,8 @@ export class APIMemberDocs extends TYViewComponent {
 
         this.isMemberSelected = false;
         this.selectedMember = "";
+
+        this.preHashChanged = null;
     }
 
     public render(): React.ReactNode {
@@ -60,9 +63,17 @@ export class APIMemberDocs extends TYViewComponent {
 
     public componentDidMount(): void {
         const hash = window.location.hash.replaceAll("#", "");
+
         if (this.memberList.includes(hash)) {
             this.onMemberSelected(hash);
         }
+
+        this.preHashChanged = window.onhashchange;
+        window.onhashchange = this.onHashChanged.bind(this);
+    }
+
+    public componentWillUnmount(): void {
+        window.onhashchange = this.preHashChanged;
     }
 
     private renderNormal(): React.ReactNode {
@@ -134,5 +145,36 @@ export class APIMemberDocs extends TYViewComponent {
         window.location.hash = `#${memberName}`;
 
         this.forceUpdate();
+    }
+
+    private onMemberNoSelected(): void {
+        if (this.selectedMember) {
+            // reset style
+            const element = document.getElementById(`docs_api_member_content_member_list_item_${this.selectedMember}`);
+            if (element) {
+                element.classList.remove("docs_api_member_content_member_list_item_selected");
+            }
+        }
+
+        this.selectedMember = "";
+        this.isMemberSelected = false;
+
+        this.forceUpdate();
+    }
+
+    private onHashChanged(ev: HashChangeEvent): void {
+        if (this.preHashChanged) {
+            this.preHashChanged(ev);
+        }
+
+        const hash = window.location.hash.replaceAll("#", "");
+
+        if (!hash) {
+            this.onMemberNoSelected();
+        }
+
+        if (this.memberList.includes(hash)) {
+            this.onMemberSelected(hash);
+        }
     }
 }
