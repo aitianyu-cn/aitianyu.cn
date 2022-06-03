@@ -37,7 +37,7 @@ export class APIDocs extends TYDynamicPage {
     protected override loadDataSuccess(): void {
         const rawData = this.getReceiveData();
 
-        if (!Array.isArray(rawData) || rawData.length === 0) {
+        if (!Array.isArray(rawData)) {
             window.location.pathname = "/error/603";
             return;
         }
@@ -45,7 +45,7 @@ export class APIDocs extends TYDynamicPage {
 
     protected override renderLoaded(): React.ReactNode {
         if (this.displayType === APIDocsDisplayType.Members) {
-            return <APIMemberDocs members={this.getReceiveData()} />;
+            return <APIMemberDocs members={this.getReceiveData()} project={this.sId || ""} />;
         }
 
         if (this.displayType === APIDocsDisplayType.Item) {

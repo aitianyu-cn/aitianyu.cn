@@ -1,7 +1,9 @@
 .docs_api_member_base {
   display: grid;
 
-  width: 95%;
+  width: 90%;
+
+  max-width: 1500px;
 
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +27,7 @@
   text-align: left;
   text-justify: auto;
 
-  max-height: calc(100vh - 220px);
+  height: calc(100vh - 220px);
 
   overflow: scroll;
 
@@ -34,7 +36,7 @@
 
   background-color: #f0f0f0;
 
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px 10px 10px 10px;
 
   border-width: 0 2px 0 0;
   border-color: #efefef;

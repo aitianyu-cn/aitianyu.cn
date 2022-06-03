@@ -52,9 +52,19 @@ export class APIMemberDocs extends TYViewComponent {
         return (
             <div className="docs_api_member_base">
                 <div className="docs_api_title_base">
-                    <div className="docs_api_title_project_name">{`${this.msgBundle.getI18n(
-                        this.project,
-                    )} - ${this.msgBundle.getI18n(this.packageName)}`}</div>
+                    <div className="docs_api_title_project_name">
+                        <img
+                            className={
+                                isMobile ? "docs_api_title_project_turn_back_img_mob" : "docs_api_title_project_turn_back_img"
+                            }
+                            onClick={this.onBackToNamespaceList.bind(this)}
+                            src="/assert/navigate/turnback.png"
+                            alt={this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_TURN_BACK")}
+                        />
+                    </div>
+                    <div className="docs_api_title_project_name">
+                        {`${this.msgBundle.getI18n(this.project)} - ${this.msgBundle.getI18n(this.packageName)}`}
+                    </div>
                 </div>
                 {this.renderNormal()}
             </div>
@@ -176,5 +186,9 @@ export class APIMemberDocs extends TYViewComponent {
         if (this.memberList.includes(hash)) {
             this.onMemberSelected(hash);
         }
+    }
+
+    private onBackToNamespaceList(): void {
+        window.location.href = `${window.location.origin}/docs/api/${this.project}`;
     }
 }

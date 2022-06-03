@@ -55,38 +55,7 @@ export class APIMemberPage extends TYDynamicPage {
             <div className="docs_api_members_base_root">
                 {this.renderTitle()}
                 {this.renderDefine()}
-                {this.memberItem.memberItems.constructor.length ? (
-                    <div>
-                        <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_CONSTRUCTOR")}</div>
-                        <div>{this.renderMemberItem(this.memberItem.memberItems.constructor, true)}</div>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
-                {this.memberItem.memberItems.property.length ? (
-                    <div>
-                        <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_PROPERTY")}</div>
-                        <div>{this.renderMemberItem(this.memberItem.memberItems.property, this.memberItem.type != "enum")}</div>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
-                {this.memberItem.memberItems.operator.length ? (
-                    <div>
-                        <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_OPERATOR")}</div>
-                        <div>{this.renderMemberItem(this.memberItem.memberItems.operator, true)}</div>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
-                {this.memberItem.memberItems.method.length ? (
-                    <div>
-                        <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_METHOD")}</div>
-                        <div>{this.renderMemberItem(this.memberItem.memberItems.method, true)}</div>
-                    </div>
-                ) : (
-                    <div></div>
-                )}
+                {this.isNeedShowMembers() && !this.isMembersValid() ? this.renderEmptyMember() : this.renderMembers()}
             </div>
         );
     }
@@ -109,7 +78,7 @@ export class APIMemberPage extends TYDynamicPage {
                     <div className="docs_api_members_base_define_content_item_file">{`${this.msgBundle.getI18n(
                         "TIANYU_DEV_DOCS_API_MEMBER_DEFINE_ITEM_FILE",
                     )} ${item.file}`}</div>
-                    <div className="docs_api_members_base_define_content_item_desc">{item.i18n}</div>
+                    <div className="docs_api_members_base_define_content_item_desc">{this.msgBundle.getI18n(item.i18n)}</div>
                     <div className="docs_api_members_base_define_content_item_def">
                         <div className="docs_api_members_base_define_content_item_def_title">
                             {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_TITLE")}
@@ -140,21 +109,78 @@ export class APIMemberPage extends TYDynamicPage {
         );
     }
 
+    private renderEmptyMember(): React.ReactNode {
+        return (
+            <div className="docs_api_members_base_memberItem_root">
+                <div className="docs_api_members_base_memberItem_empty_member">
+                    {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBERS_EMPTY")}
+                </div>
+            </div>
+        );
+    }
+
+    private renderMembers(): React.ReactNode {
+        return (
+            <div className="docs_api_members_base_memberItem_root">
+                {this.memberItem.memberItems.constructor.length ? (
+                    <div className="docs_api_members_base_memberItem_base">
+                        <div className="docs_api_members_base_memberItem_title">
+                            {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_CONSTRUCTOR")}
+                        </div>
+                        {this.renderMemberItem(this.memberItem.memberItems.constructor, true)}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                {this.memberItem.memberItems.property.length ? (
+                    <div className="docs_api_members_base_memberItem_base">
+                        <div className="docs_api_members_base_memberItem_title">
+                            {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_PROPERTY")}
+                        </div>
+                        {this.renderMemberItem(this.memberItem.memberItems.property, this.memberItem.type != "enum")}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                {this.memberItem.memberItems.operator.length ? (
+                    <div className="docs_api_members_base_memberItem_base">
+                        <div className="docs_api_members_base_memberItem_title">
+                            {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_OPERATOR")}
+                        </div>
+                        {this.renderMemberItem(this.memberItem.memberItems.operator, true)}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                {this.memberItem.memberItems.method.length ? (
+                    <div className="docs_api_members_base_memberItem_base">
+                        <div className="docs_api_members_base_memberItem_title">
+                            {this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_METHOD")}
+                        </div>
+                        {this.renderMemberItem(this.memberItem.memberItems.method, true)}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+            </div>
+        );
+    }
+
     private renderMemberItem(items: INamespaceMemberItem[], canClick = false): React.ReactNode {
         const defines: React.ReactNode[] = [];
 
         for (const def of items) {
             const item = (
-                <div>
-                    <div>{def.def}</div>
-                    <div>{this.msgBundle.getI18n(def.i18n)}</div>
+                <div key={def.name} className="docs_api_members_base_memberItem_item_content_root">
+                    <div className="docs_api_members_base_memberItem_item_content_def">{def.def}</div>
+                    <div className="docs_api_members_base_memberItem_item_content_i18n">{this.msgBundle.getI18n(def.i18n)}</div>
                 </div>
             );
 
             defines.push(item);
         }
 
-        return <div>{defines}</div>;
+        return <div className="docs_api_members_base_memberItem_item_content">{defines}</div>;
     }
 
     protected override loadDataSuccess(): void {
@@ -201,6 +227,19 @@ export class APIMemberPage extends TYDynamicPage {
         this.memberItem.memberItems.property = this.loadMemberItems(rawData["memberItems"], "property");
         this.memberItem.memberItems.operator = this.loadMemberItems(rawData["memberItems"], "operator");
         this.memberItem.memberItems.method = this.loadMemberItems(rawData["memberItems"], "method");
+    }
+
+    private isMembersValid(): boolean {
+        return Boolean(
+            this.memberItem.memberItems.constructor.length ||
+                this.memberItem.memberItems.property.length ||
+                this.memberItem.memberItems.method.length ||
+                this.memberItem.memberItems.operator.length,
+        );
+    }
+
+    private isNeedShowMembers(): boolean {
+        return this.memberItem.type !== "function";
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

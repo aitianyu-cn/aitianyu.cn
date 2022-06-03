@@ -1,14 +1,17 @@
 .docs_api_table_item_base {
   display: block;
 
-  width: 100%;
+  width: 85%;
+
+  border-bottom: #eeeeee 1px solid;
+
+  margin-left: 45px;
 }
 
 .docs_api_table_item_desc,
 .docs_api_table_item_name {
   display: inline-table;
 
-  padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
 
