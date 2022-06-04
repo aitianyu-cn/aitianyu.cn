@@ -25,6 +25,7 @@ export class APINamespaceDocs {
                 def: item["def"] || "",
                 api: item["id"] || "",
                 i18n: item["i18n"] || "",
+                packageName: item["packageName"] || "",
             };
 
             this.packages.push(packageItem);
