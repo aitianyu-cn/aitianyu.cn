@@ -35,7 +35,7 @@ app.MapControllerRoute(
     name: "global",
     pattern: "global/[controller]");
 
-app.MapFallback(() => "Unkown Map");
+app.MapFallbackToFile("index.html");
 
 back.aitianyu.cn.Utils.Initial.InitDatabase();
 
