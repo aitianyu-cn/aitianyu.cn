@@ -28,6 +28,7 @@
   text-justify: auto;
 
   height: calc(100vh - 220px);
+  width: 100%;
 
   overflow: scroll;
 
@@ -37,16 +38,13 @@
   background-color: #f0f0f0;
 
   border-radius: 10px 10px 10px 10px;
-
-  border-width: 0 2px 0 0;
-  border-color: #efefef;
-  border-style: solid;
 }
 
 .docs_api_member_content_member_list_item,
 .docs_api_member_content_member_list_item_mob {
   color: #7f7f7f;
 
+  width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -86,6 +84,7 @@
     text-justify: auto;
 
     max-height: calc(100vh * 0.2);
+    width: 100%;
 
     overflow: scroll;
 
