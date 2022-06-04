@@ -2,9 +2,16 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// Add services to the container.
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+}
 
 app.UseFileServer(new FileServerOptions
 {
@@ -12,8 +19,9 @@ app.UseFileServer(new FileServerOptions
     RequestPath = new PathString("/resources"),
     EnableDirectoryBrowsing = false
 });
-//app.UseStaticFiles();
+app.UseStaticFiles();
 app.UseRouting();
+
 
 app.MapControllerRoute(
     name: "project_docs",
@@ -27,9 +35,7 @@ app.MapControllerRoute(
     name: "global",
     pattern: "global/[controller]");
 
-app.MapFallback(() => "Unkown Map");
-//app.MapFallbackToFile("index.html");
-//app.MapGet("/", () => "Hello World!");
+app.MapFallbackToFile("index.html");
 
 back.aitianyu.cn.Utils.Initial.InitDatabase();
 
