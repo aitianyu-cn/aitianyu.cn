@@ -4,10 +4,17 @@ import React from "react";
 import { IShellProperty } from "src/dty/model/IShell";
 import { DynamicInvalidTargetState, TYDynamicPage } from "../common/TYDynamicPage";
 import { getAPIMemberDocsRemote } from "./APIDocsHelper";
-import { INamespaceMember, INamespaceMemberDef, INamespaceMemberItem } from "./interface/INamespaceMemberItem";
+import {
+    INamespaceMember,
+    INamespaceMemberDef,
+    INamespaceMemberExample,
+    INamespaceMemberItem,
+} from "./interface/INamespaceMemberItem";
 
 import "./css/docs.api.members.css";
 import "./css/docs.api.members.base.css";
+import { Configure } from "src/dty/core/Configure";
+import { FeatureToggle } from "src/dty/core/FeatureToggle";
 
 export class APIMemberPage extends TYDynamicPage {
     private preHashChanged: ((ev: HashChangeEvent) => void) | null;
@@ -88,7 +95,7 @@ export class APIMemberPage extends TYDynamicPage {
                     {item.example.length ? (
                         <div>
                             <div>{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_MEMBER_DEFINE_EXAMPLE")}</div>
-                            <div>{item.example}</div>
+                            <div>{this.renderExamples(item.example)}</div>
                         </div>
                     ) : (
                         <div></div>
@@ -107,6 +114,32 @@ export class APIMemberPage extends TYDynamicPage {
                 <div className="docs_api_members_base_define_content">{defines}</div>
             </div>
         );
+    }
+
+    private renderExamples(exampleList: INamespaceMemberExample[]): React.ReactNode[] {
+        const examples: React.ReactNode[] = [];
+
+        for (const exampleItem of exampleList) {
+            const example = (
+                <div key={exampleItem.key}>
+                    <div>{exampleItem.key}</div>
+                    <div>
+                        {exampleItem.i18ns.map((value: string) => {
+                            return <div key={value}>{this.msgBundle.getI18n(value)}</div>;
+                        })}
+                    </div>
+                    <div>
+                        {exampleItem.exampleLines.map((value: string) => {
+                            return <div key={value}>{this.msgBundle.getI18n(value)}</div>;
+                        })}
+                    </div>
+                </div>
+            );
+
+            examples.push(example);
+        }
+
+        return examples;
     }
 
     private renderEmptyMember(): React.ReactNode {
@@ -170,9 +203,18 @@ export class APIMemberPage extends TYDynamicPage {
         const defines: React.ReactNode[] = [];
 
         for (const def of items) {
+            const fnClick = () => {
+                this.onMemberItemClick(def.key);
+            };
             const item = (
-                <div key={def.name} className="docs_api_members_base_memberItem_item_content_root">
-                    <div className="docs_api_members_base_memberItem_item_content_def">{def.def}</div>
+                <div key={def.key} className="docs_api_members_base_memberItem_item_content_root">
+                    {canClick && FeatureToggle.isActive("AITIANYU_CN_WEB_DOCS_API_MEMBER_ITEM_PAGE_VALID") ? (
+                        <div className="docs_api_members_base_memberItem_item_content_def" onClick={fnClick}>
+                            {def.def}
+                        </div>
+                    ) : (
+                        <div className="docs_api_members_base_memberItem_item_content_def">{def.def}</div>
+                    )}
                     <div className="docs_api_members_base_memberItem_item_content_i18n">{this.msgBundle.getI18n(def.i18n)}</div>
                 </div>
             );
@@ -248,6 +290,7 @@ export class APIMemberPage extends TYDynamicPage {
 
         for (const item of memberItems[itemKey]) {
             const def: INamespaceMemberItem = {
+                key: item["key"],
                 name: item["name"],
                 i18n: item["i18n"],
                 type: item["type"],
@@ -268,5 +311,11 @@ export class APIMemberPage extends TYDynamicPage {
         this.setSId(getAPIMemberDocsRemote());
 
         this.setDataInvalid(DynamicInvalidTargetState.Reload);
+    }
+
+    private onMemberItemClick(name: string): void {
+        const newUrl = `${window.location.origin}/docs/api/${this.sId}#${name}`;
+
+        window.location.href = newUrl;
     }
 }

@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**@format */
 
 import React from "react";
+import { Configure, ITriggerData } from "src/dty/core/Configure";
 import { IShellProperty } from "src/dty/model/IShell";
 import { TYDynamicPage } from "../common/TYDynamicPage";
 import { APIDocsDisplayType, getAPIDocsDisplayType, getAPIDocsRemote } from "./APIDocsHelper";
 import { APIMemberDocs } from "./APIMemberDocs";
+import { APIMemberItemPage } from "./APIMemberItemPage";
 import { APINamespaceDocs } from "./APINamespaceDocs";
 import { IAPIPackage } from "./component/APIPackageItem";
 
@@ -37,9 +40,11 @@ export class APIDocs extends TYDynamicPage {
     protected override loadDataSuccess(): void {
         const rawData = this.getReceiveData();
 
-        if (!Array.isArray(rawData)) {
-            window.location.pathname = "/error/603";
-            return;
+        if (this.displayType === APIDocsDisplayType.Namespaces) {
+            if (!Array.isArray(rawData)) {
+                window.location.pathname = "/error/603";
+                return;
+            }
         }
     }
 
@@ -49,7 +54,7 @@ export class APIDocs extends TYDynamicPage {
         }
 
         if (this.displayType === APIDocsDisplayType.Item) {
-            return;
+            return <APIMemberItemPage src={this.getReceiveData()}/>;
         }
 
         return this.renderNamespaces();

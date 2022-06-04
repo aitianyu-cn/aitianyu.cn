@@ -13,10 +13,17 @@ export interface INamespaceMemberDef {
     i18n: string;
     file: string;
     def: string;
-    example: string[];
+    example: INamespaceMemberExample[];
+}
+
+export interface INamespaceMemberExample {
+    key: string;
+    i18ns: string[];
+    exampleLines: string[];
 }
 
 export interface INamespaceMemberItem {
+    key: string;
     name: string;
     i18n: string;
     def: string;
