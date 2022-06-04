@@ -223,7 +223,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             if ("global" == namespaceSource)
                 return "::";
 
-            return string.Format(NamespaceRequestFormatter, namespaceSource.Replace(".", "::"));
+            return string.Format(NamespaceRequestFormatter, namespaceSource.Replace("_", "::"));
         }
 
 #pragma warning disable IDE1006 // 命名样式
@@ -238,15 +238,18 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
                 return new NamespaceItem
                 {
                     Id = "global",
+                    PackageName = "global",
                     Def = namespaceSource,
                     I18n = _GenerateNamespaceI18n("global", dbname)
                 };
             }
 
-            string namespaceId = namespaceSource.TrimStart(':').Replace("::", ".");
+            string namespaceId = namespaceSource.TrimStart(':').Replace("::", "_");
+            string namespacePackageName = namespaceSource.TrimStart(':').Replace("::", ".");
             return new NamespaceItem()
             {
                 Id = namespaceId,
+                PackageName = namespacePackageName,
                 Def = namespaceSource,
                 I18n = _GenerateNamespaceI18n(namespaceId, dbname)
             };
@@ -256,7 +259,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
         private static string _GenerateNamespaceI18n(string id, string dbname)
 #pragma warning restore IDE1006 // 命名样式
         {
-            string formattedId = id.Replace(".", "_").ToUpper();
+            string formattedId = id.ToUpper();
             string formattedDBName = dbname.ToUpper();
             return string.Format(NamespaceI18nFormatter, formattedDBName, formattedId);
         }

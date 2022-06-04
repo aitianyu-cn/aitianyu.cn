@@ -8,11 +8,13 @@ import "./docs.api.item.css";
 export interface IAPIPackage {
     def: string;
     api: string;
+    packageName: string;
     i18n: string;
 }
 
 export class APIPackageItem {
     private def: string;
+    private packageName: string;
     private api: string;
     private i18n: string;
 
@@ -27,14 +29,15 @@ export class APIPackageItem {
 
         this.api = pack.api;
         this.def = pack.def;
-        this.i18n = msgBundle.getI18n(pack.i18n);
+        this.packageName = pack.packageName;
+        this.i18n = this.msgBundle.getI18n(pack.i18n);
     }
 
     public render(): React.ReactNode {
         return (
             <div key={this.api} className="docs_api_table_item_base">
                 <a href={`/docs/api/${this.project}/${this.api}`} className="docs_api_table_item_name">
-                    {this.api}
+                    {this.packageName}
                 </a>
                 <div className="docs_api_table_item_desc">{this.i18n}</div>
             </div>
