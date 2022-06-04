@@ -1,8 +1,0 @@
-{
-    "projects": ["tianyu-native"],
-    "translate": {
-        "tianyu-native": {
-            "i18n": "TIANYU_NATIVE"
-        }
-    }
-}

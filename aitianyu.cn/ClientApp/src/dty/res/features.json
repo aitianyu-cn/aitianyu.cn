@@ -2,5 +2,17 @@
     "AITIANYU_CN_WEB_DEBUG_LOG": {
         "enable": true,
         "description": "用于aitianyu网页debug使用"
+    },
+    "AITIANYU_CN_WEB_DYNAMIC_PAGE_CACHE": {
+        "enable": true,
+        "description": "用于aitianyu网页动态加载页面的动态缓存"
+    },
+    "AITIANYU_CN_WEB_DYNAMIC_PAGE_STATIC": {
+        "enable": true,
+        "description": "用于aitianyu网页动态加载页面的静态缓存"
+    },
+    "AITIANYU_CN_WEB_DOCS_API_MEMBER_ITEM_PAGE_VALID": {
+        "enable": false,
+        "description": "用于aitianyu网页的API参考中元素内部成员是否支持。"
     }
 }

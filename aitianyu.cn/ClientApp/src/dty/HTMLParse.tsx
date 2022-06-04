@@ -13,6 +13,8 @@ export class HTMLParse {
     private htmlSource: any;
     private msgBundle?: IMsgBundle;
 
+    private hasButton: boolean;
+
     private dialogButtons: React.ReactNode[];
     private dialogView: React.ReactNode;
 
@@ -27,10 +29,29 @@ export class HTMLParse {
         this.dialogView = null;
         this.msgBundle = msgbundle;
 
+        this.hasButton = true;
+
         this.processHTMLSource();
     }
 
+    public getButtons(): React.ReactNode[] {
+        return this.dialogButtons;
+    }
+
+    public getView(): React.ReactNode {
+        return this.dialogView;
+    }
+
+    public getHasButton(): boolean {
+        return this.hasButton;
+    }
+
     private processHTMLSource(): void {
+        this.hasButton =
+            !!this.htmlSource["hasButton"] && typeof this.htmlSource["hasButton"] === "string"
+                ? this.htmlSource["hasButton"] !== "none"
+                : true;
+
         if (this.htmlSource["buttons"] && Array.isArray(this.htmlSource["buttons"])) {
             this.processHTMLButtons();
         }
@@ -75,7 +96,7 @@ export class HTMLParse {
         }
 
         this.dialogView = (
-            <div id={itemRoot["id"]} className={itemRoot["class"]}>
+            <div id={itemRoot["id"]} key={itemRoot["id"]} className={itemRoot["class"]}>
                 {viewChildren.length !== 0 ? viewChildren : itemRoot["content"] && this.convertContent(itemRoot["content"])}
             </div>
         );
@@ -132,13 +153,5 @@ export class HTMLParse {
     private buttonTrigger(triggerName: string, triggerValue: string): void {
         const config = Configure.generateConfigure();
         config.trigger(triggerName, { obj: triggerValue });
-    }
-
-    public getButtons(): React.ReactNode[] {
-        return this.dialogButtons;
-    }
-
-    public getView(): React.ReactNode {
-        return this.dialogView;
     }
 }

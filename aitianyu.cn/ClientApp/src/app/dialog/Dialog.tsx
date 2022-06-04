@@ -1,4 +1,5 @@
 /**@format */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from "react";
 import { isMobile } from "react-device-detect";
@@ -54,7 +55,7 @@ export class Dialog extends TYViewComponent {
         );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private openDialog(event: ITriggerData, _sender?: any): void {
         const useRaw = typeof event.obj === "string";
         // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -62,24 +63,29 @@ export class Dialog extends TYViewComponent {
         const htmlParse = !useRaw ? new HTMLParse(source, event.msgBundle) : null;
 
         this.view = htmlParse?.getView() || source;
-        this.buttons = this.getButtons(
-            htmlParse && htmlParse.getButtons().length !== 0
-                ? htmlParse.getButtons()
-                : [
-                      <div
-                          key="dialog_default_close_button"
-                          id="dialog_default_close_button"
-                          className="global_message_dialog_button"
-                          onClick={this.onCloseDialog.bind(this)}>
-                          <div
-                              className={
-                                  isMobile ? "global_message_dialog_button_content_mob" : "global_message_dialog_button_content"
-                              }>
-                              {this.msgBundle.getI18n("DIALOG_PAGE_CLOSE_BUTTON")}
-                          </div>
-                      </div>,
-                  ],
-        );
+        this.buttons =
+            !htmlParse || htmlParse.getHasButton()
+                ? this.getButtons(
+                      htmlParse && htmlParse.getButtons().length !== 0
+                          ? htmlParse.getButtons()
+                          : [
+                                <div
+                                    key="dialog_default_close_button"
+                                    id="dialog_default_close_button"
+                                    className="global_message_dialog_button"
+                                    onClick={this.onCloseDialog.bind(this)}>
+                                    <div
+                                        className={
+                                            isMobile
+                                                ? "global_message_dialog_button_content_mob"
+                                                : "global_message_dialog_button_content"
+                                        }>
+                                        {this.msgBundle.getI18n("DIALOG_PAGE_CLOSE_BUTTON")}
+                                    </div>
+                                </div>,
+                            ],
+                  )
+                : [];
 
         const dialogPage = document.getElementById("global_message_dialog");
         if (!dialogPage) {
@@ -125,6 +131,7 @@ export class Dialog extends TYViewComponent {
         this.forceUpdate();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private closeDialog(_event: ITriggerData, _sender?: any): void {
         this.onCloseDialog();
     }

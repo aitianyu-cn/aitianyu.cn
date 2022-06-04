@@ -1,0 +1,57 @@
+.request_error_base {
+  height: fit-content;
+  width: fit-content;
+
+  display: grid;
+
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.request_error_page_text {
+  color: #828282;
+  margin-left: auto;
+  margin-right: auto;
+
+  user-select: none;
+}
+
+.request_error_page_img,
+.request_error_page_img_mob {
+  width: 15%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-bottom: 30px;
+  opacity: 100%;
+
+  animation: request_error_page_img_unhover 0.5s forwards ease-out;
+}
+
+.request_error_page_img:hover {
+  animation: request_error_page_img_hover 0.75s forwards ease-in-out;
+}
+
+@keyframes request_error_page_img_hover {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(400deg);
+  }
+}
+
+@keyframes request_error_page_img_unhover {
+  0% {
+    transform: rotateZ(40deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

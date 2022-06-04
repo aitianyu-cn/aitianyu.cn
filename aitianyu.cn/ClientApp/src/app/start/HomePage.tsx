@@ -1,6 +1,7 @@
 /**@format */
 
 import React from "react";
+import { Configure } from "src/dty/core/Configure";
 import { IShellProperty, IShellState } from "src/dty/model/IShell";
 import { Application } from "../application/Application";
 import { Dialog } from "../dialog/Dialog";
@@ -11,6 +12,20 @@ import "./main.css";
 export class HomePage extends React.Component<IShellProperty, IShellState> {
     public constructor(props: IShellProperty) {
         super(props);
+    }
+
+    public componentDidMount(): void {
+        const config = Configure.generateConfigure();
+        const watchDog = config.getStorageDog();
+
+        watchDog.startWatchDog();
+    }
+
+    public componentWillUnmount(): void {
+        const config = Configure.generateConfigure();
+        const watchDog = config.getStorageDog();
+
+        watchDog.endWatchDog();
     }
 
     public render(): React.ReactNode {

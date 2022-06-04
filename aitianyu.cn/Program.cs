@@ -1,3 +1,5 @@
+using Microsoft.Extensions.FileProviders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,18 +13,30 @@ if (!app.Environment.IsDevelopment())
 {
 }
 
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "resources/")),
+    RequestPath = new PathString("/resources"),
+    EnableDirectoryBrowsing = false
+});
 app.UseStaticFiles();
 app.UseRouting();
 
 
 app.MapControllerRoute(
     name: "project_docs",
-    pattern: "project_docs/{controller}/{action=Name}/{projectName?}/{nameSpace?}/{dataType?}");
+    pattern: "project_docs/[controller]/{projectName?}/{nameSpace?}/{dataType?}");
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    name: "project_download",
+    pattern: "project_download/[controller]/{operationData?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapControllerRoute(
+    name: "global",
+    pattern: "global/[controller]");
+
+app.MapFallback(() => "Unkown Map");
+
+back.aitianyu.cn.Utils.Initial.InitDatabase();
 
 app.Run();

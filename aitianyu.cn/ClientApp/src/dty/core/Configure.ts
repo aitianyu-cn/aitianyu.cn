@@ -2,6 +2,7 @@
 
 import { AreaListener, TriggerList } from "src/ListenerList";
 import { IMsgBundle } from "../i18n/MsgBundle";
+import { IStorage, IStorageWatchDog, Storage } from "../model/Storage";
 import { AreaCode } from "./AreaCode";
 import { getAreaFromString, getLocationArea } from "./AreaHelper";
 import { FeatureToggle } from "./FeatureToggle";
@@ -10,6 +11,7 @@ import { LogState } from "./LogState";
 export interface ITriggerData {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     obj: string | any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sender?: any;
     msgBundle?: IMsgBundle;
 }
@@ -26,6 +28,7 @@ export class Configure {
     private static configObject: Configure | null = null;
 
     private _Area: AreaCode;
+    private _Storage: Storage;
 
     private _AreaTrigger: ITriggers<fnAreaTrigger>;
     private _GeneralTrigger: ITriggers<fnConfigureTrigger>;
@@ -33,8 +36,17 @@ export class Configure {
     private constructor() {
         this._Area = (localStorage["language"] && getAreaFromString(localStorage["language"])) || getLocationArea();
 
+        this._Storage = new Storage();
+
         this._AreaTrigger = {};
         this._GeneralTrigger = {};
+    }
+
+    public getStorage(): IStorage {
+        return this._Storage;
+    }
+    public getStorageDog(): IStorageWatchDog {
+        return this._Storage;
     }
 
     public getArea(): AreaCode {

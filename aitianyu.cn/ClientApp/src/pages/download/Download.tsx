@@ -1,86 +1,29 @@
 /**@format */
 
 import React from "react";
-import { isMobile } from "react-device-detect";
 import { DownloadMagnet, IBinaries, IBinarySource, IDMagnetItem } from "./DownloadMagnet";
-import { SearchNotSupportDialog } from "./DownloadSearchDialog";
 import { IShellProperty } from "src/dty/model/IShell";
-import { Configure } from "src/dty/core/Configure";
-import { TYViewComponent } from "src/dty/shell/TYViewComponent";
+import { TYDynamicPage } from "../common/TYDynamicPage";
 
 import "./css/main.css";
 
-/**
- * 
-                {
-                    "system": "WINDOWS",
-                    "binary": {
-                        "x64": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-win-x64.zip"
-                        },
-                        "ARM64": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-win-arm64.zip"
-                        }
-                    }
-                },
-                {
-                    "system": "LINUX",
-                    "binary": {
-                        "x64": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-linux-x64.zip"
-                        },
-                        "ARM64": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-linux-arm64.zip"
-                        }
-                    }
-                },
-                {
-                    "system": "MACOS",
-                    "binary": {
-                        "Intel": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-mac-intel.zip"
-                        },
-                        "M1": {
-                            "addr": "inner",
-                            "url": "tianyu-native/tianyu-native-linux-m1.zip"
-                        }
-                    }
-                }
- */
-
-export class DownLoad extends TYViewComponent {
+export class DownLoad extends TYDynamicPage {
     public constructor(props: IShellProperty) {
-        super(props);
-
-        document.title = this.msgBundle.getI18n("PROJECT_DOWNLOAD_TITLE");
+        super({
+            ...props,
+            title: "PROJECT_DOWNLOAD_TITLE",
+            remote: "project_download/downloadbrowser",
+            key: "aitianyu_cn_download",
+            cache: true,
+            staticCache: false,
+        });
     }
 
-    public render(): React.ReactNode {
-        return this.renderNormal();
-    }
-
-    private renderNormal(): React.ReactNode {
+    protected renderLoaded(): React.ReactNode {
         const aProjects = this.renderProjects();
 
         return (
             <div className="download_base">
-                <div className="download_search_container">
-                    <div className="download_search_input_box_container">
-                        <input id="search_input_box" className="download_search_input_box" type="text" />
-                    </div>
-                    <div
-                        className={isMobile ? "download_search_button_mob" : "download_search_button"}
-                        onClick={this.onSearch.bind(this)}>
-                        <div
-                            className="download_search_button_text"
-                            style={{ backgroundImage: `url("/assert/search-icon.png")` }}></div>
-                    </div>
-                </div>
                 <div className="download_baseGrid">
                     <div className="download_replace download_replace_1"></div>
                     <div className="download_content">{aProjects.length === 0 ? this.renderEmpty() : aProjects}</div>
@@ -88,26 +31,6 @@ export class DownLoad extends TYViewComponent {
                 </div>
             </div>
         );
-    }
-
-    private onSearch(): void {
-        const config = Configure.generateConfigure();
-        config.trigger("Message_Dialog_Open", { msgBundle: this.msgBundle, obj: SearchNotSupportDialog });
-        return;
-
-        // const searchBox = document.getElementById("search_input_box") as HTMLInputElement;
-        // const searchValue = searchBox?.value || "";
-
-        // if (!searchValue) {
-        //     const config = Configure.generateConfigure();
-        //     config.trigger("global_message_dialog_open", { msgBundle: this.msgHelper, obj: SearchEmptyDialog });
-        //     return;
-        // }
-
-        // const jumpUrl = `${location.origin}/search?wd=${searchValue}#download`;
-        // location.href = jumpUrl;
-
-        // window.open(jumpUrl);
     }
 
     private renderEmpty(): React.ReactNode {
@@ -122,14 +45,13 @@ export class DownLoad extends TYViewComponent {
 
     private renderProjects(): React.ReactNode[] {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const oProjectSource = require("./res/projects.json");
-        const aProjects = oProjectSource["projects"];
-        if (!aProjects || aProjects.length === 0) {
+        const oProjectSource = this.getReceiveData();
+        if (!Array.isArray(oProjectSource) || oProjectSource.length === 0) {
             return [];
         }
 
         const aProjectNodes: React.ReactNode[] = [];
-        for (const project of aProjects) {
+        for (const project of oProjectSource) {
             aProjectNodes.push(this.renderProject(project));
         }
 
@@ -148,7 +70,7 @@ export class DownLoad extends TYViewComponent {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private createProjectSource(oProject: any): IDMagnetItem {
         const oPlatforms: IBinaries = {};
-        for (const platformSource of oProject["bin"]) {
+        for (const platformSource of oProject["binary"]) {
             const platform: string = platformSource["system"];
 
             const aBinaries: IBinarySource[] = [];
@@ -157,7 +79,7 @@ export class DownLoad extends TYViewComponent {
                 const url = oBinariesSource[binarySource];
 
                 let link = "";
-                switch (url["addr"]) {
+                switch (url["address"]) {
                     case "inner":
                         link = `${process.env.PUBLIC_URL}/download/${url["url"]}`;
                         break;
@@ -178,7 +100,8 @@ export class DownLoad extends TYViewComponent {
         const oMagnetSource: IDMagnetItem = {
             key: oProject["key"],
             name: oProject["name"],
-            desc: oProject["desc"],
+            desc: oProject["description"],
+            github: oProject["github"],
             bin: oPlatforms,
         };
 

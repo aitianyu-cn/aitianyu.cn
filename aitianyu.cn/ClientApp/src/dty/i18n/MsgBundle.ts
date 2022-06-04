@@ -19,6 +19,7 @@ export function getMsgBundle(): IMsgBundle {
 class MsgBundle implements IMsgBundle {
     public static MsgBundleObject: MsgBundle | null = null;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private _MessageJson: any;
 
     public constructor() {
@@ -32,6 +33,7 @@ class MsgBundle implements IMsgBundle {
         this._MessageJson = readI18nResource();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private onAreaChanged(_area: AreaCode): void {
         this.initMsgJson();
     }
@@ -44,6 +46,7 @@ class MsgBundle implements IMsgBundle {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readI18nResource(): any {
     const configure = Configure.generateConfigure();
     const area = configure.getArea();

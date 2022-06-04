@@ -9,7 +9,7 @@ const { env } = require("process");
 
 // console.log(target);
 
-const context = ["/project_docs"];
+const context = ["/global", "/project_docs", "/project_download", "/resources"];
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {

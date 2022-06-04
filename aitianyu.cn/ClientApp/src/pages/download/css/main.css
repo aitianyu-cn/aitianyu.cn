@@ -5,7 +5,7 @@
   height: 100%;
 
   display: grid;
-  grid-template-rows: 25px max-content 30px max-content;
+  grid-template-rows: 0px max-content 30px max-content;
 
   animation: download_base_enter 0.5s forwards ease-in-out;
 }
@@ -139,13 +139,16 @@
 
   display: grid;
 
-  grid-template-columns: 10% 80% 10%;
+  text-align: center;
+  justify-content: center;
+
+  grid-template-columns: 10% fit-content 10%;
 }
 
 .download_replace {
   width: 1%;
   height: 100%;
-  min-width: 5px;
+  min-width: 8px;
 }
 
 .download_replace_1 {
@@ -161,6 +164,8 @@
   height: 100%;
 
   display: block;
+
+  max-width: 900px;
 
   /* background-color: black; */
 
