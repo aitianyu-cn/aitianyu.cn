@@ -37,7 +37,7 @@ namespace back.aitianyu.cn.Controller.Download
                             string sql = string.Format(ProjectDownloadsSql, item.Key);
                             db.Execute(sql, (MySqlDataReader reader) =>
                             {
-                                Dictionary<string, DownloadItemBinarySource> binarys = new Dictionary<string, DownloadItemBinarySource>();
+                                Dictionary<string, DownloadItemBinarySource> binarys = new();
 
                                 while (reader.Read())
                                 {
@@ -48,8 +48,7 @@ namespace back.aitianyu.cn.Controller.Download
                                         string address = reader.GetString("address");
                                         string url = reader.GetString("url");
 
-                                        DownloadItemBinarySource? downloadItemBinarySource = null;
-                                        if (!binarys.TryGetValue(system, out downloadItemBinarySource))
+                                        if (!binarys.TryGetValue(system, out DownloadItemBinarySource? downloadItemBinarySource))
                                         {
                                             downloadItemBinarySource = new DownloadItemBinarySource
                                             {
@@ -72,7 +71,7 @@ namespace back.aitianyu.cn.Controller.Download
                                 }
 
                                 item.Binary.AddRange(binarys.Values);
-                            });
+                            }, SqlExecuteFailedCallback);
                         }
                         catch
                         {
@@ -87,6 +86,13 @@ namespace back.aitianyu.cn.Controller.Download
             }
 
             return items;
+        }
+
+        private void SqlExecuteFailedCallback(string msg)
+        {
+#pragma warning disable CA2254 // 模板应为静态表达式
+            _logger.LogError(msg);
+#pragma warning restore CA2254 // 模板应为静态表达式
         }
     }
 }

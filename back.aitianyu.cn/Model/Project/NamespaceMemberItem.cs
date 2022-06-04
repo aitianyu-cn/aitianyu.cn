@@ -6,7 +6,14 @@
         public string I18n { get; set; } = string.Empty;
         public string File { get; set; } = string.Empty;
         public string Def { get; set; } = string.Empty;
-        public IEnumerable<string> Example { get; set; } = Enumerable.Empty<string>();
+        public IEnumerable<NamespaceMemberExample> Example { get; set; } = Enumerable.Empty<NamespaceMemberExample>();
+    }
+
+    public class NamespaceMemberExample
+    {
+        public string Key { get; set; } = string.Empty;
+        public List<string> i18ns { get; set; } = new();
+        public List<string> ExampleLines { get; set; } = new();
     }
 
     public class NamespaceMemberItems
@@ -19,6 +26,7 @@
 
     public class NamespaceMemberItem
     {
+        public string Key { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string I18n { get; set; } = string.Empty;
         public string Def { get; set; } = string.Empty;
@@ -33,7 +41,7 @@
 
     public class NamespaceDataTypeMemberItem : NamespaceMemberItem
     {
-        public IEnumerable<string> Example { get; set; } = Enumerable.Empty<string>();
+        public IEnumerable<NamespaceMemberExample> Example { get; set; } = Enumerable.Empty<NamespaceMemberExample>();
         public Dictionary<string, NamespaceDataTypeMemberItemAdditional> Parameters { get; set; } = new Dictionary<string, NamespaceDataTypeMemberItemAdditional>();
         public Dictionary<string, string> Return { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, string> Exceptions { get; set; } = new Dictionary<string, string>();

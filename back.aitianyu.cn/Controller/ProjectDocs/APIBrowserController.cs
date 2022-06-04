@@ -36,7 +36,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
         [HttpGet("{projectName}")]
         public IEnumerable<NamespaceItem> GetAPIProjectPackage(string projectName)
         {
-            List<NamespaceItem> items = new List<NamespaceItem>();
+            List<NamespaceItem> items = new();
 
             try
             {
@@ -60,7 +60,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
                             }
                         }
-                    });
+                    }, SqlExecuteFailedCallback);
                 }
             }
             catch
@@ -85,13 +85,13 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             if (string.IsNullOrEmpty(namespaceNameFormatted))
                 return Enumerable.Empty<string>();
 
-            List<string> items = new List<string>();
+            List<string> items = new();
 
             try
             {
                 DatabaseCenter? db = DBHelper.GetDBCenter(projectName);
 
-                Regex regex = new Regex(".*_[0-9]+");
+                Regex regex = new(".*_[0-9]+");
 
                 if (db is not null)
                 {
@@ -112,7 +112,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
                             }
                         }
-                    });
+                    }, SqlExecuteFailedCallback);
                 }
             }
             catch
@@ -201,7 +201,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
                                 }
                             }
-                        });
+                        }, SqlExecuteFailedCallback);
                     }
                 }
                 catch
@@ -213,7 +213,9 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             return item;
         }
 
-        private string _ProcessNamespace(string namespaceSource)
+#pragma warning disable IDE1006 // 命名样式
+        private static string _ProcessNamespace(string namespaceSource)
+#pragma warning restore IDE1006 // 命名样式
         {
             if (string.IsNullOrEmpty(namespaceSource))
                 return string.Empty;
@@ -224,7 +226,9 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             return string.Format(NamespaceRequestFormatter, namespaceSource.Replace(".", "::"));
         }
 
-        private NamespaceItem? _ProcessNamespace(string namespaceSource, string dbname)
+#pragma warning disable IDE1006 // 命名样式
+        private static NamespaceItem? _ProcessNamespace(string namespaceSource, string dbname)
+#pragma warning restore IDE1006 // 命名样式
         {
             if (string.IsNullOrEmpty(namespaceSource))
                 return null;
@@ -248,14 +252,18 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             };
         }
 
-        private string _GenerateNamespaceI18n(string id, string dbname)
+#pragma warning disable IDE1006 // 命名样式
+        private static string _GenerateNamespaceI18n(string id, string dbname)
+#pragma warning restore IDE1006 // 命名样式
         {
             string formattedId = id.Replace(".", "_").ToUpper();
             string formattedDBName = dbname.ToUpper();
             return string.Format(NamespaceI18nFormatter, formattedDBName, formattedId);
         }
 
-        private string _ProcessNamespaceMemberName(string memberName, Regex regex)
+#pragma warning disable IDE1006 // 命名样式
+        private static string _ProcessNamespaceMemberName(string memberName, Regex regex)
+#pragma warning restore IDE1006 // 命名样式
         {
             string translatedName = memberName;
 
@@ -270,16 +278,18 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
                         break;
                 }
 
-                translatedName = translatedName.Substring(0, i);
+                translatedName = translatedName[..i];
             }
 
             return translatedName;
         }
 
+#pragma warning disable IDE1006 // 命名样式
         private NamespaceMemberDef[] _GetNamespaceMembers(string projectName, string namespaceNameFormatted, string memberName, out string memberType)
+#pragma warning restore IDE1006 // 命名样式
         {
             memberType = string.Empty;
-            List<NamespaceMemberDef> namespaceMembers = new List<NamespaceMemberDef>();
+            List<NamespaceMemberDef> namespaceMembers = new();
 
             try
             {
@@ -296,7 +306,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
                             {
                                 memberPrototype = string.IsNullOrEmpty(memberPrototype) ? reader.GetString("prototype") : memberPrototype;
 
-                                NamespaceMemberDef def = new NamespaceMemberDef
+                                NamespaceMemberDef def = new()
                                 {
                                     Name = reader.GetString("name"),
                                     I18n = reader.GetString("i18n"),
@@ -315,7 +325,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
                             }
                         }
-                    });
+                    }, SqlExecuteFailedCallback);
                 }
 
                 memberType = memberPrototype;
@@ -327,8 +337,10 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
             return namespaceMembers.ToArray();
         }
-        
+
+#pragma warning disable IDE1006 // 命名样式
         private void _FillNamespaceMemberItem(string projectName, string namespaceNameFormatted, string memberName, NamespaceMemberItems items)
+#pragma warning restore IDE1006 // 命名样式
         {
             try
             {
@@ -368,7 +380,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
                         }
                     }
-                });
+                }, SqlExecuteFailedCallback);
             }
             catch
             {
@@ -376,7 +388,9 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             }
         }
 
-        private NamespaceMemberItem _ProcessFillNamespaceMemberItem(MySqlDataReader reader)
+#pragma warning disable IDE1006 // 命名样式
+        private static NamespaceMemberItem _ProcessFillNamespaceMemberItem(MySqlDataReader reader)
+#pragma warning restore IDE1006 // 命名样式
         {
             string rawName = reader.GetString("name");
             string translatedName = rawName;
@@ -433,8 +447,9 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
                 };
             }
 
-            NamespaceMemberItem item = new NamespaceMemberItem
+            NamespaceMemberItem item = new()
             {
+                Key = rawName,
                 Name = translatedName,
                 I18n = reader.GetString("i18n"),
                 Def = reader.GetString("define"),
@@ -442,6 +457,13 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             };
 
             return item;
+        }
+
+        private void SqlExecuteFailedCallback(string msg)
+        {
+#pragma warning disable CA2254 // 模板应为静态表达式
+            _logger.LogError(message: msg);
+#pragma warning restore CA2254 // 模板应为静态表达式
         }
     }
 }

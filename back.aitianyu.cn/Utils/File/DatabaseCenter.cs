@@ -21,7 +21,7 @@ namespace back.aitianyu.cn.Utils.File
             Mutex = new Mutex();
         }
 
-        public void Execute(string sqlStatement, Action<MySqlDataReader> callback)
+        public void Execute(string sqlStatement, Action<MySqlDataReader> callback, Action<string>? failCallback = null)
         {
             if (Mutex.WaitOne(30000))
             {
@@ -29,7 +29,7 @@ namespace back.aitianyu.cn.Utils.File
                 {
                     if (MySql.State != System.Data.ConnectionState.Open)
                         MySql.Open();
-                    MySqlCommand command = new MySqlCommand(sqlStatement, MySql);
+                    MySqlCommand command = new(sqlStatement, MySql);
                     MySqlDataReader reader = command.ExecuteReader();
 
                     callback(reader);
@@ -39,13 +39,14 @@ namespace back.aitianyu.cn.Utils.File
                 }
                 catch
                 {
-
+                    if (failCallback != null)
+                        failCallback(string.Format("Database {0} Sql {1} exectue failed!!!", DatabaseName, sqlStatement));
                 }
 
                 Mutex.ReleaseMutex();
             }
-            else
-                Console.WriteLine("Database {0} is using, can not access over 30s.", DatabaseName);
+            else if (failCallback != null)
+                failCallback(string.Format("Database {0} is using, can not access over 30s.", DatabaseName));
         }
     }
 }
