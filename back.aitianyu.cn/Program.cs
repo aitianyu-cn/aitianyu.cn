@@ -11,6 +11,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
+    app.MapFallbackToFile("index.html");
+}
+else
+{
+    app.MapFallback(() => "Unknown Map");
 }
 
 app.UseFileServer(new FileServerOptions
@@ -34,8 +39,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "global",
     pattern: "global/[controller]");
-
-app.MapFallbackToFile("index.html");
 
 back.aitianyu.cn.Utils.Initial.InitDatabase();
 
