@@ -1,0 +1,64 @@
+.request_waiting_base {
+  height: fit-content;
+  width: fit-content;
+
+  display: grid;
+
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.request_waiting_base_text {
+  color: #828282;
+  margin-left: auto;
+  margin-right: auto;
+
+  user-select: none;
+
+  animation: request_waiting_base_point_jump 1s forwards 3s;
+}
+
+.request_waiting_base_ai {
+  width: 25%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-bottom: 30px;
+  opacity: 0%;
+
+  animation: request_waiting_base_anim 2.5s infinite;
+}
+
+@keyframes request_waiting_base_point_jump {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes request_waiting_base_anim {
+  0% {
+    opacity: 0%;
+    transform: rotateY(0deg);
+  }
+  40% {
+    opacity: 100%;
+    transform: rotateY(360deg);
+  }
+  60% {
+    opacity: 100%;
+    transform: rotateY(360deg);
+  }
+  100% {
+    opacity: 0%;
+    transform: rotateY(0deg);
+  }
+}
