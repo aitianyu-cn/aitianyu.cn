@@ -4,6 +4,7 @@
 import React from "react";
 import { isMobile } from "react-device-detect";
 import { Configure, ITriggerData } from "src/dty/core/Configure";
+import { FeatureToggle } from "src/dty/core/FeatureToggle";
 import { IParameters } from "src/dty/model/Interfaces";
 import { IShellProperty } from "src/dty/model/IShell";
 import {
@@ -93,7 +94,10 @@ export class Docs extends TYDynamicPage {
                     continue;
                 }
 
-                item.options[key] = value;
+                const featureName = `AITIANYU_CN_WEB_DOCS_OPTIONS_${value.toUpperCase()}_ENABLE`;
+                if (FeatureToggle.isActive(featureName)) {
+                    item.options[key] = value;
+                }
             }
 
             this.aProjects.push(item);

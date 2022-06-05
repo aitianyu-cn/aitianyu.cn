@@ -1,0 +1,30 @@
+[
+    {
+        "key": "tianyu-native",
+        "name": "PROJECT_NAME_TIANYU_NATIVE",
+        "desc": "PROJECT_NAME_TIANYU_NATIVE_DESC",
+        "github": "https://github.com/aitianyu-cn/tianyu-native",
+        "bin": [
+            {
+                "system": "SOURCE",
+                "binary": {
+                    "master": {
+                        "addr": "web",
+                        "url": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/master.zip"
+                    },
+                    "release": {
+                        "addr": "web",
+                        "url": "https://github.com/aitianyu-cn/tianyu-native/archive/refs/heads/rel.zip"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "key": "dtest",
+        "name": "PROJECT_NAME_TIANYU_TEST_FRAMEWORK",
+        "desc": "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC",
+        "github": "https://github.com/aitianyu-cn/dtest",
+        "bin": []
+    }
+]

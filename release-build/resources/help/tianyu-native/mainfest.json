@@ -1,0 +1,9 @@
+{
+    "default": "startPage",
+    "files": {
+        "startPage": {
+            "file": "StartPage.md",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_START_PAGE"
+        }
+    }
+}

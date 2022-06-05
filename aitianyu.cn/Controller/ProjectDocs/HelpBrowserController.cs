@@ -16,8 +16,14 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
             _logger = logger;
         }
 
-        [HttpGet("{projectName}/{runtimeType}/{language}")]
-        public string GetProjectHelp(string projectName, string runtimeType, string language)
+        [HttpGet("{projectName}")]
+        public string GetProjectHelp(string projectName)
+        {
+            return GetProjectHelp(projectName, "zh_CN");
+        }
+
+        [HttpGet("{projectName}/{language}")]
+        public string GetProjectHelp(string projectName, string language)
         {
             try
             {
@@ -28,7 +34,7 @@ namespace back.aitianyu.cn.Controller.ProjectDocs
 
             }
 
-            return "";
+            return "{}";
         }
     }
 }

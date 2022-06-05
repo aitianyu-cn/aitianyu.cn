@@ -1,0 +1,35 @@
+[
+    {
+        "project": "Tianyu Native",
+        "i18n": "PROJECT_NAME_TIANYU_NATIVE",
+        "db": "cpp_api",
+        "path": "tianyu-native",
+        "enable": true,
+        "options": [
+            {
+                "item": "APIDocs",
+                "path": "api"
+            },
+            {
+                "item": "Architecture",
+                "path": "arch"
+            },
+            {
+                "item": "HelperDocs",
+                "path": "help"
+            },
+            {
+                "item": "Macrodef",
+                "path": "macro"
+            }
+        ]
+    },
+    {
+        "project": "Tianyu Unit Test",
+        "i18n": "PROJECT_NAME_TIANYU_TEST_FRAMEWORK",
+        "db": "dtest",
+        "path": "dtest",
+        "enable": true,
+        "options": []
+    }
+]
