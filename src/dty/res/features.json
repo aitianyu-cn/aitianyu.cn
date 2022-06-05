@@ -1,18 +1,63 @@
 {
+    "AITIANYU_CN_WEB_DEBUG_MODE": {
+        "enable": true,
+        "description": "指示当前aitianyu网页处于debug模式。",
+        "dependency": []
+    },
     "AITIANYU_CN_WEB_DEBUG_LOG": {
         "enable": true,
-        "description": "用于aitianyu网页debug使用"
+        "description": "用于aitianyu网页debug使用。",
+        "dependency": ["AITIANYU_CN_WEB_DEBUG_MODE"]
+    },
+    "AITIANYU_CN_WEB_DYNAMIC_PAGE_OPTIMIZED": {
+        "enable": true,
+        "description": "用于aitianyu网页：是否启用页面性能模式。",
+        "dependency": []
     },
     "AITIANYU_CN_WEB_DYNAMIC_PAGE_CACHE": {
         "enable": true,
-        "description": "用于aitianyu网页动态加载页面的动态缓存"
+        "description": "用于aitianyu网页动态加载页面的动态缓存",
+        "dependency": ["AITIANYU_CN_WEB_DYNAMIC_PAGE_OPTIMIZED"]
     },
     "AITIANYU_CN_WEB_DYNAMIC_PAGE_STATIC": {
         "enable": true,
-        "description": "用于aitianyu网页动态加载页面的静态缓存"
+        "description": "用于aitianyu网页动态加载页面的静态缓存",
+        "dependency": ["AITIANYU_CN_WEB_DYNAMIC_PAGE_OPTIMIZED"]
     },
     "AITIANYU_CN_WEB_DOCS_API_MEMBER_ITEM_PAGE_VALID": {
         "enable": false,
-        "description": "用于aitianyu网页的API参考中元素内部成员是否支持。"
+        "description": "指示aitianyu网页的API参考中元素内部成员是否支持。",
+        "dependency": []
+    },
+    "AITIANYU_CN_WEB_DOCS_OPTIONS_ENABLE_TOGGLE": {
+        "enable": true,
+        "description": "指示aitianyu网页文档页面的可选项是否只显示有效的选项。",
+        "dependency": []
+    },
+    "AITIANYU_CN_WEB_DOCS_OPTIONS_API_ENABLE": {
+        "enable": true,
+        "description": "指示aitianyu网页文档页面的可选项是否显示API参考部分。",
+        "dependency": ["AITIANYU_CN_WEB_DOCS_OPTIONS_ENABLE_TOGGLE"]
+    },
+    "AITIANYU_CN_WEB_DOCS_OPTIONS_ARCH_ENABLE": {
+        "enable": true,
+        "description": "指示aitianyu网页文档页面的可选项是否显示项目架构部分。",
+        "dependency": [
+            "AITIANYU_CN_WEB_DOCS_OPTIONS_ENABLE_TOGGLE",
+            "AITIANYU_CN_WEB_DEBUG_MODE"
+        ]
+    },
+    "AITIANYU_CN_WEB_DOCS_OPTIONS_HELP_ENABLE": {
+        "enable": true,
+        "description": "指示aitianyu网页文档页面的可选项是否显示帮助文档部分。",
+        "dependency": [
+            "AITIANYU_CN_WEB_DOCS_OPTIONS_ENABLE_TOGGLE",
+            "AITIANYU_CN_WEB_DEBUG_MODE"
+        ]
+    },
+    "AITIANYU_CN_WEB_DOCS_OPTIONS_MACRO_ENABLE": {
+        "enable": true,
+        "description": "指示aitianyu网页文档页面的可选项是否显示宏定义参考部分。",
+        "dependency": ["AITIANYU_CN_WEB_DOCS_OPTIONS_ENABLE_TOGGLE"]
     }
 }
