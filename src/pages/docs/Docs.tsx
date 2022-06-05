@@ -109,7 +109,7 @@ export class Docs extends TYDynamicPage {
     }
 
     private renderProjects(): React.ReactNode {
-        return <div className="docs_title_base">{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_TITLE")}</div>;
+        return <div className="docs_title_base">{this.msgBundle.getI18n("PROJECT_DOCS_TITLE")}</div>;
     }
 
     private renderProjectSelector(): React.ReactNode {
