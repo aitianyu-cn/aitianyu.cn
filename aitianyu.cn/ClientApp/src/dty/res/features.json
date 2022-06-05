@@ -1,6 +1,6 @@
 {
     "AITIANYU_CN_WEB_DEBUG_MODE": {
-        "enable": false,
+        "enable": true,
         "description": "指示当前aitianyu网页处于debug模式。",
         "dependency": []
     },

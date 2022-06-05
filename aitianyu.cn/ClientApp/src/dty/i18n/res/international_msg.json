@@ -145,6 +145,13 @@
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_I18N": "DTY INTERNATION NAMESPACE",
     "DTY_PROJECTS_CPP_API_API_NAMESPACE_DTY_TEST": "DTY TEST NAMESPACE",
 
+    "global": "全局",
+    "dty": "dty",
+    "dty_collection": "dty.collection",
+    "dty_except": "dty.except",
+    "dty_i18n": "dty.i18n",
+    "dty_test": "dty.test",
+
     "class": "CLASS",
     "interface": "INTERFACE",
     "function": "FUNCTION",
