@@ -1,12 +1,10 @@
 /**@format */
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { reportWebVitals } from "./reportWebVitals";
 import { HomePage } from "./app/start/HomePage";
-import React from "react";
-import { initFeatures } from "./dty/core/Feature";
-import { Configure } from "./dty/core/Configure";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./anim.css";
@@ -15,15 +13,11 @@ const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") ||
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 
-initFeatures();
-Configure.initConfigure();
-
 root.render(
     <BrowserRouter basename={baseUrl}>
         <HomePage />
     </BrowserRouter>,
 );
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA

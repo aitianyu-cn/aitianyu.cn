@@ -16,11 +16,12 @@
         "merge": "^2.1.1",
         "oidc-client": "^1.11.5",
         "react": "^18.1.0",
+        "react-app-rewired": "^2.2.1",
         "react-device-detect": "^2.2.2",
         "react-dom": "^18.1.0",
-        "react-router-dom": "^6.3.0",
         "react-markdown": "^8.0.3",
         "react-router-bootstrap": "^0.25.0",
+        "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "reactstrap": "^8.9.0",
         "rimraf": "^2.6.2",
@@ -41,6 +42,7 @@
     "devDependencies": {
         "ajv": "^6.9.1",
         "cross-env": "^7.0.3",
+        "customize-cra": "^1.0.0",
         "eslint": "^8.16.0",
         "eslint-config-react-app": "^7.0.1",
         "eslint-plugin-flowtype": "^8.0.3",
@@ -51,8 +53,8 @@
         "typescript": "^4.6.4"
     },
     "scripts": {
-        "start": "rimraf ./build && react-scripts start",
-        "build": "react-scripts build",
+        "start": "rimraf ./build && react-app-rewired start",
+        "build": "react-app-rewired build",
         "test": "cross-env CI=true react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "lint": "eslint ./src/"

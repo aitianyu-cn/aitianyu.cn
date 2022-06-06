@@ -12,9 +12,10 @@ import { IShellProperty } from "src/dty/model/IShell";
 import { Configure, ITriggerData } from "src/dty/core/Configure";
 import { getLocationPath } from "src/dty/RouterHelper";
 
-import "./css/horiz.main.css";
 import { FeatureToggle } from "src/dty/core/FeatureToggle";
 import { ConsoleLog } from "src/dty/LogHelper";
+
+import "./css/horiz.main.css";
 
 export class HorizontalNavigation extends NavigationBase {
     private isLanguagePage: boolean;
@@ -84,8 +85,7 @@ export class HorizontalNavigation extends NavigationBase {
         const aItemKeys: string[] = Object.keys(this.navigationItems);
         for (const key of aItemKeys) aItems.push(this.navigationItems[key].render());
 
-        // const imgPath = `${process.env.PUBLIC_URL}/assert/language.png`;
-        const imgPath = `/assert/language.png`;
+        const imgPath = `/assert/language.gif`;
 
         return (
             <div className="navigation_horiz_default_navigate">

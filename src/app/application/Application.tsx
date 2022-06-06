@@ -8,13 +8,14 @@ import { Error } from "src/pages/error/Error";
 import { Language } from "src/pages/language/Language";
 import { DownLoad } from "src/pages/download/Download";
 
-import "./css/main.css";
 import { TYViewComponent } from "src/dty/shell/TYViewComponent";
 import { Docs } from "src/pages/docs/Docs";
 import { APIDocs } from "src/pages/docs/APIDocs";
 import { ArchitectureDocs } from "src/pages/docs/ArchitectureDocs";
 import { HelpDocs } from "src/pages/docs/HelpDocs";
 import { MacroDefineDocs } from "src/pages/docs/MacroDefineDocs";
+
+import "./css/main.css";
 
 export class Application extends TYViewComponent {
     public constructor(props: IShellProperty) {

@@ -49,7 +49,7 @@ export class RequestWaiting extends TYViewComponent {
             <div className="request_waiting_base">
                 <img
                     className="request_waiting_base_ai"
-                    src="assert/anim/waiting.png"
+                    src="assert/anim/waiting.gif"
                     alt={this.msgBundle.getI18n("REQUEST_WAITING_PAGE_AI")}
                 />
                 <h4 className="request_waiting_base_text">{this.msgBundle.getI18n("REQUEST_WAITING_PAGE_TEXT")}</h4>

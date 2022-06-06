@@ -6,11 +6,16 @@ interface IFeatures {
 
 const Features: IFeatures = {};
 
-export function initFeatures(): void {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const features = require("../res/features.json");
-    for (const feature of Object.keys(features)) {
-        Features[feature] = getToggleState(features, feature);
+export async function initFeatures(): Promise<void> {
+    try {
+        const response = await fetch("/global/feature/getFeatures");
+        const features = await response.json();
+
+        for (const feature of Object.keys(features)) {
+            Features[feature] = getToggleState(features, feature);
+        }
+    } catch {
+        //
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
