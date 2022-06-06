@@ -16,7 +16,7 @@ export class Home extends TYViewComponent {
     public constructor(props: IShellProperty) {
         super(props);
 
-        this.oSource = require("./res/source.json");
+        this.oSource = {};
 
         document.title = "个人编程学习";
     }

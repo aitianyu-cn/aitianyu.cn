@@ -1,11 +1,29 @@
 /**@format */
 
 import React from "react";
+import { FetchFileLoader } from "src/dty/FileLoader";
 import { IShellProperty } from "src/dty/model/IShell";
 import { setLanguage } from "src/dty/RouterHelper";
 import { TYViewComponent } from "src/dty/shell/TYViewComponent";
 
 import "./main.css";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const languageSupportSource: any = {};
+
+export async function loadLanguageSource(): Promise<void> {
+    const fileLoader = new FetchFileLoader(`/i18n/languages.json`);
+    const file = await fileLoader.openAsync();
+
+    try {
+        const json = JSON.parse(file);
+        for (const jsonItem of Object.keys(json)) {
+            languageSupportSource[jsonItem] = json[jsonItem];
+        }
+    } catch {
+        //
+    }
+}
 
 export class Language extends TYViewComponent {
     public constructor(props: IShellProperty) {
@@ -45,8 +63,7 @@ export class Language extends TYViewComponent {
     }
 
     private renderLanguageItems(type: string, isSupport: boolean): React.ReactNode[] {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const languageSupport = require("./res/languages.json");
+        const languageSupport = languageSupportSource;
         if (!languageSupport || !languageSupport[type]) {
             return [];
         }

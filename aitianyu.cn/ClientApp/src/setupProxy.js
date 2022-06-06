@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const createProxyMiddleware = require("http-proxy-middleware");
 const { env } = require("process");
 
@@ -16,7 +18,7 @@ module.exports = function (app) {
     // target: target,
     // target: "http://139.155.245.234:5000",
     target: "http://localhost:5000",
-    //target: "http://aitianyu.cn:5000",
+    // target: "http://aitianyu.cn:5000",
     secure: false,
     changeOrigin: true,
     headers: {

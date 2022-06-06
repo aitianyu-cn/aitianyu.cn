@@ -58,7 +58,7 @@ export class APIMemberDocs extends TYViewComponent {
                                 isMobile ? "docs_api_title_project_turn_back_img_mob" : "docs_api_title_project_turn_back_img"
                             }
                             onClick={this.onBackToNamespaceList.bind(this)}
-                            src="/assert/navigate/turnback.png"
+                            src="/assert/navigate/turnback.gif"
                             alt={this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_TURN_BACK")}
                         />
                     </div>

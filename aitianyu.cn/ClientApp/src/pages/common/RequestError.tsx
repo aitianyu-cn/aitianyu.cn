@@ -26,7 +26,7 @@ export class RequestError extends TYViewComponent {
             <div className="request_error_base">
                 <img
                     className={isMobile ? "request_error_page_img_mob" : "request_error_page_img"}
-                    src="assert/anim/refresh.png"
+                    src="assert/anim/refresh.gif"
                     alt={this.msgBundle.getI18n("REQUEST_ERROR_PAGE_IMG_ALT")}
                     onClick={this.onRefreshClick}
                 />
