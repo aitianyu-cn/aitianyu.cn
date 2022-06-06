@@ -20,3 +20,11 @@ export function getLocationArea(): AreaCode {
 
     return getAreaFromString(sLocalArea);
 }
+
+export function formatedLocationArea(): string {
+    const sLocalArea = navigator.language;
+
+    const formated = sLocalArea.replace("-", "_");
+
+    return formated;
+}

@@ -1,6 +1,6 @@
 /**@format */
 
-import { getLocationArea } from "../core/AreaHelper";
+import { formatedLocationArea } from "../core/AreaHelper";
 import { IMessageBundle } from "../core/IMessageBundle";
 import { FetchFileLoader } from "../FileLoader";
 
@@ -22,7 +22,7 @@ export async function loadMsgSource(name: string): Promise<void> {
         return;
     }
 
-    const fileLoader = new FetchFileLoader(`/i18n/${name}_${localStorage["language"] || getLocationArea()}.json`);
+    const fileLoader = new FetchFileLoader(`/i18n/${name}_${localStorage["language"] || formatedLocationArea()}.json`);
     const file = await fileLoader.openAsync();
 
     try {
