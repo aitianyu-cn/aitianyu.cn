@@ -49,8 +49,8 @@
     "LANGUAGE_TITLE": "Language",
     "LANGUAGE_SUPPORT_TITLE": "The following languages are supported in Tianyu",
     "LANGUAGE_PENDING_TITLE": "Working",
-    "zh_CN": "Chinese Simplified",
-    "zh_NC": "Chinese Traditional",
+    "zh_CN": "简体中文",
+    "zh_NC": "繁體中文",
     "en_US": "English (United States)",
 
     "LANGUAGE_PENDING_MOUSE_HOLDER": "The language is being adapted and is not currently supported.",

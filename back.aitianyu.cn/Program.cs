@@ -40,6 +40,10 @@ app.MapControllerRoute(
     name: "global",
     pattern: "global/[controller]");
 
+app.MapControllerRoute(
+    name: "manager",
+    pattern: "manager/[controller]");
+
 back.aitianyu.cn.Utils.Initial.InitDatabase();
 
 app.Run();
