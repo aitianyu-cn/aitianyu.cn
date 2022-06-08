@@ -9,14 +9,14 @@ const { env } = require("process");
 
 // console.log(target);
 
-const context = ["/global", "/project_docs", "/project_download", "/resources"];
+const context = ["/manager", "/resources"];
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
     // target: target,
     // target: "http://139.155.245.234:5000",
-    // target: "http://localhost:5000",
-    target: "http://aitianyu.cn:5000",
+    target: "http://localhost:5000",
+    // target: "http://aitianyu.cn:5000",
     secure: false,
     changeOrigin: true,
     headers: {

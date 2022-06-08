@@ -14,8 +14,15 @@ export class RequestWaiting extends TYViewComponent {
     private Overtime: number;
     private timer: number;
 
+    private displayAlt: string;
+
+    private isCancelReload: boolean;
+
     public constructor(props: IShellProperty) {
         super(props);
+
+        this.displayAlt = (typeof props["alt"] === "string" && props["alt"]) || "REQUEST_WAITING_PAGE_TEXT";
+        this.isCancelReload = !!props["reload"];
 
         this.Overtime = DefaultWaitingOvertime;
         this.timer = 0;
@@ -52,7 +59,7 @@ export class RequestWaiting extends TYViewComponent {
                     src="assert/anim/waiting.png"
                     alt={this.msgBundle.getI18n("REQUEST_WAITING_PAGE_AI")}
                 />
-                <h4 className="request_waiting_base_text">{this.msgBundle.getI18n("REQUEST_WAITING_PAGE_TEXT")}</h4>
+                <h4 className="request_waiting_base_text">{this.msgBundle.getI18n(this.displayAlt)}</h4>
             </div>
         );
     }
@@ -71,7 +78,7 @@ export class RequestWaiting extends TYViewComponent {
         config.trigger("Message_Dialog_Close", { obj: "Dynamic Page Timeout Cancel" });
         config.trigger("Request_Waiting_Timeout_Cancel", { obj: "" });
 
-        // window.location.reload();
+        this.isCancelReload && window.location.reload();
     }
 
     private onTimeoutContinue(): void {

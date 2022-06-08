@@ -1,0 +1,13 @@
+{
+    "default": "user",
+    "items": [
+        {
+            "key": "control",
+            "text": "控制台"
+        },
+        {
+            "key": "user",
+            "text": "用户"
+        }
+    ]
+}

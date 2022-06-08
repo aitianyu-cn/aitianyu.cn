@@ -1,0 +1,115 @@
+@import url("item.anim.css");
+
+.navigation_item_default_itemLink {
+  user-select: none;
+  text-decoration: none;
+  height: 50px !important;
+}
+
+.navigation_item_default_itemBase,
+.navigation_item_default_itemBase_mob {
+  height: 50px !important;
+  width: auto;
+  margin: 0px;
+  display: grid;
+
+  grid-template-rows: auto max-content;
+
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.navigation_item_default_itemContainer {
+  margin: 0px 10px 0px 10px;
+  height: 47px !important;
+
+  display: grid;
+
+  font-size: 15px;
+
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.navigation_item_default_itemBase:hover {
+  background-color: #a2a2a2;
+  opacity: 80%;
+  box-shadow: 3px 5px 5px #646464;
+
+  animation: navigation_item_default_itemBase_hover 0.2s forwards;
+}
+
+.navigation_item_default_selected,
+.navigation_item_default_selected_mob {
+  height: 3px;
+  background-color: #fff;
+
+  box-shadow: 0px 0px 6px #f9f9f9;
+}
+
+.navigation_item_default_itemBase:hover > .navigation_item_default_selected {
+  height: 3px;
+  background-color: #fff;
+
+  box-shadow: 0px 0px 6px #646464;
+
+  animation: navigation_item_default_itemBase_selected_hover 0.2s forwards;
+}
+
+@media screen and (max-width: 800px) {
+  .navigation_item_default_itemLink,
+  .navigation_item_default_itemBase,
+  .navigation_item_default_itemBase_mob {
+    height: 40px !important;
+  }
+
+  .navigation_item_default_itemContainer {
+    margin: 0px 13.5px 0px 13.5px;
+    height: 37px !important;
+
+    font-size: 13.5px;
+  }
+
+  .navigation_item_default_itemBase:hover {
+    box-shadow: 2px 4px 4px #646464;
+  }
+
+  .navigation_item_default_selected,
+  .navigation_item_default_selected_mob {
+    box-shadow: 0px 0px 4px #f9f9f9;
+  }
+
+  .navigation_item_default_itemBase:hover > .navigation_item_default_selected {
+    box-shadow: 0px 0px 4px #646464;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navigation_item_default_itemLink,
+  .navigation_item_default_itemBase,
+  .navigation_item_default_itemBase_mob {
+    height: 40px !important;
+  }
+
+  .navigation_item_default_itemContainer {
+    margin: 0px 10px 0px 10px;
+    height: 37px !important;
+
+    font-size: 12px;
+  }
+
+  .navigation_item_default_itemBase:hover {
+    box-shadow: 2px 4px 4px #646464;
+  }
+
+  .navigation_item_default_selected,
+  .navigation_item_default_selected_mob {
+    box-shadow: 0px 0px 4px #f9f9f9;
+  }
+
+  .navigation_item_default_itemBase:hover > .navigation_item_default_selected {
+    box-shadow: 0px 0px 4px #646464;
+  }
+}
