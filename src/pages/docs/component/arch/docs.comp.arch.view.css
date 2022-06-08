@@ -1,0 +1,70 @@
+.docs_comp_arch_view {
+  height: 100% !important;
+  width: 100%;
+
+  display: grid;
+
+  margin-top: 0px;
+  margin-bottom: auto;
+
+  grid-template-rows: 10px auto auto;
+}
+
+.docs_comp_arch_view_base {
+  grid-row: 2;
+
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 100% !important;
+  width: 80%;
+  max-width: 1000px;
+
+  text-align: left;
+
+  word-wrap: break-word;
+  word-break: break-all;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
+
+  display: grid;
+
+  grid-template-rows: 10px 50px 30px auto auto;
+}
+
+.docs_comp_arch_view_turnback_container {
+  grid-row: 2;
+
+  width: 100%;
+
+  display: flex;
+}
+
+.docs_comp_arch_view_turnback {
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.docs_comp_arch_view_empty {
+  margin-left: auto;
+  margin-right: auto;
+
+  word-wrap: break-word;
+  word-break: keep-all;
+
+  color: #7f7f7f;
+  grid-row: 4;
+
+  user-select: none;
+  height: 100%;
+
+  text-align: center;
+}
+
+.docs_comp_arch_view_content {
+  grid-row: 4;
+  height: 100%;
+}
