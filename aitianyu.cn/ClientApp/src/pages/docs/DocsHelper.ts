@@ -8,6 +8,10 @@ export interface ISourceItem {
     hash: string;
 }
 
+export function getHelpDocsRemote(): string {
+    return window.location.pathname.substring(11);
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getDocsSources(oSource: any, msgBundle: IMsgBundle): ISourceItem[] {

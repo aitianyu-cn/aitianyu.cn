@@ -1,9 +1,11 @@
 {
     "default": "startPage",
+    "arch": [],
+    "pdf": "",
     "files": {
         "startPage": {
             "file": "StartPage.md",
-            "i18n": "TIANYU_NATIVE_ARCH_DOCS_START_PAGE"
+            "i18n": "TIANYU_NATIVE_ARCH_DOCS_SUMMARY"
         }
     }
 }

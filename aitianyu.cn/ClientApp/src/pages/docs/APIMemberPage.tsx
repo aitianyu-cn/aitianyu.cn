@@ -10,11 +10,10 @@ import {
     INamespaceMemberExample,
     INamespaceMemberItem,
 } from "./interface/INamespaceMemberItem";
+import { FeatureToggle } from "src/dty/core/FeatureToggle";
 
 import "./css/docs.api.members.css";
 import "./css/docs.api.members.base.css";
-import { Configure } from "src/dty/core/Configure";
-import { FeatureToggle } from "src/dty/core/FeatureToggle";
 
 export class APIMemberPage extends TYDynamicPage {
     private preHashChanged: ((ev: HashChangeEvent) => void) | null;
@@ -27,7 +26,7 @@ export class APIMemberPage extends TYDynamicPage {
             title: "PROJECT_DOCS_API_TITLE",
             key: `aitianyu_cn_docs_api_members`,
             id: getAPIMemberDocsRemote(),
-            remote: `project_docs/apibrowser`,
+            remote: `/project_docs/apibrowser`,
             cache: true,
             staticCache: false,
         });

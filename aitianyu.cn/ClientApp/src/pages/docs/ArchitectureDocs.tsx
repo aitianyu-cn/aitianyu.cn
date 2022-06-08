@@ -3,9 +3,13 @@
 import React from "react";
 import { IShellProperty } from "src/dty/model/IShell";
 import { getLocationPath } from "src/dty/RouterHelper";
-import { TYStructurePage } from "../common/TYStructurePage";
+import { TYViewComponent } from "src/dty/shell/TYViewComponent";
+import { ArchitectureSelector } from "./component/arch/ArchitectureSelector";
+import { ArchitectureView } from "./component/arch/ArchitectureView";
 
-export class ArchitectureDocs extends TYStructurePage {
+export class ArchitectureDocs extends TYViewComponent {
+    private preHash: ((ev: HashChangeEvent) => void) | null;
+
     public constructor(props: IShellProperty) {
         super({
             ...props,
@@ -17,12 +21,59 @@ export class ArchitectureDocs extends TYStructurePage {
             cache: true,
             staticCache: false,
         });
+
+        this.preHash = null;
     }
 
-    protected override renderSelectBar(): React.ReactNode[] {
-        return [];
+    public componentDidMount(): void {
+        this.preHash = window.onhashchange;
+        window.onhashchange = this.onHashChanged.bind(this);
     }
-    protected override renderBody(): React.ReactNode {
-        return <div></div>;
+
+    public componentWillUnmount(): void {
+        window.onhashchange = this.preHash;
+    }
+
+    public render(): React.ReactNode {
+        const hash = window.location.hash;
+        if (!hash || hash === "#") {
+            return <ArchitectureSelector />;
+        }
+
+        return this.renderDocument();
+    }
+
+    private renderDocument(): React.ReactNode {
+        return <ArchitectureView />;
+    }
+
+    private onHashChanged(ev: HashChangeEvent): void {
+        if (this.preHash) {
+            this.preHash(ev);
+        }
+
+        this.forceUpdate();
     }
 }
+
+// export class ArchitectureDocs extends TYStructurePage {
+//     public constructor(props: IShellProperty) {
+//         super({
+//             ...props,
+//             title: "PROJECT_DOCS_ARCH_TITLE",
+//             key: "aitianyu_cn_docs_arch",
+//             id: getLocationPath(-1),
+//             remote: "project_docs/archbrowser",
+//             resource: "arch",
+//             cache: true,
+//             staticCache: false,
+//         });
+//     }
+
+//     protected override renderSelectBar(): React.ReactNode[] {
+//         return [];
+//     }
+//     protected override renderBody(): React.ReactNode {
+//         return <div></div>;
+//     }
+// }

@@ -1,5 +1,6 @@
 /**@format */
 
+import { formatedLocationArea } from "src/dty/core/AreaHelper";
 import { FeatureToggle } from "src/dty/core/FeatureToggle";
 
 export enum APIDocsDisplayType {
@@ -52,4 +53,16 @@ export function getAPIMemberDocsRemote(): string {
     const hash = window.location.hash.replaceAll("#", "");
 
     return `${path}/${hash}`;
+}
+
+export function getArchDocsRemote(): string {
+    return window.location.pathname.substring(11);
+}
+
+export function getArchDocsView(): string {
+    return window.location.hash.substring(1);
+}
+
+export function getLanguage(): string {
+    return localStorage["language"] || formatedLocationArea();
 }

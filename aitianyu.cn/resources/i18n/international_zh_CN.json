@@ -50,8 +50,8 @@
     "LANGUAGE_SUPPORT_TITLE": "天宇当前支持的语言",
     "LANGUAGE_PENDING_TITLE": "进行中",
     "zh_CN": "简体中文",
-    "zh_NC": "繁体中文",
-    "en_US": "英文（美国）",
+    "zh_NC": "繁體中文",
+    "en_US": "English (US)",
 
     "LANGUAGE_PENDING_MOUSE_HOLDER": "当前选择的语言正在适配中",
 
@@ -909,6 +909,41 @@
     "GLOBAL__NUMBERSCALE_DEC": "表示数字进位格式为10进制。",
     "GLOBAL__NUMBERSCALE_HEX": "表示数字进位格式为16进制。",
     "GLOBAL__NUMBERSCALE_OCT": "表示数字进位格式为8进制。",
+
+    "PROJECT_DOCS_ARCH_VIEW_NO_DOCS": "当前模块没有找到对应的文档",
+
+    "PROJECT_DOCS_ARCH_SELECTOR_TIANYU_NATIVE_TITLE": "天宇C++原生 开发库 - 架构",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_HLCOMPONENT": "高级组件 & 非原生C++库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXT": "高级文本库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SERFS": "序列化 & 文件系统库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_MODEL": "数据模型库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IO": "基本输入输出库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOEXT": "输入输出扩展库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXTBASE": "文件核心库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOBASE": "输入输出核心库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_PRIME": "C++基础库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_CORE": "天宇核心库",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SYSTEMAPI": "系统API",
+
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_HLCOMPONENT": "天宇C++原生开发库架构 - 高级组件与非原生C++库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_TEXT": "天宇C++原生开发库架构 - 高级文本库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_SERFS": "天宇C++原生开发库架构 - 序列化 & 文件系统库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IOEXT": "天宇C++原生开发库架构 - 输入输出扩展库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_MODEL": "天宇C++原生开发库架构 - 数据模型库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IO": "天宇C++原生开发库架构 - 基本输入输出库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_TEXTBASE": "天宇C++原生开发库架构 - 文件核心库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IOBASE": "天宇C++原生开发库架构 - 输入输出核心库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_PRIME": "天宇C++原生开发库架构 - C++基础库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_CORE": "天宇C++原生开发库架构 - 天宇核心库",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_SYSTEMAPI": "天宇C++原生开发库架构 - 系统API",
+
+    "PROJECT_DOCS_HELP_TIANYU_NATIVE_TITLE": "天宇C++原生 开发库 - 帮助文档",
+    "TIANYU_NATIVE_HELP_DOCS_START_PAGE": "简介",
+    "TIANYU_NATIVE_HELP_DOCS_INSTALL_AND_USE": "安装与使用",
+    "TIANYU_NATIVE_HELP_DOCS_DESCRIPTION": "库",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_STARTPAGE": "天宇C++原生开发库帮助 - 简介",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_INSTALLANDUSE": "天宇C++原生开发库帮助 - 安装与使用",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_DESCRIPTION": "天宇C++原生开发库帮助 - 库",
 
     "": ""
 }

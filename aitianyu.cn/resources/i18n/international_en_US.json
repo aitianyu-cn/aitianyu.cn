@@ -49,8 +49,8 @@
     "LANGUAGE_TITLE": "Language",
     "LANGUAGE_SUPPORT_TITLE": "The following languages are supported in Tianyu",
     "LANGUAGE_PENDING_TITLE": "Working",
-    "zh_CN": "Chinese Simplified",
-    "zh_NC": "Chinese Traditional",
+    "zh_CN": "简体中文",
+    "zh_NC": "繁體中文",
     "en_US": "English (United States)",
 
     "LANGUAGE_PENDING_MOUSE_HOLDER": "The language is being adapted and is not currently supported.",
@@ -906,6 +906,41 @@
     "GLOBAL__NUMBERSCALE_DEC": "Indicates that the number is carried in base 10 format.",
     "GLOBAL__NUMBERSCALE_HEX": "Indicates that the number is carried in base 16 format.",
     "GLOBAL__NUMBERSCALE_OCT": "Indicates that the number is carried in base 8 format.",
+
+    "PROJECT_DOCS_ARCH_VIEW_NO_DOCS": "No corresponding document was found for the current module",
+
+    "PROJECT_DOCS_ARCH_SELECTOR_TIANYU_NATIVE_TITLE": "Tianyu Development Library C++ - Architecture",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_HLCOMPONENT": "High-Level Components & Non-Native C++ Libraries",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXT": "High-Level Texts Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SERFS": "Serialization & File System Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_MODEL": "Data Models Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IO": "Basic IO Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOEXT": "IO Extension Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXTBASE": "Basic Text Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOBASE": "IO Core Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_PRIME": "C++ Prime Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_CORE": "Tianyu Core Library",
+    "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SYSTEMAPI": "System API",
+
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_HLCOMPONENT": "Tianyu Native - High-Level Components & Non-Native C++ Libraries",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_TEXT": "Tianyu Native - High-Level Texts Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_SERFS": "Tianyu Native - Serialization & File System Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IOEXT": "Tianyu Native - IO Extension Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_MODEL": "Tianyu Native - Data Models Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IO": "Tianyu Native - Basic IO Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_TEXTBASE": "Tianyu Native - Basic Text Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_IOBASE": "Tianyu Native - IO Core Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_PRIME": "Tianyu Native - C++ Prime Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_CORE": "Tianyu Native - Tianyu Core Library",
+    "PROJECT_DOCS_ARCH_VIEW_TIANYU_NATIVE_SYSTEMAPI": "Tianyu Native - System API",
+
+    "PROJECT_DOCS_HELP_TIANYU_NATIVE_TITLE": "Tianyu Development Library C++ - Help",
+    "TIANYU_NATIVE_HELP_DOCS_START_PAGE": "Summary",
+    "TIANYU_NATIVE_HELP_DOCS_INSTALL_AND_USE": "Install & Use",
+    "TIANYU_NATIVE_HELP_DOCS_DESCRIPTION": "Exported Libraries",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_STARTPAGE": "Tianyu Native - Summary",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_INSTALLANDUSE": "Tianyu Native - Install & Use",
+    "PROJECT_DOCS_HELP_VIEW_TIANYU_NATIVE_DESCRIPTION": "Tianyu Native - Exported Libraries",
 
     "": ""
 }

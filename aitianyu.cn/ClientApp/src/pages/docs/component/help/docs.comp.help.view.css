@@ -1,0 +1,22 @@
+.docs_comp_help_view_base {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 90%;
+
+  text-align: left;
+
+  word-wrap: break-word;
+  word-break: break-all;
+
+  overflow: scroll;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
+}
+
+@media screen and (max-width: 700px) {
+  .docs_comp_help_view_base {
+    margin-top: 30px;
+    width: 90%;
+  }
+}

@@ -39,10 +39,14 @@ export abstract class TYDynamicPage extends TYViewComponent {
     private fetchRemote: string | null;
     private fetchRemoteStatic: string | null;
 
+    private fetchText: boolean;
+
     public constructor(props: IShellProperty) {
         super(props);
 
         this.initPage();
+
+        this.fetchText = props["fetchResult"] === "text";
 
         document.title = this.msgBundle.getI18n(props["title"].toString() || "个人编程学习");
 
@@ -144,6 +148,13 @@ export abstract class TYDynamicPage extends TYViewComponent {
         // realize it in sub-class
     }
 
+    protected renderError(): React.ReactNode {
+        const reqErrorPage = new RequestError(this.props);
+        reqErrorPage.setRetry(this.onErrorRetry.bind(this));
+
+        return reqErrorPage.render();
+    }
+
     public componentDidMount(): void {
         const config = Configure.generateConfigure();
         config.addTrigger("Request_Waiting_Timeout_Cancel", this.onWaitingCancel.bind(this));
@@ -188,18 +199,15 @@ export abstract class TYDynamicPage extends TYViewComponent {
         return <RequestWaiting />;
     }
 
-    private renderError(): React.ReactNode {
-        const reqErrorPage = new RequestError(this.props);
-        reqErrorPage.setRetry(this.onErrorRetry.bind(this));
-
-        return reqErrorPage.render();
-    }
-
     private async loadData(): Promise<void> {
         try {
             if (this.fetchRemote) {
                 const response = await fetch(this.fetchRemote);
-                this.oReceive = await response.json();
+                if (this.fetchText) {
+                    this.oReceive = await response.text();
+                } else {
+                    this.oReceive = await response.json();
+                }
             }
 
             if (this.loadDataSuccess && this.loadDataSuccess instanceof Function) {
