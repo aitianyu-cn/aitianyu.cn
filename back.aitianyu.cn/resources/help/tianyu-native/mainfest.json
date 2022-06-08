@@ -1,9 +1,18 @@
 {
     "default": "startPage",
+    "pdf": "",
     "files": {
         "startPage": {
-            "file": "StartPage.md",
+            "file": "StartPage",
             "i18n": "TIANYU_NATIVE_HELP_DOCS_START_PAGE"
+        },
+        "installAndUse": {
+            "file": "InstallAndUse",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_INSTALL_AND_USE"
+        },
+        "description": {
+            "file": "Description",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_DESCRIPTION"
         }
     }
 }
