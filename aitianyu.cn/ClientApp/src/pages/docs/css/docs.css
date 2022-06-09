@@ -1,9 +1,6 @@
-.docs_baseGrid,
-.docs_baseGrid_2 {
+.docs_baseGrid {
   height: 100%;
   width: 100%;
-  text-align: center;
-  justify-content: center;
   display: grid;
 
   /* grid-template-columns: auto auto auto;
@@ -16,14 +13,7 @@
   /* overflow: hidden; */
 }
 
-.docs_baseGrid_2 {
-  height: 100%;
-  width: 100% !important;
-  grid-template-rows: 30px 80px auto;
-}
-
-.docs_selector_no_project,
-.docs_title_base {
+.docs_selector_no_project {
   text-align: center;
   /* display: grid; */
   width: 100%;
@@ -36,7 +26,7 @@
 
 .docs_selector_list_base_mob,
 .docs_selector_list_base {
-  width: 100%;
+  width: 95%;
   height: max-content;
 
   grid-row: 3;

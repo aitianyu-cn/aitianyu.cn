@@ -1,13 +1,13 @@
 {
   "files": {
     "main.js": "/static/js/bundle.js",
-    "main.css": "/static/css/main.44683271.css",
+    "main.css": "/static/css/main.529e8621.css",
     "static/js/787.chunk.js": "/static/js/787.chunk.js",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html"
   },
   "entrypoints": [
     "static/js/bundle.js",
-    "static/css/main.44683271.css"
+    "static/css/main.529e8621.css"
   ]
 }
