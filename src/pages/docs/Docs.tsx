@@ -3,26 +3,13 @@
 
 import React from "react";
 import { isMobile } from "react-device-detect";
-import { Configure, ITriggerData } from "src/dty/core/Configure";
 import { FeatureToggle } from "src/dty/core/FeatureToggle";
-import { IParameters } from "src/dty/model/Interfaces";
 import { IShellProperty } from "src/dty/model/IShell";
-import {
-    generateProjectSelectorDialog,
-    insertButtonIntoProjectSelector,
-    insertContentIntoProjectSelector,
-} from "../common/ProjectSelectorDialog";
 import { TYDynamicPage } from "../common/TYDynamicPage";
+import { ProjectItem } from "./interface/IProjectItem";
+import { DocsMagnet } from "./DocsMagnet";
 
 import "./css/docs.css";
-
-interface ProjectItem {
-    name: string;
-    i18n: string;
-    path: string;
-
-    options: IParameters;
-}
 
 export class Docs extends TYDynamicPage {
     private aProjects: ProjectItem[];
@@ -47,12 +34,7 @@ export class Docs extends TYDynamicPage {
             return <div className="docs_baseGrid">{this.renderEmptyProjects()}</div>;
         }
 
-        return (
-            <div className="docs_baseGrid_2">
-                {this.renderProjects()}
-                {this.renderProjectSelector()}
-            </div>
-        );
+        return <div className="docs_baseGrid">{this.renderLocalProjectSelector()}</div>;
     }
 
     protected override loadDataSuccess(): void {
@@ -62,13 +44,11 @@ export class Docs extends TYDynamicPage {
     }
 
     protected override componmentMounted(): void {
-        const config = Configure.generateConfigure();
-        config.addTrigger("Docs_Project_Selector_Trigger", this.onProjectItemSelected.bind(this));
+        //
     }
 
     protected override componmentWillUnmounted(): void {
-        const config = Configure.generateConfigure();
-        config.removeTrigger("Docs_Project_Selector_Trigger");
+        //
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -108,71 +88,19 @@ export class Docs extends TYDynamicPage {
         return <div className="docs_selector_no_project">{this.msgBundle.getI18n("TIANYU_DEV_DOCS_API_NOT_AVAILABLE")}</div>;
     }
 
-    private renderProjects(): React.ReactNode {
-        return <div className="docs_title_base">{this.msgBundle.getI18n("PROJECT_DOCS_TITLE")}</div>;
-    }
+    private renderLocalProjectSelector(): React.ReactNode {
+        const aProjects: React.ReactNode[] = [];
 
-    private renderProjectSelector(): React.ReactNode {
-        const aProjectItemList: React.ReactNode[] = [];
         for (const project of this.aProjects) {
-            const oDialog = generateProjectSelectorDialog();
+            const oMagnet = new DocsMagnet(project);
 
-            const optionKeys = Object.keys(project.options);
-            if (optionKeys.length > 0) {
-                insertContentIntoProjectSelector(oDialog, this.msgBundle.getI18n("TIANYU_DEV_DOCS_PROJECT_OPTIONS"));
-                for (const optionKey of optionKeys) {
-                    insertButtonIntoProjectSelector(
-                        oDialog,
-                        this.msgBundle.getI18n(optionKey),
-                        "Docs_Project_Selector_Trigger",
-                        `${project.options[optionKey]}::${project.path}`,
-                    );
-                }
-            } else {
-                insertContentIntoProjectSelector(oDialog, this.msgBundle.getI18n("TIANYU_DEV_DOCS_PROJECT_NO_OPTIONS"));
-            }
-
-            const fnClick = () => {
-                const config = Configure.generateConfigure();
-                config.trigger("Message_Dialog_Open", { obj: oDialog, msgBundle: this.msgBundle });
-            };
-
-            const projectItem = (
-                <div
-                    key={project.name}
-                    onClick={fnClick}
-                    className={isMobile ? "docs_selector_list_item_mob" : "docs_selector_list_item"}>
-                    {project.i18n}
-                </div>
-            );
-
-            aProjectItemList.push(projectItem);
+            aProjects.push(oMagnet.render());
         }
 
-        return <div className={isMobile ? "docs_selector_list_base_mob" : "docs_selector_list_base"}>{aProjectItemList}</div>;
+        return <div className={isMobile ? "docs_selector_list_base_mob" : "docs_selector_list_base"}>{aProjects}</div>;
     }
 
     private static validateProjectItem(item: ProjectItem): boolean {
         return item.path.trim().length !== 0;
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    private onProjectItemSelected(event: ITriggerData, _sender?: any): void {
-        const config = Configure.generateConfigure();
-        config.trigger("Message_Dialog_Close", { obj: "" });
-
-        const aEventStrings = ((event.obj as string) || "::").split("::");
-        if (2 < aEventStrings.length) {
-            return;
-        }
-
-        const locate = aEventStrings[0].trim();
-        const project = aEventStrings[1].trim();
-
-        if (locate.length === 0 || project.length === 0) {
-            return;
-        }
-
-        window.location.pathname = `${window.location.pathname}/${locate}/${project}`;
     }
 }

@@ -1,0 +1,98 @@
+.docs_magnet_tip_main_container {
+  background-color: #efefef;
+
+  margin-bottom: 30px;
+}
+
+.docs_magnet_tip_main_container_inner {
+  border-radius: 10px;
+
+  grid-template-rows: max-content max-content max-content max-content 5px;
+}
+
+.docs_magnet_section_container {
+  display: grid;
+
+  grid-template-rows: 20px max-content 10px;
+
+  height: 100%;
+  width: 100%;
+
+  grid-row: 4;
+}
+
+.docs_magnet_section_shell {
+  grid-row: 2;
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.docs_magnet_section_nodown {
+  grid-row: 2;
+  width: 100%;
+
+  display: grid;
+
+  text-align: center;
+  align-items: center;
+  align-content: center;
+
+  color: #393939ba;
+
+  user-select: none;
+}
+
+.docs_magnet_section_link {
+  width: 100%;
+  height: 100%;
+
+  min-width: 100px;
+
+  text-decoration: none;
+}
+
+.docs_magnet_section_link_div,
+.docs_magnet_section_link_div_mob {
+  background-color: #a2a2a2;
+
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+
+  border-radius: 5px;
+
+  color: #fff;
+
+  user-select: none;
+}
+
+.docs_magnet_section_link_div:hover {
+  /* background-color: #bebdbd;
+  
+    opacity: 80%;
+  
+    box-shadow: 3px 5px 5px #646464; */
+
+  animation: download_magnet_section_link_div_hover 0.25s forwards;
+}
+
+.docs_magnet_section_inner {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .docs_magnet_section_inner {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+  }
+}

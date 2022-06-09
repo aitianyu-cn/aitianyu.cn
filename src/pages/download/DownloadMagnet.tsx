@@ -2,8 +2,6 @@
 
 import React from "react";
 import { isMobile } from "react-device-detect";
-import { Link } from "react-router-dom";
-import { Configure } from "src/dty/core/Configure";
 import { TYViewComponent } from "src/dty/shell/TYViewComponent";
 
 import "./css/magnet.css";
