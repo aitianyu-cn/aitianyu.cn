@@ -63,6 +63,9 @@
     "PROJECT_NAME_TIANYU_TEST_FRAMEWORK": "Tianyu C++ Test Framework",
     "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC": "A small unit testing framework based on \"tianyu C++ native development library\" does not rely on any third party libraries other than the basic C++17 header file.",
 
+    "PROJECT_NAME_TIANYU_SHELL": "Tianyu Web App Platform",
+    "PROJECT_NAME_TIANYU_SHELL_DESC": "Web application framework based on Typescript and Webpack, can be used for single-page, multi-page rapid development.",
+
     "PROJECT_TITLE_GITHUB_REPO": "Repo",
     "PROJECT_TITLE_GITHUB_CLONE": "Clone",
     "SOURCE": "Source Code",

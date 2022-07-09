@@ -63,6 +63,9 @@
     "PROJECT_NAME_TIANYU_TEST_FRAMEWORK": "天宇C++测试框架",
     "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC": "基于“天宇C++原生开发库”开发的小型单元测试框架，不依赖除C++17基本头文件之外的其他第三方库。",
 
+    "PROJECT_NAME_TIANYU_SHELL": "天宇Web应用框架",
+    "PROJECT_NAME_TIANYU_SHELL_DESC": "基于Typescript和Webpack构建的Web应用程序框架，可用于单页面、多页面的快速开发。",
+
     "PROJECT_TITLE_GITHUB_REPO": "储存库",
     "PROJECT_TITLE_GITHUB_CLONE": "克隆",
     "SOURCE": "源代码",
