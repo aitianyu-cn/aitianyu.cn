@@ -12,7 +12,7 @@
 
     "DIALOG_PAGE_CLOSE_BUTTON": "关闭",
 
-    "HOME_PAGE_TIANYU": "/assert/logo/biaobai.logo.cn.png",
+    "HOME_PAGE_TIANYU": "/assert/logo/biaobai.logo.cn.gif",
     "HOME_PAGE_DESCRIPTION": "我喜欢你！！！！！！！！！！！！！！！！",
     "HOME_PAGE_SOURCE_EMPTY": "等了2096天！我还是喜欢你！而且更加确定喜欢你！以前我不知道我要什么，这次离开贵阳只身来到上海，我才知道我要什么！",
     "HOME_PAGE_MOB_ABOUT_TIANYU": "关于喜欢你",
@@ -56,6 +56,9 @@
     "LANGUAGE_PENDING_MOUSE_HOLDER": "当前选择的语言正在适配中",
 
     "PROJECT_DOWNLOAD_TITLE": "获取喜欢你",
+
+    "PROJECT_NAME_AI_LLX_0": "Yao Yao",
+    "PROJECT_NAME_AI_LLX_DESC_0": " ",
 
     "PROJECT_NAME_AI_LLX_1": "喜欢你",
     "PROJECT_NAME_AI_LLX_DESC_1": "不知道该说喜欢你还是我爱你。至少反正就是那个意思！",
