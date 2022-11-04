@@ -18,10 +18,6 @@
 
 所有自动化工具、脚本都保存在放置于 `${项目根目录}/tools` 内。
 
-- build.bat | build.sh  
-  用于自动化生成目标库文件与目标头文件。
-
-- build-test.bat | build-test.sh  
-  用于自动化生成目标库文件与测试执行文件。
+- 更多工具信息，请参考 `${tianyu-native}/tools/README.md`
 
 &nbsp;
