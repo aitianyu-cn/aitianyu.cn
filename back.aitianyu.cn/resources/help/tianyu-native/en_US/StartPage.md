@@ -12,16 +12,11 @@
 
 - Email: [dev.aitianyu.cn@outlook.com](dev.aitianyu.cn@outlook.com)
 
-&nbsp;
+  &nbsp;
 
 # Automation Tools
 
 All automation tools and scripts are stored in `${project root}/tools`.
 
-- build.bat | build.sh  
-  For automatic generation of target library files and target header files.
-
-- build-test.bat | build-test.sh  
-  For automated generation of object library files and test execution files.
-
-&nbsp;
+- For more information of the tool, take references from `${tianyu-native}/tools/README.md`
+  &nbsp;
