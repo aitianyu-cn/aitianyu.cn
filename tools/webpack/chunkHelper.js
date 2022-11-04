@@ -1,0 +1,122 @@
+/**@format */
+
+// #############################################################
+// Chunk name
+// #############################################################
+const CoreChunk = "tianyushell_core";
+const UIMajorChunk = "tianyushell_component_ui_major";
+const UIMessageChunk = "tianyushell_component_ui_msg";
+const UIDialogChunk = "tianyushell_component_ui_dialog";
+const UIBackgroundChunk = "tianyushell_component_ui_bg";
+
+const StorageChunk = "tianyushell_component_storage";
+const FeatureToggleChunk = "tianyushell_component_featureToggle";
+const LanguageChunk = "tianyushell_component_language";
+const PerformanceChunk = "tianyushell_component_performance";
+
+// #############################################################
+// Chunk file
+// #############################################################
+
+const CoreChunkFile = "resource/tianyu/Core.ts";
+const UIMajorChunkFile = "resource/tianyu/ui/Major.ts";
+const UIMessageChunkFile = "resource/tianyu/ui/Message.ts";
+const UIDialogChunkFile = "resource/tianyu/ui/Dialog.ts";
+const UIBackgroundChunkFile = "resource/tianyu/ui/Background.ts";
+
+const StorageChunkFile = "resource/tianyu/Storage.ts";
+const FeatureToggleChunkFile = "resource/tianyu/FeatureToggle.ts";
+const LanguageChunkFile = "resource/tianyu/Language.ts";
+const PerformanceChunkFile = "resource/tianyu/Performance.ts";
+
+const defaultChunks = [CoreChunk, UIMajorChunk];
+
+const tianyuShellConfigHandler = function (tsConfig) {
+    if (!!!tsConfig) {
+        return [];
+    }
+
+    // the function of mounting the ui config part
+    const fnUIHandler = (uiConfig) => {
+        if (!!!uiConfig) return [];
+
+        const uiChunks = [];
+
+        uiConfig.message && uiChunks.push(UIMessageChunk);
+        uiConfig.dialog && uiChunks.push(UIDialogChunk);
+        uiConfig.background && uiChunks.push(UIBackgroundChunk);
+
+        return uiChunks;
+    };
+
+    const chunks = [];
+
+    // to check the ui config and load it.
+    const uiConfig = tsConfig.ui;
+    chunks.push(...fnUIHandler(uiConfig));
+
+    // to check the performace supportable and load it if needs.
+    const performanceConfig = tsConfig.performance;
+    performanceConfig && chunks.push(PerformanceChunk);
+
+    // to check the multiple language supportable and load it if needs.
+    const languageConfig = tsConfig.language;
+    languageConfig && chunks.push(LanguageChunk);
+
+    // to check the storage supportable and load it if needs.
+    const storageConfig = tsConfig.storage;
+    storageConfig && chunks.push(StorageChunk);
+
+    // to check the feature toggle supportable and load it if needs.
+    const featureToggleConfig = tsConfig.featureToggle;
+    featureToggleConfig && chunks.push(FeatureToggleChunk);
+
+    return chunks;
+};
+
+const tianyuShellChunkProcessor = function (tianyuShell) {
+    // detect whether the config field is defined.
+    if (!!!tianyuShell) {
+        return [...defaultChunks]; // if the field is not defined, to set the default chunk.
+    }
+
+    // if the coreSupport is absolutely disabled, do not to set the tianyu-shell chunks.
+    if (tianyuShell.coreSupport === false) {
+        return [];
+    }
+
+    // otherwise, the tianyu-shell core chunk is the core part of the whole additional chunks.
+    const additionalChunks = [...defaultChunks];
+
+    // check the config part and to mount it.
+    const config = tianyuShell.config;
+    additionalChunks.push(...tianyuShellConfigHandler(config));
+
+    return additionalChunks;
+};
+
+module.exports.TianyuShellChunks = {
+    Chunks: {
+        CORE: CoreChunk,
+        UI_MAJOR: UIMajorChunk,
+        UI_MESSAGE: UIMessageChunk,
+        UI_DIALOG: UIDialogChunk,
+        UI_BACKGROUND: UIBackgroundChunk,
+        STORAGE: StorageChunk,
+        FEATURE_TOGGLE: FeatureToggleChunk,
+        LANGUAGE: LanguageChunk,
+        PERFORMANCE: PerformanceChunk,
+    },
+    ChunkFiles: {
+        CORE: CoreChunkFile,
+        UI_MAJOR: UIMajorChunkFile,
+        UI_MESSAGE: UIMessageChunkFile,
+        UI_DIALOG: UIDialogChunkFile,
+        UI_BACKGROUND: UIBackgroundChunkFile,
+        STORAGE: StorageChunkFile,
+        FEATURE_TOGGLE: FeatureToggleChunkFile,
+        LANGUAGE: LanguageChunkFile,
+        PERFORMANCE: PerformanceChunkFile,
+    },
+    Processor: tianyuShellChunkProcessor,
+};

@@ -1,0 +1,8 @@
+{
+    "autoClean": true,
+    "mineCss": {
+        "filename": "[name].[contenthash:6].css",
+        "chunkFilename": "[name].[contenthash:8].css"
+    },
+    "optmizeChunks": true
+}

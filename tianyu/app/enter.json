@@ -1,0 +1,4 @@
+{
+    "main": "index/Index.ts",
+    "error": "error/Error.ts"
+}

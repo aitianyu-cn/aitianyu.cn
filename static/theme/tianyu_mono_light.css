@@ -1,0 +1,123 @@
+/**
+ * Tianyu Shell UI Theme
+ * Mono Theme - Light Colors
+*/
+
+.tianyu_shell_ui_background {
+  background-color: #ffffff;
+}
+
+.tianyu_shell_ui_container {
+  background-color: #f2f2f2;
+}
+
+.tianyu_shell_ui_dialog_mask {
+  background-color: #bfbfbf;
+  opacity: 25%;
+}
+
+.tianyu_shell_ui_dialog_container {
+  background-color: #f2f2f2;
+
+  box-shadow: 2px 2px 12px #000000;
+}
+
+.tianyu_shell_ui_msg {
+  border-color: #000000;
+}
+
+.tianyu_shell_ui_msg_error {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.tianyu_shell_ui_msg_warning {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+.tianyu_shell_ui_msg_success {
+  background-color: #888888;
+  color: #000000;
+}
+
+.tianyu_shell_ui_msg_info {
+  background-color: #bfbfbf;
+  color: #000000;
+}
+
+.tianyu_shell_ui_msg_debug {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.tianyu_shell_ui_msg_custom {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.tianyu_shell_ui_block_1 {
+  background-color: #ffffff;
+  color: #000000;
+}
+.tianyu_shell_ui_block_2 {
+  background-color: #dfdfdf;
+  color: #000000;
+}
+.tianyu_shell_ui_block_3 {
+  background-color: #afafaf;
+  color: #000000;
+}
+.tianyu_shell_ui_block_4 {
+  background-color: #888888;
+  color: #000000;
+}
+.tianyu_shell_ui_block_5 {
+  background-color: #666666;
+  color: #ffffff;
+}
+.tianyu_shell_ui_block_6 {
+  background-color: #444444;
+  color: #ffffff;
+}
+.tianyu_shell_ui_block_7 {
+  background-color: #222222;
+  color: #ffffff;
+}
+.tianyu_shell_ui_block_8 {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.tianyu_shell_ui_exblock_1 {
+  background-color: #ffffff;
+  color: #000000;
+}
+.tianyu_shell_ui_exblock_2 {
+  background-color: #c0c0c0;
+  color: #000000;
+}
+.tianyu_shell_ui_exblock_3 {
+  background-color: #a0a0a0;
+  color: #000000;
+}
+.tianyu_shell_ui_exblock_4 {
+  background-color: #999999;
+  color: #000000;
+}
+.tianyu_shell_ui_exblock_5 {
+  background-color: #777777;
+  color: #000000;
+}
+.tianyu_shell_ui_exblock_6 {
+  background-color: #555555;
+  color: #ffffff;
+}
+.tianyu_shell_ui_exblock_7 {
+  background-color: #333333;
+  color: #ffffff;
+}
+.tianyu_shell_ui_exblock_8 {
+  background-color: #111111;
+  color: #ffffff;
+}

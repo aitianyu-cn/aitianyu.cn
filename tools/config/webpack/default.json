@@ -1,0 +1,9 @@
+{
+    "extensions": [
+        ".ts",
+        ".js",
+        ".css",
+        ".view.json",
+        ".i18n.js"
+    ]
+}

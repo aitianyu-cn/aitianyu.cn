@@ -1,0 +1,15 @@
+{
+    "version": "0.0.0.0",
+    "environment": "development",
+    "runtime": {
+        "console": true
+    },
+    "ui": {
+        "theme": {
+            "default": {
+                "theme": "tianyu_default",
+                "color": 0
+            }
+        }
+    }
+}
