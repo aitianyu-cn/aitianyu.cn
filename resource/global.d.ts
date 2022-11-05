@@ -85,9 +85,15 @@ interface ITianyuShellCoreUITheme {
     reset(): void;
 }
 
+interface ITianyuShellUIDialog {
+    open(element: HTMLElement | string, id?: string): string;
+    close(id: string): void;
+    isOpen(): boolean;
+}
+
 interface ITianyuShellUI {
     background?: any;
-    dialog?: any;
+    dialog?: ITianyuShellUIDialog;
     major?: any;
     message?: any;
     theme: ITianyuShellCoreUITheme;
@@ -114,6 +120,8 @@ interface ITianyuShellStorage {
 interface IRouteProvider {
     addRoutePath(path: string, callback: RouteCallback): void;
     addRouteRegex(id: string, reg: RegExp, callback: RouteCallback, priority: number): void;
+    removeRoutePath(path: string): void;
+    removeRouteRegex(id: string): void;
     jump(hash: string, rollback: boolean = true, id?: string): void;
     back(): void;
     forward(): void;

@@ -1,1 +1,10 @@
-{}
+{
+    "/remote-connection": {
+        "target": "http://aitianyu.cn",
+        "ws": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/remote-connection": ""
+        }
+    }
+}

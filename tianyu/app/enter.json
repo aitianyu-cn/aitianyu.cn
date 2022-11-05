@@ -1,4 +1,5 @@
 {
-    "main": "index/Index.ts",
-    "error": "error/Error.ts"
+    "main": "index/Index.tsx",
+    "error": "error/Error.ts",
+    "homePage": "home/HomePage.ts"
 }

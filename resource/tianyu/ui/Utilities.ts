@@ -2,7 +2,8 @@
 
 import { EmptyArgumentException } from "ts-core/ExceptionBase";
 
-const SetDefaultThemeOnLoaded = "tianyushell_core_ui_theme_set_default_trigger";
+import "./common/core_ui.css";
+
 const TianyuShellUIThemeDefaultID = "tianyu_shell_ui_default_theme";
 const TianyuShellUIThemeCustomID = "tianyu_shell_ui_cusom_theme";
 

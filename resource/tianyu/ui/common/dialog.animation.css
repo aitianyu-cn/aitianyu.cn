@@ -1,0 +1,17 @@
+@keyframes ts_ui_dialog_open {
+  form {
+    opacity: 0%;
+  }
+  to {
+    opacity: var(--ts_ui_dialog_mask_op);
+  }
+}
+
+@keyframes ts_ui_dialog_close {
+  form {
+    opacity: var(--ts_ui_dialog_mask_op);
+  }
+  to {
+    opacity: 0%;
+  }
+}

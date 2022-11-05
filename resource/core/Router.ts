@@ -103,6 +103,38 @@ class RouteTrie {
         map.end = callback;
     }
 
+    public removePath(path: string): void {
+        const formattedPath = path.startsWith("/") ? path.substring(1) : path;
+        const dirs = formattedPath.split("/");
+
+        let fatherMap = null;
+        let map = this.routeMap;
+        let dirName = "";
+        for (const dir of dirs) {
+            if (!!!dir) continue;
+
+            dirName = dir;
+            fatherMap = map;
+            map = map.children[dir];
+
+            if (!!!map) break;
+        }
+
+        if (!!map) {
+            if (!!!Object.keys(map.children).length) {
+                delete fatherMap?.children[dirName];
+            } else {
+                map.end = null;
+            }
+        }
+    }
+
+    public removeRegex(id: string): void {
+        if (this.routeExp[id]) {
+            delete this.routeExp[id];
+        }
+    }
+
     public addRegex(id: string, reg: RegExp, callback: RouteCallback, priority: number): void {
         for (const existId of Object.keys(this.routeExp)) {
             const item = this.routeExp[existId];
@@ -240,6 +272,12 @@ const RouterBase: IRouteProvider = {
     },
     addRouteRegex: function (id: string, reg: RegExp, callback: RouteCallback, priority: number): void {
         _routerSource.routerMap.addRegex(id, reg, callback, priority);
+    },
+    removeRoutePath: function (path: string): void {
+        _routerSource.routerMap.removePath(path);
+    },
+    removeRouteRegex: function (id: string): void {
+        _routerSource.routerMap.removeRegex(id);
     },
     jump: function (hash: string, rollback: boolean = true, id?: string): void {
         let formattedHash = hash;

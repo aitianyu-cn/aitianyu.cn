@@ -24,13 +24,15 @@
  * }
  */
 
+const errorPages = require("./page.error");
+
 module.exports = {
-    index: {
-        title: "Tianyu-Shell",
-        template: "index.html",
+    home: {
+        title: "个人编程学习",
+        template: "index/index.html",
         filename: "index.html",
-        favicon: "tianyu/page/index_favicon.ico",
-        chunks: ["main"],
+        favicon: "tianyu/page/res/aitianyu.ico",
+        chunks: ["homePage"],
         from: [
             {
                 regexp: /^\/$/,
@@ -52,16 +54,47 @@ module.exports = {
             },
         },
     },
-    error: {
-        title: "Error-Page",
-        template: "error.html",
-        filename: "error.html",
-        chunks: ["error"],
+    userHome: {
+        title: "Tianyu-Shell",
+        template: "index/index.html",
+        filename: "user/index.html",
+        favicon: "tianyu/page/index/index_favicon.ico",
+        chunks: ["main"],
         from: [
             {
-                regexp: /./,
-                hash: 404,
+                regexp: /^\/user$/,
+                hash: null,
             },
         ],
     },
+    logon: {
+        title: "Tianyu-Shell",
+        template: "index/index.html",
+        filename: "user/logon.html",
+        favicon: "tianyu/page/index/index_favicon.ico",
+        chunks: ["main"],
+        from: [],
+    },
+    adminConsole: {
+        title: "Tianyu-Shell",
+        template: "index/index.html",
+        filename: "admin/index.html",
+        favicon: "tianyu/page/index/index_favicon.ico",
+        chunks: ["main"],
+        from: [
+            {
+                regexp: /^\/admin$/,
+                hash: null,
+            },
+        ],
+    },
+    adminLogon: {
+        title: "Tianyu-Shell",
+        template: "index/index.html",
+        filename: "admin/logon.html",
+        favicon: "tianyu/page/index/index_favicon.ico",
+        chunks: ["main"],
+        from: [],
+    },
+    ...errorPages(),
 };

@@ -1,5 +1,7 @@
 /**@format */
 
+const path = require("path");
+
 const { checkNumeric } = require("./tools/webpack/utilities");
 const { handleEntries, handleResolve, handleOutput } = require("./tools/webpack/handler");
 
@@ -16,8 +18,8 @@ const pagesAndEntries = tianyuPagesAndEntriesGenerater();
 const optimize = {
     splitChunks: {
         chunks: "initial",
-        minSize: 0,
-        maxSize: 30000,
+        minSize: 100000,
+        maxSize: 200000,
         minChunks: 1,
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
@@ -25,13 +27,27 @@ const optimize = {
         name: false,
         cacheGroups: {
             vendors: {
+                minChunks: 1,
                 test: /[\\/]node_modules[\\/]/,
-                priority: -10,
-                filename: "common.[contenthash:6].js",
+                priority: 10,
+                filename: "vendors-common-[contenthash:6].js",
+                reuseExistingChunk: true,
             },
+            // tianyuCommon: {
+            //     test: path.resolve(baseDir, "resource/core"),
+            //     filename: "tianyushell-common-[contenthash:6].js",
+            //     priority: 20,
+            //     chunks: "all",
+            // },
+            // homepage: {
+            //     test: path.resolve(baseDir, "tianyu/app/home"),
+            //     filename: "homepage-common.js",
+            //     priority: 20,
+            //     chunks: "all",
+            // },
             default: {
-                minChunks: 2,
-                priority: -20,
+                minChunks: 1,
+                priority: 0,
                 reuseExistingChunk: true,
             },
         },

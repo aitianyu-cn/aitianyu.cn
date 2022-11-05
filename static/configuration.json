@@ -7,7 +7,7 @@
     "ui": {
         "theme": {
             "default": {
-                "theme": "tianyu_default",
+                "theme": "tianyu_mono",
                 "color": 0
             }
         }

@@ -3,23 +3,15 @@
  * Mono Theme - Dark Colors
 */
 
-.tianyu_shell_ui_background {
-  background-color: #8e8e8e;
-}
+:root {
+  --ts_ui_bgc: #8e8e8e;
+  --ts_ui_content_bgc: #404040;
+  --ts_ui_dialog_mask_bgc: #bfbfbf83;
+  --ts_ui_dialog_mask_op: 100%;
+  --ts_ui_dialog_content_bgc: #7f7f7f;
+  --ts_ui_dialog_content_sdc: #ffffff;
 
-.tianyu_shell_ui_container {
-  background-color: #404040;
-}
-
-.tianyu_shell_ui_dialog_mask {
-  background-color: #bfbfbf;
-  opacity: 25%;
-}
-
-.tianyu_shell_ui_dialog_container {
-  background-color: #7f7f7f;
-
-  box-shadow: 2px 2px 12px #ffffff;
+  --ts_ui_front_c: #828282;
 }
 
 .tianyu_shell_ui_msg {

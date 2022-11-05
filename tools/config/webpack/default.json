@@ -1,5 +1,7 @@
 {
     "extensions": [
+        ".tsx",
+        ".html",
         ".ts",
         ".js",
         ".css",

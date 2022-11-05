@@ -26,7 +26,9 @@ function messageBundleLoader(source) {
     });
 
     readInterface.on("close", (input) => {
-        const output = `module.exports = ${JSON.stringify(textMap)}`;
+        const moduleExp = `module.exports.getText=(key)=>{return _source[key]||key;}`;
+        const output = `const _source=${JSON.stringify(textMap)};${moduleExp}`;
+
         callback(null, output);
         readInterface.close();
     });

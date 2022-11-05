@@ -1,0 +1,8 @@
+WAITING_DIALOG_AI_ALT=Waiting Image
+WAITING_DIALOG_TEXT=Waiting...
+WAITING_DIALOG_TIMEOUT_CONFIRM=Waiting Timeout! Determine to continue to wait; Cancel the end wait.
+
+ERROR_WIDGET_IMG_ALT=Error Widget Image
+ERROR_WIDGET_REFRESH_IMG_ALT=Error Widget Refresh
+ERROR_WIDGET_TEXT=Load failed.
+ERROR_WIDGET_REFRESH_TEXT=Load failed, refresh to try again.
