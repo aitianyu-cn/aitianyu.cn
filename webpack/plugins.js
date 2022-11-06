@@ -1,7 +1,5 @@
 /**@format */
 
-const webpack = require("webpack");
-
 function generatePlugin() {
     const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 

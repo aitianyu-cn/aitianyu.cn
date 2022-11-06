@@ -5,8 +5,7 @@ import { MapOfBoolean, MapOfString } from "ts-core/Types";
 import { initUIBase, theme } from "./Utilities";
 
 import "./common/dialog.css";
-
-const TIANYU_SHELL_DIALOG_BASIC_ID = "tianyu_shell_ui_dialog";
+import { TIANYU_SHELL_DIALOG_BASIC_ID } from "ts-core/UI";
 
 interface IDialogInformation {
     opened: boolean;

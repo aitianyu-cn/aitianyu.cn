@@ -8,8 +8,10 @@
         "src/app",
         "src/i18n",
         "src/shell",
-        "modules/tianyu_shell/resource/global.d.ts"
+        "modules/tianyu_shell/resource/global.d.ts",
+        "**/*.d.ts"
     ],
+    "exclude": ["**/design"],
     "compilerOptions": {
         "composite": true,
         "target": "es2021",

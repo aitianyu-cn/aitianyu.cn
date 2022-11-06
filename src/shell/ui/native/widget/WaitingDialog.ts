@@ -1,6 +1,6 @@
 /**@format */
 
-import { ShellUIElement } from "tianyu-shell/native/ShellUIElement";
+import { ShellUIElement } from "tianyu-shell/ui/native/ShellUIElement";
 import { require_msgbundle } from "ts-core/I18n";
 import { CallbackAction } from "ts-core/Types";
 
