@@ -1,0 +1,4 @@
+{
+    "homePage": "home/HomePage.ts",
+    "error": "error/Error.ts"
+}

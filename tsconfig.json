@@ -1,17 +1,14 @@
 {
     "include": [
-        "public",
-        "static",
-        "resource/core",
-        "resource/security",
-        "resource/theme",
-        "resource/ui",
-        "resource/tianyu",
-        "tianyu/hooks",
-        "tianyu/app",
-        "tianyu/i18n",
-        "tianyu/shell",
-        "resource/global.d.ts"
+        "src/public",
+        "src/static",
+        "modules/tianyu_shell/resource/core",
+        "modules/tianyu_shell/resource/security",
+        "modules/tianyu_shell/resource/tianyu",
+        "src/app",
+        "src/i18n",
+        "src/shell",
+        "modules/tianyu_shell/resource/global.d.ts"
     ],
     "compilerOptions": {
         "composite": true,
@@ -33,16 +30,13 @@
         "baseUrl": ".",
         "outDir": "./dist",
         "paths": {
-            "ts-public/*": ["public/*"],
-            "ts-static/*": ["static/*"],
-            "ts-core/*": ["resource/core/*"],
-            "ts-sec/*": ["resource/security/*"],
-            "ts-theme/*": ["resource/theme/*"],
-            "ts-ui/*": ["resource/ui/*"],
-            "ts-hooks/*": ["tianyu/hooks/*"],
-            "tianyu-app/*": ["tianyu/app/*"],
-            "tianyu-i18n/*": ["tianyu/i18n/*"],
-            "tianyu-shell/*": ["tianyu/shell/*"]
+            "ts-public/*": ["src/public/*"],
+            "ts-static/*": ["src/static/*"],
+            "ts-core/*": ["modules/tianyu_shell/resource/core/*"],
+            "ts-sec/*": ["modules/tianyu_shell/resource/security/*"],
+            "tianyu-app/*": ["src/app/*"],
+            "tianyu-i18n/*": ["src/i18n/*"],
+            "tianyu-shell/*": ["src/shell/*"]
         }
     }
 }

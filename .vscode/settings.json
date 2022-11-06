@@ -1,7 +1,7 @@
 {
     "editor.formatOnType": true,
     "typescript.format.enable": true,
-    "prettier.configPath": "tools/config/.prettierrc",
+    "prettier.configPath": ".prettierrc",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.detectIndentation": false,
