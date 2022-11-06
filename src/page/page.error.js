@@ -4,6 +4,7 @@ const COMMON_TITLE = "Error-Page";
 const BASIC_TEMPLATE_FILE = "error/error.html";
 const ERROR_PAGE_CHUNKS = ["error"];
 const ERROR_PAGE_PATH = "error";
+const ERROR_PAGE_ICON = "";
 
 const ERROR_CODES = {
     404: {
@@ -49,6 +50,7 @@ module.exports = function () {
             chunks: ERROR_PAGE_CHUNKS,
             from: ERROR_CODES[errorCode].from || [],
             errorCode: errorCode,
+            favicon: ERROR_PAGE_ICON,
         };
 
         exportPages[`error_${errorCode}`] = page;

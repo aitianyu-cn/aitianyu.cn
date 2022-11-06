@@ -18,8 +18,8 @@ const pagesAndEntries = tianyuPagesAndEntriesGenerater();
 const optimize = {
     splitChunks: {
         chunks: "initial",
-        minSize: 0,
-        maxSize: 100000,
+        minSize: 100000,
+        maxSize: 300000,
         minChunks: 1,
         maxAsyncRequests: 5,
         maxInitialRequests: 3,

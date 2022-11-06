@@ -91,7 +91,7 @@ const _loadStaticFile = async function (name: string): Promise<any> {
             waitList: [],
         };
         return new Promise<any>((resolve, _reject) => {
-            const fileLoader = new FetchFileLoader(`./static/${name}`);
+            const fileLoader = new FetchFileLoader(`/static/${name}`);
             fileLoader.openAsync().then((value: any) => {
                 _staticFileCache[name].value = value;
                 _staticFileCache[name].valid = true;

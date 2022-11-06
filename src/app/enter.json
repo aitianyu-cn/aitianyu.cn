@@ -1,4 +1,7 @@
 {
-    "homePage": "home/HomePage.ts",
-    "error": "error/Error.ts"
+    "home": "home/Home.ts",
+    "error": "error/Error.ts",
+    "app": "app/Application.ts",
+    "app-cloud": "app/cloud/CloudApp.ts",
+    "admin": "admin/Admin.ts"
 }

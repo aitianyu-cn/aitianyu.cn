@@ -11,7 +11,7 @@ const TianyuShellUIThemeCustomID = "tianyu_shell_ui_cusom_theme";
 const _customThemeList: string[] = [];
 
 function _change_theme(theme: string, color: TianyuShellUIThemeColor): void {
-    const themeUrl = `./static/theme/${theme}_${color}.css`;
+    const themeUrl = `/static/theme/${theme}_${color}.css`;
 
     const element = document.getElementById(TianyuShellUIThemeCustomID);
     const linkElem = element as HTMLLinkElement;
@@ -55,7 +55,7 @@ function _set_default_theme() {
 
         // to set default theme
         const defaultTheme = document.createElement("link");
-        defaultTheme.href = `./static/theme/${theme}_${color}.css`;
+        defaultTheme.href = `/static/theme/${theme}_${color}.css`;
         defaultTheme.rel = "stylesheet";
         defaultTheme.type = "text/css";
         defaultTheme.id = TianyuShellUIThemeDefaultID;

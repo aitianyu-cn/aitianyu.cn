@@ -1,6 +1,7 @@
 /**@format */
 
 const errorPages = require("./page.error");
+const appPages = require("./page.app");
 
 module.exports = {
     home: {
@@ -8,7 +9,7 @@ module.exports = {
         template: "index/index.html",
         filename: "index.html",
         favicon: "src/page/res/aitianyu.ico",
-        chunks: ["homePage"],
+        chunks: ["home"],
         from: [
             {
                 regexp: /^\/$/,
@@ -73,4 +74,5 @@ module.exports = {
         from: [],
     },
     ...errorPages(),
+    ...appPages(),
 };
