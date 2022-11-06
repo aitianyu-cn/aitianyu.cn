@@ -1,6 +1,6 @@
 /**@format */
 
-import { ShellUIElement } from "tianyu-shell/ShellUIElement";
+import { ShellUIElement } from "tianyu-shell/native/ShellUIElement";
 import { guid } from "ts-core/Guid";
 import { isMobile } from "ts-core/RuntimeHelper";
 

@@ -1,5 +1,5 @@
 /**@format */
 
-import { ShellUIElement } from "tianyu-shell/ShellUIElement";
+import { ShellUIElement } from "tianyu-shell/native/ShellUIElement";
 
 export class VerticalNavigation extends ShellUIElement {}

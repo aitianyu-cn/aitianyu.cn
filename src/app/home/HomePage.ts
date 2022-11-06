@@ -1,8 +1,8 @@
 /**@format */
 
-import { RenderHelper } from "tianyu-shell/RenderHelper";
-import { ErrorWidget } from "tianyu-shell/widget/ErrorWidget";
-import { IWaitingDialogOption, WaitingDialog } from "tianyu-shell/widget/WaitingDialog";
+import { RenderHelper } from "tianyu-shell/native/RenderHelper";
+import { ErrorWidget } from "tianyu-shell/native/widget/ErrorWidget";
+import { IWaitingDialogOption, WaitingDialog } from "tianyu-shell/native/widget/WaitingDialog";
 import { TIANYU_SHELL_UI_MAJOR_ID } from "ts-core/UI";
 import { pageRender } from "./PageContent";
 import { initRouter } from "./RouterHelper";
