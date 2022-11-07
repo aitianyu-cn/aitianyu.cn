@@ -16,3 +16,13 @@ body {
 .ts_ui_major {
   z-index: 10;
 }
+
+.ts_ui_bg {
+  z-index: 0;
+}
+
+.ts_ui_msg {
+  z-index: 30;
+
+  background-color: #ffffff00;
+}

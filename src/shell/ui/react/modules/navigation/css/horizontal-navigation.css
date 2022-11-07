@@ -1,0 +1,101 @@
+/* react-horizontal-navigation base style */
+.r_hn_b {
+  width: 100vw;
+  height: 50px;
+  display: inline-flex;
+
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  vertical-align: middle;
+
+  user-select: none;
+
+  background-color: var(--ts_ui_content_bgc);
+}
+
+/* react-horizontal-navigation container style */
+.r_hn_c {
+  display: grid;
+  vertical-align: middle;
+  align-content: center;
+  text-align: center;
+
+  height: 50px !important;
+  width: 100%;
+  margin: 0;
+
+  grid-template-columns: max-content 10px auto 10px auto;
+  grid-template-rows: none;
+}
+
+/* react-horizontal-navigation title style */
+.r_hn_t {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  color: var(--ts_ui_blk_1);
+
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-left: 20px;
+
+  user-select: none;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 50px !important;
+
+  display: grid;
+
+  grid-column: 1;
+}
+
+/* react-horizontal-navigation normal item container style of normal mode style */
+.r_hn_n_n {
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50px !important;
+  margin: 0;
+  padding-left: 20px;
+
+  display: grid;
+
+  grid-column: 3;
+}
+
+/* react-horizontal-navigation normal item inner container style of normal mode style */
+.r_hn_n_in_n {
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0;
+
+  display: flex;
+}
+
+/* react-horizontal-navigation assist item container style of normal mode style */
+.r_hn_as_n {
+  align-items: center;
+  height: 100% !important;
+  width: 100% !important;
+
+  display: grid;
+  grid-template-columns: auto max-content 40px;
+
+  grid-column: 5;
+}
+
+/* react-horizontal-navigation assist item inner container style of normal mode style */
+.r_hn_as_in_n {
+  align-items: center;
+  width: 100% !important;
+  width: 100% !important;
+
+  display: flex;
+
+  grid-column: 2;
+}

@@ -1,5 +1,5 @@
 {
-    "home": "home/Home.ts",
+    "home": "home/Home.tsx",
     "error": "error/Error.ts",
     "app": "app/Application.ts",
     "app-cloud": "app/cloud/CloudApp.ts",

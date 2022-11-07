@@ -1,0 +1,20 @@
+.r_hn_i_d_b,
+.r_hn_i_d_b_m {
+  height: 50px !important;
+  width: auto;
+  margin: 0px;
+  display: grid;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  user-select: none;
+
+  grid-template-rows: auto max-content;
+
+  align-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: var(--ts_ui_blk_1);
+}

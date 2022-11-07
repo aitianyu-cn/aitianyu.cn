@@ -131,6 +131,7 @@ function initiation(): void {
     tianyuShell.core.ui.message = Message;
 
     const div = document.createElement("div");
+    div.classList.add("ts_ui_msg");
     div.id = msgLayoutId;
 
     document.body.appendChild(div);

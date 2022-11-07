@@ -10,6 +10,8 @@
   --ts_ui_dialog_mask_op: 100%;
   --ts_ui_dialog_content_bgc: #7f7f7f;
   --ts_ui_dialog_content_sdc: #ffffff;
+
+  --ts_ui_blk_1: #ffffff;
 }
 
 .tianyu_shell_ui_msg {
