@@ -8,14 +8,14 @@
 }
 
 .r_hni_b_s {
-  background-color: var(--ts_ui_blk_4);
+  background-color: var(--ts_ui_blk_5);
 }
 .r_hni_b_s:hover {
   animation: r_hni_b_s_h 0.25s forwards;
 }
 
 .r_hni_b_us {
-  background-color: var(--ts_ui_blk_5);
+  background-color: #ffffff00;
 }
 .r_hni_b_us:hover {
   animation: r_hni_b_us_h 0.25s forwards;
@@ -49,22 +49,22 @@
 
 @keyframes r_hni_b_us_h {
   0% {
-    background-color: var(--ts_ui_blk_5);
+    background-color: #ffffff00;
   }
 
   100% {
-    background-color: var(--ts_ui_blk_2);
+    background-color: var(--ts_ui_blk_5);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
   }
 }
 
 @keyframes r_hni_b_s_h {
   0% {
-    background-color: var(--ts_ui_blk_4);
+    background-color: var(--ts_ui_blk_5);
   }
 
   100% {
-    background-color: var(--ts_ui_blk_2);
+    background-color: var(--ts_ui_blk_4);
     box-shadow: var(--ts_ui_blk_4) 0px 0px 3px;
   }
 }

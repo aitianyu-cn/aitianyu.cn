@@ -12,6 +12,7 @@
   user-select: none;
 
   background-color: var(--ts_ui_content_bgc);
+  box-shadow: var(--ts_ui_dialog_mask_bgc) 0px 10px 10px;
 }
 
 /* react-horizontal-navigation container style */
@@ -154,7 +155,7 @@
   align-content: center;
   align-items: center;
   align-self: center;
-  border-radius: 5px;
+  border-radius: 0 0 0 5px;
 }
 .r_hn_n_na_s_c_s {
   background-color: var(--ts_ui_blk_5);
@@ -163,7 +164,7 @@
   animation: r_hn_n_na_s_c_s_h 0.25s forwards;
 }
 .r_hn_n_na_s_c_us:hover {
-  animation: r_hn_n_na_s_c_s_h 0.25s forwards;
+  animation: r_hn_n_na_s_c_us_h 0.25s forwards;
 }
 
 /** react-horizontal-navigation svg style of narrow mode */
@@ -179,6 +180,8 @@
   align-content: center;
   align-items: center;
   align-self: center;
+
+  color: var(--ts_ui_blk_1);
 }
 
 /** react-horizontal-navigation narrow context base style */
@@ -190,7 +193,7 @@
   height: max-content;
   width: max-content;
 
-  background-color: var(--ts_ui_blk_5);
+  background-color: var(--ts_ui_blk_7);
 
   max-height: calc(100vh - 50px);
 
@@ -199,7 +202,9 @@
 
   margin-bottom: 10px;
 
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 0px 10px;
+
+  box-shadow: var(--ts_ui_blk_6) -2px 2px 5px;
 
   right: 0px;
   top: 50px;
@@ -218,7 +223,7 @@
 .r_hn_n_na_c_sp {
   height: 1px;
   width: 90%;
-  background-color: var(--ts_ui_blk_2);
+  background-color: var(--ts_ui_blk_5);
   opacity: 75%;
 
   margin-left: auto;
@@ -232,17 +237,17 @@
     background-color: var(--ts_ui_blk_5);
   }
   100% {
-    background-color: var(--ts_ui_blk_3);
+    background-color: var(--ts_ui_blk_4);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
   }
 }
 
-@keyframes r_hn_n_na_s_c_s_h {
+@keyframes r_hn_n_na_s_c_us_h {
   0% {
     background-color: #ffffff00;
   }
   100% {
-    background-color: var(--ts_ui_blk_3);
+    background-color: var(--ts_ui_blk_5);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
   }
 }

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="28" viewBox="0 0 40 28">
   <g id="组_24" data-name="组 24" transform="translate(-17 -20)">
-    <rect id="矩形_3" data-name="矩形 3" width="40" height="6" rx="3" transform="translate(17 20)" fill="#fff"/>
-    <rect id="矩形_4" data-name="矩形 4" width="40" height="6" rx="3" transform="translate(17 31)" fill="#fff"/>
-    <rect id="矩形_5" data-name="矩形 5" width="40" height="6" rx="3" transform="translate(17 42)" fill="#fff"/>
+    <rect id="矩形_3" data-name="矩形 3" width="40" height="6" rx="3" transform="translate(17 20)" fill="currentColor"/>
+    <rect id="矩形_4" data-name="矩形 4" width="40" height="6" rx="3" transform="translate(17 31)" fill="currentColor"/>
+    <rect id="矩形_5" data-name="矩形 5" width="40" height="6" rx="3" transform="translate(17 42)" fill="currentColor"/>
   </g>
 </svg>

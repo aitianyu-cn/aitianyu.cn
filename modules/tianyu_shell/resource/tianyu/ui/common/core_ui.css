@@ -18,7 +18,13 @@ body {
 }
 
 .ts_ui_bg {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
   z-index: 0;
+
+  background-color: var(--ts_ui_bgc);
 }
 
 .ts_ui_msg {

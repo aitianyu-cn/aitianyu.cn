@@ -7,11 +7,12 @@ import { CallbackAction, MapOfType } from "ts-core/Types";
 import { routerUrl2Id } from "tianyu-shell/common/utilities/RouterHelper";
 import { ReactHorizontalNavigationItem } from "./ReactHorizontalNavigationItem";
 import { ReactNavigationItem } from "./ReactNavigationItem";
-
-import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
-import "./css/horizontal-navigation.css";
 import { require_msgbundle } from "ts-core/I18n";
 import { isMobile } from "ts-core/RuntimeHelper";
+
+import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
+
+import "./css/horizontal-navigation.css";
 
 export interface IReactHorizontalNavigationProps {
     props: IReactProperty;
@@ -235,13 +236,6 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
                             fnMouseMoveIn={this.afterMenuContextMoveIn.bind(this)}
                         />
                     )}
-                    {/* <ReactHorizontalNavigationNarrowContext
-                        normalItems={normalItems}
-                        assistItems={assistItems}
-                        fontMap={this.fontsizeMap}
-                        fnMouseMoveOut={this.afterMenuContextMoveOut.bind(this)}
-                        fnMouseMoveIn={this.afterMenuContextMoveIn.bind(this)}
-                    /> */}
                 </div>
             </div>
         );

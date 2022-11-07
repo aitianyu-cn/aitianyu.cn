@@ -27,7 +27,7 @@
 }
 
 .r_hn_i_d_b_s {
-  background-color: var(--ts_ui_blk_2);
+  background-color: var(--ts_ui_blk_5);
 }
 .r_hn_i_d_b_s:hover {
   animation: r_hn_i_d_b_s_h 0.25s forwards;
@@ -37,7 +37,7 @@
 }
 
 .r_hn_i_d_b_a_s {
-  background-color: var(--ts_ui_blk_3);
+  background-color: var(--ts_ui_blk_4);
 }
 .r_hn_i_d_b_a_s:hover {
   animation: r_hn_i_d_b_a_s_h 0.25s forwards;
@@ -53,18 +53,18 @@
   }
 
   100% {
-    background-color: var(--ts_ui_blk_3);
+    background-color: var(--ts_ui_blk_4);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
   }
 }
 
 @keyframes r_hn_i_d_b_s_h {
   0% {
-    background-color: var(--ts_ui_blk_2);
+    background-color: var(--ts_ui_blk_5);
   }
 
   100% {
-    background-color: var(--ts_ui_blk_3);
+    background-color: var(--ts_ui_blk_6);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
   }
 }
