@@ -9,9 +9,10 @@ const { pluginsGenerator } = require("./tianyu_shell/webpack/pluginHelper");
 const webpackEnvSetting = require("../environment");
 const modules = require("./tianyu_shell/webpack/modules");
 const devServer = require("./tianyu_shell/webpack/devServer");
-
 const tianyuPagesAndEntriesGenerater = require("./tianyu_shell/webpack/entries");
+
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 const baseDir = path.resolve(__dirname, "..");
 const pagesAndEntries = tianyuPagesAndEntriesGenerater();
@@ -39,7 +40,7 @@ const optimize = {
             },
         },
     },
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin()],
 };
 
 module.exports = {

@@ -4,7 +4,7 @@
     "description": "tianyu home page",
     "main": "",
     "scripts": {
-        "start": "webpack server --config ./modules/webpack.config.js --stats-error-details",
+        "start": "webpack server --config ./modules/webpack.config.js",
         "build": "webpack --config ./modules/webpack.config.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -41,6 +41,7 @@
         "mini-css-extract-plugin": "^2.6.1",
         "style-loader": "^3.3.1",
         "svg-inline-loader": "^0.8.2",
+        "terser-webpack-plugin": "^5.3.6",
         "typescript-eslint": "^0.0.1-alpha.0",
         "webpack-bundle-analyzer": "^4.7.0",
         "webpack-dev-server": "^4.9.3"
