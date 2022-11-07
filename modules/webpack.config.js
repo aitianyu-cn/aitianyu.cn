@@ -11,6 +11,7 @@ const modules = require("./tianyu_shell/webpack/modules");
 const devServer = require("./tianyu_shell/webpack/devServer");
 
 const tianyuPagesAndEntriesGenerater = require("./tianyu_shell/webpack/entries");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const baseDir = path.resolve(__dirname, "..");
 const pagesAndEntries = tianyuPagesAndEntriesGenerater();
@@ -38,6 +39,7 @@ const optimize = {
             },
         },
     },
+    minimizer: [new CssMinimizerPlugin()],
 };
 
 module.exports = {

@@ -1,16 +1,16 @@
 /**@format */
-import { ICaptureRecorder, IPerfRecorder, MapOfType } from "ts-core/Types";
+import { ICaptureRecorder, MapOfType } from "ts-core/Types";
 import { ReactModule } from "../ReactModuleBase";
 import { ReactNavigationItem } from "./ReactNavigationItem";
 import { PageResizeController } from "tianyu-shell/common/controller/PageResize.controller";
-
-import "./css/navigation.css";
 import { Router } from "ts-core/Router";
 import { FeatureToggle } from "ts-core/FeatureToggle";
 import { PerfCapture } from "ts-core/Performance";
 import { isMobile } from "ts-core/RuntimeHelper";
 import { ReactNode } from "react";
 import { guid } from "ts-core/Guid";
+
+import "./css/navigation.css";
 
 const REACT_NAVIGATION_ONRESIZE_LISTENER: string = "react-navigation-onresize-listener";
 const REACT_NAVIGATION_ONHASHCHANGED_LISTENER: string = "react-navigation-onhashChanged-listener";
@@ -19,8 +19,6 @@ export const REACT_NAVIGATION_DEVELOP_TOGGLE: string = "REACT_NAVIGATION_DEVELOP
 export const REACT_NAVIGATION_PERFORMANCE_TOGGLE: string = "REACT_NAVIGATION_DEVELOPMENT_PERF";
 
 export const REACT_NATIGATION_CLASSIFY = "(React-Navigation)";
-
-const _navigationDefinition = require("./res/navigation.define.json");
 
 interface IHashMatchedItem {
     key: string;

@@ -1,10 +1,14 @@
 /**@format */
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 function generatePlugin() {
     const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
     const development = require("../environment");
     const _plugins = [];
+
+    _plugins.push(new MiniCssExtractPlugin());
 
     if (development) {
         // _plugins.push(new BundleAnalyzerPlugin());
