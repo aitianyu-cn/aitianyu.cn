@@ -3,23 +3,42 @@
 import React from "react";
 import { ReactNode } from "react";
 import { ReactNavigation } from "./ReactNavigation";
-
-import "./css/horizontal-navigation.css";
+import { CallbackAction, MapOfType } from "ts-core/Types";
 import { routerUrl2Id } from "tianyu-shell/common/utilities/RouterHelper";
 import { ReactHorizontalNavigationItem } from "./ReactHorizontalNavigationItem";
 import { ReactNavigationItem } from "./ReactNavigationItem";
 
-export class ReactHorizontalNavigation extends ReactNavigation {
+import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
+import "./css/horizontal-navigation.css";
+import { require_msgbundle } from "ts-core/I18n";
+import { isMobile } from "ts-core/RuntimeHelper";
+
+export interface IReactHorizontalNavigationProps {
+    props: IReactProperty;
+    source: IReactNavigationSource;
+    fontMap: Record<number, number>;
+}
+
+export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalNavigationProps> {
     private fontsizeMap: Record<number, number>;
     private fontSize: number;
 
-    public constructor(props?: IReactProperty) {
-        super(props);
+    private isMenuOpened: boolean;
+    private isMenuFocus: boolean;
+    private isIconFocus: boolean;
+    private menuCloseTimer: number;
 
-        this.fontsizeMap = {
-            [0]: ReactNavigation.FONT_SIZE_DEFAULT,
-        };
-        this.fontSize = ReactNavigation.FONT_SIZE_DEFAULT;
+    public constructor(props: IReactHorizontalNavigationProps) {
+        super(props.props);
+
+        this.fontsizeMap = props.fontMap;
+        this.fontSize = this.calculateFontsizeFromWidth(window.innerWidth);
+        this.setSource(props.source);
+
+        this.isMenuOpened = false;
+        this.isMenuFocus = false;
+        this.isIconFocus = false;
+        this.menuCloseTimer = -1;
     }
 
     /**
@@ -40,56 +59,71 @@ export class ReactHorizontalNavigation extends ReactNavigation {
 
     protected override isNarrow(): boolean {
         const pageWidth = window.innerWidth;
+        const canvas = document.createElement("canvas");
+        const canvasContext: CanvasRenderingContext2D | undefined = canvas?.getContext("2d") || undefined;
+        if (canvasContext) {
+            canvasContext.font = `${this.fontSize}px "Segoe UI"`;
+        }
 
         let memberWidth = 0;
         for (const item of Object.keys(this.items)) {
             const itemObj = this.items[item];
-            memberWidth += itemObj.calculateWidth();
+            memberWidth += itemObj.calculateWidth(canvasContext);
         }
 
         return memberWidth > pageWidth;
     }
 
     protected override isSizeChanged(): boolean {
+        // when in mobile mode, should not response size changed
+        if (isMobile()) {
+            return false;
+        }
+
         const newPageWidth = window.innerWidth;
-        return newPageWidth !== this.currentPageWidth;
+        const isWidthChanged = newPageWidth !== this.currentPageWidth;
+
+        const beforeInNarrow = this.inNarrowMode;
+        this.inNarrowMode = this.isNarrow();
+
+        if (beforeInNarrow !== this.inNarrowMode) {
+            // layout is changed
+            return true;
+        }
+
+        // layout is not changed
+
+        if (!this.inNarrowMode) {
+            // in normal mode
+            // to return width changed to get the font size change
+            return isWidthChanged;
+        }
+
+        if (this.inNarrowMode) {
+            // in narrow mode
+            // to return the height change or width change to update the context
+            const newPageHeight = window.innerHeight;
+            return isWidthChanged || newPageHeight !== this.currentPagHeight;
+        }
+
+        return false;
     }
 
-    protected override onResize(): boolean {
+    protected override onResize(): void {
         const newWidth = window.innerWidth;
         // store the old size ans calculate the new size
         const oldFontsize = this.fontSize;
         this.fontSize = this.calculateFontsizeFromWidth(newWidth);
         const isFontSizeChanged = oldFontsize !== this.fontSize;
 
-        let requireWidth = 0;
-        for (const item of Object.keys(this.items)) {
-            const itemObj = this.items[item];
+        if (isFontSizeChanged) {
+            for (const item of Object.keys(this.items)) {
+                const itemObj = this.items[item];
 
-            // only when the font size is changed, to update font size
-            isFontSizeChanged && itemObj.updateFontSize(this.fontSize);
-
-            // to recalculate the width
-            requireWidth += itemObj.calculateWidth();
-        }
-
-        // get whether really need to update layout
-        // case 1: when in narrow mode and the newest width is greate than all items width => needs to switch to no-narrow mode.
-        // case 2: when not in narrow mode and the newest width is less than all items width => needs to switch to narrow mode.
-        let isNeedRedraw = (this.inNarrowMode && requireWidth <= newWidth) || (!this.inNarrowMode && requireWidth > newWidth);
-
-        // only when the layout does not need to redraw and the font size is changed, to update the css style to apply the new font size.
-        if (!isNeedRedraw && isFontSizeChanged) {
-            const navigation = document.getElementById(this.id);
-            if (navigation) {
-                navigation.style.fontSize = `${this.fontSize}px`;
-            } else {
-                // if the navigation element can not be gotten, to enforce redraw to ensure the layout is correct.
-                isNeedRedraw = true;
+                // only when the font size is changed, to update font size
+                itemObj.updateFontSize(this.fontSize);
             }
         }
-
-        return isNeedRedraw;
     }
 
     protected override updateItems(): void {
@@ -137,7 +171,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                 <div className="r_hn_c">
                     {this.title && this.renderTitle()}
                     <div className="r_hn_n_n">{this.renderNormalItemsForNormalMode(normalItems)}</div>
-                    <div className="r_hn_as_n">{this.renderAssistItemsForNormalMode(assistItems)}</div>
+                    <div className="r_hn_as r_hn_as_n">{this.renderAssistItemsForNormalMode(assistItems)}</div>
                 </div>
             </div>
         );
@@ -164,26 +198,123 @@ export class ReactHorizontalNavigation extends ReactNavigation {
 
     // // render for narrow part
     protected override renderForNarrow(): ReactNode {
-        return <div></div>;
-    }
+        const messageBundle = require_msgbundle("navigation", "modules");
 
-    private renderNormalItemsForNarrowMode(normalItems: ReactNavigationItem[]): ReactNode {
-        const renderedItems: ReactNode[] = [];
-
-        for (const item of normalItems) {
-            renderedItems.push(item.renderForNormal());
+        const normalItems: ReactNavigationItem[] = [];
+        const assistItems: ReactNavigationItem[] = [];
+        if (this.isMenuOpened) {
+            this.navigationItemsClassification({ normalItems: normalItems, assistItems: assistItems });
         }
 
-        return <div className="r_hn_n_in_n">{renderedItems}</div>;
+        return (
+            <div id={this.id} className="r_hn_b">
+                <div className="r_hn_c">
+                    {this.title && this.renderTitle()}
+                    <div className="r_hn_as r_hn_as_na">
+                        <div className="r_hn_as_in_n">
+                            <div className="r_hn_n_na">{this.renderSelectedItemsForNarrowMode()}</div>
+                            <div
+                                className={`r_hn_n_na_s_c ${this.isMenuOpened ? "r_hn_n_na_s_c_s" : "r_hn_n_na_s_c_us"}`}
+                                onClick={this.onMenuIconClick.bind(this)}
+                                // add mouse leave event if the menu is opend
+                                onMouseLeave={this.isMenuOpened ? this.onMenuIconMoveOut.bind(this) : () => {}}
+                                onMouseEnter={this.isMenuOpened ? this.onMenuIconMoveIn.bind(this) : () => {}}>
+                                <div
+                                    className="r_hn_n_na_s"
+                                    dangerouslySetInnerHTML={{ __html: REACT_NAVIGATION_MENU_ICON }}></div>
+                            </div>
+                        </div>
+                    </div>
+                    {/** to render the menu context if the menu should be opend */}
+                    {this.isMenuOpened && (
+                        <ReactHorizontalNavigationNarrowContext
+                            normalItems={normalItems}
+                            assistItems={assistItems}
+                            fontMap={this.fontsizeMap}
+                            fnMouseMoveOut={this.afterMenuContextMoveOut.bind(this)}
+                            fnMouseMoveIn={this.afterMenuContextMoveIn.bind(this)}
+                        />
+                    )}
+                    {/* <ReactHorizontalNavigationNarrowContext
+                        normalItems={normalItems}
+                        assistItems={assistItems}
+                        fontMap={this.fontsizeMap}
+                        fnMouseMoveOut={this.afterMenuContextMoveOut.bind(this)}
+                        fnMouseMoveIn={this.afterMenuContextMoveIn.bind(this)}
+                    /> */}
+                </div>
+            </div>
+        );
     }
-    private renderAssistItemsForNarrowMode(assistItems: ReactNavigationItem[]): ReactNode {
-        const renderedItems: ReactNode[] = [];
 
-        for (const item of assistItems) {
-            renderedItems.push(item.renderForNormal());
+    private renderSelectedItemsForNarrowMode(): ReactNode {
+        const selectedItem = this.getSelectedItem();
+
+        // if there is no selected item
+        // show default string
+        return (
+            !!selectedItem && (
+                <div className="r_hn_n_na_b">
+                    <img className="r_hn_n_na_i_i" src={selectedItem.getIcon()} alt={selectedItem.getKey()} />
+                    <div className="r_hn_n_na_i_t">{selectedItem.getKey()}</div>
+                </div>
+            )
+        );
+    }
+    private onMenuIconClick(): void {
+        if (this.isMenuOpened) {
+            this.isMenuOpened = false;
+        } else {
+            this.isMenuOpened = true;
         }
 
-        return <div className="r_hn_as_in_n">{renderedItems}</div>;
+        // always to reset the menu focus state
+        this.isMenuFocus = false;
+        this.forceUpdate();
+    }
+    private afterMenuContextMoveOut(): void {
+        console.log("menu out");
+        this.isMenuFocus = false;
+
+        if (-1 !== this.menuCloseTimer) {
+            window.clearTimeout(this.menuCloseTimer);
+        }
+        this.menuCloseTimer = window.setTimeout(() => {
+            if (!this.isMenuFocus && !this.isIconFocus) {
+                // wait for 500ms then to check the focus state
+                // only when the menu focus and icon focus are all lost
+                // to close the menu context
+                this.menuCloseTimer = -1;
+                this.onMenuIconClick();
+            }
+        }, 50);
+    }
+    private afterMenuContextMoveIn(): void {
+        console.log("menu in");
+        // set the menu focus to be true to keep the context show
+        this.isMenuFocus = true;
+    }
+    private onMenuIconMoveOut(): void {
+        console.log("icon out");
+        this.isIconFocus = false;
+
+        if (-1 !== this.menuCloseTimer) {
+            window.clearTimeout(this.menuCloseTimer);
+        }
+        this.menuCloseTimer = window.setTimeout(() => {
+            if (!this.isMenuFocus && !this.isIconFocus) {
+                // wait for 500ms then to check the focus state
+                // only when the menu focus and icon focus are all lost
+                // to close the menu context
+                this.menuCloseTimer = -1;
+                this.onMenuIconClick();
+            }
+        }, 50);
+    }
+    private onMenuIconMoveIn(): void {
+        console.log("icon in");
+        // set the icon focus to be true to keep the context show
+        this.isIconFocus = true;
     }
 
     // ##########################################################################
@@ -256,5 +387,48 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                 targets.normalItems = fnFillArray(item, targets.normalItems);
             }
         }
+    }
+}
+
+interface IReactHorizontalNavigationNarrowContext {
+    normalItems: ReactNavigationItem[];
+    assistItems: ReactNavigationItem[];
+    fontMap: Record<number, number>;
+    fnMouseMoveIn: CallbackAction;
+    fnMouseMoveOut: CallbackAction;
+}
+class ReactHorizontalNavigationNarrowContext extends React.Component<IReactHorizontalNavigationNarrowContext, IReactState> {
+    public constructor(props: IReactHorizontalNavigationNarrowContext) {
+        super(props);
+    }
+
+    public override render(): React.ReactNode {
+        const normalRenderItems: React.ReactNode[] = [];
+        const assistRenderItems: React.ReactNode[] = [];
+
+        for (const item of this.props.normalItems) {
+            normalRenderItems.push(item.renderForNarrow());
+        }
+
+        for (const item of this.props.assistItems) {
+            assistRenderItems.push(item.renderForNarrow());
+        }
+
+        return (
+            <div className="r_hn_n_na_c_b" onMouseEnter={this.props.fnMouseMoveIn} onMouseLeave={this.props.fnMouseMoveOut}>
+                <div className="r_hn_n_na_c_in r_hn_na_c_i_c">
+                    <div className="r_hn_na_c_i_c">{normalRenderItems}</div>
+                    {assistRenderItems.length && (
+                        <div className="r_hn_na_c_i_c">
+                            {/** this is a split line for assist part */}
+                            <div className="r_hn_n_na_c_sp"></div>
+                            <div className="r_hn_na_c_i_c">{assistRenderItems}</div>
+                            {/** this is a empty line for assist part */}
+                            <div></div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
     }
 }

@@ -2,4 +2,4 @@
 
 import { ReactElement } from "../core/ReactElement";
 
-export class ReactModule extends ReactElement {}
+export class ReactModule<T> extends ReactElement<T> {}

@@ -77,25 +77,172 @@
   display: flex;
 }
 
-/* react-horizontal-navigation assist item container style of normal mode style */
-.r_hn_as_n {
+.r_hn_as {
   align-items: center;
   height: 100% !important;
   width: 100% !important;
 
   display: grid;
-  grid-template-columns: auto max-content 40px;
 
   grid-column: 5;
+}
+
+/* react-horizontal-navigation assist item container style of normal mode style */
+.r_hn_as_n {
+  grid-template-columns: auto max-content 0px;
+}
+
+/* react-horizontal-navigation assist item container style of narrow mode style */
+.r_hn_as_na {
+  grid-template-columns: auto max-content;
 }
 
 /* react-horizontal-navigation assist item inner container style of normal mode style */
 .r_hn_as_in_n {
   align-items: center;
   width: 100% !important;
-  width: 100% !important;
 
   display: flex;
 
   grid-column: 2;
+}
+
+/** react-horizontal-navigation selected item container style of narrow mode */
+.r_hn_n_na {
+  width: max-content;
+  height: 50px;
+}
+
+/** react-horizontal-navigation selected item container style of narrow mode */
+.r_hn_n_na_b {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 50px 5px max-content 20px;
+}
+
+/** react-horizontal-navigation narrow inner img */
+.r_hn_n_na_i_i {
+  height: 30px;
+  width: max-content;
+
+  display: flex;
+
+  margin: 10px;
+
+  grid-column: 1;
+}
+
+/** react-horizontal-navigation narrow inner text */
+.r_hn_n_na_i_t {
+  display: flex;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  color: var(--ts_ui_blk_1);
+
+  grid-column: 3;
+}
+
+/** react-horizontal-navigation svg container style of narrow mode */
+.r_hn_n_na_s_c {
+  width: 50px;
+  height: 50px;
+
+  align-content: center;
+  vertical-align: middle;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  border-radius: 5px;
+}
+.r_hn_n_na_s_c_s {
+  background-color: var(--ts_ui_blk_5);
+}
+.r_hn_n_na_s_c_s:hover {
+  animation: r_hn_n_na_s_c_s_h 0.25s forwards;
+}
+.r_hn_n_na_s_c_us:hover {
+  animation: r_hn_n_na_s_c_s_h 0.25s forwards;
+}
+
+/** react-horizontal-navigation svg style of narrow mode */
+.r_hn_n_na_s {
+  width: 30px;
+  height: 30px;
+
+  margin: 10px;
+
+  display: flex;
+
+  align-content: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+/** react-horizontal-navigation narrow context base style */
+.r_hn_n_na_c_b {
+  position: absolute;
+
+  min-width: 200px;
+
+  height: max-content;
+  width: max-content;
+
+  background-color: var(--ts_ui_blk_5);
+
+  max-height: calc(100vh - 50px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  margin-bottom: 10px;
+
+  border-radius: 0px 0px 10px 10px;
+
+  right: 0px;
+  top: 50px;
+}
+
+.r_hn_n_na_c_in {
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.r_hn_na_c_i_c {
+  width: 100%;
+  height: max-content;
+}
+
+.r_hn_n_na_c_sp {
+  height: 1px;
+  width: 90%;
+  background-color: var(--ts_ui_blk_2);
+  opacity: 75%;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@keyframes r_hn_n_na_s_c_s_h {
+  0% {
+    background-color: var(--ts_ui_blk_5);
+  }
+  100% {
+    background-color: var(--ts_ui_blk_3);
+    box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
+  }
+}
+
+@keyframes r_hn_n_na_s_c_s_h {
+  0% {
+    background-color: #ffffff00;
+  }
+  100% {
+    background-color: var(--ts_ui_blk_3);
+    box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
+  }
 }

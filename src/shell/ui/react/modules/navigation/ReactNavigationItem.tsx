@@ -10,7 +10,9 @@ const REACT_NAVIGATION_ITEM_DEFAULT_SIZE: number = 10;
 
 const REACT_NAVIGATION_ITEM_SIDE_PADDING: number = 15;
 
-export class ReactNavigationItem extends ReactModule {
+export interface IReactNavigationItemProperty extends IReactProperty {}
+
+export class ReactNavigationItem extends ReactModule<IReactNavigationItemProperty> {
     protected id: string;
     protected key: string;
     protected icon: string;
@@ -19,7 +21,9 @@ export class ReactNavigationItem extends ReactModule {
     protected fontSize: number;
     protected assist: boolean;
 
-    public constructor(props?: IReactProperty) {
+    private isloaded: boolean;
+
+    public constructor(props?: IReactNavigationItemProperty) {
         super(props);
 
         this.id = props?.["id"].toString() || guid();
@@ -28,12 +32,28 @@ export class ReactNavigationItem extends ReactModule {
         this.select = !!props?.["selected"];
         this.assist = !!props?.["assist"];
 
+        this.isloaded = false;
+
         const fronSizeRawFromProps = props?.["fontSize"];
         const frontSizeFromProps = Number.parseInt((fronSizeRawFromProps || REACT_NAVIGATION_ITEM_DEFAULT_SIZE).toString());
         this.fontSize = (!Number.isNaN(frontSizeFromProps) && frontSizeFromProps) || REACT_NAVIGATION_ITEM_DEFAULT_SIZE;
 
         const indexFromProps = props?.["index"];
         this.index = (typeof indexFromProps === "number" && indexFromProps) || -1;
+    }
+
+    public override componentDidMount(): void {
+        this.isloaded = true;
+    }
+
+    public override componentWillUnmount(): void {
+        this.isloaded = false;
+    }
+
+    public override forceUpdate(callback?: (() => void) | undefined): void {
+        if (this.isloaded) {
+            super.forceUpdate(callback);
+        }
     }
 
     public updateFontSize(size: number): void {
@@ -74,8 +94,11 @@ export class ReactNavigationItem extends ReactModule {
         return this.index;
     }
 
-    public calculateWidth(): number {
-        // const codedString = encodeURI(this.key);
+    public calculateWidth(context?: CanvasRenderingContext2D): number {
+        if (context) {
+            return context.measureText(this.key).width + REACT_NAVIGATION_ITEM_SIDE_PADDING * 2;
+        }
+
         return this.key.length * this.fontSize + REACT_NAVIGATION_ITEM_SIDE_PADDING * 2;
     }
 
@@ -100,14 +123,20 @@ export class ReactNavigationItem extends ReactModule {
     public renderForNormal(): React.ReactNode {
         if (this.assist) {
             return (
-                <div onClick={this.onClick.bind(this)} className="r_hn_i_d_b">
-                    assit
+                <div
+                    key={this.key}
+                    onClick={this.onClick.bind(this)}
+                    className={`r_hn_i_d_b ${this.select ? "r_hn_i_d_b_a_s" : "r_hn_i_d_b_a_us"}`}>
+                    <img className="r_hn_i_d_i" src={this.icon} alt={this.key} />
                 </div>
             );
         }
 
         return (
-            <div onClick={this.onClick.bind(this)} className="r_hn_i_d_b">
+            <div
+                key={this.key}
+                onClick={this.onClick.bind(this)}
+                className={`r_hn_i_d_b ${this.select ? "r_hn_i_d_b_s" : "r_hn_i_d_b_us"}`}>
                 {this.key}
             </div>
         );
@@ -122,7 +151,7 @@ export class ReactNavigationItem extends ReactModule {
         return <div></div>;
     }
 
-    private onClick(): void {
+    protected onClick(): void {
         tianyuShell.core.runtime?.router?.jump(this.id);
     }
 }

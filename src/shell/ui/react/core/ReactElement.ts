@@ -2,8 +2,8 @@
 
 import React from "react";
 
-export class ReactElement extends React.Component<IReactProperty, IReactState> {
-    public constructor(props?: IReactProperty) {
+export class ReactElement<T> extends React.Component<IReactProperty | T, IReactState> {
+    public constructor(props?: IReactProperty | T) {
         super(props || {});
     }
 }

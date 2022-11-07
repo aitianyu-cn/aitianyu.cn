@@ -43,7 +43,7 @@ function _on_resize_event_trigger(ev: UIEvent): void {
         }
 
         _eventInvokeShake = -1;
-    }, 100);
+    }, 50);
 }
 
 function _add_listener_for_resize(): void {

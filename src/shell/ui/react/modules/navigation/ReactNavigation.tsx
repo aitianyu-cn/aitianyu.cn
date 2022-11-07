@@ -27,7 +27,7 @@ interface IHashMatchedItem {
     item: ReactNavigationItem;
 }
 
-export class ReactNavigation extends ReactModule {
+export class ReactNavigation<T> extends ReactModule<T> {
     public static FONT_SIZE_DEFAULT: number = 15;
 
     protected id: string;
@@ -94,21 +94,21 @@ export class ReactNavigation extends ReactModule {
                 perfCap = PerfCapture.start(REACT_NATIGATION_CLASSIFY, "forceUpdate");
             }
 
-            super.forceUpdate(callback);
-
-            perfCap && PerfCapture.end(perfCap);
+            super.forceUpdate(() => {
+                perfCap && PerfCapture.end(perfCap);
+                callback?.();
+            });
         }
     }
 
     public override render(): ReactNode {
         if (isMobile()) return this.renderForMobile();
 
-        if (this.isNarrow()) {
-            this.inNarrowMode = true;
+        this.inNarrowMode = (!this.isLoaded && this.isNarrow()) || this.inNarrowMode;
+        if (this.inNarrowMode) {
             return this.renderForNarrow();
         }
 
-        this.inNarrowMode = false;
         return this.renderForNormal();
     }
 
@@ -128,14 +128,25 @@ export class ReactNavigation extends ReactModule {
         return false;
     }
 
+    protected getSelectedItem(): ReactNavigationItem | null {
+        for (const itemKey of Object.keys(this.items)) {
+            const item = this.items[itemKey];
+            if (item.getSelection()) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     private onHashChanged(): void {
         const rawHash = Router.getHash();
         // set the hash is like /xxx/
         const formattedHash = rawHash.startsWith("/") ? rawHash : `/${rawHash}`;
-        const formattedHash2 = rawHash.endsWith("/") ? rawHash : `${rawHash}/`;
+        const formattedHash2 = formattedHash.endsWith("/") ? formattedHash : `${formattedHash}/`;
 
         // if the hash is empty, set it to default
-        const hash = formattedHash2 === "/" ? this.defaultItem : formattedHash;
+        const hash = formattedHash2 === "/" ? this.defaultItem : formattedHash2;
         let fullMatch: IHashMatchedItem | null = null;
 
         for (const item of Object.keys(this.items)) {
@@ -176,7 +187,7 @@ export class ReactNavigation extends ReactModule {
     }
 
     private _onResize(): void {
-        if (!isMobile() && this.isSizeChanged()) {
+        if (this.isSizeChanged()) {
             if (FeatureToggle.isActive(REACT_NAVIGATION_DEVELOP_TOGGLE)) {
                 tianyuShell.core.performance?.log.debug(
                     `(REACT-NATIVATION) - [${this.title}] - page resized to (${window.innerWidth}, ${window.innerHeight})`,
@@ -186,9 +197,8 @@ export class ReactNavigation extends ReactModule {
             // before resize, to update the newest page height and width
             this.currentPagHeight = window.innerHeight;
             this.currentPageWidth = window.innerWidth;
-            if (this.onResize()) {
-                this.forceUpdate();
-            }
+            this.onResize();
+            this.forceUpdate();
         }
     }
 
@@ -211,9 +221,8 @@ export class ReactNavigation extends ReactModule {
      *
      * resize will be invoked only when not in mobile mode
      */
-    protected onResize(): boolean {
+    protected onResize(): void {
         // to implement in the child class
-        return true;
     }
 
     /**
