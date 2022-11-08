@@ -31,7 +31,7 @@
   width: 100%;
   margin: 0;
 
-  grid-template-columns: max-content 10px auto 10px auto;
+  grid-template-columns: max-content 0px auto 10px auto;
   grid-template-rows: none;
 }
 
@@ -49,6 +49,7 @@
 /* react-horizontal-navigation title style */
 .r_hn_t {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
 
   color: var(--ts_ui_blk_1);
 
@@ -135,7 +136,7 @@
   height: 100%;
 
   display: grid;
-  grid-template-columns: 50px 5px max-content 20px;
+  grid-template-columns: 40px 0 max-content 20px;
 }
 
 /** react-horizontal-navigation narrow inner img */
@@ -156,6 +157,7 @@
 
   margin-top: auto;
   margin-bottom: auto;
+
   color: var(--ts_ui_blk_1);
 
   overflow: hidden;
@@ -165,6 +167,7 @@
   grid-column: 3;
 }
 .r_hn_n_na_i_c_m {
+  font-weight: bold;
   display: flex;
 
   margin: auto;

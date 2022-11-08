@@ -8,6 +8,7 @@
         "src/app",
         "src/i18n",
         "src/shell",
+        "src/resource",
         "modules/tianyu_shell/resource/global.d.ts",
         "**/*.d.ts"
     ],
@@ -38,7 +39,8 @@
             "ts-sec/*": ["modules/tianyu_shell/resource/security/*"],
             "tianyu-app/*": ["src/app/*"],
             "tianyu-i18n/*": ["src/i18n/*"],
-            "tianyu-shell/*": ["src/shell/*"]
+            "tianyu-shell/*": ["src/shell/*"],
+            "tianyu-res/*": ["src/resource/*"]
         }
     }
 }

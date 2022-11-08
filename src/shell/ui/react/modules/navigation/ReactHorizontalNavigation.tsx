@@ -10,9 +10,10 @@ import { ReactNavigationItem } from "./ReactNavigationItem";
 import { require_msgbundle } from "ts-core/I18n";
 import { isMobile } from "ts-core/RuntimeHelper";
 
-import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
+import REACT_NAVIGATION_MENU_ICON from "tianyu-shell/ui/react/modules/navigation/res/menu.svg";
 
 import "./css/horizontal-navigation.css";
+import { isIOS } from "tianyu-shell/common/utilities/RuntimeHelper";
 
 export class ReactHorizontalNavigation extends ReactNavigation {
     private fontsizeMap: Record<number, number>;
@@ -136,6 +137,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                 icon: sourceItem.icon,
                 fontSize: this.fontSize,
                 assist: sourceItem.assist,
+                iconType: sourceItem.iconType,
             });
             this.items[sourceKey] = itemInstance;
         }
@@ -152,6 +154,22 @@ export class ReactHorizontalNavigation extends ReactNavigation {
             this.navigationItemsClassification({ normalItems: normalItems, assistItems: assistItems });
         }
 
+        const iosMode = isIOS() || true;
+
+        let iosMenuAlt: string = "";
+        let iosMenuIcon: string = "";
+        if (iosMode) {
+            const themeColor =
+                (tianyuShell.core.ui?.theme.custom.theme && tianyuShell.core.ui?.theme.custom.color) ||
+                tianyuShell.core.ui?.theme.default.color ||
+                "dark";
+            iosMenuIcon =
+                themeColor === "dark" ? require("./res/menu_dark.png").default : require("./res/menu_light.png").default;
+
+            const messageBundle = require_msgbundle("navigation", "modules");
+            iosMenuAlt = messageBundle.getText("REACT_NAVIGATION_MENU_ICON_IOS_ALT");
+        }
+
         return (
             <div id={this.id} className="r_hn_b r_hn_b_m">
                 <div className="r_hn_c_m">
@@ -161,7 +179,11 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                         // add mouse leave event if the menu is opend
                         onMouseLeave={this.isMenuOpened ? this.onMenuIconMoveOut.bind(this) : () => {}}
                         onMouseEnter={this.isMenuOpened ? this.onMenuIconMoveIn.bind(this) : () => {}}>
-                        <div className="r_hn_n_na_s" dangerouslySetInnerHTML={{ __html: REACT_NAVIGATION_MENU_ICON }}></div>
+                        {!iosMode ? (
+                            <div className="r_hn_n_na_s" dangerouslySetInnerHTML={{ __html: REACT_NAVIGATION_MENU_ICON }} />
+                        ) : (
+                            <img className="r_hn_n_na_s" src={iosMenuIcon} alt={iosMenuAlt} />
+                        )}
                     </div>
                     {this.renderSelectedItemsForMobile()}
                     {this.isMenuOpened && (
@@ -185,7 +207,9 @@ export class ReactHorizontalNavigation extends ReactNavigation {
         return (
             !!selectedItem && (
                 <div className="r_hn_n_na_i_c_m">
-                    <div className="r_hn_n_na_i_t_m">{selectedItem.getKey()}</div>
+                    <div className="r_hn_n_na_i_t_m" style={{ fontSize: `${this.fontSize}px` }}>
+                        {selectedItem.getKey()}
+                    </div>
                 </div>
             )
         );
@@ -285,7 +309,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
         return (
             !!selectedItem && (
                 <div className="r_hn_n_na_b">
-                    {typeof selectedItem.getIcon() === "string" ? (
+                    {selectedItem.getIconType() === "url" ? (
                         <img className="r_hn_i_d_i" src={selectedItem.getIcon()} alt={selectedItem.getKey()} />
                     ) : (
                         <div className="r_hn_i_d_i" dangerouslySetInnerHTML={{ __html: selectedItem.getIcon() }}></div>
@@ -356,6 +380,10 @@ export class ReactHorizontalNavigation extends ReactNavigation {
     // ##########################################################################
 
     private calculateFontsizeFromWidth(width: number): number {
+        if (this.isMobileMode) {
+            return ReactNavigation.FONT_SIZE_MOBILE_DEFAULT;
+        }
+
         let fontSize: number = 0;
         let relatedWidth: number = width;
 

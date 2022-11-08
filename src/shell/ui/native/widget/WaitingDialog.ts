@@ -44,13 +44,13 @@ export class WaitingDialog extends ShellUIElement {
         return content;
     }
 
-    public static withDialog(fnRunner: () => Promise<any>, options?: IWaitingDialogOption): void {
+    public static withDialog(fnRunner: () => Promise<any>, text?: string, options?: IWaitingDialogOption): void {
         const isGlobalDialogValid: boolean = !!tianyuShell.core.ui?.dialog;
 
         let dialogId: string = "";
         if (isGlobalDialogValid) {
             // to open the global dialog
-            const dialog = new WaitingDialog("");
+            const dialog = new WaitingDialog(text || "");
             const content = dialog.render();
             dialogId = tianyuShell.core.ui?.dialog?.open(content) || "";
         }

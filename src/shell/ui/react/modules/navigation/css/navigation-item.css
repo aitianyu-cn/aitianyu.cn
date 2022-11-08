@@ -21,9 +21,11 @@
 
 .r_hn_i_d_i {
   height: 30px;
+  width: 30px;
 
   margin-top: 10px;
   margin-bottom: 10px;
+  color: var(--ts_ui_blk_1);
 }
 
 .r_hn_i_d_b_s {

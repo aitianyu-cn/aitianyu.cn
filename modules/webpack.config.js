@@ -19,9 +19,9 @@ const pagesAndEntries = tianyuPagesAndEntriesGenerater();
 
 const optimize = {
     splitChunks: {
-        chunks: "initial",
+        chunks: "all",
         minSize: 100000,
-        maxSize: 300000,
+        maxSize: 200000,
         minChunks: 1,
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
@@ -34,7 +34,7 @@ const optimize = {
                 filename: "common.[contenthash:6].js",
             },
             default: {
-                minChunks: 2,
+                minChunks: 1,
                 priority: -20,
                 reuseExistingChunk: true,
             },
@@ -63,4 +63,12 @@ module.exports = {
         { dir: baseDir, port: checkNumeric(webpackEnvSetting.devServer.port) || 1000 },
         pagesAndEntries.fallback,
     ),
+    performance: {
+        hints: "warning",
+        maxEntrypointSize: 50000000,
+        maxAssetSize: 30000000,
+        assetFilter: function (assetFilename) {
+            return assetFilename.endsWith(".js");
+        },
+    },
 };

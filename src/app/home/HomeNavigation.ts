@@ -1,6 +1,6 @@
 /**@format */
 
-import { ReactHorizontalNavigation } from "tianyu-shell/ui/react/modules/navigation/ReactHorizontalNavigation";
+import { IMessageBundle } from "ts-core/I18n";
 
 export const fontSizeMap: Record<number, number> = {
     [0]: 15,
@@ -8,49 +8,43 @@ export const fontSizeMap: Record<number, number> = {
     [1200]: 20,
 };
 
-export async function getNavigationSource(): Promise<IReactNavigationSource> {
-    return {
-        "/home": {
-            key: "主页",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: false,
-            index: 0,
-        },
-        "/download": {
-            key: "下载",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: false,
-            index: 1,
-        },
-        "/docs": {
-            key: "文档",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: false,
-            index: 2,
-        },
-        "/cloud": {
-            key: "天宇云",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: false,
-            index: 3,
-        },
-        "/app": {
-            key: "天宇应用程序",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: false,
-            index: 4,
-        },
-        "/language": {
-            key: "Language",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: true,
-            index: -1,
-        },
-        "/user": {
-            key: "User",
-            icon: "/static/res/modules/navigation/home.png",
-            assist: true,
-            index: -1,
-        },
-    };
+export async function getNavigationSource(messageBundle: IMessageBundle): Promise<IReactNavigationSource> {
+    return new Promise<IReactNavigationSource>((resolve, reject) => {
+        import("tianyu-res/home/exporter").then(({ SOURCES }) => {
+            const value: IReactNavigationSource = {
+                "/home": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_HOME"),
+                    icon: SOURCES.home,
+                    iconType: "inline",
+                    // icon: "/static/res/modules/navigation/home.png",
+                    // iconType: "url",
+                    assist: false,
+                    index: 0,
+                },
+                "/download": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_DOWNLOAD"),
+                    icon: SOURCES.download,
+                    iconType: "inline",
+                    assist: false,
+                    index: 1,
+                },
+                "/docs": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_DOCUMENT"),
+                    icon: SOURCES.document,
+                    iconType: "inline",
+                    assist: false,
+                    index: 2,
+                },
+                "/language": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_LANGUAGE"),
+                    icon: SOURCES.language,
+                    iconType: "inline",
+                    assist: true,
+                    index: -1,
+                },
+            };
+
+            resolve(value);
+        }, reject);
+    });
 }

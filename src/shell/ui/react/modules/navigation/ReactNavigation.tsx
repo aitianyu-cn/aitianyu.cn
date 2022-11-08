@@ -33,6 +33,7 @@ export interface IReactNavigationProps {
 
 export class ReactNavigation extends ReactModule<IReactNavigationProps> {
     public static FONT_SIZE_DEFAULT: number = 15;
+    public static FONT_SIZE_MOBILE_DEFAULT: number = 18;
 
     protected id: string;
 
@@ -65,7 +66,7 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
         this.itemSource = {};
         this.isLoaded = false;
         this.inNarrowMode = false;
-        this.isMobileMode = false;
+        this.isMobileMode = isMobile();
 
         this.currentPagHeight = 0;
         this.currentPageWidth = 0;
@@ -108,7 +109,6 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
     }
 
     public override render(): ReactNode {
-        this.isMobileMode = isMobile();
         if (this.isMobileMode) return this.renderForMobile();
 
         this.inNarrowMode = (!this.isLoaded && this.isNarrow()) || this.inNarrowMode;

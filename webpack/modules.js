@@ -30,7 +30,7 @@ module.exports = [
         exclude: /node_modules/,
     },
     {
-        test: /\.(jpe?g|png|gif)$/,
+        test: /\.(jpe?g|gif)$/,
         use: [
             {
                 loader: "file-loader",
@@ -42,12 +42,24 @@ module.exports = [
         include: [path.resolve(__dirname, "../src/shell/ui")],
     },
     {
+        test: /\.png$/,
+        use: [
+            {
+                loader: "url-loader",
+                options: {
+                    limit: 1024 * 200,
+                },
+            },
+        ],
+        include: [path.resolve(__dirname, "../src/shell/ui"), path.resolve(__dirname, "../src/resource")],
+    },
+    {
         test: /\.svg$/,
         use: [
             {
                 loader: "svg-inline-loader",
             },
         ],
-        include: [path.resolve(__dirname, "../src/shell/ui")],
+        include: [path.resolve(__dirname, "../src/shell/ui"), path.resolve(__dirname, "../src/resource")],
     },
 ];
