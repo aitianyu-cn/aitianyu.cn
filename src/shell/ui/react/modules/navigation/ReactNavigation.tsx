@@ -11,6 +11,7 @@ import { ReactNode } from "react";
 import { guid } from "ts-core/Guid";
 
 import "./css/navigation.css";
+import { getHashMappedItem } from "../../core/HashHelper";
 
 const REACT_NAVIGATION_ONRESIZE_LISTENER: string = "react-navigation-onresize-listener";
 const REACT_NAVIGATION_ONHASHCHANGED_LISTENER: string = "react-navigation-onhashChanged-listener";
@@ -147,40 +148,12 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
     }
 
     private onHashChanged(): void {
-        const rawHash = Router.getHash();
-        // set the hash is like /xxx/
-        const formattedHash = rawHash.startsWith("/") ? rawHash : `/${rawHash}`;
-        const formattedHash2 = formattedHash.endsWith("/") ? formattedHash : `${formattedHash}/`;
+        const fullMatch = getHashMappedItem(this.items, this.defaultItem, (item) => {
+            item.setUnselect();
+        });
 
-        // if the hash is empty, set it to default
-        const hash = formattedHash2 === "/" ? this.defaultItem : formattedHash2;
-        let fullMatch: IHashMatchedItem | null = null;
-
-        for (const item of Object.keys(this.items)) {
-            const itemObj = this.items[item];
-            // make sure the item string is start and end of '/'
-            if ((item.endsWith("/") && hash.startsWith(item)) || (!item.endsWith("/") && hash.startsWith(`${item}/`))) {
-                // use the longest prefix match
-                // e.g.
-                // hash: h1/h2/abc
-                // list: h1 = 0, h1/h2 = 1
-                // after matching, the result is 1
-                fullMatch =
-                    fullMatch && fullMatch.key.length >= item.length
-                        ? fullMatch
-                        : {
-                              key: item,
-                              item: itemObj,
-                          };
-            }
-
-            // in case of hash lost
-            // to set all the selection to unselected
-            itemObj.setUnselect();
-        }
-
-        if (fullMatch) {
-            fullMatch.item.setSelect();
+        if (fullMatch.value) {
+            fullMatch.value.setSelect();
             this.forceUpdate();
         }
     }
