@@ -7,7 +7,8 @@
   margin-bottom: 5px;
 }
 
-.r_hni_b_s {
+.r_hni_b_s,
+.r_hni_b_s_m {
   background-color: var(--ts_ui_blk_5);
 }
 .r_hni_b_s:hover {
@@ -34,6 +35,7 @@
 
   margin-top: auto;
   margin-bottom: auto;
+  margin-right: 10px;
 
   color: var(--ts_ui_blk_1);
 }

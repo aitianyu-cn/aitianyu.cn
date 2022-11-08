@@ -1,8 +1,8 @@
 /**@format */
-import { ReactNavigation } from "./ReactNavigation";
+import { IReactNavigationProps, ReactNavigation } from "./ReactNavigation";
 
-export class ReactVerticalNavigation extends ReactNavigation<IReactProperty> {
-    public constructor(props?: IReactProperty) {
+export class ReactVerticalNavigation extends ReactNavigation {
+    public constructor(props?: IReactNavigationProps) {
         super(props);
     }
 }

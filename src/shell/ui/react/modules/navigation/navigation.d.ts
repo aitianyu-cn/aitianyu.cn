@@ -2,7 +2,7 @@
 
 interface IReactNavigationSourceItem {
     key: string;
-    icon: string;
+    icon: any;
     assist: boolean;
     index: number;
 }

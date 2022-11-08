@@ -15,7 +15,7 @@ export interface IReactNavigationItemProperty extends IReactProperty {}
 export class ReactNavigationItem extends ReactModule<IReactNavigationItemProperty> {
     protected id: string;
     protected key: string;
-    protected icon: string;
+    protected icon: any;
     protected select: boolean;
     protected index: number;
     protected fontSize: number;
@@ -28,7 +28,7 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
 
         this.id = props?.["id"].toString() || guid();
         this.key = props?.["key"].toString() || "";
-        this.icon = props?.["icon"].toString() || "";
+        this.icon = props?.["icon"] || "";
         this.select = !!props?.["selected"];
         this.assist = !!props?.["assist"];
 
@@ -82,7 +82,7 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
         return this.key;
     }
 
-    public getIcon(): string {
+    public getIcon(): any {
         return this.icon;
     }
 
@@ -127,7 +127,11 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
                     key={this.key}
                     onClick={this.onClick.bind(this)}
                     className={`r_hn_i_d_b ${this.select ? "r_hn_i_d_b_a_s" : "r_hn_i_d_b_a_us"}`}>
-                    <img className="r_hn_i_d_i" src={this.icon} alt={this.key} />
+                    {typeof this.icon === "string" ? (
+                        <img className="r_hn_i_d_i" src={this.icon} alt={this.key} />
+                    ) : (
+                        <div className="r_hn_i_d_i" dangerouslySetInnerHTML={{ __html: this.icon }}></div>
+                    )}
                 </div>
             );
         }

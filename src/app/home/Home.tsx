@@ -12,7 +12,7 @@ import { TianyuShellNotInitialException } from "ts-core/ExceptionBase";
 import { FeatureToggle } from "ts-core/FeatureToggle";
 import { Router } from "ts-core/Router";
 import { TIANYU_SHELL_UI_MAJOR_ID } from "ts-core/UI";
-import { navigationSource, fontSizeMap } from "./HomeNavigation";
+import { getNavigationSource, fontSizeMap } from "./HomeNavigation";
 
 import "./css/home.css";
 
@@ -29,26 +29,24 @@ WaitingDialog.withDialog(async () => {
 
                 import("tianyu-shell/ui/react/modules/navigation/ReactHorizontalNavigation").then(
                     ({ ReactHorizontalNavigation }) => {
-                        const rootNode = document.getElementById(TIANYU_SHELL_UI_MAJOR_ID);
-                        if (!!!rootNode) {
-                            throw new TianyuShellNotInitialException("tianyu shell major page is not ready");
-                        }
+                        return getNavigationSource().then((value: IReactNavigationSource) => {
+                            const rootNode = document.getElementById(TIANYU_SHELL_UI_MAJOR_ID);
+                            if (!!!rootNode) {
+                                throw new TianyuShellNotInitialException("tianyu shell major page is not ready");
+                            }
 
-                        const root = ReactDOM.createRoot(rootNode);
-                        const navigationProps: IReactProperty = {
-                            title: "TEST",
-                            defaultItem: "/home",
-                        };
+                            const root = ReactDOM.createRoot(rootNode);
+                            const navigationProps: IReactProperty = {
+                                title: "TEST",
+                                defaultItem: "/home",
+                            };
 
-                        root.render(
-                            <div>
-                                <ReactHorizontalNavigation
-                                    props={navigationProps}
-                                    source={navigationSource}
-                                    fontMap={fontSizeMap}
-                                />
-                            </div>,
-                        );
+                            root.render(
+                                <div>
+                                    <ReactHorizontalNavigation props={navigationProps} source={value} fontMap={fontSizeMap} />
+                                </div>,
+                            );
+                        });
                     },
                 );
             })

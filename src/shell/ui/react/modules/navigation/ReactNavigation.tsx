@@ -25,7 +25,13 @@ interface IHashMatchedItem {
     item: ReactNavigationItem;
 }
 
-export class ReactNavigation<T> extends ReactModule<T> {
+export interface IReactNavigationProps {
+    props: IReactProperty;
+    source: IReactNavigationSource;
+    fontMap: Record<number, number>;
+}
+
+export class ReactNavigation extends ReactModule<IReactNavigationProps> {
     public static FONT_SIZE_DEFAULT: number = 15;
 
     protected id: string;
@@ -39,18 +45,19 @@ export class ReactNavigation<T> extends ReactModule<T> {
     protected currentPageWidth: number;
 
     protected inNarrowMode: boolean;
+    protected isMobileMode: boolean;
 
     private isLoaded: boolean;
 
-    public constructor(props?: IReactProperty) {
+    public constructor(props?: IReactNavigationProps) {
         super(props);
 
         this.id = guid();
 
-        this.title = props?.["title"]?.toString() || "";
+        this.title = props?.props?.["title"]?.toString() || "";
 
         // format default item to ensure it is liked to /xxx/
-        this.defaultItem = props?.["defaultItem"]?.toString() || "";
+        this.defaultItem = props?.props?.["defaultItem"]?.toString() || "";
         if (!this.defaultItem.startsWith("/")) this.defaultItem = `/${this.defaultItem}`;
         if (!this.defaultItem.endsWith("/")) this.defaultItem = `${this.defaultItem}/`;
 
@@ -58,6 +65,7 @@ export class ReactNavigation<T> extends ReactModule<T> {
         this.itemSource = {};
         this.isLoaded = false;
         this.inNarrowMode = false;
+        this.isMobileMode = false;
 
         this.currentPagHeight = 0;
         this.currentPageWidth = 0;
@@ -66,8 +74,8 @@ export class ReactNavigation<T> extends ReactModule<T> {
     public override componentDidMount(): void {
         this.isLoaded = true;
 
-        this.currentPagHeight = window.innerHeight;
-        this.currentPageWidth = window.innerWidth;
+        this.currentPagHeight = this.isMobileMode ? window.outerHeight : window.innerHeight;
+        this.currentPageWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
 
         PageResizeController.listen(REACT_NAVIGATION_ONRESIZE_LISTENER, this._onResize.bind(this));
         tianyuShell.core.event.onhashChanged.listen(REACT_NAVIGATION_ONHASHCHANGED_LISTENER, this.onHashChanged.bind(this));
@@ -100,7 +108,8 @@ export class ReactNavigation<T> extends ReactModule<T> {
     }
 
     public override render(): ReactNode {
-        if (isMobile()) return this.renderForMobile();
+        this.isMobileMode = isMobile();
+        if (this.isMobileMode) return this.renderForMobile();
 
         this.inNarrowMode = (!this.isLoaded && this.isNarrow()) || this.inNarrowMode;
         if (this.inNarrowMode) {
@@ -193,8 +202,8 @@ export class ReactNavigation<T> extends ReactModule<T> {
             }
 
             // before resize, to update the newest page height and width
-            this.currentPagHeight = window.innerHeight;
-            this.currentPageWidth = window.innerWidth;
+            this.currentPagHeight = this.isMobileMode ? window.outerHeight : window.innerHeight;
+            this.currentPageWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
             this.onResize();
             this.forceUpdate();
         }

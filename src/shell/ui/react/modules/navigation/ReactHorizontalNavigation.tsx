@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ReactNode } from "react";
-import { ReactNavigation } from "./ReactNavigation";
+import { ReactNavigation, IReactNavigationProps } from "./ReactNavigation";
 import { CallbackAction, MapOfType } from "ts-core/Types";
 import { routerUrl2Id } from "tianyu-shell/common/utilities/RouterHelper";
 import { ReactHorizontalNavigationItem } from "./ReactHorizontalNavigationItem";
@@ -14,13 +14,7 @@ import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
 
 import "./css/horizontal-navigation.css";
 
-export interface IReactHorizontalNavigationProps {
-    props: IReactProperty;
-    source: IReactNavigationSource;
-    fontMap: Record<number, number>;
-}
-
-export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalNavigationProps> {
+export class ReactHorizontalNavigation extends ReactNavigation {
     private fontsizeMap: Record<number, number>;
     private fontSize: number;
 
@@ -29,11 +23,11 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
     private isIconFocus: boolean;
     private menuCloseTimer: number;
 
-    public constructor(props: IReactHorizontalNavigationProps) {
-        super(props.props);
+    public constructor(props: IReactNavigationProps) {
+        super(props);
 
         this.fontsizeMap = props.fontMap;
-        this.fontSize = this.calculateFontsizeFromWidth(window.innerWidth);
+        this.fontSize = this.calculateFontsizeFromWidth(this.isMobileMode ? window.outerWidth : window.innerWidth);
         this.setSource(props.source);
 
         this.isMenuOpened = false;
@@ -59,7 +53,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
     // ##########################################################################
 
     protected override isNarrow(): boolean {
-        const pageWidth = window.innerWidth;
+        const pageWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
         const canvas = document.createElement("canvas");
         const canvasContext: CanvasRenderingContext2D | undefined = canvas?.getContext("2d") || undefined;
         if (canvasContext) {
@@ -77,11 +71,11 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
 
     protected override isSizeChanged(): boolean {
         // when in mobile mode, should not response size changed
-        if (isMobile()) {
+        if (this.isMobileMode) {
             return false;
         }
 
-        const newPageWidth = window.innerWidth;
+        const newPageWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
         const isWidthChanged = newPageWidth !== this.currentPageWidth;
 
         const beforeInNarrow = this.inNarrowMode;
@@ -103,7 +97,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
         if (this.inNarrowMode) {
             // in narrow mode
             // to return the height change or width change to update the context
-            const newPageHeight = window.innerHeight;
+            const newPageHeight = window.outerHeight;
             return isWidthChanged || newPageHeight !== this.currentPagHeight;
         }
 
@@ -111,7 +105,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
     }
 
     protected override onResize(): void {
-        const newWidth = window.innerWidth;
+        const newWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
         // store the old size ans calculate the new size
         const oldFontsize = this.fontSize;
         this.fontSize = this.calculateFontsizeFromWidth(newWidth);
@@ -129,7 +123,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
 
     protected override updateItems(): void {
         const source = this.itemSource;
-        const newWidth = window.innerWidth;
+        const newWidth = this.isMobileMode ? window.outerWidth : window.innerWidth;
         this.fontSize = this.calculateFontsizeFromWidth(newWidth);
 
         for (const sourceKey of Object.keys(source)) {
@@ -152,7 +146,49 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
     // ##########################################################################
 
     protected override renderForMobile(): ReactNode {
-        return <div></div>;
+        const normalItems: ReactNavigationItem[] = [];
+        const assistItems: ReactNavigationItem[] = [];
+        if (this.isMenuOpened) {
+            this.navigationItemsClassification({ normalItems: normalItems, assistItems: assistItems });
+        }
+
+        return (
+            <div id={this.id} className="r_hn_b r_hn_b_m">
+                <div className="r_hn_c_m">
+                    <div
+                        className={`r_hn_n_na_s_c_m ${this.isMenuOpened ? "r_hn_n_na_s_c_s_m" : ""}`}
+                        onClick={this.onMenuIconClick.bind(this)}
+                        // add mouse leave event if the menu is opend
+                        onMouseLeave={this.isMenuOpened ? this.onMenuIconMoveOut.bind(this) : () => {}}
+                        onMouseEnter={this.isMenuOpened ? this.onMenuIconMoveIn.bind(this) : () => {}}>
+                        <div className="r_hn_n_na_s" dangerouslySetInnerHTML={{ __html: REACT_NAVIGATION_MENU_ICON }}></div>
+                    </div>
+                    {this.renderSelectedItemsForMobile()}
+                    {this.isMenuOpened && (
+                        <ReactHorizontalNavigationNarrowContext
+                            normalItems={normalItems}
+                            assistItems={assistItems}
+                            fontMap={this.fontsizeMap}
+                            fnMouseMoveOut={this.afterMenuContextMoveOut.bind(this)}
+                            fnMouseMoveIn={this.afterMenuContextMoveIn.bind(this)}
+                        />
+                    )}
+                </div>
+            </div>
+        );
+    }
+    private renderSelectedItemsForMobile(): ReactNode {
+        const selectedItem = this.getSelectedItem();
+
+        // if there is no selected item
+        // show default string
+        return (
+            !!selectedItem && (
+                <div className="r_hn_n_na_i_c_m">
+                    <div className="r_hn_n_na_i_t_m">{selectedItem.getKey()}</div>
+                </div>
+            )
+        );
     }
 
     // render for not mobile part
@@ -168,7 +204,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
         this.navigationItemsClassification({ normalItems: normalItems, assistItems: assistItems });
 
         return (
-            <div id={this.id} className="r_hn_b">
+            <div id={this.id} className="r_hn_b r_hn_b_p">
                 <div className="r_hn_c">
                     {this.title && this.renderTitle()}
                     <div className="r_hn_n_n">{this.renderNormalItemsForNormalMode(normalItems)}</div>
@@ -208,7 +244,7 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
         }
 
         return (
-            <div id={this.id} className="r_hn_b">
+            <div id={this.id} className="r_hn_b r_hn_b_p">
                 <div className="r_hn_c">
                     {this.title && this.renderTitle()}
                     <div className="r_hn_as r_hn_as_na">
@@ -249,7 +285,11 @@ export class ReactHorizontalNavigation extends ReactNavigation<IReactHorizontalN
         return (
             !!selectedItem && (
                 <div className="r_hn_n_na_b">
-                    <img className="r_hn_n_na_i_i" src={selectedItem.getIcon()} alt={selectedItem.getKey()} />
+                    {typeof selectedItem.getIcon() === "string" ? (
+                        <img className="r_hn_i_d_i" src={selectedItem.getIcon()} alt={selectedItem.getKey()} />
+                    ) : (
+                        <div className="r_hn_i_d_i" dangerouslySetInnerHTML={{ __html: selectedItem.getIcon() }}></div>
+                    )}
                     <div className="r_hn_n_na_i_t">{selectedItem.getKey()}</div>
                 </div>
             )
@@ -409,7 +449,10 @@ class ReactHorizontalNavigationNarrowContext extends React.Component<IReactHoriz
         }
 
         return (
-            <div className="r_hn_n_na_c_b" onMouseEnter={this.props.fnMouseMoveIn} onMouseLeave={this.props.fnMouseMoveOut}>
+            <div
+                className={isMobile() ? "r_hn_n_na_c_b_m" : "r_hn_n_na_c_b"}
+                onMouseEnter={this.props.fnMouseMoveIn}
+                onMouseLeave={this.props.fnMouseMoveOut}>
                 <div className="r_hn_n_na_c_in r_hn_na_c_i_c">
                     <div className="r_hn_na_c_i_c">{normalRenderItems}</div>
                     {assistRenderItems.length && (
