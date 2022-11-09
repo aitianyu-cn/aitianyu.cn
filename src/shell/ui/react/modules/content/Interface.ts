@@ -10,7 +10,7 @@ export class ReactContentComponent extends React.Component<IReactContentComponen
 export type ReactContentRouterParamGenerater = () => IReactContentComponent;
 
 export interface IReactContentRouter {
-    component: typeof React.Component;
+    component: typeof React.Component<IReactContentComponent, IReactState>;
     paramGenerater: ReactContentRouterParamGenerater;
 
     /**

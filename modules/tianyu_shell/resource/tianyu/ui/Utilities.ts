@@ -8,9 +8,12 @@ const SetDefaultThemeOnLoaded = "tianyushell_core_ui_theme_set_default_trigger";
 const TianyuShellUIThemeDefaultID = "tianyu_shell_ui_default_theme";
 const TianyuShellUIThemeCustomID = "tianyu_shell_ui_cusom_theme";
 
+const TianyuShellUIThemeCustomCookieT = "TIANYUSHELL_UI_CUSTOM_THEME_T";
+const TianyuShellUIThemeCustomCookieC = "TIANYUSHELL_UI_CUSTOM_THEME_C";
+
 const _customThemeList: string[] = [];
 
-function _change_theme(theme: string, color: TianyuShellUIThemeColor): void {
+function _change_theme_internal(theme: string, color: TianyuShellUIThemeColor, setCookie: boolean): void {
     const themeUrl = `/static/theme/${theme}_${color}.css`;
 
     const element = document.getElementById(TianyuShellUIThemeCustomID);
@@ -35,7 +38,16 @@ function _change_theme(theme: string, color: TianyuShellUIThemeColor): void {
         tianyuShell.core.ui.theme.custom.valid = true;
         tianyuShell.core.ui.theme.custom.theme = theme;
         tianyuShell.core.ui.theme.custom.color = color;
+
+        if (setCookie) {
+            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieT, theme);
+            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieC, color);
+        }
     }
+}
+
+function _change_theme(theme: string, color: TianyuShellUIThemeColor, save?: boolean): void {
+    _change_theme_internal(theme, color, !!save);
 }
 
 function _reset_theme(): void {
@@ -44,6 +56,9 @@ function _reset_theme(): void {
         document.head.removeChild(element);
         if (tianyuShell.core.ui) {
             tianyuShell.core.ui.theme.custom.valid = false;
+
+            tianyuShell.core.cookie.remove(TianyuShellUIThemeCustomCookieT);
+            tianyuShell.core.cookie.remove(TianyuShellUIThemeCustomCookieC);
         }
     }
 }
@@ -67,6 +82,10 @@ function _set_default_theme() {
             tianyuShell.core.ui.theme.default.theme = theme;
             tianyuShell.core.ui.theme.default.color = color;
         }
+
+        // here to upload the set custom theme
+        // to ensure the default theme is loaded first
+        _init_customer_theme_from_cookie();
     });
 }
 
@@ -100,6 +119,17 @@ function _remove_custom_theme(id: string): void {
     const element = document.getElementById(id);
     if (element) {
         document.head.removeChild(element);
+    }
+}
+
+function _init_customer_theme_from_cookie(): void {
+    const theme = tianyuShell.core.cookie.get(TianyuShellUIThemeCustomCookieT);
+    const color = tianyuShell.core.cookie.get(TianyuShellUIThemeCustomCookieC).toLowerCase();
+
+    const themeColor: TianyuShellUIThemeColor | null = color === "light" ? "light" : color === "dark" ? "dark" : null;
+
+    if (!!theme && !!themeColor) {
+        _change_theme_internal(theme, themeColor, false);
     }
 }
 
