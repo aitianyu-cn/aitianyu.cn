@@ -48,6 +48,7 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
 
     protected inNarrowMode: boolean;
     protected isMobileMode: boolean;
+    protected isNoMatched: boolean;
 
     private isLoaded: boolean;
 
@@ -68,6 +69,7 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
         this.isLoaded = false;
         this.inNarrowMode = false;
         this.isMobileMode = isMobile();
+        this.isNoMatched = false;
 
         this.currentPagHeight = 0;
         this.currentPageWidth = 0;
@@ -148,12 +150,16 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
     }
 
     private onHashChanged(): void {
-        const fullMatch = getHashMappedItem(this.items, this.defaultItem, (item) => {
+        const fullMatch = getHashMappedItem(this.items, this.defaultItem, undefined, (item) => {
             item.setUnselect();
         });
 
         if (fullMatch.value) {
             fullMatch.value.setSelect();
+            this.isNoMatched = false;
+            this.forceUpdate();
+        } else if (!this.isNoMatched) {
+            this.isNoMatched = true;
             this.forceUpdate();
         }
     }

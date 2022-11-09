@@ -23,6 +23,6 @@ export interface IReactContentRouter {
 export interface IReactContentProperty {
     default: string;
     router: MapOfType<IReactContentRouter>;
-    fallback: IReactContentRouter;
+    fallback?: IReactContentRouter;
     style: CSSProperties;
 }

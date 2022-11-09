@@ -3,8 +3,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { WaitingDialog } from "tianyu-shell/ui/native/widget/WaitingDialog";
+import { IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
 import { require_msgbundle } from "ts-core/I18n";
-import { CallbackAction } from "ts-core/Types";
+import { CallbackAction, MapOfType } from "ts-core/Types";
 
 import "./css/home.css";
 
@@ -30,10 +31,17 @@ async function onHomePageIniting(): Promise<void> {
 
                     Dependency.Router.init();
 
-                    import("tianyu-shell/ui/react/modules/navigation/ReactHorizontalNavigation").then(
-                        ({ ReactHorizontalNavigation }) => {
-                            return Dependency.getNavigationSource(messageBundle).then(
-                                (value: IReactNavigationSource) => {
+                    Promise.all([
+                        import("tianyu-shell/ui/react/modules/navigation/ReactHorizontalNavigation"),
+                        import("tianyu-shell/ui/react/modules/content/ReactNavigationContent"),
+                    ]).then(
+                        ([{ ReactHorizontalNavigation }, { ReactNavigationContent }]) => {
+                            const aRenderSourceWait = [];
+                            aRenderSourceWait.push(Dependency.getNavigationSource(messageBundle));
+                            aRenderSourceWait.push(Dependency.getNavigationRouter());
+                            aRenderSourceWait.push(Dependency.getNavigationFallbackRouter());
+                            return Promise.all(aRenderSourceWait).then(
+                                (values: (IReactNavigationSource | IReactContentRouter | MapOfType<IReactContentRouter>)[]) => {
                                     const rootNode = document.getElementById(Dependency.TIANYU_SHELL_UI_MAJOR_ID);
                                     if (!!!rootNode) {
                                         throw new Dependency.TianyuShellNotInitialException(
@@ -47,11 +55,26 @@ async function onHomePageIniting(): Promise<void> {
                                         defaultItem: "/home",
                                     };
 
+                                    let navigationSource: IReactNavigationSource = values[0] as IReactNavigationSource;
+                                    let navigationRouter: MapOfType<IReactContentRouter> =
+                                        values[1] as MapOfType<IReactContentRouter>;
+                                    let navigationFallbackRouter: IReactContentRouter = values[2] as IReactContentRouter;
+
                                     root.render(
-                                        <ReactHorizontalNavigation
-                                            props={navigationProps}
-                                            source={value}
-                                            fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>,
+                                        <div>
+                                            <ReactHorizontalNavigation
+                                                props={navigationProps}
+                                                source={navigationSource}
+                                                fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>
+                                            <div>
+                                                <ReactNavigationContent
+                                                    default="/home"
+                                                    router={navigationRouter}
+                                                    fallback={navigationFallbackRouter}
+                                                    style={{}}
+                                                />
+                                            </div>
+                                        </div>,
                                     );
                                     resolve();
                                 },

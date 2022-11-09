@@ -1,6 +1,9 @@
 /**@format */
 
+import { IReactContentProperty, IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
 import { IMessageBundle } from "ts-core/I18n";
+import { MapOfType } from "ts-core/Types";
+import { TestComp } from "./TestComp";
 
 export const fontSizeMap: Record<number, number> = {
     [0]: 15,
@@ -47,4 +50,49 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
             resolve(value);
         }, reject);
     });
+}
+
+export async function getNavigationRouter(): Promise<MapOfType<IReactContentRouter>> {
+    const contentRouter: MapOfType<IReactContentRouter> = {};
+
+    contentRouter["/home"] = {
+        component: TestComp,
+        paramGenerater: () => {
+            return { data: "home" };
+        },
+        forceUpdate: false,
+    };
+    contentRouter["/download"] = {
+        component: TestComp,
+        paramGenerater: () => {
+            return { data: "download" };
+        },
+        forceUpdate: false,
+    };
+    contentRouter["/docs"] = {
+        component: TestComp,
+        paramGenerater: () => {
+            return { data: "docs" };
+        },
+        forceUpdate: false,
+    };
+    contentRouter["/language"] = {
+        component: TestComp,
+        paramGenerater: () => {
+            return { data: "language" };
+        },
+        forceUpdate: false,
+    };
+
+    return contentRouter;
+}
+
+export async function getNavigationFallbackRouter(): Promise<IReactContentRouter> {
+    return {
+        component: TestComp,
+        paramGenerater: () => {
+            return { data: "failure" };
+        },
+        forceUpdate: true,
+    };
 }

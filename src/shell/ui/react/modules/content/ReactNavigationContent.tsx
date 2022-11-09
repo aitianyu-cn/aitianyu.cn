@@ -1,6 +1,7 @@
 /**@format */
 
 import React from "react";
+import { IRouteCallbackEvent, Router } from "ts-core/Router";
 import { getHashMappedItem } from "../../core/HashHelper";
 import { IReactContentProperty } from "./Interface";
 
@@ -51,15 +52,23 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
 
     private renderComponent(): React.ReactNode {
         if (this.inFallback) {
-            return <this.props.fallback.component {...this.props.fallback.paramGenerater} />;
+            return (
+                (this.props.fallback && <this.props.fallback.component {...this.props.fallback.paramGenerater()} />) || (
+                    <div></div>
+                )
+            );
         }
 
         const componentItem = this.props.router[this.currentHash];
         if (!!!componentItem) {
-            return <this.props.fallback.component {...this.props.fallback.paramGenerater} />;
+            return (
+                (this.props.fallback && <this.props.fallback.component {...this.props.fallback.paramGenerater()} />) || (
+                    <div></div>
+                )
+            );
         }
 
-        return <componentItem.component {...componentItem.paramGenerater} />;
+        return <componentItem.component {...componentItem.paramGenerater()} />;
     }
 
     private onHashChanged(): void {
@@ -69,7 +78,7 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
         // 1. if the fallback state is changed - should always re-render
         // 2. if the fallback state is true and fallback does force update - should always re-render
         // 3. if the fallback state is false - to check the selection
-        const fallbackChanged = this.inFallback !== !!!matchedItem.value || (this.inFallback && this.props.fallback.forceUpdate);
+        const fallbackChanged = this.inFallback !== !!!matchedItem.value || (this.inFallback && this.props.fallback?.forceUpdate);
         // cases:
         // 1. if the fallback is changed - should re-render
         // 2. if the fallback is not changed and not in the fallback mode, the hash mapped is changed - should re-render

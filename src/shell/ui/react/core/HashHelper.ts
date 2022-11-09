@@ -11,9 +11,10 @@ export interface IHashMappedItem<T> {
 export function getHashMappedItem<T>(
     source: MapOfType<T>,
     defaultItem: string,
+    specifiedHash?: string,
     fnEachItem?: (routerKey: T) => void,
 ): IHashMappedItem<T> {
-    const rawHash = Router.getHash();
+    const rawHash = specifiedHash || Router.getHash();
     // set the hash is like /xxx/
     const formattedHash = rawHash.startsWith("/") ? rawHash : `/${rawHash}`;
     const formattedHash2 = formattedHash.endsWith("/") ? formattedHash : `${formattedHash}/`;

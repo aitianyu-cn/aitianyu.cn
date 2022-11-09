@@ -9,4 +9,4 @@ export { TianyuShellNotInitialException } from "ts-core/ExceptionBase";
 export { FeatureToggle } from "ts-core/FeatureToggle";
 export { Router } from "ts-core/Router";
 export { TIANYU_SHELL_UI_MAJOR_ID } from "ts-core/UI";
-export { getNavigationSource, fontSizeMap } from "./HomeNavigation";
+export { getNavigationSource, getNavigationRouter, getNavigationFallbackRouter, fontSizeMap } from "./HomeNavigation";
