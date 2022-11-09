@@ -1,13 +1,15 @@
 /**@format */
 
 import React from "react";
-import { IRouteCallbackEvent, Router } from "ts-core/Router";
 import { getHashMappedItem } from "../../core/HashHelper";
 import { IReactContentProperty } from "./Interface";
+
+import "./css/navigation-content.css";
 
 const REACT_NAVIGATION_CONTENT_ONHASHCHANGED_LISTENER: string = "react-navigation-content-onhashChanged-listener";
 
 export class ReactNavigationContent extends React.Component<IReactContentProperty, IReactState> {
+    private default: string;
     private isLoaded: boolean;
 
     private currentHash: string;
@@ -21,6 +23,13 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
         const matchedItem = getHashMappedItem(this.props.router, this.props.default);
         this.inFallback = !!!matchedItem.value;
         this.currentHash = matchedItem.key;
+
+        this.default = this.props.default;
+        if (!this.default.startsWith("/")) this.default = `/${this.default}`;
+        if (!this.default.endsWith("/")) this.default = `${this.default}/`;
+
+        // to invoke hash changed directly to ensure the item selection is currect.
+        this.onHashChanged();
     }
 
     public override componentDidMount(): void {
@@ -47,7 +56,11 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
     }
 
     public override render(): React.ReactNode {
-        return <div style={this.props.style}>{this.renderComponent()}</div>;
+        return (
+            <div className="r_n_c_b" style={this.props.style}>
+                {this.renderComponent()}
+            </div>
+        );
     }
 
     private renderComponent(): React.ReactNode {
@@ -72,7 +85,7 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
     }
 
     private onHashChanged(): void {
-        const matchedItem = getHashMappedItem(this.props.router, this.props.default);
+        const matchedItem = getHashMappedItem(this.props.router, this.default);
 
         // cases:
         // 1. if the fallback state is changed - should always re-render

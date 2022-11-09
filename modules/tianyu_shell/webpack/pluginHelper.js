@@ -8,7 +8,7 @@ const webpack = require("webpack");
 const { solveHtmlFile } = require("./utilities");
 const extPlugins = require("../../../webpack/plugins");
 
-const chunksPrority = ["vendors", "common", "tianyushell_core", "tianyushell_component"];
+const chunksPrority = ["vendors", "common", "tianyu_shell/core", "tianyu_shell/component"];
 
 const fnGetChunkPrority = (entry) => {
     for (let i = 0; i < chunksPrority.length; ++i) {

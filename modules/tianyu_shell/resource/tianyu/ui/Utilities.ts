@@ -40,8 +40,10 @@ function _change_theme_internal(theme: string, color: TianyuShellUIThemeColor, s
         tianyuShell.core.ui.theme.custom.color = color;
 
         if (setCookie) {
-            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieT, theme);
-            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieC, color);
+            const date = new Date(Date.now());
+            const expires = new Date(date.setDate(date.getDate() + 30));
+            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieT, theme, undefined, undefined, expires);
+            tianyuShell.core.cookie.set(TianyuShellUIThemeCustomCookieC, color, undefined, undefined, expires);
         }
     }
 }

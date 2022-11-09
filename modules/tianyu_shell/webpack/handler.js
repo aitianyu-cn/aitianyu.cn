@@ -54,8 +54,8 @@ module.exports.handleResolve = function (baseDir) {
 module.exports.handleOutput = function (baseDir) {
     const output = {
         path: path.join(baseDir, "/build"),
-        filename: "[name].chunks.[contenthash:6].js",
-        chunkFilename: "[name].chunks.[contenthash:8].js",
+        filename: "package/[name].[contenthash:8].js",
+        chunkFilename: "package/[name].chunks.[contenthash:6].js",
         environment: {
             arrowFunction: false,
         },

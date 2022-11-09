@@ -1,12 +1,12 @@
 /**@format */
 
 const BASIC_TEMPLATE_FILE = "app/index.html";
-const APP_PAGE_PATH = "app";
-const APP_PAGE_CHUNKS = ["app"];
+const APP_PAGE_PATH = "application";
+const APP_PAGE_CHUNKS = ["application/app"];
 
 const APPLICATIONS = {
     cloud: {
-        chunks: ["app-cloud"],
+        chunks: ["application/cloud"],
         title: "Tianyu Cloud",
         favicon: "",
         from: [{ regexp: /^\/app\/cloud$/, hash: "" }],
@@ -18,7 +18,7 @@ module.exports = function () {
         app: {
             title: "Tianyu Application",
             template: BASIC_TEMPLATE_FILE,
-            filename: "app/index.html",
+            filename: "application/index.html",
             favicon: "",
             chunks: APP_PAGE_CHUNKS,
             from: [
@@ -31,7 +31,7 @@ module.exports = function () {
         appLogon: {
             title: "Tianyu Application",
             template: BASIC_TEMPLATE_FILE,
-            filename: "app/logon.html",
+            filename: "application/logon.html",
             favicon: "",
             chunks: APP_PAGE_CHUNKS,
             from: [

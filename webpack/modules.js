@@ -35,7 +35,7 @@ module.exports = [
             {
                 loader: "file-loader",
                 options: {
-                    name: "[name]-[hash:16].[ext]",
+                    name: "images/[name]-[hash:16].[ext]",
                 },
             },
         ],
@@ -48,6 +48,7 @@ module.exports = [
                 loader: "url-loader",
                 options: {
                     limit: 1024 * 200,
+                    name: "images/icon/[name]-[hash:16].png",
                 },
             },
         ],

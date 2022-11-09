@@ -9,7 +9,7 @@ module.exports = {
         template: "index/index.html",
         filename: "index.html",
         favicon: "src/page/res/aitianyu.ico",
-        chunks: ["home"],
+        chunks: ["global/home"],
         from: [
             {
                 regexp: /^\/$/,
@@ -30,27 +30,6 @@ module.exports = {
                 performance: true,
             },
         },
-    },
-    userHome: {
-        title: "Tianyu-Shell",
-        template: "index/index.html",
-        filename: "user/index.html",
-        favicon: "src/page/index/index_favicon.ico",
-        chunks: [],
-        from: [
-            {
-                regexp: /^\/user$/,
-                hash: null,
-            },
-        ],
-    },
-    logon: {
-        title: "Tianyu-Shell",
-        template: "index/index.html",
-        filename: "user/logon.html",
-        favicon: "src/page/index/index_favicon.ico",
-        chunks: [],
-        from: [],
     },
     adminConsole: {
         title: "Tianyu-Shell",

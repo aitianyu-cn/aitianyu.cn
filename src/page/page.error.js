@@ -2,8 +2,8 @@
 
 const COMMON_TITLE = "Error-Page";
 const BASIC_TEMPLATE_FILE = "error/error.html";
-const ERROR_PAGE_CHUNKS = ["error"];
-const ERROR_PAGE_PATH = "error";
+const ERROR_PAGE_CHUNKS = ["global/error"];
+const ERROR_PAGE_PATH = "global/error";
 const ERROR_PAGE_ICON = "";
 
 const ERROR_CODES = {

@@ -3,7 +3,7 @@
 import React from "react";
 import { ReactNode } from "react";
 import { ReactNavigation, IReactNavigationProps } from "./ReactNavigation";
-import { CallbackAction, MapOfType } from "ts-core/Types";
+import { CallbackAction } from "ts-core/Types";
 import { routerUrl2Id } from "tianyu-shell/common/utilities/RouterHelper";
 import { ReactHorizontalNavigationItem } from "./ReactHorizontalNavigationItem";
 import { ReactNavigationItem } from "./ReactNavigationItem";

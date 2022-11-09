@@ -3,16 +3,16 @@
 // #############################################################
 // Chunk name
 // #############################################################
-const CoreChunk = "tianyushell_core";
-const UIMajorChunk = "tianyushell_component_ui_major";
-const UIMessageChunk = "tianyushell_component_ui_msg";
-const UIDialogChunk = "tianyushell_component_ui_dialog";
-const UIBackgroundChunk = "tianyushell_component_ui_bg";
+const CoreChunk = "tianyu_shell/core";
+const UIMajorChunk = "tianyu_shell/component/ui_major";
+const UIMessageChunk = "tianyu_shell/component/ui_msg";
+const UIDialogChunk = "tianyu_shell/component/ui_dialog";
+const UIBackgroundChunk = "tianyu_shell/component/ui_bg";
 
-const StorageChunk = "tianyushell_component_storage";
-const FeatureToggleChunk = "tianyushell_component_featureToggle";
-const LanguageChunk = "tianyushell_component_language";
-const PerformanceChunk = "tianyushell_component_performance";
+const StorageChunk = "tianyu_shell/component/storage";
+const FeatureToggleChunk = "tianyu_shell/component/featureToggle";
+const LanguageChunk = "tianyu_shell/component/language";
+const PerformanceChunk = "tianyu_shell/component/performance";
 
 // #############################################################
 // Chunk file

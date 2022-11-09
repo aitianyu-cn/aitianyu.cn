@@ -12,6 +12,8 @@
 
   background-color: var(--ts_ui_content_bgc);
   box-shadow: var(--ts_ui_dialog_mask_bgc) 0px 10px 10px;
+
+  animation: r_hn_b_in 0.25s forwards;
 }
 .r_hn_b_p {
   height: 50px !important;
@@ -299,5 +301,15 @@
   100% {
     background-color: var(--ts_ui_blk_5);
     box-shadow: var(--ts_ui_blk_5) 0px 0px 3px;
+  }
+}
+
+@keyframes r_hn_b_in {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }
