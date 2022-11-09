@@ -1,5 +1,6 @@
 /**@format */
 
+import { HomeFrame, propCreater as HomeFramePropCreater } from "tianyu-shell/app/home/Home.loader";
 import { IReactContentProperty, IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
 import { IMessageBundle } from "ts-core/I18n";
 import { MapOfType } from "ts-core/Types";
@@ -38,6 +39,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     assist: false,
                     index: 2,
                 },
+                "/test": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_DOCUMENT2"),
+                    icon: SOURCES.document,
+                    iconType: "inline",
+                    assist: false,
+                    index: 2,
+                },
                 "/language": {
                     key: messageBundle.getText("HOME_PAGE_NAVIGATION_LANGUAGE"),
                     icon: SOURCES.language,
@@ -56,10 +64,8 @@ export async function getNavigationRouter(): Promise<MapOfType<IReactContentRout
     const contentRouter: MapOfType<IReactContentRouter> = {};
 
     contentRouter["/home"] = {
-        component: TestComp,
-        paramGenerater: () => {
-            return { data: "home" };
-        },
+        component: HomeFrame,
+        paramGenerater: HomeFramePropCreater,
         forceUpdate: false,
     };
     contentRouter["/download"] = {

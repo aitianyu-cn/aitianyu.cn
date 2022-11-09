@@ -1,4 +1,11 @@
 .r_n_c_b {
+  position: absolute;
+
+  width: 100%;
+  height: auto;
+
+  z-index: 10;
+
   animation: r_n_c_b_in 0.25s forwards;
 }
 

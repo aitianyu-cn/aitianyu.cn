@@ -62,20 +62,22 @@ async function onHomePageIniting(): Promise<void> {
 
                                     root.render(
                                         <div>
-                                            <ReactHorizontalNavigation
-                                                props={navigationProps}
-                                                source={navigationSource}
-                                                fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>
-                                            <div>
-                                                <ReactNavigationContent
-                                                    default="/home"
-                                                    router={navigationRouter}
-                                                    fallback={navigationFallbackRouter}
-                                                    style={{}}
-                                                />
+                                            <div className="h_rhn_c">
+                                                <ReactHorizontalNavigation
+                                                    props={navigationProps}
+                                                    source={navigationSource}
+                                                    fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>
                                             </div>
+                                            <ReactNavigationContent
+                                                default="/home"
+                                                router={navigationRouter}
+                                                fallback={navigationFallbackRouter}
+                                                style={{}}
+                                            />
                                         </div>,
                                     );
+
+                                    document.title = messageBundle.getText("HOME_PAGE_GLOBAL_TITLE");
                                     resolve();
                                 },
                                 () => {

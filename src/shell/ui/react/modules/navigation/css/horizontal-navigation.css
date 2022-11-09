@@ -13,7 +13,7 @@
   background-color: var(--ts_ui_content_bgc);
   box-shadow: var(--ts_ui_dialog_mask_bgc) 0px 10px 10px;
 
-  animation: r_hn_b_in 0.25s forwards;
+  animation: r_hn_b_in 0.5s forwards;
 }
 .r_hn_b_p {
   height: 50px !important;
@@ -246,6 +246,8 @@
   overflow-x: hidden;
 
   margin-bottom: 10px;
+
+  z-index: 20;
 
   top: 50px;
 }

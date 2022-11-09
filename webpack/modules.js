@@ -39,7 +39,7 @@ module.exports = [
                 },
             },
         ],
-        include: [path.resolve(__dirname, "../src/shell/ui")],
+        include: [path.resolve(__dirname, "../src/shell/ui"), path.resolve(__dirname, "../src/resource")],
     },
     {
         test: /\.png$/,

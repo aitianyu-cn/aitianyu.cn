@@ -23,7 +23,7 @@ module.exports = function () {
             chunks: APP_PAGE_CHUNKS,
             from: [
                 {
-                    regexp: /^\/app$/,
+                    regexp: /^\/application$/,
                     hash: null,
                 },
             ],
@@ -34,12 +34,6 @@ module.exports = function () {
             filename: "application/logon.html",
             favicon: "",
             chunks: APP_PAGE_CHUNKS,
-            from: [
-                {
-                    regexp: /^\/app$/,
-                    hash: null,
-                },
-            ],
         },
     };
 
