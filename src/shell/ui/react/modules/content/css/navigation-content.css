@@ -1,12 +1,20 @@
 .r_n_c_b {
-  position: absolute;
+  position: fixed;
 
   width: 100%;
-  height: auto;
+  height: 100vh;
 
-  z-index: 10;
+  z-index: var(--ts_ui_major_base_zindex);
+
+  overflow-y: auto;
+  overflow-x: hidden;
 
   animation: r_n_c_b_in 0.25s forwards;
+}
+
+.r_n_c_e {
+  height: 50px;
+  width: 100%;
 }
 
 @keyframes r_n_c_b_in {

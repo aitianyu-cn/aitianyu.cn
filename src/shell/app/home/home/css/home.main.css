@@ -1,6 +1,6 @@
 .page_home_main_def_baseGrid {
-  height: auto;
-  width: 100vw;
+  height: max-content;
+  width: 100%;
   text-align: center;
   display: grid;
 
@@ -164,5 +164,21 @@
     height: 100px;
 
     grid-column: 2;
+  }
+}
+
+@keyframes inner_page_enter {
+  0% {
+    /* transform: translate3d(0, -10%, 0); */
+    opacity: 0%;
+    transform: translate3d(0, -10%, 0);
+  }
+  50% {
+    opacity: 75%;
+    /* transform: translate3d(0, -3%, 0); */
+  }
+  100% {
+    opacity: 100%;
+    transform: translate3d(0, 0%, 0);
   }
 }

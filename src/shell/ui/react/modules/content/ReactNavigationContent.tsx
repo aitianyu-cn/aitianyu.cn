@@ -58,6 +58,7 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
     public override render(): React.ReactNode {
         return (
             <div className="r_n_c_b" style={this.props.style}>
+                <div className="r_n_c_e"></div>
                 {this.renderComponent()}
             </div>
         );

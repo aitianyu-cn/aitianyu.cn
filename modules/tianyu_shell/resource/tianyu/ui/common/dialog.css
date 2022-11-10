@@ -1,22 +1,15 @@
 @import url("./dialog.animation.css");
 
 .ts_ui_dialog_mask {
-  width: 100vw;
-  height: 100vh;
-
   position: absolute;
+  display: none;
 
   background-color: var(--ts_ui_dialog_mask_bgc);
 
-  display: none;
-
-  z-index: 99998;
+  z-index: var(--ts_ui_dialog_zindex);
 }
 
 .ts_ui_dialog_in {
-  width: 100%;
-  height: 100%;
-
   display: grid;
 
   /* grid-template-columns: 10% auto 10%;

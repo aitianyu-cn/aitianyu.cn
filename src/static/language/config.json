@@ -1,3 +1,4 @@
 {
-    "support": ["zh_CN"]
+    "support": ["zh_CN"],
+    "pending": ["zh_NC"]
 }

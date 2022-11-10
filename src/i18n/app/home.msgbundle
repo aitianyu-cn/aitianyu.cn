@@ -1,5 +1,9 @@
 HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=资源加载中 请稍后...
 
+###########################################################################
+# global message
+###########################################################################
+
 HOME_PAGE_GLOBAL_TITLE=个人编程学习
 HOME_PAGE_NAVIGATION_TITLE=天宇.cn
 HOME_PAGE_NAVIGATION_HOME=主页
@@ -7,10 +11,34 @@ HOME_PAGE_NAVIGATION_DOWNLOAD=下载
 HOME_PAGE_NAVIGATION_DOCUMENT=文档
 HOME_PAGE_NAVIGATION_LANGUAGE=语言
 
+###########################################################################
+# homepage - home message
+###########################################################################
+
 HOME_PAGE_HOME_FRAME_COPYRIGHT_TEXT=版权所有
 HOME_PAGE_HOME_FRAME_EMAIL_TEXT=邮件
 HOME_PAGE_HOME_FRAME_CONTACT_US=联系我们
 HOME_PAGE_HOME_FRAME_LOOKING_FORWARD_CONTACT=很期待与您的交流
 HOME_PAGE_HOME_FRAME_HOME_PAGE_SOURCE_EMPTY=当前没有找到项目哦~ 请过会儿再来吧~
 HOME_PAGE_HOME_FRAME_HOME_PAGE_DESCRIPTION=开源的原生开发库与周边工具
-HOME_PAGE_HOME_FRAME_=
+
+###########################################################################
+# homepage - download message
+###########################################################################
+
+HOME_PAGE_DOWNLOAD_FRAME_DOWNLOAD_INVALID=当前项目没有提供下载资源，请访问资源库获取更多资源
+HOME_PAGE_DOWNLOAD_FRAME_DATA_LOADING=数据加载中...
+HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=当前没有可用于下载的资源
+
+###########################################################################
+# homepage - language message
+###########################################################################
+
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE=选择语言
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE=更改语言
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_SUPPORT_TITLE=天宇当前支持的语言
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_TITLE=进行中
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER=当前选择的语言正在适配中
+
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_zh_CN=简体中文
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_zh_NC=繁體中文

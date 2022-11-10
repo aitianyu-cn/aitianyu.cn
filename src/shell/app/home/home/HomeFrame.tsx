@@ -4,11 +4,10 @@ import React from "react";
 import { isMobile } from "ts-core/RuntimeHelper";
 import { IHomeAboutItem, IHomeFrameProperty } from "./HomeFrame.model";
 import { require_msgbundle } from "ts-core/I18n";
+import { areaCodeToString } from "ts-core/AreaHelper";
 
 import "./css/home.main.css";
 import "./css/footer.main.css";
-import { areaCodeToString } from "ts-core/AreaHelper";
-import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
 
 export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> {
     private oSource: any;

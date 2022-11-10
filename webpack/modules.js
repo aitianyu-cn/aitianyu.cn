@@ -30,12 +30,25 @@ module.exports = [
         exclude: /node_modules/,
     },
     {
-        test: /\.(jpe?g|gif)$/,
+        test: /\.(jpe?g)$/,
         use: [
             {
                 loader: "file-loader",
                 options: {
                     name: "images/[name]-[hash:16].[ext]",
+                },
+            },
+        ],
+        include: [path.resolve(__dirname, "../src/shell/ui"), path.resolve(__dirname, "../src/resource")],
+    },
+    {
+        test: /\.gif$/,
+        use: [
+            {
+                loader: "url-loader",
+                options: {
+                    limit: 1024 * 200,
+                    name: "images/imms/[name]-[hash:16].gif",
                 },
             },
         ],

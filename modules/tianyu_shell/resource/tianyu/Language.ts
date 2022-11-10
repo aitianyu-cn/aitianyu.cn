@@ -5,10 +5,10 @@ import { parseAreaString, areaCodeToString, AreaCode } from "../core/AreaHelper"
 
 export {};
 
-const languageSupport = require("ts-static/language/config.json")?.support;
-const fnGenerateLanguageSupporting = function (): string[] {
+const languageConfig = require("ts-static/language/config.json");
+const fnGenerateLanguage = function (type: string): string[] {
     const list: string[] = [];
-    if (!!!languageSupport) {
+    if (!!!languageConfig[type]) {
         for (const lang of Object.keys(AreaCode)) {
             Number.isNaN(Number.parseInt(lang)) && lang !== "unknown" && list.push(lang);
         }
@@ -16,15 +16,15 @@ const fnGenerateLanguageSupporting = function (): string[] {
         return list;
     }
 
-    if (typeof languageSupport === "string") {
-        const area = parseAreaString(languageSupport);
-        list.push(AreaCode.unknown !== area ? languageSupport : "zh_cn");
+    if (typeof languageConfig[type] === "string") {
+        const area = parseAreaString(languageConfig[type]);
+        list.push(AreaCode.unknown !== area ? languageConfig[type] : "zh_cn");
 
         return list;
     }
 
-    if (Array.isArray(languageSupport)) {
-        for (const langItem of languageSupport) {
+    if (Array.isArray(languageConfig[type])) {
+        for (const langItem of languageConfig[type]) {
             const area = parseAreaString(langItem);
             AreaCode.unknown !== area && list.push(langItem);
         }
@@ -36,7 +36,9 @@ const fnGenerateLanguageSupporting = function (): string[] {
     return ["zh_cn"];
 };
 
-const supportLanguage = fnGenerateLanguageSupporting();
+const supportLanguage = fnGenerateLanguage("support");
+
+const pendingLanguage = fnGenerateLanguage("pending");
 
 const LANGUAGE_COOKIE_ID = "LANGUAGE";
 
@@ -105,6 +107,8 @@ const Language = {
     },
 
     supportLanguage: supportLanguage,
+
+    pendingLanguage: pendingLanguage,
 };
 
 function initiation(): void {

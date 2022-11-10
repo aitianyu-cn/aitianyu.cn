@@ -6,6 +6,9 @@ import { CallbackAction } from "ts-core/Types";
 
 import "./css/waitingDialog.css";
 
+const WaitingDialogImgDark = require("./res/waiting-dark.gif").default;
+const WaitingDialogImgLight = require("./res/waiting-light.gif").default;
+
 export interface IWaitingDialogOption {
     overtime: number;
     onOvertime: CallbackAction;
@@ -31,7 +34,7 @@ export class WaitingDialog extends ShellUIElement {
             "dark";
         const img = document.createElement("img");
         img.classList.add("wait_dialog_ai");
-        img.src = `static/res/widget/waiting-${themeColor}.gif`;
+        img.src = themeColor === "dark" ? WaitingDialogImgDark : WaitingDialogImgLight;
         img.alt = messageBundle.getText("WAITING_DIALOG_AI_ALT");
 
         const header = document.createElement("h4");

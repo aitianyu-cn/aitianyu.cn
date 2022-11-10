@@ -67,6 +67,11 @@ export class ReactHorizontalNavigation extends ReactNavigation {
             memberWidth += itemObj.calculateWidth(canvasContext);
         }
 
+        // add title part
+        memberWidth += canvasContext?.measureText(this.title).width || 0;
+        // to multiple 110% to ensure the enough buffer area
+        memberWidth = memberWidth * 1.1;
+
         return memberWidth > pageWidth;
     }
 

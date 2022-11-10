@@ -28,7 +28,7 @@ function _open_dialog(element: HTMLElement | string, id?: string): string {
 
     const childContainer = document.createElement("div");
     childContainer.id = dialogId;
-    childContainer.classList.add(...["ts_ui_dialog_in"]);
+    childContainer.classList.add(...["ts_ui_dialog_in", "ts_ui_100p"]);
     if (typeof element === "string") {
         childContainer.innerHTML = element;
     } else {
@@ -81,7 +81,7 @@ function initiation(): void {
 
     const div = document.createElement("div");
     div.id = TIANYU_SHELL_DIALOG_BASIC_ID;
-    div.classList.add(...["tianyu_shell_ui_dialog_mask", "ts_ui_dialog_mask"]);
+    div.classList.add(...["tianyu_shell_ui_dialog_mask", "ts_ui_dialog_mask", "ts_ui_100v"]);
     div.onclick = (ev: MouseEvent) => ev.stopPropagation();
     div.onmouseover = (ev: MouseEvent) => ev.stopPropagation();
     div.onmousedown = (ev: MouseEvent) => ev.stopPropagation();

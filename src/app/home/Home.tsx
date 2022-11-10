@@ -62,12 +62,13 @@ async function onHomePageIniting(): Promise<void> {
 
                                     root.render(
                                         <div>
-                                            <div className="h_rhn_c">
-                                                <ReactHorizontalNavigation
-                                                    props={navigationProps}
-                                                    source={navigationSource}
-                                                    fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>
-                                            </div>
+                                            {/* <div className="h_rhn_c">
+                                                
+                                            </div> */}
+                                            <ReactHorizontalNavigation
+                                                props={navigationProps}
+                                                source={navigationSource}
+                                                fontMap={Dependency.fontSizeMap}></ReactHorizontalNavigation>
                                             <ReactNavigationContent
                                                 default="/home"
                                                 router={navigationRouter}

@@ -60,6 +60,7 @@ interface ITianyuShellLanguage {
     addListener: (listener: string, callback: CallbackActionT<AreaCode>) => void;
     removeListener: (listener: string) => void;
     supportLanguage: string[];
+    pendingLanguage: string[];
 }
 
 type TianyuShellUIThemeColor = "light" | "dark";

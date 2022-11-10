@@ -6,7 +6,7 @@ export interface IMessageBundle {
     getText(key: string): string;
 }
 
-const emptyMsgBundle: IMessageBundle = {
+export const emptyMsgBundle: IMessageBundle = {
     getText: (key: string) => key,
 };
 

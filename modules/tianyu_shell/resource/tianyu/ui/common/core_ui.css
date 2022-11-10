@@ -1,3 +1,11 @@
+:root {
+  --ts_ui_background_zindex: 0;
+  --ts_ui_major_hover_zindex: 8000;
+  --ts_ui_major_base_zindex: 100;
+  --ts_ui_msg_zindex: 9000;
+  --ts_ui_dialog_zindex: 99999;
+}
+
 html {
   height: 100vh !important;
   width: 100%;
@@ -9,12 +17,20 @@ body {
   display: flex;
 
   margin: 0px;
-
-  /* user-select: none; */
 }
 
 .ts_ui_major {
-  z-index: 10;
+  z-index: var(--ts_ui_major_base_zindex);
+}
+
+.ts_ui_100v {
+  width: 100vw;
+  height: 100vh;
+}
+
+.ts_ui_100p {
+  width: 100%;
+  height: 100%;
 }
 
 .ts_ui_bg {
@@ -22,13 +38,13 @@ body {
   height: 100vh;
   position: absolute;
 
-  z-index: 0;
+  z-index: var(--ts_ui_background_zindex);
 
   background-color: var(--ts_ui_bgc);
 }
 
 .ts_ui_msg {
-  z-index: 30;
+  z-index: var(--ts_ui_msg_zindex);
 
   background-color: #ffffff00;
 }
