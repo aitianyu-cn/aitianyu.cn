@@ -1,0 +1,33 @@
+Folder: app
+    Page entry chunk - sync load
+
+Folder: i18n
+    Language source  - sync load / async load
+
+Folder: page
+    Html page source - initial
+
+Folder: public
+    Public resources - async load
+
+Folder: resource
+    Build resources  - async load
+
+Folder: shell
+            app      - async load (global only)
+            common   - async load (global) / sync load (internal)
+            ui
+                single-component - sync load / async load
+                depend-component - async load (global only)
+
+Folder: static
+    Public resources - async load / sync load (not recommend)
+
+
+app      -> [app, i18n, public, shell, static]
+i18n     -> []
+page     -> []
+public   -> []
+resource -> []
+shell    -> [shell, i18n, public, static]
+statc    -> []
