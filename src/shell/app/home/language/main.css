@@ -173,6 +173,22 @@
   }
 }
 
+@keyframes inner_page_enter {
+  0% {
+    /* transform: translate3d(0, -10%, 0); */
+    opacity: 0%;
+    transform: translate3d(0, -10%, 0);
+  }
+  50% {
+    opacity: 75%;
+    /* transform: translate3d(0, -3%, 0); */
+  }
+  100% {
+    opacity: 100%;
+    transform: translate3d(0, 0%, 0);
+  }
+}
+
 /* .language_tip_div :hover {
   box-shadow: 3px 5px 5px #646464;
 } */

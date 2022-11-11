@@ -1,3 +1,3 @@
 /**@format */
 
-export {};
+export { ErrorPage } from "./Error";

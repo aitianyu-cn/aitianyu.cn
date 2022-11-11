@@ -48,6 +48,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     assist: true,
                     index: -1,
                 },
+                "/theme": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_THEME"),
+                    icon: SOURCES.language,
+                    iconType: "inline",
+                    assist: true,
+                    index: -1,
+                },
             };
 
             resolve(value);

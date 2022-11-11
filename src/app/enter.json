@@ -1,6 +1,6 @@
 {
     "global/home": "home/Home.tsx",
-    "global/error": "error/Error.ts",
+    "global/error": "error/Error.tsx",
     "application/app": "app/Application.ts",
     "application/cloud": "app/cloud/CloudApp.ts",
     "admin/admin": "admin/Admin.ts"
