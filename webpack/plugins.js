@@ -38,7 +38,7 @@ function generatePlugin() {
     );
 
     if (development) {
-        _plugins.push(new BundleAnalyzerPlugin());
+        // _plugins.push(new BundleAnalyzerPlugin());
     }
 
     return _plugins;

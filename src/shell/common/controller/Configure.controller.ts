@@ -14,8 +14,8 @@ interface ITriggers<trigger_method> {
     [triggerTarget: string]: trigger_method;
 }
 
-export class Configure {
-    private static configObject: Configure | null = null;
+export class ConfigureController {
+    private static configObject: ConfigureController | null = null;
 
     private _Storage: InternalStorage;
 
@@ -53,17 +53,17 @@ export class Configure {
         tianyuShell.core.performance?.log.info(`Configure: fire a trigger - ${triggerName} with ${data.obj}`);
     }
 
-    public static generateConfigure(): Configure {
-        if (!Configure.configObject) {
-            Configure.configObject = new Configure();
+    public static generateConfigure(): ConfigureController {
+        if (!ConfigureController.configObject) {
+            ConfigureController.configObject = new ConfigureController();
         }
 
-        return Configure.configObject;
+        return ConfigureController.configObject;
     }
 
     public static initConfigure(): void {
-        if (!Configure.configObject) {
-            Configure.configObject = new Configure();
+        if (!ConfigureController.configObject) {
+            ConfigureController.configObject = new ConfigureController();
         }
     }
 }

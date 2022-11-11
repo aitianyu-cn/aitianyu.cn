@@ -1,7 +1,7 @@
 /**@format */
 
 import React from "react";
-import { Configure } from "tianyu-shell/common/utilities/ConfigureHelper";
+import { ConfigureController } from "tianyu-shell/common/controller/Configure.controller";
 import { require_msgbundle } from "ts-core/I18n";
 
 import "../css/request.waiting.css";
@@ -27,7 +27,7 @@ export class RequestWaiting extends React.Component<IRequestWaitingProperty, IRe
     }
 
     public componentDidMount(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.addTrigger("Request_Waiting_Timeout_Dialog_Cancel_Wait", this.onTimeoutCancel.bind(this));
         config.addTrigger("Request_Waiting_Timeout_Dialog_Continue_Wait", this.onTimeoutContinue.bind(this));
 
@@ -35,7 +35,7 @@ export class RequestWaiting extends React.Component<IRequestWaitingProperty, IRe
     }
 
     public componentWillUnmount(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.removeTrigger("Request_Waiting_Timeout_Dialog_Cancel_Wait");
         config.removeTrigger("Request_Waiting_Timeout_Dialog_Continue_Wait");
 
@@ -64,12 +64,12 @@ export class RequestWaiting extends React.Component<IRequestWaitingProperty, IRe
             window.clearTimeout(this.timer);
         }
 
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.trigger("Message_Dialog_Open", { obj: RequestWaitingTimeoutDialog });
     }
 
     private onTimeoutCancel(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.trigger("Message_Dialog_Close", { obj: "Dynamic Page Timeout Cancel" });
         config.trigger("Request_Waiting_Timeout_Cancel", { obj: "" });
 
@@ -77,7 +77,7 @@ export class RequestWaiting extends React.Component<IRequestWaitingProperty, IRe
     }
 
     private onTimeoutContinue(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.trigger("Message_Dialog_Close", { obj: "Dynamic Page Timeout Cancel" });
 
         this.timer = window.setTimeout(this.onWaitTimeout.bind(this), this.Overtime);

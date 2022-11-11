@@ -1,7 +1,7 @@
 /**@format */
 
 import React from "react";
-import { Configure } from "tianyu-shell/common/utilities/ConfigureHelper";
+import { ConfigureController } from "tianyu-shell/common/controller/Configure.controller";
 import { FeatureToggle } from "ts-core/FeatureToggle";
 import { guid } from "ts-core/Guid";
 
@@ -152,7 +152,7 @@ export abstract class ReactDynamicPage<T extends IReactDynamicPageProperty> exte
     }
 
     public componentDidMount(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.addTrigger("Request_Waiting_Timeout_Cancel", this.onWaitingCancel.bind(this));
 
         this.componmentMounted();
@@ -174,7 +174,7 @@ export abstract class ReactDynamicPage<T extends IReactDynamicPageProperty> exte
     }
 
     public componentWillUnmount(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         config.removeTrigger("Request_Waiting_Timeout_Cancel");
 
         this.componmentWillUnmounted();
@@ -210,7 +210,7 @@ export abstract class ReactDynamicPage<T extends IReactDynamicPageProperty> exte
                 this.loadDataSuccess();
             }
 
-            const config = Configure.generateConfigure();
+            const config = ConfigureController.generateConfigure();
             const storage = config.getStorage();
             storage.setValue(this.sPageKey, this.oReceive, true);
 
@@ -242,7 +242,7 @@ export abstract class ReactDynamicPage<T extends IReactDynamicPageProperty> exte
         if (this.staticCache) {
             cacheValue = window.localStorage[this.sPageKey];
         } else {
-            const config = Configure.generateConfigure();
+            const config = ConfigureController.generateConfigure();
             const storage = config.getStorage();
 
             cacheValue = storage.getValue(this.sPageKey);
@@ -279,7 +279,7 @@ export abstract class ReactDynamicPage<T extends IReactDynamicPageProperty> exte
     }
 
     private flushCache(): void {
-        const config = Configure.generateConfigure();
+        const config = ConfigureController.generateConfigure();
         const storage = config.getStorage();
 
         storage.updateStamp(this.sPageKey);
