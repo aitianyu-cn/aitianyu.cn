@@ -8,7 +8,7 @@
         "theme": {
             "default": {
                 "theme": "tianyu_mono",
-                "color": 0
+                "color": 1
             }
         }
     }
