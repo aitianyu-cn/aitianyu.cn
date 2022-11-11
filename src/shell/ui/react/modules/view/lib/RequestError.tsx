@@ -6,6 +6,9 @@ import { isMobile } from "ts-core/RuntimeHelper";
 
 import "../css/request.error.css";
 
+const ErrorImgDark = require("./res/error_widget_refresh-dark.gif").default;
+const ErrorImgLight = require("./res/error_widget_refresh-light.gif").default;
+
 export interface IRequestErrorProperty {}
 
 export class RequestError extends React.Component<IRequestErrorProperty, IReactState> {
@@ -24,11 +27,15 @@ export class RequestError extends React.Component<IRequestErrorProperty, IReactS
 
     public render(): React.ReactNode {
         const messageBundle = require_msgbundle("view", "modules");
+        const themeColor =
+            (tianyuShell.core.ui?.theme.custom.theme && tianyuShell.core.ui?.theme.custom.color) ||
+            tianyuShell.core.ui?.theme.default.color ||
+            "dark";
         return (
             <div className="request_error_base">
                 <img
                     className={isMobile() ? "request_error_page_img_mob" : "request_error_page_img"}
-                    src="assert/anim/refresh.gif"
+                    src={themeColor === "dark" ? ErrorImgDark : ErrorImgLight}
                     alt={messageBundle.getText("REQUEST_ERROR_PAGE_IMG_ALT")}
                     onClick={this.onRefreshClick}
                 />

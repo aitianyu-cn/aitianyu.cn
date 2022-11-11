@@ -4,10 +4,12 @@ import React from "react";
 import { isMobile } from "ts-core/RuntimeHelper";
 import { IHomeAboutItem, IHomeFrameProperty } from "./HomeFrame.model";
 import { require_msgbundle } from "ts-core/I18n";
-import { areaCodeToString } from "ts-core/AreaHelper";
+import { Language } from "ts-core/Language";
 
 import "./css/home.main.css";
 import "./css/footer.main.css";
+
+const messageBundle = require_msgbundle("home", "app");
 
 export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> {
     private oSource: any;
@@ -16,6 +18,8 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
         super(props);
 
         this.oSource = {};
+
+        document.title = messageBundle.getText("HOME_PAGE_GLOBAL_TITLE");
     }
     public render(): React.ReactNode {
         return this.renderNormal();
@@ -27,7 +31,6 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
             <div className="page_home_main_def_baseGrid">
                 {this.renderHeader()}
                 <div className="page_home_main_def_base_container">
-                    {/* {items.length && isMobile && <p>{messageBundle.getTextText("HOME_PAGE_MOB_ABOUT_TIANYU")}</p>} */}
                     {<section className="page_home_main_def_section_projects_summary">{items.length ? items : ""}</section>}
                     <section></section>
                     <div className="page_home_main_def_inner_container">{this.renderEmtpy()}</div>
@@ -42,12 +45,11 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
     }
 
     private renderHeader(): React.ReactNode {
-        const messageBundle = require_msgbundle("home", "app");
         const themeColor =
             (tianyuShell.core.ui?.theme.custom.theme && tianyuShell.core.ui?.theme.custom.color) ||
             tianyuShell.core.ui?.theme.default.color ||
             "dark";
-        const language = !!!tianyuShell.core.language ? "default" : areaCodeToString(tianyuShell.core.language.get());
+        const language = tianyuShell.core.runtime?.environment !== "production" ? "default" : Language.toString();
         const homePageImg = require(`tianyu-res/home/logo/aitianyu.logo.${language}_${themeColor}.gif`).default;
 
         return (
@@ -78,7 +80,6 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
     }
 
     private renderEmtpy(): React.ReactNode {
-        const messageBundle = require_msgbundle("home", "app");
         return (
             <div>
                 <div>{messageBundle.getText("HOME_PAGE_HOME_FRAME_HOME_PAGE_SOURCE_EMPTY")}</div>
@@ -107,7 +108,6 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
 }
 
 function Footer(): JSX.Element {
-    const messageBundle = require_msgbundle("home", "app");
     return (
         <div id="Footer">
             <div className="footerContent_spile_line"></div>

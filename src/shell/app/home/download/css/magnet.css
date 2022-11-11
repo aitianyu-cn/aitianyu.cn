@@ -1,5 +1,5 @@
 .magnet_tip_main_container {
-  background-color: #ffffff;
+  background-color: var(--ts_ui_blk_7);
   border-radius: 5px;
   height: max-content;
   width: 100%;
@@ -10,6 +10,8 @@
   margin-bottom: 10px;
 
   display: block;
+
+  box-shadow: var(--ts_ui_content_bgc) 0px 0px 20px;
 }
 
 .magnet_tip_main_container_inner {
@@ -33,14 +35,14 @@
 
   border-radius: 5px 5px 0 0;
 
-  border-color: #dfdfdf;
+  border-color: var(--ts_ui_blk_5);
 
   border-width: 0 0 1.5px 0;
   border-style: solid;
 }
 
 .magnet_tip_project_link_container_mob {
-  background-color: #e7e7e7;
+  background-color: var(--ts_ui_blk_5);
 }
 
 .magnet_tip_project_link {
@@ -84,7 +86,7 @@
 
   margin-left: 10px;
 
-  color: #545454;
+  color: var(--ts_ui_blk_2);
 }
 
 .magnet_tip_project_des {
@@ -111,16 +113,10 @@
   overflow: hidden;
   text-align: left;
 
-  color: #5a5a5a76;
+  color: var(--ts_ui_blk_4);
 }
 
 .magnet_tip_project_link_container:hover {
-  /* background-color: #e7e7e7;
-
-  opacity: 80%;
-
-  box-shadow: 0px 3px 5px #646464; */
-
   animation: magnet_tip_project_link_container_hover 0.35s forwards;
 }
 
@@ -157,7 +153,7 @@
   align-items: center;
   align-content: center;
 
-  color: #393939ba;
+  color: var(--ts_ui_blk_4);
 
   user-select: none;
 }

@@ -164,7 +164,7 @@ async function initiation(): Promise<void> {
     }
 
     // to load configure file
-    const config = await _loadStaticFile("configuration.json");
+    const config = require("ts-static/configuration.json");
     if (config) {
         tianyuShell.core.runtime = {
             console: !!config.runtime?.console,

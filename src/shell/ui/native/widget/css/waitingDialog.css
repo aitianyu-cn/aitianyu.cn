@@ -14,7 +14,7 @@
 }
 
 .wait_dialog_t {
-  color: #828282;
+  color: var(--ts_ui_blk_4);
   margin-left: auto;
   margin-right: auto;
 
@@ -29,7 +29,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   opacity: 0%;
 
   animation: wait_dialog_b_a 2.5s infinite;

@@ -3,10 +3,12 @@
 import React from "react";
 import { ConfigureController } from "tianyu-shell/common/controller/Configure.controller";
 import { require_msgbundle } from "ts-core/I18n";
-
-import "../css/request.waiting.css";
 import { RequestWaitingTimeoutDialog } from "../res/RequestWaitingTimeOut";
 
+import "../css/request.waiting.css";
+
+const WaitingDialogImgDark = require("./res/waiting-dark.gif").default;
+const WaitingDialogImgLight = require("./res/waiting-light.gif").default;
 const DefaultWaitingOvertime = 30000;
 
 export interface IRequestWaitingProperty {}
@@ -47,11 +49,15 @@ export class RequestWaiting extends React.Component<IRequestWaitingProperty, IRe
 
     public render(): React.ReactNode {
         const messageBundle = require_msgbundle("view", "modules");
+        const themeColor =
+            (tianyuShell.core.ui?.theme.custom.theme && tianyuShell.core.ui?.theme.custom.color) ||
+            tianyuShell.core.ui?.theme.default.color ||
+            "dark";
         return (
             <div className="request_waiting_base">
                 <img
                     className="request_waiting_base_ai"
-                    src="assert/anim/waiting.gif"
+                    src={themeColor === "dark" ? WaitingDialogImgDark : WaitingDialogImgLight}
                     alt={messageBundle.getText("REQUEST_WAITING_PAGE_ALT")}
                 />
                 <h4 className="request_waiting_base_text">{messageBundle.getText("REQUEST_WAITING_PAGE_TEXT")}</h4>

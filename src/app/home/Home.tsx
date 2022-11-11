@@ -22,7 +22,10 @@ function onDependencyLoadFailed(fnResolve: CallbackAction): void {
 async function onHomePageIniting(): Promise<void> {
     return new Promise<void>((resolve) => {
         import("./DependencyLoader").then((Dependency) => {
-            Dependency.loadFeatureToggle("/remote-connection/global/feature/getFeatures", true).then(
+            Promise.all([
+                Dependency.loadLanguages("/remote-connection/resources/i18n/languages.json", true),
+                Dependency.loadFeatureToggle("/remote-connection/global/feature/getFeatures", true),
+            ]).then(
                 () => {
                     Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
                     Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);

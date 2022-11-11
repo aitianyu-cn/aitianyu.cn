@@ -59,7 +59,7 @@ export class ReactNavigationContent extends React.Component<IReactContentPropert
         return (
             <div className="r_n_c_b" style={this.props.style}>
                 <div className="r_n_c_e"></div>
-                {this.renderComponent()}
+                <div className="r_n_c_c">{this.renderComponent()}</div>
             </div>
         );
     }

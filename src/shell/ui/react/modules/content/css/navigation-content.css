@@ -17,6 +17,11 @@
   width: 100%;
 }
 
+.r_n_c_c {
+  height: calc(100vh - 50px);
+  width: 100%;
+}
+
 @keyframes r_n_c_b_in {
   0% {
     transform: translate3d(0, -100%, 0);

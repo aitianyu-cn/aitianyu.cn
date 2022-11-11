@@ -1,0 +1,55 @@
+HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=Loading Please wait...
+
+###########################################################################
+# global message
+###########################################################################
+
+HOME_PAGE_GLOBAL_TITLE=个人编程学习
+HOME_PAGE_NAVIGATION_TITLE=AiTianyu.cn
+HOME_PAGE_NAVIGATION_HOME=Home
+HOME_PAGE_NAVIGATION_DOWNLOAD=Download
+HOME_PAGE_NAVIGATION_DOCUMENT=Document
+HOME_PAGE_NAVIGATION_LANGUAGE=Language
+HOME_PAGE_NAVIGATION_THEME=Theme
+
+###########################################################################
+# homepage - home message
+###########################################################################
+
+HOME_PAGE_HOME_FRAME_COPYRIGHT_TEXT=Copy Right
+HOME_PAGE_HOME_FRAME_EMAIL_TEXT=E-mail
+HOME_PAGE_HOME_FRAME_CONTACT_US=Contact Us
+HOME_PAGE_HOME_FRAME_LOOKING_FORWARD_CONTACT=Looking Forward to Communicating With You
+HOME_PAGE_HOME_FRAME_HOME_PAGE_SOURCE_EMPTY=No item found at present~ Please come back later~
+HOME_PAGE_HOME_FRAME_HOME_PAGE_DESCRIPTION=Open source native development library and peripheral tools
+
+###########################################################################
+# homepage - download message
+###########################################################################
+
+HOME_PAGE_DOWNLOAD_TITLE=Project - Resource
+HOME_PAGE_DOWNLOAD_FRAME_DOWNLOAD_INVALID=The current project does not provide download resources, please visit Github for more resources.
+HOME_PAGE_DOWNLOAD_FRAME_DATA_LOADING=Data loading...
+HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=There are currently no resources available for download
+
+###########################################################################
+# homepage - document message
+###########################################################################
+
+HOME_PAGE_DOCUMENT_TITLE=Docs - Help
+
+###########################################################################
+# homepage - language message
+###########################################################################
+
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE=Change Language
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_INTERNAL_TITLE=Languages
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_SUPPORT_TITLE=The following languages are supported in Tianyu
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_TITLE=Working
+HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER=The language is being adapted and is not currently supported.
+
+###########################################################################
+# homepage - theme message
+###########################################################################
+
+HOME_PAGE_LANGUAGE_FRAME_THEME_TITLE=Theme Center

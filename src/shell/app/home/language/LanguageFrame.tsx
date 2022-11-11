@@ -1,8 +1,10 @@
 /**@format */
 
 import React from "react";
+import { go, pageRefresh } from "tianyu-shell/common/utilities/PageHelper";
 import { parseAreaString } from "ts-core/AreaHelper";
 import { require_msgbundle } from "ts-core/I18n";
+import { Language } from "ts-core/Language";
 
 import "./main.css";
 
@@ -13,6 +15,7 @@ const languageSupportSource: any = {
     pending: tianyuShell.core.language?.pendingLanguage,
 };
 const messageBundle = require_msgbundle("home", "app");
+const languageMessageBundle = require_msgbundle("language-list");
 
 export class LanguageFrame extends React.Component<ILanguageProperty, IReactState> {
     public constructor(props: ILanguageProperty) {
@@ -33,7 +36,9 @@ export class LanguageFrame extends React.Component<ILanguageProperty, IReactStat
             <div className="language_base_grid">
                 <div className="language_start_empty_div_title"></div>
                 <div className="language_base_container">
-                    <div className="language_title_div">{messageBundle.getText("HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE")}</div>
+                    <div className="language_title_div">
+                        {messageBundle.getText("HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_INTERNAL_TITLE")}
+                    </div>
                     <div className="language_start_empty_div"></div>
                     <div className="language_supported_content">
                         <div className="language_supported_title">
@@ -75,9 +80,11 @@ export class LanguageFrame extends React.Component<ILanguageProperty, IReactStat
     }
 
     private createLanguageTip(language: string, isSupport: boolean): React.ReactNode {
-        const languageName = messageBundle.getText(`HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_${language}`);
+        const languageName = languageMessageBundle.getText(`LANGUAGE_${language}`);
         const fnChangeLanguage = () => {
-            tianyuShell.core.language?.set(parseAreaString(language));
+            Language.set(parseAreaString(language));
+            pageRefresh();
+            // go("");
         };
 
         return (

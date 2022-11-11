@@ -2,10 +2,8 @@
 
 import React from "react";
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
-import { WaitingDialog } from "tianyu-shell/ui/native/widget/WaitingDialog";
 import { FetchFileLoader } from "ts-core/FileLoader";
 import { emptyMsgBundle, IMessageBundle, require_msgbundle } from "ts-core/I18n";
-import { CallbackAction } from "ts-core/Types";
 import {
     IDownloadBinarySource,
     IDownloadFrameProperty,
@@ -14,9 +12,12 @@ import {
 } from "./DownloadFrame.model";
 import { DownloadMagnet } from "./DownloadMagnet";
 import "./css/main.css";
+import { Language } from "ts-core/Language";
+import { ReactWaiting } from "tianyu-shell/ui/react/widget/control/ReactWaiting";
 
-const DOWNLOAD_BACKEND_DATA_I18N = "remote-connection/resources/i18n/international_zh_CN.json";
+const DOWNLOAD_BACKEND_DATA_I18N = "remote-connection/resources/i18n/international";
 const DOWNLOAD_BACKEND_DATA_SOURCE = "remote-connection/project_download/downloadbrowser";
+const messageBundle = require_msgbundle("home", "app");
 
 class CustomLanguageBundle implements IMessageBundle {
     private source: any;
@@ -34,42 +35,36 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
     private language: IMessageBundle;
     private isLoaded: boolean;
 
-    private fnDataLoadResolve!: CallbackAction;
-    private fnDataLoadReject!: CallbackAction;
+    // private fnDataLoadResolve!: CallbackAction;
+    // private fnDataLoadReject!: CallbackAction;
+
+    private i18nName: string;
 
     public constructor(props: IDownloadFrameProperty) {
         super(props);
 
-        const cachedI18n = CacheController.get(DOWNLOAD_BACKEND_DATA_I18N);
+        const production = tianyuShell.core.runtime?.environment === "production";
+        const language = production ? Language.toString() : "zh_CN";
+        this.i18nName = `${DOWNLOAD_BACKEND_DATA_I18N}_${language}.json`;
+
+        const cachedI18n = CacheController.get(this.i18nName);
         this.language = (cachedI18n && new CustomLanguageBundle(cachedI18n)) || emptyMsgBundle;
         this.isLoaded = false;
 
-        if (!!cachedI18n && !!this.getReceiveData()) {
-            const messageBundle = require_msgbundle("home", "app");
-            WaitingDialog.withDialog(() => {
-                return new Promise<void>((resolve, reject) => {
-                    this.fnDataLoadResolve = resolve;
-                    this.fnDataLoadReject = reject;
-                });
-            }, messageBundle.getText("HOME_PAGE_DOWNLOAD_FRAME_DATA_LOADING"));
-        } else {
-            this.fnDataLoadResolve = () => undefined;
-            this.fnDataLoadReject = () => undefined;
-        }
+        document.title = messageBundle.getText("HOME_PAGE_DOWNLOAD_TITLE");
     }
 
     public override componentDidMount(): void {
         this.isLoaded = true;
 
         if (!!this.getReceiveData() && this.isLoaded) {
-            this.fnDataLoadResolve();
             return;
         }
 
-        const cachedI18n = CacheController.get(DOWNLOAD_BACKEND_DATA_I18N);
+        const cachedI18n = CacheController.get(this.i18nName);
 
         const fileLoader = new FetchFileLoader(DOWNLOAD_BACKEND_DATA_SOURCE);
-        const i18nLoader = new FetchFileLoader(DOWNLOAD_BACKEND_DATA_I18N);
+        const i18nLoader = new FetchFileLoader(this.i18nName);
 
         Promise.all([cachedI18n ? Promise.resolve() : fileLoader.openAsync(), i18nLoader.openAsync()]).then((value: any[]) => {
             const source = fileLoader.getResponse();
@@ -77,14 +72,11 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
 
             this.language = new CustomLanguageBundle(i18n);
             if (!!!cachedI18n) {
-                CacheController.cache(DOWNLOAD_BACKEND_DATA_I18N, i18n);
+                CacheController.cache(this.i18nName, i18n);
             }
             if (source) {
                 CacheController.cache(DOWNLOAD_BACKEND_DATA_SOURCE, source);
-            } else {
-                this.fnDataLoadReject();
             }
-            this.fnDataLoadResolve();
 
             this.forceUpdate();
         });
@@ -127,18 +119,20 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
     }
 
     private renderLoading(): React.ReactNode {
-        const messageBundle = require_msgbundle("home", "app");
         return (
-            <div className="empty_download_outter">
-                <div className="empty_download_inner">
-                    <h1>{messageBundle.getText("HOME_PAGE_DOWNLOAD_FRAME_DATA_LOADING")}</h1>
+            <div className="download_base test_bbbbb">
+                <div className="download_baseGrid">
+                    <div className="download_replace download_replace_1"></div>
+                    <div className="download_content test_iiiiii">
+                        <ReactWaiting />
+                    </div>
+                    <div className="download_replace download_replace_2"></div>
                 </div>
             </div>
         );
     }
 
     private renderEmpty(): React.ReactNode {
-        const messageBundle = require_msgbundle("home", "app");
         return (
             <div className="empty_download_outter">
                 <div className="empty_download_inner">

@@ -65,32 +65,6 @@ function _reset_theme(): void {
     }
 }
 
-function _set_default_theme() {
-    tianyuShell.core.cache.static.load("configuration.json").then((configuration: any) => {
-        const theme: string = configuration?.ui?.theme?.default?.theme;
-        const color: TianyuShellUIThemeColor = configuration?.ui?.theme?.default?.color === 1 ? "light" : "dark";
-
-        // to set default theme
-        const defaultTheme = document.createElement("link");
-        defaultTheme.href = `/static/theme/${theme}_${color}.css`;
-        defaultTheme.rel = "stylesheet";
-        defaultTheme.type = "text/css";
-        defaultTheme.id = TianyuShellUIThemeDefaultID;
-
-        document.head.appendChild(defaultTheme);
-
-        if (tianyuShell.core.ui) {
-            tianyuShell.core.ui.theme.default.valid = true;
-            tianyuShell.core.ui.theme.default.theme = theme;
-            tianyuShell.core.ui.theme.default.color = color;
-        }
-
-        // here to upload the set custom theme
-        // to ensure the default theme is loaded first
-        _init_customer_theme_from_cookie();
-    });
-}
-
 function _get_custom_theme(): string[] {
     return _customThemeList.concat();
 }
@@ -167,9 +141,8 @@ export const theme: ITianyuShellCoreUITheme = {
  *
  * @returns {void}
  */
-export async function initUIBase(): Promise<void> {
+export function initUIBase(): void {
     if (!!tianyuShell.core.ui) {
-        tianyuShell.core.ui.theme = theme;
         return;
     }
 
@@ -177,9 +150,29 @@ export async function initUIBase(): Promise<void> {
         theme: theme,
     };
 
-    const configuration = await tianyuShell.core.cache.static.load("configuration.json");
+    const configuration = require("ts-static/configuration.json");
     const themeDefaultConfig = configuration?.ui?.theme?.default;
     if (themeDefaultConfig && themeDefaultConfig.theme) {
-        _set_default_theme();
+        const theme: string = configuration?.ui?.theme?.default?.theme;
+        const color: TianyuShellUIThemeColor = configuration?.ui?.theme?.default?.color === 1 ? "light" : "dark";
+
+        // to set default theme
+        const defaultTheme = document.createElement("link");
+        defaultTheme.href = `/static/theme/${theme}_${color}.css`;
+        defaultTheme.rel = "stylesheet";
+        defaultTheme.type = "text/css";
+        defaultTheme.id = TianyuShellUIThemeDefaultID;
+
+        document.head.appendChild(defaultTheme);
+
+        if (tianyuShell.core.ui) {
+            tianyuShell.core.ui.theme.default.valid = true;
+            tianyuShell.core.ui.theme.default.theme = theme;
+            tianyuShell.core.ui.theme.default.color = color;
+        }
+
+        // here to upload the set custom theme
+        // to ensure the default theme is loaded first
+        _init_customer_theme_from_cookie();
     }
 }

@@ -75,7 +75,9 @@ const Language = {
             return;
         }
 
-        tianyuShell.core.cookie.set(LANGUAGE_COOKIE_ID, areaString);
+        const date = new Date(Date.now());
+        const expires = new Date(date.setDate(date.getDate() + 30));
+        tianyuShell.core.cookie.set(LANGUAGE_COOKIE_ID, areaString, undefined, undefined, expires);
 
         if (eventSync) {
             _invokeListener(language).finally(() => {

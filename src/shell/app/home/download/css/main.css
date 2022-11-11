@@ -167,24 +167,26 @@
 
   max-width: 900px;
 
-  /* background-color: black; */
-
   align-items: center;
   align-content: center;
   text-align: center;
 
-  /* flex-flow: wrap;
-  flex-wrap: wrap; */
-
   grid-column: 2;
 
   border-radius: 5px;
+}
 
-  box-shadow: var(--ts_ui_content_bgc) 0px 5px 20px;
+.test_bbbbb {
+  height: 100%;
+}
+
+.test_iiiiii {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .empty_download_outter {
-  height: 100px;
+  height: 100% !important;
   width: 100%;
 
   text-align: center;

@@ -12,8 +12,8 @@ export const emptyMsgBundle: IMessageBundle = {
 
 export function require_msgbundle(file: string, project: string = "global"): IMessageBundle {
     try {
-        const configure = tianyuShell.core.cache.static.get("configuration.json");
-        if (configure?.value?.environment === "production") {
+        const configure = require("ts-static/configuration.json");
+        if (configure?.environment === "production") {
             return require(`tianyu-i18n/${project}/${file}_${Language.toString()}.msgbundle`);
         }
         return require(`tianyu-i18n/${project}/${file}.msgbundle`);

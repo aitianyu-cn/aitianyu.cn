@@ -1,11 +1,10 @@
 /**@format */
 
 import { guid } from "ts-core/Guid";
-import { MapOfBoolean, MapOfString } from "ts-core/Types";
-import { initUIBase, theme } from "./Utilities";
+import { MapOfBoolean } from "ts-core/Types";
+import { TIANYU_SHELL_DIALOG_BASIC_ID } from "ts-core/UI";
 
 import "./common/dialog.css";
-import { TIANYU_SHELL_DIALOG_BASIC_ID } from "ts-core/UI";
 
 interface IDialogInformation {
     opened: boolean;
@@ -66,18 +65,13 @@ function _is_dialog_opened(): boolean {
 }
 
 function initiation(): void {
-    initUIBase();
-
-    if (!!!tianyuShell.core.ui) {
-        tianyuShell.core.ui = {
-            theme: theme,
+    if (tianyuShell.core.ui) {
+        tianyuShell.core.ui.dialog = {
+            open: _open_dialog,
+            close: _close_dialog,
+            isOpen: _is_dialog_opened,
         };
     }
-    tianyuShell.core.ui.dialog = {
-        open: _open_dialog,
-        close: _close_dialog,
-        isOpen: _is_dialog_opened,
-    };
 
     const div = document.createElement("div");
     div.id = TIANYU_SHELL_DIALOG_BASIC_ID;

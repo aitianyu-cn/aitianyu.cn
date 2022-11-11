@@ -2,7 +2,6 @@
 
 import { guid } from "ts-core/Guid";
 import { CallbackAction, IMessageOptions, MapOfType } from "ts-core/Types";
-import { initUIBase, theme } from "./Utilities";
 
 interface IMessage {
     id: string;
@@ -121,14 +120,9 @@ const Message = {
 };
 
 function initiation(): void {
-    initUIBase();
-
-    if (!!!tianyuShell.core.ui) {
-        tianyuShell.core.ui = {
-            theme: theme,
-        };
+    if (tianyuShell.core.ui) {
+        tianyuShell.core.ui.message = Message;
     }
-    tianyuShell.core.ui.message = Message;
 
     const div = document.createElement("div");
     div.classList.add("ts_ui_msg");

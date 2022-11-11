@@ -1,6 +1,7 @@
 /**@format */
 
 export { loadFeatureToggle } from "tianyu-shell/common/controller/FeatureToggle.controller";
+export { loadLanguages } from "tianyu-shell/common/controller/Language.controller";
 export {
     REACT_NAVIGATION_DEVELOP_TOGGLE,
     REACT_NAVIGATION_PERFORMANCE_TOGGLE,

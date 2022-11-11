@@ -1,0 +1,35 @@
+ERROR_PAGE_TITLE_400=Error Request
+ERROR_PAGE_TITLE_403=Forbidden
+ERROR_PAGE_TITLE_404=Not Found
+ERROR_PAGE_TITLE_500=Internal Server Error
+ERROR_PAGE_TITLE_502=Bad Gateway
+ERROR_PAGE_TITLE_503=Service Unavailable
+
+ERROR_PAGE_INF_400=Yeah?
+ERROR_PAGE_INF_403=Note!
+ERROR_PAGE_INF_404=Yee?
+ERROR_PAGE_INF_500=Uh-Oh!
+ERROR_PAGE_INF_502=Oops~
+ERROR_PAGE_INF_503=Hee~
+
+ERROR_PAGE_INF_400_DES=Something seems to be wrong!
+ERROR_PAGE_INF_403_DES=Can't get in here!
+ERROR_PAGE_INF_404_DES=Something seems to be wrong
+ERROR_PAGE_INF_500_DES=I have a headache ~~~
+ERROR_PAGE_INF_502_DES=There seems to be a wall here!
+ERROR_PAGE_INF_503_DES=I'm too busy right now!!!
+
+
+ERROR_PAGE_INF_400_OP1=Data type requested I can't process for now...
+ERROR_PAGE_INF_403_OP1=This is the wrong place for you./(ㄒoㄒ)/~~
+ERROR_PAGE_INF_404_OP1=I cannot find the current data you requested or I do not have the access permission
+ERROR_PAGE_INF_500_OP1=Please come back to me later!
+ERROR_PAGE_INF_502_OP1=I can't open this door!
+ERROR_PAGE_INF_503_OP1=Please take a break for a cup of tea or coffee~
+
+ERROR_PAGE_INF_400_OP2=Please check your requested information yo ^_v_^
+ERROR_PAGE_INF_403_OP2=Please renew your license and try again v_v
+ERROR_PAGE_INF_404_OP2=You can try other pages or other data ^_v_^
+ERROR_PAGE_INF_500_OP2=I need to get my boss to help me (≧﹏ ≦)
+ERROR_PAGE_INF_502_OP2=Again please try another entry ^_v_^
+ERROR_PAGE_INF_503_OP2=I'll get back to you when I'm free (☆▽☆)

@@ -2,19 +2,23 @@
 
 const COMMON_TITLE = "Error-Page";
 const BASIC_TEMPLATE_FILE = "error/error.html";
-const ERROR_PAGE_CHUNKS = ["global/error"];
+const ERROR_PAGE_CHUNKS = "global/error";
 const ERROR_PAGE_PATH = "global/error";
 const ERROR_PAGE_ICON = "";
 
 const ERROR_CODES = {
-    404: {
+    400: {
         from: [
             {
-                regexp: /./,
-                hash: 404,
+                regexp: /^\/error\/400$/,
+                hash: "",
             },
+        ],
+    },
+    403: {
+        from: [
             {
-                regexp: /^\/error\/404$/,
+                regexp: /^\/error\/403$/,
                 hash: "",
             },
         ],
@@ -30,7 +34,27 @@ const ERROR_CODES = {
     502: {
         from: [
             {
-                regexp: /^\/error\/402$/,
+                regexp: /^\/error\/502$/,
+                hash: "",
+            },
+        ],
+    },
+    503: {
+        from: [
+            {
+                regexp: /^\/error\/503$/,
+                hash: "",
+            },
+        ],
+    },
+    404: {
+        from: [
+            {
+                regexp: /./,
+                hash: 404,
+            },
+            {
+                regexp: /^\/error\/404$/,
                 hash: "",
             },
         ],
@@ -47,7 +71,7 @@ module.exports = function () {
             title: COMMON_TITLE,
             template: BASIC_TEMPLATE_FILE,
             filename: `${ERROR_PAGE_PATH}/${errorCode}.html`,
-            chunks: ERROR_PAGE_CHUNKS,
+            chunks: [`${ERROR_PAGE_CHUNKS}_${errorCode}`],
             from: ERROR_CODES[errorCode].from || [],
             errorCode: errorCode,
             favicon: ERROR_PAGE_ICON,

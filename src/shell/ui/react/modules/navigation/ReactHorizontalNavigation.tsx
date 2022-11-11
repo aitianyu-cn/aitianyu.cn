@@ -169,7 +169,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
         let iosMenuIcon: string = "";
         if (iosMode) {
             const themeColor =
-                (tianyuShell.core.ui?.theme.custom.theme && tianyuShell.core.ui?.theme.custom.color) ||
+                (tianyuShell.core.ui?.theme.custom.valid && tianyuShell.core.ui?.theme.custom.color) ||
                 tianyuShell.core.ui?.theme.default.color ||
                 "dark";
             iosMenuIcon =

@@ -114,7 +114,7 @@ const featureToggleBase: ITianyuShellFeatureToggle = {
 async function initiation(): Promise<void> {
     tianyuShell.core.featureToggle = featureToggleBase;
 
-    const configure = await tianyuShell.core.cache.static.load("configuration.json");
+    const configure = require("ts-static/configuration.json");
     featureToggleBase.addFeature("TIANYU_SHELL_CONSOLE_LOG");
     if (configure?.environment === "development") {
         featureToggleBase.enable("TIANYU_SHELL_CONSOLE_LOG");
