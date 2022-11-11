@@ -60,7 +60,7 @@ module.exports = {
         ignored: webpackEnvSetting.watchOptions.ignore,
     },
     devServer: devServer.generator(
-        { dir: baseDir, port: checkNumeric(webpackEnvSetting.devServer.port) || 1000 },
+        { dir: baseDir, port: checkNumeric(webpackEnvSetting.devServer.port) || 1000, host: webpackEnvSetting.devServer.host },
         pagesAndEntries.fallback,
     ),
     performance: {

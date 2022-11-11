@@ -41,6 +41,7 @@ module.exports.generator = function getDevServer(option, fallback) {
         static: devServerStatic(dir),
         host: devHost,
         port: devPort,
+        allowedHosts: "all",
     };
 
     return config;
