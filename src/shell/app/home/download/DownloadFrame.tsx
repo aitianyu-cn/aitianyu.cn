@@ -62,11 +62,15 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
         }
 
         const cachedI18n = CacheController.get(this.i18nName);
+        const cachedData = CacheController.get(DOWNLOAD_BACKEND_DATA_SOURCE);
 
-        const fileLoader = new FetchFileLoader(DOWNLOAD_BACKEND_DATA_SOURCE);
         const i18nLoader = new FetchFileLoader(this.i18nName);
+        const fileLoader = new FetchFileLoader(DOWNLOAD_BACKEND_DATA_SOURCE);
 
-        Promise.all([cachedI18n ? Promise.resolve() : fileLoader.openAsync(), i18nLoader.openAsync()]).then((value: any[]) => {
+        Promise.all([
+            cachedI18n ? Promise.resolve() : i18nLoader.openAsync(),
+            cachedData ? Promise.resolve() : fileLoader.openAsync(),
+        ]).then((value: any[]) => {
             const source = fileLoader.getResponse();
             const i18n = cachedI18n || i18nLoader.getResponse();
 
