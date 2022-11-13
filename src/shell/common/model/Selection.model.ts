@@ -11,4 +11,8 @@ export interface ISingleSelectorGroup {
     join(unselectTrigger: CallbackAction, name?: string): ISingleSelector;
 }
 
+export interface ISingleSelectorController extends ISingleSelectorGroup {
+    selectedItem(): string;
+}
+
 export interface IMultiSelectorGroup {}

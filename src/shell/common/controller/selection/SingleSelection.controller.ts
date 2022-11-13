@@ -1,20 +1,20 @@
 /**@format */
 
-import { ISingleSelector, ISingleSelectorGroup } from "tianyu-shell/common/model/Selection.model";
+import { ISingleSelector, ISingleSelectorController } from "tianyu-shell/common/model/Selection.model";
 import { TianyuShellMultipleInstanceException } from "ts-core/ExceptionBase";
 import { guid } from "ts-core/Guid";
 import { CallbackAction, MapOfType } from "ts-core/Types";
 
-interface ISingleSelectorController {
+interface ISingleSelectorItemController {
     select(selectorId: string): boolean;
     leave(selectorId: string): void;
 }
 
 class SingleSelector implements ISingleSelector {
     private id: string;
-    private group: ISingleSelectorController;
+    private group: ISingleSelectorItemController;
 
-    public constructor(id: string, group: ISingleSelectorController) {
+    public constructor(id: string, group: ISingleSelectorItemController) {
         this.id = id;
         this.group = group;
     }
@@ -32,14 +32,14 @@ interface ISingleSelectorControllerSelectorMap {
     unselectTriggler: CallbackAction;
 }
 
-class SingleSelectorController implements ISingleSelectorGroup, ISingleSelectorController {
+class SingleSelectorController implements ISingleSelectorController, ISingleSelectorItemController {
     private selectors: MapOfType<ISingleSelectorControllerSelectorMap>;
 
-    private onSelectionChanged: (id: string, select: boolean) => void;
+    private onSelectionChanged?: (id: string, select: boolean) => void;
     private onSelection: number;
     private currentSelection: string;
 
-    public constructor(defaultSelection: string, selectionChanged: (id: string, select: boolean) => void) {
+    public constructor(defaultSelection: string, selectionChanged?: (id: string, select: boolean) => void) {
         this.selectors = {};
         this.onSelection = -1;
 
@@ -62,6 +62,10 @@ class SingleSelectorController implements ISingleSelectorGroup, ISingleSelectorC
         return selector;
     }
 
+    selectedItem(): string {
+        return this.currentSelection;
+    }
+
     select(selectorId: string): boolean {
         if (this.onSelection !== -1 || !!!this.selectors[selectorId] || selectorId === this.currentSelection) {
             return false;
@@ -72,7 +76,7 @@ class SingleSelectorController implements ISingleSelectorGroup, ISingleSelectorC
         }, 0);
 
         this.currentSelection = selectorId;
-        this.onSelectionChanged(selectorId, true);
+        this.onSelectionChanged?.(selectorId, true);
 
         return true;
     }
@@ -85,7 +89,7 @@ class SingleSelectorController implements ISingleSelectorGroup, ISingleSelectorC
         delete this.selectors[selectorId];
         if (this.currentSelection === selectorId) {
             this.currentSelection = "";
-            this.onSelectionChanged(selectorId, false);
+            this.onSelectionChanged?.(selectorId, false);
         }
     }
 
@@ -104,7 +108,7 @@ class SingleSelectorController implements ISingleSelectorGroup, ISingleSelectorC
 
 export function createSingleSelectorGroup(
     defaultSelection: string,
-    selectionChanged: (id: string, select: boolean) => void,
-): ISingleSelectorGroup {
+    selectionChanged?: (id: string, select: boolean) => void,
+): ISingleSelectorController {
     return new SingleSelectorController(defaultSelection, selectionChanged);
 }
