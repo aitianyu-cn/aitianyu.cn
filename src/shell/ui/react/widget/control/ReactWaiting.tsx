@@ -9,7 +9,7 @@ const WaitingDialogImgDark = require("./res/waiting-dark.gif").default;
 const WaitingDialogImgLight = require("./res/waiting-light.gif").default;
 // const DefaultWaitingOvertime = 30000;
 
-export interface IRequestWaitingProperty {}
+export interface IRequestWaitingProperty extends IReactControlProperty {}
 
 export class ReactWaiting extends React.Component<IRequestWaitingProperty, IReactState> {
     // private Overtime: number;

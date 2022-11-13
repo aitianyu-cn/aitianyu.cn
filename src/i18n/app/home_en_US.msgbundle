@@ -9,8 +9,10 @@ HOME_PAGE_NAVIGATION_TITLE=AiTianyu.cn
 HOME_PAGE_NAVIGATION_HOME=Home
 HOME_PAGE_NAVIGATION_DOWNLOAD=Download
 HOME_PAGE_NAVIGATION_DOCUMENT=Document
+HOME_PAGE_NAVIGATION_INTERNAL=Internal
 HOME_PAGE_NAVIGATION_LANGUAGE=Language
 HOME_PAGE_NAVIGATION_THEME=Theme
+HOME_PAGE_NAVIGATION_SETTING=Setting
 
 ###########################################################################
 # homepage - home message

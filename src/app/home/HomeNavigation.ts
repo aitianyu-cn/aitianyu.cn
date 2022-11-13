@@ -3,6 +3,7 @@
 import { DocumentFrame, propCreater as DocumentFramePropCreater } from "tianyu-shell/app/home/Document.loader";
 import { DownloadFrame, propCreater as DownloadFramePropCreater } from "tianyu-shell/app/home/Download.loader";
 import { HomeFrame, propCreater as HomeFramePropCreater } from "tianyu-shell/app/home/Home.loader";
+import { SettingFrame, propCreater as SettingFramePropCreater } from "tianyu-shell/app/home/Setting.loader";
 import { ThemeFrame, propCreater as ThemeFramePropCreater } from "tianyu-shell/app/home/Theme.loader";
 import { LanguageFrame } from "tianyu-shell/app/home/language/LanguageFrame";
 import { IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
@@ -24,8 +25,6 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     key: messageBundle.getText("HOME_PAGE_NAVIGATION_HOME"),
                     icon: SOURCES.home,
                     iconType: "inline",
-                    // icon: "/static/res/modules/navigation/home.png",
-                    // iconType: "url",
                     assist: false,
                     index: 0,
                 },
@@ -43,6 +42,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     assist: false,
                     index: 2,
                 },
+                "/tianyu": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_INTERNAL"),
+                    icon: SOURCES.internal,
+                    iconType: "inline",
+                    assist: false,
+                    index: 3,
+                },
                 "/language": {
                     key: messageBundle.getText("HOME_PAGE_NAVIGATION_LANGUAGE"),
                     icon: SOURCES.language,
@@ -53,6 +59,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                 "/theme": {
                     key: messageBundle.getText("HOME_PAGE_NAVIGATION_THEME"),
                     icon: SOURCES.theme,
+                    iconType: "inline",
+                    assist: true,
+                    index: -1,
+                },
+                "/setting": {
+                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_SETTING"),
+                    icon: SOURCES.setting,
                     iconType: "inline",
                     assist: true,
                     index: -1,
@@ -90,6 +103,11 @@ export async function getNavigationRouter(): Promise<MapOfType<IReactContentRout
     contentRouter["/theme"] = {
         component: ThemeFrame,
         paramGenerater: ThemeFramePropCreater,
+        forceUpdate: false,
+    };
+    contentRouter["/setting"] = {
+        component: SettingFrame,
+        paramGenerater: SettingFramePropCreater,
         forceUpdate: false,
     };
 

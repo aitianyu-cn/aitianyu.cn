@@ -288,7 +288,8 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                                 onClick={this.onMenuIconClick.bind(this)}
                                 // add mouse leave event if the menu is opend
                                 onMouseLeave={this.isMenuOpened ? this.onMenuIconMoveOut.bind(this) : () => {}}
-                                onMouseEnter={this.isMenuOpened ? this.onMenuIconMoveIn.bind(this) : () => {}}>
+                                // onMouseEnter={this.isMenuOpened ? this.onMenuIconMoveIn.bind(this) : () => {}}>
+                                onMouseEnter={this.onMenuIconMoveIn.bind(this)}>
                                 <div
                                     className="r_hn_n_na_s"
                                     dangerouslySetInnerHTML={{ __html: REACT_NAVIGATION_MENU_ICON }}></div>
@@ -382,6 +383,10 @@ export class ReactHorizontalNavigation extends ReactNavigation {
         console.log("icon in");
         // set the icon focus to be true to keep the context show
         this.isIconFocus = true;
+        if (!this.isMenuOpened) {
+            this.isMenuOpened = true;
+            this.forceUpdate();
+        }
     }
 
     // ##########################################################################
