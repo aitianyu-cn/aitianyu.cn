@@ -11,6 +11,14 @@ module.exports.proxy = {
             "^/remote-connection": "",
         },
     },
+    "/remote-connection-test": {
+        target: "http://aitianyu.cn",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-connection-test": "",
+        },
+    },
 };
 
 module.exports.static = [

@@ -1,0 +1,36 @@
+.pending_docs_outter {
+  height: auto;
+  width: 100%;
+
+  display: flex;
+
+  animation: docs_base_enter 0.5s forwards ease-in-out;
+}
+
+.pending_docs_inner {
+  margin-left: auto;
+  margin-right: auto;
+
+  color: var(--ts_ui_blk_2);
+  grid-column: 2;
+}
+
+.pending_docs_inner > h1 {
+  user-select: none;
+}
+
+@keyframes docs_base_enter {
+  0% {
+    /* transform: translate3d(0, -10%, 0); */
+    opacity: 0%;
+    transform: translate3d(0, -10%, 0);
+  }
+  50% {
+    opacity: 75%;
+    /* transform: translate3d(0, -3%, 0); */
+  }
+  100% {
+    opacity: 100%;
+    transform: translate3d(0, 0%, 0);
+  }
+}

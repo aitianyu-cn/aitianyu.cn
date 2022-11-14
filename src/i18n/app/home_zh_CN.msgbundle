@@ -39,12 +39,20 @@ HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=当前没有可用于下载的资�
 ###########################################################################
 
 HOME_PAGE_DOCUMENT_TITLE=文档 - 帮助
+HOME_PAGE_DOCUMENT_FRAME_PENDING=页面维护中，请访问aitianyu.cn
+
+###########################################################################
+# homepage - internal message
+###########################################################################
+
+HOME_PAGE_INTERNAL_TITLE=我的天宇
+HOME_PAGE_INTERNAL_FRAME_PENDING=功能适配中
 
 ###########################################################################
 # homepage - language message
 ###########################################################################
 
-HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE=选择语言
+HOME_PAGE_LANGUAGE_TITLE=选择语言
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_INTERNAL_TITLE=多语言
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_SUPPORT_TITLE=天宇当前支持的语言
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_TITLE=进行中
@@ -54,4 +62,22 @@ HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER=当前选择的语言正�
 # homepage - theme message
 ###########################################################################
 
-HOME_PAGE_LANGUAGE_FRAME_THEME_TITLE=主题中心
+HOME_PAGE_THEME_TITLE=主题中心
+HOME_PAGE_THEME_FRAME_PAGE_TITLE=主题中心
+HOME_PAGE_THEME_FRAME_THEME=主题
+HOME_PAGE_THEME_FRAME_COLOR=风格
+
+HOME_PAGE_THEME_FRAME_COLOR_DARK=暗黑模式
+HOME_PAGE_THEME_FRAME_COLOR_LIGHT=亮色模式
+
+HOME_PAGE_THEME_FRAME_THEME_TIANYU_MONO=天宇单色
+
+HOME_PAGE_THEME_FRAME_DEFAULT_TITLE=默认主题
+HOME_PAGE_THEME_FRAME_CUSTOM_TITLE=个性化主题
+
+###########################################################################
+# homepage - setting message
+###########################################################################
+
+HOME_PAGE_SETTING_TITLE=设置
+HOME_PAGE_SETTING_FRAME_PENDING=功能适配中

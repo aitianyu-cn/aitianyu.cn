@@ -16,16 +16,13 @@ const _customThemeList: string[] = [];
 function _change_theme_internal(theme: string, color: TianyuShellUIThemeColor, setCookie: boolean): void {
     const themeUrl = `/static/theme/${theme}_${color}.css`;
 
+    // remove current custom theme
     const element = document.getElementById(TianyuShellUIThemeCustomID);
-    const linkElem = element as HTMLLinkElement;
-    if (linkElem) {
-        linkElem.href = themeUrl;
-        return;
+    if (element) {
+        element.remove();
     }
 
-    if (element) {
-        document.removeChild(element);
-    }
+    // set new theme
     const customTheme = document.createElement("link");
     customTheme.href = themeUrl;
     customTheme.rel = "stylesheet";

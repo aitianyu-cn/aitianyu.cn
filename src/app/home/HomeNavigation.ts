@@ -3,6 +3,7 @@
 import { DocumentFrame, propCreater as DocumentFramePropCreater } from "tianyu-shell/app/home/Document.loader";
 import { DownloadFrame, propCreater as DownloadFramePropCreater } from "tianyu-shell/app/home/Download.loader";
 import { HomeFrame, propCreater as HomeFramePropCreater } from "tianyu-shell/app/home/Home.loader";
+import { InternalFrame, propCreater as InternalFramePropCreater } from "tianyu-shell/app/home/Internal.loader";
 import { SettingFrame, propCreater as SettingFramePropCreater } from "tianyu-shell/app/home/Setting.loader";
 import { ThemeFrame, propCreater as ThemeFramePropCreater } from "tianyu-shell/app/home/Theme.loader";
 import { LanguageFrame } from "tianyu-shell/app/home/language/LanguageFrame";
@@ -93,6 +94,11 @@ export async function getNavigationRouter(): Promise<MapOfType<IReactContentRout
     contentRouter["/docs"] = {
         component: DocumentFrame,
         paramGenerater: DocumentFramePropCreater,
+        forceUpdate: false,
+    };
+    contentRouter["/tianyu"] = {
+        component: InternalFrame,
+        paramGenerater: InternalFramePropCreater,
         forceUpdate: false,
     };
     contentRouter["/language"] = {

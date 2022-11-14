@@ -13,6 +13,7 @@ export interface IReactRadioButtonProperty extends IReactControlProperty {
     color?: string;
     selectedColor?: string;
     border?: string;
+    insideMargin?: number | string;
 }
 
 const isMob = isMobile();
@@ -78,7 +79,7 @@ export class ReactRadioButton extends React.Component<IReactRadioButtonProperty,
         const radioTextStyle = {
             marginTop: "auto",
             marginBottom: "auto",
-            marginLeft: 10,
+            marginLeft: this.props.insideMargin || 10,
             userSelect: "none" as any,
         };
         return (

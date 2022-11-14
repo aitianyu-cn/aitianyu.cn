@@ -18,6 +18,7 @@ export interface ISingleSelectorGroup {
 
 export interface ISingleSelectorController extends ISingleSelectorGroup {
     selectedItem(): string;
+    setSelected(name: string): void;
 }
 
 // ##########################################################################

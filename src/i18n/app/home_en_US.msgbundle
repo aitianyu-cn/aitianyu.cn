@@ -39,12 +39,20 @@ HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=There are currently no resources av
 ###########################################################################
 
 HOME_PAGE_DOCUMENT_TITLE=Docs - Help
+HOME_PAGE_DOCUMENT_FRAME_PENDING=Page maintenance, please visit aitianyu.cn
+
+###########################################################################
+# homepage - internal message
+###########################################################################
+
+HOME_PAGE_INTERNAL_TITLE=My Tianyu
+HOME_PAGE_INTERNAL_FRAME_PENDING=Function adaptation in progress...
 
 ###########################################################################
 # homepage - language message
 ###########################################################################
 
-HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE=Change Language
+HOME_PAGE_LANGUAGE_TITLE=Change Language
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_INTERNAL_TITLE=Languages
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_SUPPORT_TITLE=The following languages are supported in Tianyu
 HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_TITLE=Working
@@ -54,4 +62,22 @@ HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER=The language is being ada
 # homepage - theme message
 ###########################################################################
 
-HOME_PAGE_LANGUAGE_FRAME_THEME_TITLE=Theme Center
+HOME_PAGE_THEME_TITLE=Theme Center
+HOME_PAGE_THEME_FRAME_PAGE_TITLE=Theme Center
+HOME_PAGE_THEME_FRAME_THEME=Theme
+HOME_PAGE_THEME_FRAME_COLOR=Style
+
+HOME_PAGE_THEME_FRAME_COLOR_DARK=Dark Mode
+HOME_PAGE_THEME_FRAME_COLOR_LIGHT=Light Mode
+
+HOME_PAGE_THEME_FRAME_THEME_TIANYU_MONO=Tianyu Monochrome
+
+HOME_PAGE_THEME_FRAME_DEFAULT_TITLE=Default
+HOME_PAGE_THEME_FRAME_CUSTOM_TITLE=Personalized Theme
+
+###########################################################################
+# homepage - setting message
+###########################################################################
+
+HOME_PAGE_SETTING_TITLE=Setting
+HOME_PAGE_SETTING_FRAME_PENDING=Function adaptation in progress...

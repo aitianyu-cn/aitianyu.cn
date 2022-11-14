@@ -2,3 +2,21 @@
  * Tianyu Shell UI Theme
  * Default Theme - Light Colors
 */
+
+:root {
+  --ts_ui_bgc: #8e8e8e;
+  --ts_ui_content_bgc: #404040;
+  --ts_ui_dialog_mask_bgc: #bfbfbf83;
+  --ts_ui_dialog_mask_op: 100%;
+  --ts_ui_dialog_content_bgc: #7f7f7f;
+  --ts_ui_dialog_content_sdc: #ffffff;
+
+  --ts_ui_blk_1: #ffffff;
+  --ts_ui_blk_2: #c0c0c0;
+  --ts_ui_blk_3: #a0a0a0;
+  --ts_ui_blk_4: #999999;
+  --ts_ui_blk_5: #777777;
+  --ts_ui_blk_6: #555555;
+  --ts_ui_blk_7: #333333;
+  --ts_ui_blk_8: #111111;
+}

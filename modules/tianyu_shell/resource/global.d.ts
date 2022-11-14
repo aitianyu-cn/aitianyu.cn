@@ -82,7 +82,7 @@ interface ITianyuShellCoreUITheme {
     default: ITianyuShellCoreUIThemeItem;
     custom: ITianyuShellCoreUIThemeItem;
     user: ITianyuShellCoreUIThemeCustom;
-    change(theme: string, color: TianyuShellUIThemeColor): void;
+    change(theme: string, color: TianyuShellUIThemeColor, save?: boolean): void;
     reset(): void;
 }
 

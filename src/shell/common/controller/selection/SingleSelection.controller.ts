@@ -62,6 +62,12 @@ class SingleSelectorController implements ISingleSelectorController, ISingleSele
         return selector;
     }
 
+    setSelected(id: string): void {
+        if (this.currentSelection !== id) {
+            this.currentSelection = id;
+        }
+    }
+
     selectedItem(): string {
         return this.currentSelection;
     }

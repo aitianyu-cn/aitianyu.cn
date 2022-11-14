@@ -21,7 +21,7 @@ export class LanguageFrame extends React.Component<ILanguageProperty, IReactStat
     public constructor(props: ILanguageProperty) {
         super(props);
 
-        document.title = messageBundle.getText("HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_TITLE");
+        document.title = messageBundle.getText("HOME_PAGE_LANGUAGE_TITLE");
     }
 
     public render(): React.ReactNode {
