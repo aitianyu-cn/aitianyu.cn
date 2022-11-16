@@ -31,6 +31,11 @@ async function onHomePageIniting(): Promise<void> {
                     Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
                     Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_PERFORMANCE_TOGGLE);
                     Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_PERFORMANCE_TOGGLE);
+                    Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
+                    Dependency.FeatureToggle.addFeature("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE");
+                    Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE");
+                    Dependency.FeatureToggle.addFeature("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
+                    Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
 
                     Dependency.Router.init();
 

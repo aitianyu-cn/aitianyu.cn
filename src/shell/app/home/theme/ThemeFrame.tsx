@@ -46,11 +46,18 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
                 <div className="h_t_t">
                     <div>{messageBundle.getText("HOME_PAGE_THEME_FRAME_PAGE_TITLE")}</div>
                 </div>
-                <div style={{ height: 1, width: "100%", backgroundColor: "var(--ts_ui_blk_6)" }}></div>
                 <div className="h_t_i_c">
                     <div className="h_t_i_t">
-                        <h2>{messageBundle.getText("HOME_PAGE_THEME_FRAME_DEFAULT_TITLE")}</h2>
+                        <div>{messageBundle.getText("HOME_PAGE_THEME_FRAME_DEFAULT_TITLE")}</div>
                     </div>
+                    <div
+                        style={{
+                            height: 1,
+                            width: "100%",
+                            marginTop: 20,
+                            opacity: "20%",
+                            backgroundColor: "var(--ts_ui_blk_5)",
+                        }}></div>
                     <div className="h_t_i_i_c">
                         <div className="h_t_i_i_i h_t_i_i_i_ulc">
                             <div className="h_t_i_i_i_n">{messageBundle.getText("HOME_PAGE_THEME_FRAME_COLOR")}</div>
@@ -66,8 +73,16 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
                 </div>
                 <div className="h_t_i_c">
                     <div className="h_t_i_t">
-                        <h2>{messageBundle.getText("HOME_PAGE_THEME_FRAME_CUSTOM_TITLE")}</h2>
+                        <div>{messageBundle.getText("HOME_PAGE_THEME_FRAME_CUSTOM_TITLE")}</div>
                     </div>
+                    <div
+                        style={{
+                            height: 1,
+                            width: "100%",
+                            marginTop: 20,
+                            opacity: "20%",
+                            backgroundColor: "var(--ts_ui_blk_5)",
+                        }}></div>
                     <div className="h_t_i_i_c">
                         <div className="h_t_i_i_i h_t_i_i_i_ulc">
                             <div className="h_t_i_i_i_n">{messageBundle.getText("HOME_PAGE_THEME_FRAME_COLOR")}</div>

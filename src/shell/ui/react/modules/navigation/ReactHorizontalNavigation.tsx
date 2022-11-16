@@ -9,11 +9,15 @@ import { ReactHorizontalNavigationItem } from "./ReactHorizontalNavigationItem";
 import { ReactNavigationItem } from "./ReactNavigationItem";
 import { require_msgbundle } from "ts-core/I18n";
 import { isMobile } from "ts-core/RuntimeHelper";
+import { isIOS } from "tianyu-shell/common/utilities/RuntimeHelper";
+import { FeatureToggle } from "ts-core/FeatureToggle";
 
 import REACT_NAVIGATION_MENU_ICON from "tianyu-shell/ui/react/modules/navigation/res/menu.svg";
 
 import "./css/horizontal-navigation.css";
-import { isIOS } from "tianyu-shell/common/utilities/RuntimeHelper";
+
+const REACT_HORIZONTAL_NAVIGATION_MOBILE_AUTO_CLOSE = "REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE";
+const REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN = "REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN";
 
 export class ReactHorizontalNavigation extends ReactNavigation {
     private fontsizeMap: Record<number, number>;
@@ -149,6 +153,14 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                 iconType: sourceItem.iconType,
             });
             this.items[sourceKey] = itemInstance;
+        }
+    }
+
+    protected override beforeHashChangedRender(): void {
+        // when in mobile mode and the toggle REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE is turn on
+        if (this.isMobileMode && FeatureToggle.isActive("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE")) {
+            // to close menu bar directly
+            this.isMenuOpened = false;
         }
     }
 
@@ -383,7 +395,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
         console.log("icon in");
         // set the icon focus to be true to keep the context show
         this.isIconFocus = true;
-        if (!this.isMenuOpened) {
+        if (!this.isMenuOpened && FeatureToggle.isActive("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN")) {
             this.isMenuOpened = true;
             this.forceUpdate();
         }

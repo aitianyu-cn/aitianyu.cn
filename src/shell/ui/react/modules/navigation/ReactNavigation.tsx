@@ -154,6 +154,8 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
             item.setUnselect();
         });
 
+        this.beforeHashChangedRender();
+
         if (fullMatch.value) {
             fullMatch.value.setSelect();
             this.isNoMatched = false;
@@ -258,5 +260,12 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
      */
     protected renderForNarrow(): ReactNode {
         return <div></div>;
+    }
+
+    /**
+     * when hash is changed, to trigger it before re-render
+     */
+    protected beforeHashChangedRender(): void {
+        //
     }
 }
