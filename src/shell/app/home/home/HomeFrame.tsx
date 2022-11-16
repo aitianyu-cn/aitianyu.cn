@@ -81,7 +81,7 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
 
     private renderEmtpy(): React.ReactNode {
         return (
-            <div>
+            <div style={{ color: "var(--ts_ui_blk_1)" }}>
                 <div>{messageBundle.getText("HOME_PAGE_HOME_FRAME_HOME_PAGE_SOURCE_EMPTY")}</div>
             </div>
         );

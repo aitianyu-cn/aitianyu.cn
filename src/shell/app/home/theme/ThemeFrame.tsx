@@ -10,8 +10,8 @@ import { IThemeProperty } from "./ThemeFrame.model";
 
 import "./css/main.css";
 
-const _themeList: string[] = ["tianyu_mono", "tianyu_default", "tianyu_1", "tianyu_2", "tianyu_3", "tianyu_4"];
-// const _themeList: string[] = ["tianyu_mono"];
+// const _themeList: string[] = ["tianyu_mono", "tianyu_default", "tianyu_1", "tianyu_2", "tianyu_3", "tianyu_4"];
+const _themeList: string[] = require("ts-static/theme/theme.config.json");
 const messageBundle = require_msgbundle("home", "app");
 
 export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {

@@ -67,7 +67,7 @@
   height: max-content;
   width: 100%;
 
-  color: #939393;
+  color: var(--ts_ui_blk_4);
 
   user-select: none;
 
