@@ -9,6 +9,7 @@
         "src/i18n",
         "src/shell",
         "src/resource",
+        "src/server",
         "modules/tianyu_shell/resource/global.d.ts",
         "**/*.d.ts"
     ],
@@ -40,7 +41,8 @@
             "tianyu-app/*": ["src/app/*"],
             "tianyu-i18n/*": ["src/i18n/*"],
             "tianyu-shell/*": ["src/shell/*"],
-            "tianyu-res/*": ["src/resource/*"]
+            "tianyu-res/*": ["src/resource/*"],
+            "tianyu-server/*": ["src/server/*"]
         }
     }
 }
