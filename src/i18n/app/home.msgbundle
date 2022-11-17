@@ -4,6 +4,8 @@ HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=资源加载中 请稍后...
 # global message
 ###########################################################################
 
+HOME_PAGE_FEATURE_UNSUPPORT_NO_USER=你还没有登陆哦！该功能只针对登录用户提供
+
 HOME_PAGE_GLOBAL_TITLE=个人编程学习
 HOME_PAGE_NAVIGATION_TITLE=Ai天宇.cn
 HOME_PAGE_NAVIGATION_HOME=主页
@@ -47,6 +49,13 @@ HOME_PAGE_DOCUMENT_FRAME_PENDING=页面维护中，请访问aitianyu.cn
 
 HOME_PAGE_INTERNAL_TITLE=我的天宇
 HOME_PAGE_INTERNAL_FRAME_PENDING=功能适配中
+HOME_PAGE_INTERNAL_LOGIN_LOGINING=登陆中...
+HOME_PAGE_INTERNAL_LOGIN_TITLE=Ai天宇云
+HOME_PAGE_INTERNAL_LOGIN_USER_ITEM=用户名
+HOME_PAGE_INTERNAL_LOGIN_PW_ITEM=密码
+HOME_PAGE_INTERNAL_LOGIN_LOGON=注册
+HOME_PAGE_INTERNAL_LOGIN_FORGET_PW=忘记密码
+HOME_PAGE_INTERNAL_LOGIN_LOGIN_BUTTON=登录
 
 ###########################################################################
 # homepage - language message

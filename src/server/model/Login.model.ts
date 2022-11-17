@@ -1,20 +1,21 @@
 /**@format */
 
-export type LoginUserType = "user-name" | "email";
-
-export type LoginResultType = "success" | "non_user" | "no_varify" | "error";
+export type LoginResult = "success" | "dup_user" | "dup_mail" | "invalid_active" | "failed";
 
 export interface ILoginPost {
     user: string;
-    userType: LoginUserType;
-    password: string;
-    identify: string;
+    mail: string;
+    name: string;
+    pw: string;
+    active: string;
 }
 
-export interface ILoginResult {
-    user: string;
-    name: string;
-    email: string;
-    result: LoginResultType;
+export interface ILoginPostResult {
+    state: LoginResult;
     token: string;
+}
+
+export interface ILoginGet {
+    token: string;
+    vcode: string;
 }

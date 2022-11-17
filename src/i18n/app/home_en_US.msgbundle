@@ -4,6 +4,8 @@ HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=Loading Please wait...
 # global message
 ###########################################################################
 
+HOME_PAGE_FEATURE_UNSUPPORT_NO_USER=You haven't logged in yet! This function is only available for logged-in users.
+
 HOME_PAGE_GLOBAL_TITLE=个人编程学习
 HOME_PAGE_NAVIGATION_TITLE=AiTianyu.cn
 HOME_PAGE_NAVIGATION_HOME=Home
@@ -47,6 +49,13 @@ HOME_PAGE_DOCUMENT_FRAME_PENDING=Page maintenance, please visit aitianyu.cn
 
 HOME_PAGE_INTERNAL_TITLE=My Tianyu
 HOME_PAGE_INTERNAL_FRAME_PENDING=Function adaptation in progress...
+HOME_PAGE_INTERNAL_LOGON_LOGONING=Logging...
+HOME_PAGE_INTERNAL_LOGON_TITLE=AiTianyu Cloud
+HOME_PAGE_INTERNAL_LOGON_USER_ITEM=User
+HOME_PAGE_INTERNAL_LOGON_PW_ITEM=Password
+HOME_PAGE_INTERNAL_LOGON_LOGIN=注册
+HOME_PAGE_INTERNAL_LOGON_FORGET_PW=忘记密码
+HOME_PAGE_INTERNAL_LOGON_LOGON_BUTTON=登录
 
 ###########################################################################
 # homepage - language message

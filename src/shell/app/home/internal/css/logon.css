@@ -1,0 +1,55 @@
+.h_i_logon_container {
+  width: max-content;
+  user-select: none;
+  background-color: var(--ts_ui_content_bgc);
+  border-radius: 10px;
+  box-shadow: var(--ts_ui_dialog_mask_bgc) 0 0 10px;
+  margin-top: 30px;
+}
+
+.h_i_logon_input_container {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.h_i_logon_addition_button {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.h_i_logon_addition_button_i,
+.h_i_logon_addition_button_i_mob {
+  margin-right: auto;
+  margin-left: auto;
+  text-decoration: underline;
+}
+.h_i_logon_addition_button_i:hover {
+  color: var(--ts_ui_blk_4);
+}
+.h_i_logon_addition_button_i_mob {
+  font-size: 18px;
+}
+
+.h_i_logon_on_button,
+.h_i_logon_on_button_mob {
+  width: 100%;
+  height: 50px;
+  background-color: var(--ts_ui_blk_5);
+  color: var(--ts_ui_blk_1);
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  box-shadow: var(--ts_ui_blk_5) 0 0 10px;
+}
+.h_i_logon_on_button_mob {
+  font-size: 18px;
+  height: 60px;
+}
+.h_i_logon_on_button:hover {
+  /* background-color: var(--ts_ui_blk_6); */
+  box-shadow: var(--ts_ui_blk_5) 0 0 15px;
+}

@@ -1,5 +1,7 @@
 /**@format */
 
+import { sha256 } from "ts-sec/Hash";
+
 export function guid(): string {
     let d = new Date().getTime();
     if (window.performance && typeof window.performance.now === "function") {
@@ -11,4 +13,8 @@ export function guid(): string {
         return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
     });
     return uuid;
+}
+
+export function guidSHA(): string {
+    return sha256(guid());
 }

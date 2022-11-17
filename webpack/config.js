@@ -19,6 +19,30 @@ module.exports.proxy = {
             "^/remote-connection-test": "",
         },
     },
+    "/remote-user-server": {
+        target: "http://localhost:9010",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-user-server": "",
+        },
+    },
+    "/remote-global-server": {
+        target: "http://localhost:9000",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-global-server": "",
+        },
+    },
+    "/remote-assist-server": {
+        target: "http://localhost:9001",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-assist-server": "",
+        },
+    },
 };
 
 module.exports.static = [
