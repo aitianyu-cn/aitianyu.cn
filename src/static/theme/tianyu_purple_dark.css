@@ -1,0 +1,31 @@
+/**
+ * Tianyu Shell UI Theme
+ * Default Theme - Dark Colors
+*/
+
+:root {
+  --ts_ui_bgc: #000000;
+  --ts_ui_content_bgc: #1f0f1f;
+  --ts_ui_dialog_mask_bgc: #40404083;
+  --ts_ui_dialog_mask_op: 100%;
+  --ts_ui_dialog_content_bgc: #0d0d0d;
+  --ts_ui_dialog_content_sdc: #000000;
+
+  --ts_ui_blk_1: #ffffff;
+  --ts_ui_blk_2: #d9badd;
+  --ts_ui_blk_3: #bb7cbe;
+  --ts_ui_blk_4: #9e3e9f;
+  --ts_ui_blk_5: #730373;
+  --ts_ui_blk_6: #570757;
+  --ts_ui_blk_7: #3b0b3b;
+  --ts_ui_blk_8: #111111;
+
+  --ts_ui_blk_11: #ca9bce;
+  --ts_ui_blk_12: #ad5daf;
+  --ts_ui_blk_13: #8f1f90;
+  --ts_ui_blk_14: #800080;
+  --ts_ui_blk_15: #650565;
+  --ts_ui_blk_16: #490949;
+  --ts_ui_blk_17: #2d0d2d;
+  --ts_ui_blk_18: #1c262f;
+}

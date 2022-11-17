@@ -118,7 +118,7 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
 
         for (const theme of _themeList) {
             nodes.push(
-                <div key={`theme_id_${theme}`}>
+                <div key={`theme_id_${theme}`} style={{ marginBottom: 10 }}>
                     <ReactRadioButton
                         id={`${theme}`}
                         value={this.translateThemeName(theme)}
