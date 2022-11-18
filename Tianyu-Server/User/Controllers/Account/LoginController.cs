@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ts_webapi_core.Model.Account;
-using ts_webapi_core.Service;
+using Tianyu.Server.User.Models;
+using Tianyu.Server.User.Models.Account;
+using Tianyu.Server.User.Services;
 
 namespace Tianyu.Server.User.Controllers.Account
 {
@@ -8,9 +9,6 @@ namespace Tianyu.Server.User.Controllers.Account
     [ApiController]
     public class LoginController : Controller
     {
-        private static string CLIENT_COOKIE_IDENTIFY_NAME = "TIANYU_xID";
-        private static string CLIENT_COOKIE_TOKEN_NAME = "TIANYU_cID";
-
         [HttpGet]
         public LoginResult get()
         {
@@ -22,9 +20,9 @@ namespace Tianyu.Server.User.Controllers.Account
             IRequestCookieCollection cookies = request.Cookies;
             foreach (KeyValuePair<string, string> cookie in cookies)
             {
-                if (cookie.Key == CLIENT_COOKIE_IDENTIFY_NAME)
+                if (cookie.Key == Definitions.CLIENT_COOKIE_IDENTIFY_NAME)
                     identify = cookie.Value;
-                else if (cookie.Key == CLIENT_COOKIE_TOKEN_NAME)
+                else if (cookie.Key == Definitions.CLIENT_COOKIE_TOKEN_NAME)
                     token = cookie.Value;
             }
 
@@ -36,9 +34,9 @@ namespace Tianyu.Server.User.Controllers.Account
         {
             return UserOnlineServer.Instance.Login
                 (
-                body.user, 
-                LoginHelper.ConvertUserType(body.userType), 
-                body.password, 
+                body.user,
+                LoginHelper.ConvertUserType(body.userType),
+                body.password,
                 body.identify
                 );
         }

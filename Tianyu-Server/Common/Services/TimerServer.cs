@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Tianyu.Server.User.Services
+namespace Tianyu.Server.Common.Services
 {
     public class TimerServer
     {

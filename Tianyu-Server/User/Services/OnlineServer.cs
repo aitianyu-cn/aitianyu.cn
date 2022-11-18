@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using Tianyu.Server.User.Models.Account;
+using Tianyu.Server.Common.Services;
 
 namespace Tianyu.Server.User.Services
 {

@@ -14,6 +14,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    Tianyu.Server.Generic.Models.Runtime.IS_IN_DEVELOPMENT_MODE = true;
 }
 
 app.UseAuthorization();
