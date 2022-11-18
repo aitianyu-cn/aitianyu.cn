@@ -4,26 +4,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Tianyu.Server.User</RootNamespace>
+    <RootNamespace>Tianyu.Server.Assist</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <WarningLevel>4</WarningLevel>
+    <AssemblyName>Tianyu-Server-Assist</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Controllers\Account\" />
-    <None Remove="Models\" />
-    <None Remove="Models\Account\" />
-    <None Remove="Services\" />
+    <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Account\" />
-    <Folder Include="Models\" />
-    <Folder Include="Models\Account\" />
-    <Folder Include="Services\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

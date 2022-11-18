@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:47270",
+      "applicationUrl": "http://localhost:10571",
       "sslPort": 0
     }
   },
@@ -20,8 +20,7 @@
     "Tianyu.Server.Generic": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:9000",
+      "applicationUrl": "http://localhost:4968",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
