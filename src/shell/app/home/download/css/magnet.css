@@ -173,7 +173,7 @@
 }
 
 .download_magnet_section_title {
-  color: #898989;
+  color: var(--ts_ui_blk_3);
   width: 100%;
 
   height: 25px;
@@ -191,7 +191,7 @@
 
 .download_magnet_section_link_div,
 .download_magnet_section_link_div_mob {
-  background-color: #a2a2a2;
+  background-color: var(--ts_ui_blk_2);
 
   height: 30px;
   margin: 10px;
@@ -200,7 +200,7 @@
 
   border-radius: 5px;
 
-  color: #fff;
+  color: var(--ts_ui_blk_5);
 
   user-select: none;
 }
@@ -301,29 +301,29 @@
 
 @keyframes download_magnet_section_link_div_hover {
   from {
-    background-color: #a2a2a2;
+    background-color: var(--ts_ui_blk_2);
 
     opacity: 100%;
   }
   to {
-    background-color: #555555;
+    background-color: var(--ts_ui_blk_4);
 
-    opacity: 80%;
+    /* opacity: 80%; */
 
-    box-shadow: 0px 2px 7px #545454;
+    box-shadow: 0px 2px 7px var(--ts_ui_blk_3);
   }
 }
 
 @keyframes magnet_tip_project_link_container_hover {
   from {
-    background-color: #ffffff;
+    background-color: var(--ts_ui_blk_5);
     opacity: 100%;
   }
   to {
-    background-color: #dfdfdf;
+    background-color: var(--ts_ui_blk_6);
 
-    opacity: 80%;
+    /* opacity: 80%; */
 
-    box-shadow: 0px 4px 5px #535353;
+    box-shadow: 0px 4px 5px var(--ts_ui_blk_3);
   }
 }

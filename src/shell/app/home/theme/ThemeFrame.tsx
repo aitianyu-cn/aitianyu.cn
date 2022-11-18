@@ -105,6 +105,7 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
                         </div>
                     </div>
                 </div>
+                <div style={{ height: "30px" }} />
             </div>
         );
     }

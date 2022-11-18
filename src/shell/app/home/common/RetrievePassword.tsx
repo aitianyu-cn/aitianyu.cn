@@ -192,7 +192,7 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
 
         WaitingDialog.withDialog(async () => {
             return this.retrieve(email);
-        }, messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_LOGONING"));
+        }, messageBundle.getText("HOME_PAGE_INTERNAL_RETRIEVE_EMAIL_WATING"));
     }
     private async retrieve(email: string): Promise<void> {
         return new Promise<void>((resolve) => {

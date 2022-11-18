@@ -3,6 +3,7 @@
 import { AITIANYU_CN_OPERATION_SUCCESS, AITIANYU_CN_USER_SERVER } from "tianyu-server/Global";
 import { IAccountVerify, ILoginPost, ILoginPostResult } from "tianyu-server/model/Login.model";
 import { ILogonPost, ILogonResult, LogonResultType, LogonUserType } from "tianyu-server/model/Logon.model";
+import { IRetrievePost, IRetrievePostResult } from "tianyu-server/model/Retrieve.model";
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
 import { Cookie } from "ts-core/Cookie";
 import { guidSHA } from "ts-core/Guid";
@@ -118,6 +119,32 @@ export async function login(post: ILoginPost): Promise<ILoginPostResult> {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const response = xhr.responseText;
                 const loginResult = JSON.parse(response) as ILoginPostResult;
+                if (loginResult) {
+                    postResult.state = loginResult.state;
+                    postResult.token = loginResult.token;
+                }
+            }
+            resolve(postResult);
+        };
+    });
+}
+
+export async function retrieve(post: IRetrievePost): Promise<IRetrievePostResult> {
+    return new Promise<IRetrievePostResult>((resolve) => {
+        const postResult: IRetrievePostResult = {
+            token: "",
+            state: "failed",
+        };
+
+        const postString = JSON.stringify(post);
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `${AITIANYU_CN_USER_SERVER}/aitianyu/cn/user/account/retrieve/location`);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        xhr.send(postString);
+        xhr.onloadend = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const response = xhr.responseText;
+                const loginResult = JSON.parse(response) as IRetrievePostResult;
                 if (loginResult) {
                     postResult.state = loginResult.state;
                     postResult.token = loginResult.token;

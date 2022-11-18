@@ -56,6 +56,7 @@ export class LanguageFrame extends React.Component<ILanguageProperty, IReactStat
                         <ul className="language_supported_list">{aPendingNodes}</ul>
                     </div>
                 </div>
+                <div style={{ height: "30px" }} />
             </div>
         );
     }

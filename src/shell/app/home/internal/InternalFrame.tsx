@@ -12,6 +12,7 @@ import { FeatureToggle } from "ts-core/FeatureToggle";
 
 import "./css/main.css";
 import "./css/logon.css";
+import { RetrievePassword } from "../common/RetrievePassword";
 
 const interframeHashListener = "homepage_frame_hashchanged_listener";
 const messageBundle = require_msgbundle("home", "app");
@@ -43,52 +44,37 @@ export class InternalFrame extends React.Component<IInternalFrameProperty, IReac
     }
 
     public override render(): React.ReactNode {
+        return (
+            <div className="pending_setting_outter">
+                <div className="pending_setting_inner">{<RetrievePassword />}</div>
+            </div>
+        );
+        // return (
+        //     <div className="pending_setting_outter">
+        //         <div className="pending_setting_inner">{this.renderToContent()}</div>
+        //     </div>
+        // );
+    }
+
+    private renderToContent(): React.ReactNode {
         if (!FeatureToggle.isActive("TIANYU_CN_BETA_INTERNAL_READY")) {
-            return (
-                <div className="pending_setting_outter">
-                    <div className="pending_setting_inner">
-                        <h1>{messageBundle.getText("HOME_PAGE_SETTING_FRAME_PENDING")}</h1>
-                    </div>
-                </div>
-            );
+            return <h1>{messageBundle.getText("HOME_PAGE_SETTING_FRAME_PENDING")}</h1>;
         }
 
-        if (this.hashUrl === `tianyu/${loginPageId}`) return this.renderLogin();
-        if (this.hashUrl === `tianyu/${forgetPWPageId}`) return this.renderForgetPW();
+        if (this.hashUrl === `tianyu/${loginPageId}`) return <LoginPanel />;
+        if (this.hashUrl === `tianyu/${forgetPWPageId}`) return <RetrievePassword />;
         if (isUserLogon()) return this.renderNormal();
 
-        return this.renderLogon();
+        return (
+            <LogonPanel
+                fnLogonSuccess={this.onLogonSuccess.bind(this)}
+                fnForgetPassword={this.onForgetPassword.bind(this)}
+                fnLoginRequire={this.onLoginRequire.bind(this)}
+            />
+        );
     }
 
     private renderNormal(): React.ReactNode {
-        return <div></div>;
-    }
-
-    private renderLogon(): React.ReactNode {
-        return (
-            <div className="pending_internal_outter">
-                <div className="pending_internal_inner">
-                    <LogonPanel
-                        fnLogonSuccess={this.onLogonSuccess.bind(this)}
-                        fnForgetPassword={this.onForgetPassword.bind(this)}
-                        fnLoginRequire={this.onLoginRequire.bind(this)}
-                    />
-                </div>
-            </div>
-        );
-    }
-
-    private renderLogin(): React.ReactNode {
-        return (
-            <div className="pending_internal_outter">
-                <div className="pending_internal_inner">
-                    <LoginPanel />
-                </div>
-            </div>
-        );
-    }
-
-    private renderForgetPW(): React.ReactNode {
         return <div></div>;
     }
 

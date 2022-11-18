@@ -43,13 +43,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     assist: false,
                     index: 2,
                 },
-                "/tianyu": {
-                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_INTERNAL"),
-                    icon: SOURCES.internal,
-                    iconType: "inline",
-                    assist: false,
-                    index: 3,
-                },
+                // "/tianyu": {
+                //     key: messageBundle.getText("HOME_PAGE_NAVIGATION_INTERNAL"),
+                //     icon: SOURCES.internal,
+                //     iconType: "inline",
+                //     assist: false,
+                //     index: 3,
+                // },
                 "/language": {
                     key: messageBundle.getText("HOME_PAGE_NAVIGATION_LANGUAGE"),
                     icon: SOURCES.language,
@@ -64,13 +64,13 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
                     assist: true,
                     index: -1,
                 },
-                "/setting": {
-                    key: messageBundle.getText("HOME_PAGE_NAVIGATION_SETTING"),
-                    icon: SOURCES.setting,
-                    iconType: "inline",
-                    assist: true,
-                    index: -1,
-                },
+                // "/setting": {
+                //     key: messageBundle.getText("HOME_PAGE_NAVIGATION_SETTING"),
+                //     icon: SOURCES.setting,
+                //     iconType: "inline",
+                //     assist: true,
+                //     index: -1,
+                // },
             };
 
             resolve(value);
@@ -96,11 +96,11 @@ export async function getNavigationRouter(): Promise<MapOfType<IReactContentRout
         paramGenerater: DocumentFramePropCreater,
         forceUpdate: false,
     };
-    contentRouter["/tianyu"] = {
-        component: InternalFrame,
-        paramGenerater: InternalFramePropCreater,
-        forceUpdate: false,
-    };
+    // contentRouter["/tianyu"] = {
+    //     component: InternalFrame,
+    //     paramGenerater: InternalFramePropCreater,
+    //     forceUpdate: false,
+    // };
     contentRouter["/language"] = {
         component: LanguageFrame,
         paramGenerater: () => ({}),
@@ -111,21 +111,19 @@ export async function getNavigationRouter(): Promise<MapOfType<IReactContentRout
         paramGenerater: ThemeFramePropCreater,
         forceUpdate: false,
     };
-    contentRouter["/setting"] = {
-        component: SettingFrame,
-        paramGenerater: SettingFramePropCreater,
-        forceUpdate: false,
-    };
+    // contentRouter["/setting"] = {
+    //     component: SettingFrame,
+    //     paramGenerater: SettingFramePropCreater,
+    //     forceUpdate: false,
+    // };
 
     return contentRouter;
 }
 
 export async function getNavigationFallbackRouter(): Promise<IReactContentRouter> {
     return {
-        component: TestComp,
-        paramGenerater: () => {
-            return { data: "failure" };
-        },
+        component: HomeFrame,
+        paramGenerater: HomeFramePropCreater,
         forceUpdate: true,
     };
 }
