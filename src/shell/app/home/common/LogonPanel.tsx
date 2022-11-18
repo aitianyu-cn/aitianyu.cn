@@ -2,7 +2,7 @@
 
 import React from "react";
 import { logon } from "tianyu-server/controller/Account.controller";
-import { loadCustomizedFeatureToggles } from "tianyu-server/controller/FeatureToggle.controler";
+import { loadCustomizedFeatureToggles } from "tianyu-server/controller/FeatureToggle.controller";
 import { ILogonPost, LogonResultType } from "tianyu-server/model/Logon.model";
 import { checkUserType } from "tianyu-server/utilities/Utils";
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";

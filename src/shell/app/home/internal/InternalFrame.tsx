@@ -5,6 +5,7 @@ import { require_msgbundle } from "ts-core/I18n";
 import { IInternalFrameProperty } from "./InternalFrame.model";
 import { isUserLogon } from "tianyu-server/controller/Account.controller";
 import { LogonPanel } from "../common/LogonPanel";
+import { LoginPanel } from "../common/LoginPanel";
 import { Router } from "ts-core/Router";
 import { guid } from "ts-core/Guid";
 import { FeatureToggle } from "ts-core/FeatureToggle";
@@ -15,8 +16,10 @@ import "./css/logon.css";
 const interframeHashListener = "homepage_frame_hashchanged_listener";
 const messageBundle = require_msgbundle("home", "app");
 
-const loginPageId = guid();
-const forgetPWPageId = guid();
+const loginPageId = "test_logon_page";
+const forgetPWPageId = "test_forget_pw_page";
+// const loginPageId = guid();
+// const forgetPWPageId = guid();
 
 export class InternalFrame extends React.Component<IInternalFrameProperty, IReactState> {
     private hashUrl: string;
@@ -76,7 +79,13 @@ export class InternalFrame extends React.Component<IInternalFrameProperty, IReac
     }
 
     private renderLogin(): React.ReactNode {
-        return <div></div>;
+        return (
+            <div className="pending_internal_outter">
+                <div className="pending_internal_inner">
+                    <LoginPanel />
+                </div>
+            </div>
+        );
     }
 
     private renderForgetPW(): React.ReactNode {

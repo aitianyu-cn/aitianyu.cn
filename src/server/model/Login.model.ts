@@ -15,7 +15,7 @@ export interface ILoginPostResult {
     token: string;
 }
 
-export interface ILoginGet {
+export interface IAccountVerify {
     token: string;
     vcode: string;
 }

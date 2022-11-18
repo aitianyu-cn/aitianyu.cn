@@ -19,10 +19,7 @@ function onDependencyLoadFailed(fnResolve: CallbackAction): void {
     fnResolve();
 }
 
-async function render(
-    Dependency: typeof import("c:/TianyuDevelop/aitianyu.cn/ts-frontend/src/app/home/DependencyLoader"),
-    resolve: CallbackAction,
-) {
+async function render(Dependency: typeof import("tianyu-app/home/DependencyLoader"), resolve: CallbackAction) {
     Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
     Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
     Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_PERFORMANCE_TOGGLE);
@@ -32,6 +29,8 @@ async function render(
     Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE");
     Dependency.FeatureToggle.addFeature("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
     Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
+    Dependency.FeatureToggle.addFeature("TIANYU_CN_BETA_INTERNAL_READY");
+    Dependency.FeatureToggle.enable("TIANYU_CN_BETA_INTERNAL_READY");
 
     Dependency.Router.init();
 
@@ -107,9 +106,9 @@ async function onHomePageIniting(): Promise<void> {
                             const aPromisesBeforeRender: Promise<void>[] = [];
 
                             if (Dependency.isUserLogon()) {
-                                aPromisesBeforeRender.push(Promise.resolve());
-                            } else {
                                 aPromisesBeforeRender.push(Dependency.loadCustomizedFeatureToggles());
+                            } else {
+                                aPromisesBeforeRender.push(Promise.resolve());
                             }
 
                             Promise.all(aPromisesBeforeRender).finally(() => {

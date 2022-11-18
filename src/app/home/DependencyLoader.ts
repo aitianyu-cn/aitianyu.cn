@@ -1,9 +1,9 @@
 /**@format */
 
-import { loadFeatureToggle as basicLoadFeatureToggle } from "tianyu-server/controller/FeatureToggle.controler";
+import { loadFeatureToggle as basicLoadFeatureToggle } from "tianyu-server/controller/FeatureToggle.controller";
 import { AITIANYU_CN_BASIC_PROJECT, AITIANYU_CN_HOME_PROJECT } from "tianyu-server/Global";
 
-export { loadCustomizedFeatureToggles } from "tianyu-server/controller/FeatureToggle.controler";
+export { loadCustomizedFeatureToggles } from "tianyu-server/controller/FeatureToggle.controller";
 export { loadLanguages } from "tianyu-shell/common/controller/Language.controller";
 export { loadUserLogonState, isUserLogon } from "tianyu-server/controller/Account.controller";
 export {
