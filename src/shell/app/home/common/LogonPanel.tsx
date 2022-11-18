@@ -2,6 +2,7 @@
 
 import React from "react";
 import { logon } from "tianyu-server/controller/Account.controller";
+import { loadCustomizedFeatureToggles } from "tianyu-server/controller/FeatureToggle.controler";
 import { ILogonPost, LogonResultType } from "tianyu-server/model/Logon.model";
 import { checkUserType } from "tianyu-server/utilities/Utils";
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
@@ -149,15 +150,23 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
 
             logon(postData).then((result: LogonResultType) => {
                 // to ensure the pre-waiting-dialog is closed
-                setTimeout(() => {
-                    if (result === "success") {
-                        this.logonSuccess();
-                    } else {
-                        this.logonFailed(result);
-                    }
-                }, 10);
+                if (result === "success") {
+                    // if user is logon successfully
+                    // to load the customized feature toggles
+                    loadCustomizedFeatureToggles().finally(() => {
+                        resolve();
 
-                resolve();
+                        setTimeout(() => {
+                            this.logonSuccess();
+                        }, 10);
+                    });
+                } else {
+                    resolve();
+
+                    setTimeout(() => {
+                        this.logonFailed(result);
+                    }, 10);
+                }
             });
         });
     }

@@ -1,5 +1,6 @@
 /**@format */
 
+import { AITIANYU_CN_USER_SERVER } from "tianyu-server/Global";
 import { ILogonPost, ILogonResult, LogonResultType, LogonUserType } from "tianyu-server/model/Logon.model";
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
 import { Cookie } from "ts-core/Cookie";
@@ -22,6 +23,10 @@ export const UserLoginKey = "aitianyu-cn-user";
 export const UserLoginNameKey = "aitianyu-cn-user-name";
 export const UserLoginEmailKey = "aitianyu-cn-user-email";
 
+export function isUserLogon(): boolean {
+    return CacheController.get(UserLoginStateKey);
+}
+
 export async function loadUserLogonState(): Promise<void> {
     return new Promise<void>((resolve) => {
         const token = Cookie.get(USER_LOGIN_TOKEN_NAME);
@@ -34,7 +39,7 @@ export async function loadUserLogonState(): Promise<void> {
         }
 
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/remote-user-server/aitianyu/cn/user/account/login");
+        xhr.open("GET", `${AITIANYU_CN_USER_SERVER}/aitianyu/cn/user/account/login`);
         xhr.send();
         xhr.onloadend = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -63,7 +68,7 @@ export async function logon(post: ILogonPost): Promise<LogonResultType> {
         };
         const postString = JSON.stringify(postData);
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/remote-user-server/aitianyu/cn/user/account/login");
+        xhr.open("POST", `${AITIANYU_CN_USER_SERVER}/aitianyu/cn/user/account/login`);
         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhr.send(postString);
         xhr.onloadend = () => {

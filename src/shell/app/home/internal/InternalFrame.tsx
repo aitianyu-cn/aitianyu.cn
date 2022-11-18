@@ -3,15 +3,14 @@
 import React from "react";
 import { require_msgbundle } from "ts-core/I18n";
 import { IInternalFrameProperty } from "./InternalFrame.model";
-import { UserLoginStateKey } from "tianyu-server/controller/Account.controller";
+import { isUserLogon } from "tianyu-server/controller/Account.controller";
 import { LogonPanel } from "../common/LogonPanel";
 import { Router } from "ts-core/Router";
 import { guid } from "ts-core/Guid";
+import { FeatureToggle } from "ts-core/FeatureToggle";
 
 import "./css/main.css";
 import "./css/logon.css";
-import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
-import { FeatureToggle } from "ts-core/FeatureToggle";
 
 const interframeHashListener = "homepage_frame_hashchanged_listener";
 const messageBundle = require_msgbundle("home", "app");
@@ -53,7 +52,7 @@ export class InternalFrame extends React.Component<IInternalFrameProperty, IReac
 
         if (this.hashUrl === `tianyu/${loginPageId}`) return this.renderLogin();
         if (this.hashUrl === `tianyu/${forgetPWPageId}`) return this.renderForgetPW();
-        if (CacheController.get(UserLoginStateKey)) return this.renderNormal();
+        if (isUserLogon()) return this.renderNormal();
 
         return this.renderLogon();
     }

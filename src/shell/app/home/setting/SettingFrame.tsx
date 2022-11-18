@@ -3,10 +3,9 @@
 import React from "react";
 import { require_msgbundle } from "ts-core/I18n";
 import { ISettingProperty } from "./SettingFrame.model";
+import { isUserLogon } from "tianyu-server/controller/Account.controller";
 
 import "./css/main.css";
-import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
-import { UserLoginStateKey } from "tianyu-server/controller/Account.controller";
 
 const messageBundle = require_msgbundle("home", "app");
 
@@ -18,7 +17,7 @@ export class SettingFrame extends React.Component<ISettingProperty, IReactState>
     }
 
     public override render(): React.ReactNode {
-        if (!!!CacheController.get(UserLoginStateKey)) {
+        if (!isUserLogon()) {
             return this.renderNoUser();
         }
 
