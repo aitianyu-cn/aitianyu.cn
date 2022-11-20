@@ -8,6 +8,7 @@ import { Language } from "ts-core/Language";
 
 import "./css/home.main.css";
 import "./css/footer.main.css";
+import { MessageDialog } from "tianyu-shell/ui/native/widget/MessageDialog";
 
 const messageBundle = require_msgbundle("home", "app");
 

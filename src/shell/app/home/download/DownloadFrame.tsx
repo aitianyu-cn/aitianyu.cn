@@ -124,10 +124,10 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
 
     private renderLoading(): React.ReactNode {
         return (
-            <div className="download_base test_bbbbb">
+            <div className="download_base">
                 <div className="download_baseGrid">
                     <div className="download_replace download_replace_1"></div>
-                    <div className="download_content test_iiiiii">
+                    <div className="download_content">
                         <ReactWaiting />
                     </div>
                     <div className="download_replace download_replace_2"></div>

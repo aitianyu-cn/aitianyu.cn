@@ -1,5 +1,3 @@
-@import url("./main.anim.css");
-
 .download_base {
   width: 100%;
   height: auto;
@@ -7,7 +5,7 @@
   display: grid;
   grid-template-rows: 10px auto 30px auto 50px;
 
-  animation: download_base_enter 0.5s forwards ease-in-out;
+  animation: inner_page_enter 0.5s forwards ease-in-out;
 }
 
 .download_search_container {

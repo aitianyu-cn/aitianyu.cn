@@ -2,9 +2,11 @@
 
 import React from "react";
 import { require_msgbundle } from "ts-core/I18n";
+import { isMobile } from "ts-core/RuntimeHelper";
 
 import "./css/react-waiting.css";
 
+const isMob = isMobile();
 const WaitingDialogImgDark = require("./res/waiting-dark.gif").default;
 const WaitingDialogImgLight = require("./res/waiting-light.gif").default;
 // const DefaultWaitingOvertime = 30000;
@@ -52,11 +54,13 @@ export class ReactWaiting extends React.Component<IRequestWaitingProperty, IReac
         return (
             <div className="request_waiting_base">
                 <img
-                    className="request_waiting_base_ai"
+                    className={isMob ? "request_waiting_base_ai_mob" : "request_waiting_base_ai"}
                     src={themeColor === "dark" ? WaitingDialogImgDark : WaitingDialogImgLight}
                     alt={messageBundle.getText("REQUEST_WAITING_PAGE_ALT")}
                 />
-                <h4 className="request_waiting_base_text">{messageBundle.getText("REQUEST_WAITING_PAGE_TEXT")}</h4>
+                <h4 className={isMob ? "request_waiting_base_text_mob" : "request_waiting_base_text"}>
+                    {messageBundle.getText("REQUEST_WAITING_PAGE_TEXT")}
+                </h4>
             </div>
         );
     }

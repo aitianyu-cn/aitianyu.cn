@@ -6,7 +6,7 @@
 :root {
   --ts_ui_bgc: #000000;
   --ts_ui_content_bgc: #171c20;
-  --ts_ui_dialog_mask_bgc: #40404083;
+  --ts_ui_dialog_mask_bgc: #ededed83;
   --ts_ui_dialog_mask_op: 100%;
   --ts_ui_dialog_content_bgc: #0d0d0d;
   --ts_ui_dialog_content_sdc: #000000;

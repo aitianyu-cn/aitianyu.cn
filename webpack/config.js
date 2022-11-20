@@ -43,6 +43,22 @@ module.exports.proxy = {
             "^/remote-assist-server": "",
         },
     },
+    "/remote-project-server-docs": {
+        target: "http://localhost:9020",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-project-server-docs": "",
+        },
+    },
+    "/remote-project-server-download": {
+        target: "http://localhost:9021",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-project-server-download": "",
+        },
+    },
 };
 
 module.exports.static = [
