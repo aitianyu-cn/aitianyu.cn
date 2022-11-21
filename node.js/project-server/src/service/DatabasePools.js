@@ -24,6 +24,31 @@ class DatabasePools {
         return newPool;
     }
 
+    /**
+     *
+     * @param {string} database
+     *
+     * @return {boolean}
+     */
+    contains(database) {
+        return !!this.pool[database];
+    }
+
+    /**
+     *
+     * @param {string} database
+     */
+    delete(database) {
+        if (!this.contains(database)) {
+            return;
+        }
+
+        const db = this.pool[database];
+        db.end();
+
+        delete this.pool[database];
+    }
+
     destroy() {
         for (const db of Object.keys(this.pool)) {
             const pool = this.pool[db];

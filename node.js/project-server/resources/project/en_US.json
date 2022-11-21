@@ -1,62 +1,4 @@
 {
-    "HOME_PAGE_ITEM": "Home",
-    "DOWNLOAD_PAGE_ITEM": "Download",
-    "DOCUMENT_PAGE_ITEM": "Docs",
-    "LANGUAGE_PAGE_ALT": "Languages",
-
-    "CONTACT_US": "Contact Us",
-    "EMAIL_TEXT": "E-mail",
-    "PHONE_TEXT": "Phone",
-    "LOOKING_FORWARD_CONTACT": "Looking Forward to Communicating With You",
-    "COPYRIGHT_TEXT": "COPYRIGHT",
-
-    "DIALOG_PAGE_CLOSE_BUTTON": "Close",
-
-    "HOME_PAGE_TIANYU": "/assert/logo/aitianyu.logo.en.gif",
-    "HOME_PAGE_DESCRIPTION": "Open source native development library and peripheral tools",
-    "HOME_PAGE_SOURCE_EMPTY": "No item found at present~ Please come back later~",
-    "HOME_PAGE_MOB_ABOUT_TIANYU": "About Tianyu",
-
-    "ABOUT_TIANYU_FIRST_TITLE": "FIRST",
-    "ABOUT_TIANYU_FIRST_P_ONE": "P1",
-    "ABOUT_TIANYU_FIRST_P_TWO": "P2",
-
-    "ABOUT_TIANYU_SECOND_TITLE": "SECOND",
-    "ABOUT_TIANYU_SECOND_P_ONE": "P1",
-    "ABOUT_TIANYU_SECOND_P_TWO": "P2",
-
-    "ABOUT_TIANYU_THIRD_TITLE": "THIRD",
-    "ABOUT_TIANYU_THIRD_P_ONE": "P1",
-    "ABOUT_TIANYU_THIRD_P_TWO": "P2",
-
-    "404_OPS_MSG": "Ops!",
-    "404_DES_MSG": "Something seems to be wrong ~",
-    "404_OP1_MSG": "The currently requested data does not exist or is not accessible.",
-    "404_OP2_MSG": "You can switch to another page to continue ^_v_^",
-
-    "AITIANYU_DEV_LANGUAGE_TITLE": "Change Language",
-
-    "REQUEST_WAITING_PAGE_POINT": "Waiting...",
-    "REQUEST_WAITING_PAGE_AI": "...",
-    "REQUEST_WAITING_PAGE_TEXT": "Loading...",
-    "REQUEST_WAITING_IS_TIMEOUT": "Data loading timed out. Do you want to wait?",
-    "REQUEST_WAITING_TIMEOUT_DIALOG_CONTINUE_WAIT": "Wait",
-    "REQUEST_WAITING_TIMEOUT_DIALOG_CANCEL_WAIT": "Cancel",
-
-    "REQUEST_ERROR_PAGE_IMG_ALT": "Re-Try",
-    "REQUEST_ERROR_PAGE_TEXT": "Data load failed. Refresh to retry",
-
-    "LANGUAGE_TITLE": "Language",
-    "LANGUAGE_SUPPORT_TITLE": "The following languages are supported in Tianyu",
-    "LANGUAGE_PENDING_TITLE": "Working",
-    "zh_CN": "简体中文",
-    "zh_NC": "繁體中文",
-    "en_US": "English (United States)",
-
-    "LANGUAGE_PENDING_MOUSE_HOLDER": "The language is being adapted and is not currently supported.",
-
-    "PROJECT_DOWNLOAD_TITLE": "Obtaining project resources",
-
     "PROJECT_NAME_TIANYU_NATIVE": "Tianyu Development Library C++",
     "PROJECT_NAME_TIANYU_NATIVE_DESC": "The native C++ (Standard 17) development Library without using any other third-party external dependency library.",
 
@@ -65,50 +7,6 @@
 
     "PROJECT_NAME_TIANYU_SHELL": "Tianyu Web App Platform",
     "PROJECT_NAME_TIANYU_SHELL_DESC": "Web application framework based on Typescript and Webpack, can be used for single-page, multi-page rapid development.",
-
-    "PROJECT_TITLE_GITHUB_REPO": "Repo",
-    "PROJECT_TITLE_GITHUB_CLONE": "Clone",
-    "SOURCE": "Source Code",
-    "WINDOWS": "Windows",
-    "LINUX": "Linux",
-    "MACOS": "MacOS",
-
-    "DOWNLOAD_INVALID": "The current project does not provide download resources, please visit Github for more resources.",
-    "NO_DOWNLOAD_PROJECT": "There are currently no resources available for download",
-    "DOWNLOAD_DIALOG_EMPTY_SEARCH": "Search cannot be NULL!",
-    "DOWNLOAD_DIALOG_NOT_SUPPORT_SEARCH": "Search is not currently supported!",
-
-    "TIANYU_DEV_DOCS_PROJECT_OPTIONS": "Document options",
-    "TIANYU_DEV_DOCS_PROJECT_NO_OPTIONS": "The current project has no documentation",
-    "APIDocs": "API Document",
-    "Architecture": "Project Architecture",
-    "HelperDocs": "Help",
-    "Macrodef": "Macro Define",
-
-    "PROJECT_DOCS_TITLE": "Project documentation",
-    "PROJECT_DOCS_API_TITLE": "API Documents",
-    "PROJECT_DOCS_ARCH_TITLE": "Project Architecture",
-    "PROJECT_DOCS_HELP_TITLE": "Help Documents",
-    "PROJECT_DOCS_MACRO_TITLE": "Macro Define",
-    "PROJECT_DOCS_API_TIANYU_NATIVE_TITLE": "Tianyu C++ Native Dev Lib - API",
-
-    "TIANYU_DEV_DOCS_MACRO_DEFINE_NO_ITEM": "The current project has no macro definition",
-    "TIANYU_DEV_DOCS_MACRO_DEFINE_TITLE": "Macro Definition List",
-    "TIANYU_DEV_DOCS_MACRO_DEFINE_ITEM_VALUE_TITLE": " ",
-    "TIANYU_DEV_DOCS_MACRO_DEFINE_ITEM_FILE_TITLE": " ",
-    "TIANYU_DEV_DOCS_MACRO_DEFINE_ITEM_I18N_TITLE": " ",
-
-    "TIANYU_DEV_DOCS_API": "API Browser",
-
-    "TIANYU_DEV_DOCS_API_NOT_AVAILABLE": "No Project is currently available",
-    "TIANYU_DEV_DOCS_API_DATA_LOADING": "Please wait while data is loading...",
-    "TIANYU_DEV_DOCS_API_DATA_LOAD_ERROR": "Data loading failed please refresh and try again",
-    "TIANYU_DEV_DOCS_API_TITLE": "API Reference",
-
-    "TIANYU_DEV_DOCS_API_TABLE_ITEM_TITLE_NAME": "Name",
-    "TIANYU_DEV_DOCS_API_TABLE_ITEM_TITLE_DESC": "Description",
-
-    "TIANYU_DEV_DOCS_API_SOURCE_EMPTY": "The current project has not uploaded THE API document, please wait patiently!",
 
     "TIANYU_DEV_DOCS_API_PROJECT_NAMESPACE_EMPTY": "No valid namespace was found for the current project",
     "TIANYU_DEV_DOCS_API_PROJECT_DATATYPES_EMPTY": "No defined type was found in the current namespace",

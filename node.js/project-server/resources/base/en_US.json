@@ -1,0 +1,13 @@
+{
+    "SOURCE": "Source Code",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "API": "API Document",
+    "ARCHITECTURE": "Project Architecture",
+    "HELPER": "Help",
+    "MACRODEF": "Macro Define",
+
+    "MACRO_DEFINE_TITLE": "Macro Definition List"
+}

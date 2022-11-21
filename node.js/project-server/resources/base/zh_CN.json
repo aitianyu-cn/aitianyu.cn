@@ -1,0 +1,13 @@
+{
+    "SOURCE": "源代码",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "API": "API文档",
+    "ARCHITECTURE": "项目架构",
+    "HELPER": "帮助",
+    "MACRODEF": "宏定义文档",
+
+    "MACRO_DEFINE_TITLE": "宏定义列表"
+}

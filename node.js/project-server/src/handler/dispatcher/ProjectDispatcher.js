@@ -26,7 +26,7 @@ class ProjectDispatcher {
         handler.setRouter("aitianyu/cn/project/all", this._allProjectsDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/download/all", this._projectDownloadsDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/document/all", this._projectBrowserDispatcher.bind(this));
-        handler.setRouter("aitianyu/cn/project/document/macrodef", this._projectMacrodefDispatcher.bind(this));
+        handler.setRouter("aitianyu/cn/project/document/macro", this._projectMacrodefDispatcher.bind(this));
     }
 
     /**
@@ -75,6 +75,7 @@ class ProjectDispatcher {
             this.__getAllProjects(messageList).then((projects) => {
                 const downloadItems = [];
                 const i18n = this.i18nReader.get(query.lang, "project");
+                const baseI18n = this.i18nReader.get(query.lang, "base");
 
                 let oPromise = Promise.resolve();
                 for (const project of projects) {
@@ -106,8 +107,17 @@ class ProjectDispatcher {
                                                 const address = bins.address;
                                                 const url = bins.url;
 
-                                                if (!!!binaries[system]) binaries[system] = {};
-                                                binaries[system][name] = { address: address, url: url };
+                                                if (!!!binaries[system]) {
+                                                    const systemNameKey = system.toUpperCase();
+                                                    binaries[system] = {
+                                                        name: encodeURI(baseI18n[systemNameKey] || systemNameKey),
+                                                    };
+                                                }
+                                                binaries[system][name] = {
+                                                    address: address,
+                                                    url: url,
+                                                    name: name,
+                                                };
                                             } catch {}
                                         }
                                     }
@@ -146,10 +156,11 @@ class ProjectDispatcher {
                 try {
                     const projectBrowers = [];
                     const i18n = this.i18nReader.get(query.lang, "project");
+                    const baseI18n = this.i18nReader.get(query.lang, "base");
                     let oPromise = Promise.resolve();
 
                     for (const project of projects) {
-                        const sql = "SELECT `item` FROM aitianyu_base.project_options where `key`='" + project.key + "';";
+                        const sql = "SELECT `item`, `path` FROM aitianyu_base.project_options where `key`='" + project.key + "';";
                         oPromise = oPromise.then(() => {
                             return new Promise((res) => {
                                 this.databasePool.execute(
@@ -161,12 +172,18 @@ class ProjectDispatcher {
                                             project: project.project,
                                             name: encodeURI(i18n[project.name] || project.name),
                                             desc: encodeURI(i18n[project.desc] || project.desc),
-                                            options: [],
+                                            options: {},
                                         };
 
                                         if (Array.isArray(results)) {
                                             for (const item of results) {
-                                                if (item?.item) projectItem.options.push(item.item);
+                                                if (item?.item) {
+                                                    const itemKey = item.item.toUpperCase();
+                                                    projectItem.options[item.item] = {
+                                                        name: encodeURI(baseI18n[itemKey] || item.item),
+                                                        target: item.path,
+                                                    };
+                                                }
                                             }
                                         }
 
@@ -220,14 +237,18 @@ class ProjectDispatcher {
                                     github: item.github,
                                     database: item.db,
                                 };
-                                if (!!item.db && !!!this.projectDBMap[item.key]) {
+                                if (!!item.db && (!!!this.projectDBMap[item.key] || this.projectDBMap[item.key] !== item.db)) {
+                                    const oldDb = this.projectDBMap[item.key] || "";
                                     this.projectDBMap[item.key] = item.db;
+
+                                    this.databasePool.delete(oldDb);
                                 }
 
                                 projects.push(project);
                             } catch {}
                         }
                     }
+
                     resolve(projects);
                 },
                 (error) => {
@@ -254,47 +275,151 @@ class ProjectDispatcher {
             }
 
             const project = query.query["project"];
-            if (!!!this.projectDBMap[project]) {
-                messageList.push(`error: macro-def is not supported for ${project}`);
+            const hasProject = !!this.projectDBMap[project];
+            const oPromise = !hasProject ? this.__getAllProjects(messageList) : Promise.resolve();
+
+            oPromise.finally(() => {
+                if (!!!this.projectDBMap[project]) {
+                    messageList.push(`error: macro-def is not supported for ${project}`);
+                    resolve(null);
+                    return;
+                }
+
+                const dbName = this.projectDBMap[project];
+                try {
+                    const sql = "SELECT * FROM " + dbName + ".macrodef;";
+                    const i18nReader = this.i18nReader.get(query.lang, "project");
+                    const baseI18n = this.i18nReader.get(query.lang, "base");
+
+                    this.databasePool.execute(
+                        dbName,
+                        sql,
+                        (macrodefs) => {
+                            const macrodefinitions = [];
+                            for (const def of macrodefs) {
+                                try {
+                                    const definition = {
+                                        macro: def.macro,
+                                        value: def.value,
+                                        file: def.file,
+                                        i18n: encodeURI(i18nReader[def.macro] || def.macro),
+                                    };
+                                    macrodefinitions.push(definition);
+                                } catch {}
+                            }
+
+                            resolve({
+                                data: macrodefinitions,
+                                title: encodeURI(baseI18n["MACRO_DEFINE_TITLE"] || "Macro-Def List"),
+                            });
+                        },
+                        (error) => {
+                            messageList.push(error);
+                            resolve(null);
+                        },
+                    );
+                } catch (e) {
+                    messageList.push(e.message);
+                    resolve(null);
+                }
+            });
+        });
+    }
+    /**
+     *
+     * @param {{lang: string, query: any}} query
+     * @param {string[]} messageList
+     *
+     * @return {Promise<any>}
+     */
+    async _projectAPIBrowserDispatcher(query, messageList) {
+        /**
+         * 定义query
+         *  {
+         *      project: project name,
+         *      namespace?: namespace name
+         *      member?: member name
+         *      item?: member item
+         *  }
+         */
+
+        return new Promise((resolve) => {
+            const language = query.lang;
+            const project = query.query?.["project"] || "";
+            const space = query.query?.["namespace"] || "";
+            const member = query.query?.["member"] || "";
+            // const memberItem = query.query?.["item"] || "";
+
+            if (!!!project) {
+                messageList.push("error: no project name provided");
                 resolve(null);
                 return;
             }
 
-            const dbName = this.projectDBMap[project];
-            try {
-                const sql = "SELECT * FROM " + dbName + ".macrodef;";
-                const i18nReader = this.i18nReader.get(query.lang, "project");
-
-                this.databasePool.execute(
-                    dbName,
-                    sql,
-                    (macrodefs) => {
-                        const macrodefinitions = [];
-                        for (const def of macrodefs) {
-                            try {
-                                const definition = {
-                                    macro: def.macro,
-                                    value: def.value,
-                                    file: def.file,
-                                    i18n: encodeURI(i18nReader[def.macro] || def.macro),
-                                };
-                                macrodefinitions.push(definition);
-                            } catch {}
-                        }
-
-                        resolve(macrodefinitions);
-                    },
-                    (error) => {
-                        messageList.push(error);
-                        resolve(null);
-                    },
-                );
-            } catch (e) {
-                messageList.push(e.message);
-                resolve(null);
+            if (!!!space && !!!member && !!!memberItem) {
+                // basic - get namespace
+                this.__projectAPIBrowser_Basic(project, language).then((results) => {
+                    resolve(results);
+                });
+                return;
             }
+
+            if (!!space && !!!member && !!!memberItem) {
+                // namespace - get members inner namespace
+                this.__projectAPIBrowser_Namespace(project, space, language).then((results) => {
+                    resolve(results);
+                });
+                return;
+            }
+
+            if (!!space && !!member && !!!memberItem) {
+                // member - get all items inner member
+                this.__projectAPIBrowser_Member(project, space, member, language).then((results) => {
+                    resolve(results);
+                });
+                return;
+            }
+
+            // if (!!space && !!member && !!memberItem) {
+            //     // member item - get item details of member item
+            //     return;
+            // }
+
+            messageList.push("error: no matched any parameter, invalid operation");
+            resolve(null);
+            return;
         });
     }
+
+    /**
+     *
+     * @param {string} projectName
+     * @param {string} language
+     *
+     * @return {any}
+     */
+    async __projectAPIBrowser_Basic(projectName, language) {}
+
+    /**
+     *
+     * @param {string} projectName
+     * @param {string} package
+     * @param {string} language
+     *
+     * @return {any}
+     */
+    async __projectAPIBrowser_Namespace(projectName, package, language) {}
+
+    /**
+     *
+     * @param {string} projectName
+     * @param {string} package
+     * @param {string} member
+     * @param {string} language
+     *
+     * @return {any}
+     */
+    async __projectAPIBrowser_Member(projectName, package, member, language) {}
 }
 
 module.exports = ProjectDispatcher;
