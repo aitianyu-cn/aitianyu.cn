@@ -1,8 +1,10 @@
 /**@format */
 
-const DatabasePools = require("../../service/DatabasePools");
-const I18nReader = require("../../i18n/I18nReader");
-const HttpHandler = require("../HttpHandler");
+const DatabasePools = require("../../../common/service/DatabasePools");
+const I18nReader = require("../../../common/i18n/I18nReader");
+const HttpHandler = require("../../../common/handler/HttpHandler");
+const { PROJECT_ERROR_CODE } = require("../common/Errors");
+const { ERROR_CODE } = require("../../../common/common/Errors");
 
 /**
  *
@@ -172,9 +174,12 @@ class ProjectDispatcher {
      * @param {I18nReader} i18n
      */
     constructor(dbPool, i18n) {
+        /**@type {DatabasePools} */
         this.databasePool = dbPool;
+        /**@type {I18nReader} */
         this.i18nReader = i18n;
 
+        /**@type {{[projectName: string]: string}} */
         this.projectDBMap = {};
     }
 
@@ -186,6 +191,7 @@ class ProjectDispatcher {
         handler.setRouter("aitianyu/cn/project/all", this._allProjectsDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/download/all", this._projectDownloadsDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/document/all", this._projectBrowserDispatcher.bind(this));
+
         handler.setRouter("aitianyu/cn/project/document/macro", this._projectMacrodefDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/document/api", this._projectAPIBrowserDispatcher.bind(this));
     }
@@ -217,7 +223,7 @@ class ProjectDispatcher {
 
                     resolve(formattedProjects);
                 } catch (e) {
-                    messageList.push(e.message);
+                    messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                     resolve(null);
                 }
             });
@@ -289,7 +295,7 @@ class ProjectDispatcher {
                                     resolve();
                                 },
                                 (error) => {
-                                    messageList.push(error);
+                                    messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                                     resolve();
                                 },
                             );
@@ -352,7 +358,7 @@ class ProjectDispatcher {
                                         res();
                                     },
                                     (error) => {
-                                        messageList.push(error);
+                                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                                         res();
                                     },
                                 );
@@ -364,7 +370,7 @@ class ProjectDispatcher {
                         resolve(projectBrowers);
                     });
                 } catch (e) {
-                    messageList.push(e.message);
+                    messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                     resolve(null);
                 }
             });
@@ -413,7 +419,7 @@ class ProjectDispatcher {
                     resolve(projects);
                 },
                 (error) => {
-                    messageList.push(error);
+                    messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                     resolve(null);
                 },
             );
@@ -430,7 +436,7 @@ class ProjectDispatcher {
     async _projectMacrodefDispatcher(query, messageList) {
         return new Promise((resolve) => {
             if (!!!query.query?.["project"]) {
-                messageList.push("error: no project name provided");
+                messageList.push({ code: PROJECT_ERROR_CODE.NO_PROJECT_NAME, text: "error: no project name provided" });
                 resolve(null);
                 return;
             }
@@ -441,7 +447,10 @@ class ProjectDispatcher {
 
             oPromise.finally(() => {
                 if (!!!this.projectDBMap[project]) {
-                    messageList.push(`error: macro-def is not supported for ${project}`);
+                    messageList.push({
+                        code: PROJECT_ERROR_CODE.NOT_SUPPORT_MACRO_DEF,
+                        text: `error: macro-def is not supported for ${project}`,
+                    });
                     resolve(null);
                     return;
                 }
@@ -475,12 +484,12 @@ class ProjectDispatcher {
                             });
                         },
                         (error) => {
-                            messageList.push(error);
+                            messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                             resolve(null);
                         },
                     );
                 } catch (e) {
-                    messageList.push(e.message);
+                    messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                     resolve(null);
                 }
             });
@@ -512,7 +521,7 @@ class ProjectDispatcher {
             // const memberItem = query.query?.["item"] || "";
 
             if (!!!project) {
-                messageList.push("error: no project name provided");
+                messageList.push({ code: PROJECT_ERROR_CODE.NO_PROJECT_NAME, text: "error: no project name provided" });
                 resolve(null);
                 return;
             }
@@ -521,7 +530,10 @@ class ProjectDispatcher {
             const oPromise = !hasProject ? this.__getAllProjects(messageList) : Promise.resolve();
             oPromise.finally(() => {
                 if (!!!this.projectDBMap[project]) {
-                    messageList.push(`error: project api is not supported for ${project}`);
+                    messageList.push({
+                        code: PROJECT_ERROR_CODE.NOT_SUPPORT_API,
+                        text: `error: project api is not supported for ${project}`,
+                    });
                     resolve(null);
                     return;
                 }
@@ -550,7 +562,10 @@ class ProjectDispatcher {
                     return;
                 }
 
-                messageList.push("error: no matched any parameter, invalid operation");
+                messageList.push({
+                    code: PROJECT_ERROR_CODE.INVALID_OPERATION,
+                    text: "error: no matched any parameter, invalid operation",
+                });
                 resolve(null);
                 return;
             });
@@ -585,22 +600,22 @@ class ProjectDispatcher {
                                     name: item.name,
                                     key: item.key || "",
                                     cov: encodeURI(i18nReader[item.key] || item.key || ""),
-                                    i18n: encodeURI((item.key || "").toUpperCase() || ""),
+                                    i18n: encodeURI(i18nReader[(item.key || "").toUpperCase()] || ""),
                                 };
 
                                 apis.push(api);
                             }
                         }
 
-                        resolve({ api: apis, des: { title: i18nBasic["API_TITLE"] || "" } });
+                        resolve({ api: apis, des: { title: encodeURI(i18nBasic["API_TITLE"]) || "" } });
                     },
                     (error) => {
-                        messageList.push(error);
+                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                         resolve(null);
                     },
                 );
             } catch (e) {
-                messageList.push(e.message);
+                messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                 resolve(null);
             }
         });
@@ -641,12 +656,12 @@ class ProjectDispatcher {
                         resolve(items);
                     },
                     (error) => {
-                        messageList.push(error);
+                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                         resolve(null);
                     },
                 );
             } catch (e) {
-                messageList.push(e.message);
+                messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                 resolve(null);
             }
         });
@@ -699,12 +714,12 @@ class ProjectDispatcher {
                             resolve(definition);
                         }
                     } catch (e) {
-                        messageList.push(e.message);
+                        messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                         resolve(null);
                     }
                 });
             } catch (e) {
-                messageList.push(e.message);
+                messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                 resolve(null);
             }
         });
@@ -757,13 +772,13 @@ class ProjectDispatcher {
                         resolve({ def: items, type: memberPrototype });
                     },
                     (error) => {
-                        messageList.push(error);
+                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                         resolve({ def: [], type: "" });
                     },
                 );
             });
         } catch (e) {
-            messageList.push(e.message);
+            messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
             return { def: [], type: "" };
         }
     }
@@ -839,13 +854,13 @@ class ProjectDispatcher {
                         resolve(items);
                     },
                     (error) => {
-                        messageList.push(error);
+                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                         resolve(items);
                     },
                 );
             });
         } catch (e) {
-            messageList.push(e.message);
+            messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
             return items;
         }
     }

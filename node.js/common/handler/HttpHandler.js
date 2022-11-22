@@ -4,6 +4,7 @@ const { IncomingMessage, ServerResponse } = require("http");
 const { URLSearchParams } = require("url");
 const a = require("cookie-parser");
 const { parseCookie, parseAcceptLanguage, defaultLanguage } = require("./HttpHelper");
+const { ERROR_CODE } = require("../common/Errors");
 
 /**
  *
@@ -25,7 +26,13 @@ function processLanguage(req, query) {
 
 class HttpHandler {
     constructor() {
+        /**
+         * @type {{[url: string]: ((query: any, messageList: string[]) => Promise<any>)}}
+         */
         this.router = {};
+        /**
+         * @type {(query: any, messageList: string[]) => Promise<any>}
+         */
         this.fallback = null;
     }
 
@@ -74,7 +81,11 @@ class HttpHandler {
                 res.end(JSON.stringify(response));
             },
             (error) => {
-                const errorResult = { result: "failed", message: [`${error}`], response: null };
+                const errorResult = {
+                    result: "failed",
+                    message: [{ code: ERROR_CODE.GENERAL_EXCEPTIONS, text: `${error}` }],
+                    response: null,
+                };
                 res.end(JSON.stringify(errorResult));
             },
         );
@@ -106,7 +117,11 @@ class HttpHandler {
                     res.end(JSON.stringify(response));
                 },
                 (error) => {
-                    const errorResult = { result: "failed", message: [`${error}`], response: null };
+                    const errorResult = {
+                        result: "failed",
+                        message: [{ code: ERROR_CODE.GENERAL_EXCEPTIONS, text: `${error}` }],
+                        response: null,
+                    };
                     res.end(JSON.stringify(errorResult));
                 },
             );
@@ -127,7 +142,7 @@ class HttpHandler {
             console.log(query);
             try {
                 if (typeof url !== "string" || !!!query) {
-                    result.message.push("Invalid operation");
+                    result.message.push({ code: ERROR_CODE.INVALID_OPERATION, text: "Invalid operation" });
                     result.result = "failed";
                 } else {
                     if (url.startsWith("/")) url = url.substring(1, url.length);
@@ -136,12 +151,15 @@ class HttpHandler {
                     if (router) {
                         result.response = await router(query, result.message);
                     } else {
-                        result.message.push("Error 404: the required path could not find or access.");
+                        result.message.push({
+                            code: ERROR_CODE.NOT_FIND_ACCESS_404,
+                            text: "Error 404: the required path could not find or access.",
+                        });
                         result.result = "failed";
                     }
                 }
             } catch (e) {
-                result.message.push(`error: ${e.message}`);
+                result.message.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: `error: ${e.message}` });
                 result.result = "failed";
             } finally {
                 resolve(result);

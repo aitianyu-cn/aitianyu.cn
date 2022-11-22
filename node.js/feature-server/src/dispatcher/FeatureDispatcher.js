@@ -1,18 +1,18 @@
 /**@format */
 
-const DatabasePools = require("../../service/DatabasePools");
-const I18nReader = require("../../i18n/I18nReader");
-const HttpHandler = require("../HttpHandler");
+const DatabasePools = require("../../../common/service/DatabasePools");
+const I18nReader = require("../../../common/i18n/I18nReader");
+const HttpHandler = require("../../../common/handler/HttpHandler");
+const { ERROR_CODE } = require("../../../common/common/Errors");
 
 class FeatureDispatcher {
     /**
      *
      * @param {DatabasePools} dbPool
-     * @param {I18nReader} i18n
      */
-    constructor(dbPool, i18n) {
+    constructor(dbPool) {
+        /**@type {DatabasePools} */
         this.databasePool = dbPool;
-        this.i18nReader = i18n;
     }
 
     /**
@@ -42,7 +42,7 @@ class FeatureDispatcher {
                             try {
                                 const depSrc = item.dep;
                                 const featureItem = {
-                                    description: item.name,
+                                    description: encodeURI(item.desc),
                                     defaultOn: !!item.enable,
                                     version: "",
                                     reqId: "",
@@ -62,7 +62,7 @@ class FeatureDispatcher {
                     resolve(features);
                 },
                 (error) => {
-                    messageList.push(error);
+                    messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
                     resolve(null);
                 },
             );

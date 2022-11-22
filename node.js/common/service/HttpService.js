@@ -1,6 +1,7 @@
 /**@format */
 
 const http = require("http");
+const { ERROR_CODE } = require("../common/Errors");
 
 /**
  *
@@ -22,7 +23,11 @@ function createServer(get, post, error) {
                 post(req, res);
                 break;
             default:
-                res.end({ result: "failed", message: [`Not support operation: ${req.method}`], response: null });
+                res.end({
+                    result: "failed",
+                    message: [{ code: ERROR_CODE.NOT_SUPPORT_OPERATION, text: `Not support operation: ${req.method}` }],
+                    response: null,
+                });
                 break;
         }
     });

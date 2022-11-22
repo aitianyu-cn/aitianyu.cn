@@ -1,10 +1,9 @@
 {
-    "name": "tianyu-kvserver",
+    "name": "tianyu-server",
     "version": "1.0.0",
-    "description": "Tianyu Key-Value database server",
+    "description": "Tianyu generic server built by Node.Js",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
@@ -12,9 +11,12 @@
     "license": "ISC",
     "dependencies": {
         "cuid": "^2.1.8",
-        "http": "^0.0.1-security",
+        "cookie-parser": "^1.4.6",
+        "http": "0.0.1-security",
+        "mysql": "^2.18.1",
+        "path": "^0.12.7",
         "level": "^8.0.0",
         "level-sublevel": "^6.6.5",
-        "querystring": "^0.2.1"
+        "url-search-params": "^1.1.0"
     }
 }

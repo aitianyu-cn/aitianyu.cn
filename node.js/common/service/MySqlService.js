@@ -2,8 +2,14 @@
 
 const mysql = require("mysql");
 
-function createService(database) {
-    const baseConfig = require("../mysql.config.json");
+/**
+ *
+ * @param {string} database
+ * @param {any} baseConfig
+ * @returns {mysql.Connection}
+ */
+function createService(database, baseConfig) {
+    // const baseConfig = require("../mysql.config.json");
     const config = {
         ...baseConfig,
         database: database,
@@ -19,10 +25,11 @@ function createService(database) {
 /**
  *
  * @param {string} database
+ * @param {any} baseConfig
  * @returns {mysql.Pool}
  */
-function createPool(database) {
-    const baseConfig = require("../mysql.config.json");
+function createPool(database, baseConfig) {
+    // const baseConfig = require("../mysql.config.json");
     const config = {
         ...baseConfig,
         database: database,
