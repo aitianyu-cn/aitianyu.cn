@@ -68,7 +68,13 @@ class DocumentDispatcher {
                 for (const archItem of mainfest.arch) {
                     try {
                         const archFile = require(`${this.basePath}/arch/${project}/${archItem}.json`);
-                        archData.arch.push(archFile);
+                        const architect = { total: archFile.total, items: {} };
+                        for (const item of Object.keys(archFile.items || {})) {
+                            const itemVal = archFile.items[item];
+                            itemVal.i18n = encodeURI(i18n[itemVal.i18n] || itemVal.i18n);
+                            architect.items[item] = itemVal;
+                        }
+                        archData.arch.push(architect);
                     } catch (e) {
                         messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
                     }

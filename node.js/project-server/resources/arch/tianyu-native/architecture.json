@@ -9,67 +9,78 @@
             "col": 0,
             "backgroundColor": "#799e69",
             "borderRadiusTopLeft": true,
-            "borderRadiusTopRigth": true
+            "borderRadiusTopRigth": true,
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_HLCOMPONENT"
         },
         "text": {
             "row": 2,
             "col": 1,
             "rowSpan": 2,
             "colSpan": 3,
-            "backgroundColor": "#843c0c"
+            "backgroundColor": "#843c0c",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXT"
         },
         "serfs": {
             "row": 2,
             "col": 4,
             "colSpan": 4,
-            "backgroundColor": "#519271"
+            "backgroundColor": "#519271",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SERFS"
         },
         "ioext": {
             "row": 2,
             "col": 8,
             "rowSpan": 2,
             "colSpan": 2,
-            "backgroundColor": "#2e75b6"
+            "backgroundColor": "#2e75b6",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOEXT"
         },
         "model": {
             "row": 3,
             "col": 4,
             "colSpan": 3,
-            "backgroundColor": "#ffc000"
+            "backgroundColor": "#ffc000",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_MODEL"
         },
         "io": {
             "row": 3,
             "col": 7,
-            "backgroundColor": "#1f4e79"
+            "backgroundColor": "#1f4e79",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IO"
         },
         "textbase": {
             "row": 4,
             "col": 1,
             "colSpan": 6,
-            "backgroundColor": "#ed7d31"
+            "backgroundColor": "#ed7d31",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_TEXTBASE"
         },
         "iobase": {
             "row": 4,
             "col": 7,
             "colSpan": 3,
-            "backgroundColor": "#5b9bd5"
+            "backgroundColor": "#5b9bd5",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_IOBASE"
         },
         "prime": {
             "row": 5,
             "col": 0,
-            "backgroundColor": "#c1c1c1"
+            "backgroundColor": "#c1c1c1",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_PRIME"
         },
         "core": {
             "row": 6,
             "col": 0,
-            "backgroundColor": "#797979"
+            "backgroundColor": "#797979",
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_CORE"
         },
         "systemapi": {
             "row": 7,
             "col": 0,
             "backgroundColor": "#2f2f2f",
             "borderRadiusBottomLeft": true,
-            "borderRadiusBottomRigth": true
+            "borderRadiusBottomRigth": true,
+            "i18n": "TIANYU_DEV_DOCS_ARCH_TIANYU_NATIVE_SYSTEMAPI"
         }
     }
 }
