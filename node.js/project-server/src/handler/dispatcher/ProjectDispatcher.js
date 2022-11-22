@@ -3,7 +3,167 @@
 const DatabasePools = require("../../service/DatabasePools");
 const I18nReader = require("../../i18n/I18nReader");
 const HttpHandler = require("../HttpHandler");
-const path = require("path");
+
+/**
+ *
+ * @param {string} member
+ *
+ * @return {string}
+ */
+function ___processProjectPackMemberName(member) {
+    let translatedName = member;
+
+    if (/\.*\_[0-9]+/.test(translatedName)) {
+        let index = translatedName.length - 1;
+        for (; index >= 0; ) {
+            if ("0" <= translatedName[index] && "9" >= translatedName[index]) {
+                --index;
+            } else {
+                break;
+            }
+        }
+
+        translatedName = translatedName.substring(0, index);
+    }
+
+    return translatedName;
+}
+
+/**
+ *
+ * @param {{[key: string]: string}} source
+ *
+ * @return {any}
+ */
+function ___processProjectMemberItem(source) {
+    const result = { key: source.name, name: "", i18n: source.i18n, def: source.define, type: "" };
+
+    let translatedName = result.key || "";
+    let translatedType = source.prototype;
+    if (translatedName.toLowerCase().startsWith("construct")) {
+        translatedType = "construct";
+    } else if (result.def.toLowerCase().includes("operator")) {
+        translatedType = "operator";
+        const translatedNameLower = translatedName.toLowerCase();
+        switch (translatedNameLower) {
+            case "operator_ass":
+                translatedName = "operator =";
+                break;
+            case "operator_eq":
+                translatedName = "operator ==";
+                break;
+            case "operator_ne":
+                translatedName = "operator !=";
+                break;
+            case "operator_lt":
+                translatedName = "operator <";
+                break;
+            case "operator_le":
+                translatedName = "operator <=";
+                break;
+            case "operator_gt":
+                translatedName = "operator >";
+                break;
+            case "operator_ge":
+                translatedName = "operator >=";
+                break;
+            case "operator_add":
+                translatedName = "operator +";
+                break;
+            case "operator_add_ass":
+                translatedName = "operator +=";
+                break;
+            case "operator_sub":
+                translatedName = "operator -";
+                break;
+            case "operator_sub_ass":
+                translatedName = "operator -=";
+                break;
+            case "operator_mul":
+                translatedName = "operator *";
+                break;
+            case "operator_mul_ass":
+                translatedName = "operator *=";
+                break;
+            case "operator_div":
+                translatedName = "operator /";
+                break;
+            case "operator_div_ass":
+                translatedName = "operator /=";
+                break;
+            case "operator_mod":
+                translatedName = "operator %";
+                break;
+            case "operator_mod_ass":
+                translatedName = "operator %=";
+                break;
+            case "operator_aand":
+                translatedName = "operator &";
+                break;
+            case "operator_aand_ass":
+                translatedName = "operator &=";
+                break;
+            case "operator_aor":
+                translatedName = "operator |";
+                break;
+            case "operator_aor_ass":
+                translatedName = "operator |=";
+                break;
+            case "operator_axor":
+                translatedName = "operator ^";
+                break;
+            case "operator_axor_ass":
+                translatedName = "operator ^=";
+                break;
+            case "operator_lmove":
+                translatedName = "operator <<";
+                break;
+            case "operator_lmove_ass":
+                translatedName = "operator <<=";
+                break;
+            case "operator_rmove":
+                translatedName = "operator >>";
+                break;
+            case "operator_rmove_ass":
+                translatedName = "operator >>=";
+                break;
+            case "operator_anot":
+                translatedName = "operator ~";
+                break;
+            case "operator_lnot":
+                translatedName = "operator !";
+                break;
+            case "operator_sd":
+                translatedName = "operator --";
+                break;
+            case "operator_si":
+                translatedName = "operator ++";
+                break;
+            case "operator_land":
+                translatedName = "operator &&";
+                break;
+            case "operator_land_ass":
+                translatedName = "operator &&=";
+                break;
+            case "operator_lor":
+                translatedName = "operator |=";
+                break;
+            case "operator_lor_ass":
+                translatedName = "operator ||=";
+                break;
+            default:
+                if (!translatedNameLower.includes("operator")) {
+                    translatedName = `(${translatedName})`;
+                }
+                break;
+        }
+    }
+
+    result.name = translatedName;
+    result.type = translatedType;
+
+    return result;
+}
 
 class ProjectDispatcher {
     /**
@@ -27,6 +187,7 @@ class ProjectDispatcher {
         handler.setRouter("aitianyu/cn/project/download/all", this._projectDownloadsDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/document/all", this._projectBrowserDispatcher.bind(this));
         handler.setRouter("aitianyu/cn/project/document/macro", this._projectMacrodefDispatcher.bind(this));
+        handler.setRouter("aitianyu/cn/project/document/api", this._projectAPIBrowserDispatcher.bind(this));
     }
 
     /**
@@ -40,9 +201,9 @@ class ProjectDispatcher {
         return new Promise((resolve) => {
             this.__getAllProjects(messageList).then((projects) => {
                 try {
-                    const i18n = this.i18nReader.get(query.lang, "project");
                     const formattedProjects = [];
                     for (const project of projects) {
+                        const i18n = this.i18nReader.get(query.lang, `project/${project.key}`);
                         const formattedItem = {
                             key: project.key,
                             project: project.project,
@@ -74,11 +235,11 @@ class ProjectDispatcher {
         return new Promise((resolve) => {
             this.__getAllProjects(messageList).then((projects) => {
                 const downloadItems = [];
-                const i18n = this.i18nReader.get(query.lang, "project");
                 const baseI18n = this.i18nReader.get(query.lang, "base");
 
                 let oPromise = Promise.resolve();
                 for (const project of projects) {
+                    const i18n = this.i18nReader.get(query.lang, `project/${project.key}`);
                     const sql =
                         "SELECT `system`, `name`, `address`, `url` FROM aitianyu_base.project_downloads where `key`='" +
                         project.key +
@@ -155,11 +316,11 @@ class ProjectDispatcher {
             this.__getAllProjects(messageList).then((projects) => {
                 try {
                     const projectBrowers = [];
-                    const i18n = this.i18nReader.get(query.lang, "project");
                     const baseI18n = this.i18nReader.get(query.lang, "base");
                     let oPromise = Promise.resolve();
 
                     for (const project of projects) {
+                        const i18n = this.i18nReader.get(query.lang, `project/${project.key}`);
                         const sql = "SELECT `item`, `path` FROM aitianyu_base.project_options where `key`='" + project.key + "';";
                         oPromise = oPromise.then(() => {
                             return new Promise((res) => {
@@ -288,7 +449,7 @@ class ProjectDispatcher {
                 const dbName = this.projectDBMap[project];
                 try {
                     const sql = "SELECT * FROM " + dbName + ".macrodef;";
-                    const i18nReader = this.i18nReader.get(query.lang, "project");
+                    const i18nReader = this.i18nReader.get(query.lang, `project/${project}`);
                     const baseI18n = this.i18nReader.get(query.lang, "base");
 
                     this.databasePool.execute(
@@ -356,38 +517,43 @@ class ProjectDispatcher {
                 return;
             }
 
-            if (!!!space && !!!member && !!!memberItem) {
-                // basic - get namespace
-                this.__projectAPIBrowser_Basic(project, language).then((results) => {
-                    resolve(results);
-                });
+            const hasProject = !!this.projectDBMap[project];
+            const oPromise = !hasProject ? this.__getAllProjects(messageList) : Promise.resolve();
+            oPromise.finally(() => {
+                if (!!!this.projectDBMap[project]) {
+                    messageList.push(`error: project api is not supported for ${project}`);
+                    resolve(null);
+                    return;
+                }
+
+                if (!!project && !!!space && !!!member) {
+                    // basic - get namespace
+                    this.__projectAPIBrowser_Basic(project, language, messageList).then((results) => {
+                        resolve(results);
+                    });
+                    return;
+                }
+
+                if (!!project && !!space && !!!member) {
+                    // namespace - get members inner namespace
+                    this.__projectAPIBrowser_Namespace(project, space, language, messageList).then((results) => {
+                        resolve(results);
+                    });
+                    return;
+                }
+
+                if (!!project && !!space && !!member) {
+                    // member - get all items inner member
+                    this.__projectAPIBrowser_Member(project, space, member, language, messageList).then((results) => {
+                        resolve(results);
+                    });
+                    return;
+                }
+
+                messageList.push("error: no matched any parameter, invalid operation");
+                resolve(null);
                 return;
-            }
-
-            if (!!space && !!!member && !!!memberItem) {
-                // namespace - get members inner namespace
-                this.__projectAPIBrowser_Namespace(project, space, language).then((results) => {
-                    resolve(results);
-                });
-                return;
-            }
-
-            if (!!space && !!member && !!!memberItem) {
-                // member - get all items inner member
-                this.__projectAPIBrowser_Member(project, space, member, language).then((results) => {
-                    resolve(results);
-                });
-                return;
-            }
-
-            // if (!!space && !!member && !!memberItem) {
-            //     // member item - get item details of member item
-            //     return;
-            // }
-
-            messageList.push("error: no matched any parameter, invalid operation");
-            resolve(null);
-            return;
+            });
         });
     }
 
@@ -395,31 +561,294 @@ class ProjectDispatcher {
      *
      * @param {string} projectName
      * @param {string} language
+     * @param {string[]} messageList
      *
      * @return {any}
      */
-    async __projectAPIBrowser_Basic(projectName, language) {}
+    async __projectAPIBrowser_Basic(projectName, language, messageList) {
+        return new Promise((resolve) => {
+            const dbName = this.projectDBMap[projectName];
+            try {
+                const sql = "SELECT * FROM " + dbName + ".namespace;";
+                const i18nReader = this.i18nReader.get(language, `project/${projectName}`);
+                const i18nBasic = this.i18nReader.get(language, "base");
+
+                this.databasePool.execute(
+                    dbName,
+                    sql,
+                    (results) => {
+                        const apis = [];
+
+                        if (Array.isArray(results)) {
+                            for (const item of results) {
+                                const api = {
+                                    name: item.name,
+                                    key: item.key || "",
+                                    cov: encodeURI(i18nReader[item.key] || item.key || ""),
+                                    i18n: encodeURI((item.key || "").toUpperCase() || ""),
+                                };
+
+                                apis.push(api);
+                            }
+                        }
+
+                        resolve({ api: apis, des: { title: i18nBasic["API_TITLE"] || "" } });
+                    },
+                    (error) => {
+                        messageList.push(error);
+                        resolve(null);
+                    },
+                );
+            } catch (e) {
+                messageList.push(e.message);
+                resolve(null);
+            }
+        });
+    }
 
     /**
      *
      * @param {string} projectName
-     * @param {string} package
+     * @param {string} pack
      * @param {string} language
+     * @param {string[]} messageList
      *
      * @return {any}
      */
-    async __projectAPIBrowser_Namespace(projectName, package, language) {}
+    async __projectAPIBrowser_Namespace(projectName, pack, language, messageList) {
+        return new Promise((resolve) => {
+            const dbName = this.projectDBMap[projectName];
+            try {
+                const sql = "SELECT `name` FROM " + dbName + ".types where namespace = '" + pack + "';";
+                const i18n = this.i18nReader.get(language, `project/${projectName}`);
+
+                this.databasePool.execute(
+                    dbName,
+                    sql,
+                    (results) => {
+                        const items = [];
+
+                        if (Array.isArray(results)) {
+                            for (const item of results) {
+                                const name = item.name;
+                                const translatedName = ___processProjectPackMemberName(name);
+                                if (translatedName && !items.includes(translatedName)) {
+                                    items.push(translatedName);
+                                }
+                            }
+                        }
+
+                        resolve(items);
+                    },
+                    (error) => {
+                        messageList.push(error);
+                        resolve(null);
+                    },
+                );
+            } catch (e) {
+                messageList.push(e.message);
+                resolve(null);
+            }
+        });
+    }
 
     /**
      *
      * @param {string} projectName
-     * @param {string} package
+     * @param {string} pack
      * @param {string} member
      * @param {string} language
+     * @param {string[]} messageList
      *
      * @return {any}
      */
-    async __projectAPIBrowser_Member(projectName, package, member, language) {}
+    async __projectAPIBrowser_Member(projectName, pack, member, language, messageList) {
+        return new Promise((resolve) => {
+            const dbName = this.projectDBMap[projectName];
+            try {
+                this.___projectAPIBrowser_GetMemberDefinition(dbName, pack, member, messageList).then((result) => {
+                    const memberDefinition = result.def;
+                    const memberType = result.type;
+                    if (!!!memberType || !Array.isArray(memberDefinition) || memberDefinition.length === 0) {
+                        resolve([]);
+                        return;
+                    }
+
+                    try {
+                        const definition = { memberDefs: [], memberItems: {}, name: "", type: "", typeI18n: "" };
+                        const i18n = this.i18nReader.get(language, `project/${projectName}`);
+                        const i18nBasic = this.i18nReader.get(language, "base");
+
+                        definition.name = member;
+                        definition.type = memberType;
+                        definition.typeI18n = encodeURI(i18nBasic[memberType.toUpperCase()] || memberType);
+                        for (const def of memberDefinition) {
+                            def.i18n = encodeURI(i18n[def.i18n] || def.i18n);
+                            definition.memberDefs.push(def);
+                        }
+
+                        if (memberDefinition.length === 1 && memberType !== "function") {
+                            this.___projectAPIBrowser_FillMemberItems(projectName, dbName, pack, member, language, messageList)
+                                .then((memberItems) => {
+                                    definition.memberItems = memberItems;
+                                })
+                                .finally(() => {
+                                    resolve(definition);
+                                });
+                        } else {
+                            resolve(definition);
+                        }
+                    } catch (e) {
+                        messageList.push(e.message);
+                        resolve(null);
+                    }
+                });
+            } catch (e) {
+                messageList.push(e.message);
+                resolve(null);
+            }
+        });
+    }
+
+    /**
+     *
+     * @param {string} dbName
+     * @param {string} pack
+     * @param {string} member
+     * @param {string[]} messageList
+     *
+     * @return {Promise<{def: any[], type: string}>}
+     */
+    async ___projectAPIBrowser_GetMemberDefinition(dbName, pack, member, messageList) {
+        const sql =
+            "SELECT `name`, `i18n`, `prototype`, `file`, `define` FROM " +
+            dbName +
+            ".types where namespace = '" +
+            pack +
+            "' and name like '" +
+            member +
+            "%';";
+        try {
+            return new Promise((resolve) => {
+                let memberPrototype = "";
+                this.databasePool.execute(
+                    dbName,
+                    sql,
+                    (results) => {
+                        const items = [];
+
+                        if (Array.isArray(results)) {
+                            for (const item of results) {
+                                memberPrototype = (!!!memberPrototype && item.prototype.toLowerCase()) || memberPrototype;
+
+                                const def = {
+                                    name: item.name,
+                                    i18n: item.i18n,
+                                    file: item.file,
+                                    def: item.define,
+                                };
+
+                                items.push(def);
+
+                                if (memberPrototype.toLowerCase() !== "function") break;
+                            }
+                        }
+
+                        resolve({ def: items, type: memberPrototype });
+                    },
+                    (error) => {
+                        messageList.push(error);
+                        resolve({ def: [], type: "" });
+                    },
+                );
+            });
+        } catch (e) {
+            messageList.push(e.message);
+            return { def: [], type: "" };
+        }
+    }
+
+    /**
+     *
+     * @param {string} projectName
+     * @param {string} dbName
+     * @param {string} pack
+     * @param {string} member
+     * @param {string} language
+     * @param {string[]} messageList
+     *
+     * @return {Promise<{constructor: any[], property: any[], operator: any[], method: any[]}>}
+     */
+    async ___projectAPIBrowser_FillMemberItems(projectName, dbName, pack, member, language, messageList) {
+        const sql =
+            "SELECT `name`, `i18n`, `prototype`, `define` FROM " +
+            dbName +
+            ".container where namespace = '" +
+            pack +
+            "' and belong = '" +
+            member +
+            "';";
+
+        const i18nBasic = this.i18nReader.get(language, "base");
+        const items = {
+            constructor: { title: encodeURI(i18nBasic["ITEM_CONSTRUCT"]) || "constructor", items: [] },
+            property: { title: encodeURI(i18nBasic["ITEM_PROPERTY"]) || "property", items: [] },
+            enum: { title: encodeURI(i18nBasic["ITEM_ENUM_VALUE"]) || "enum", items: [] },
+            operator: { title: encodeURI(i18nBasic["ITEM_OPERATOR"]) || "operator", items: [] },
+            method: { title: encodeURI(i18nBasic["ITEM_METHOD"]) || "method", items: [] },
+            other: { title: encodeURI(i18nBasic["ITEM_OTHER"]) || "other", items: [] },
+        };
+
+        try {
+            return new Promise((resolve) => {
+                this.databasePool.execute(
+                    dbName,
+                    sql,
+                    (results) => {
+                        const i18n = this.i18nReader.get(language, `project/${projectName}`);
+                        if (Array.isArray(results)) {
+                            for (const item of results) {
+                                const itemConverted = ___processProjectMemberItem(item);
+                                itemConverted.i18n = encodeURI(i18n[itemConverted.i18n] || itemConverted.i18n);
+                                itemConverted.typeI18n =
+                                    encodeURI(i18nBasic[itemConverted.type.toUpperCase()]) || itemConverted.type;
+
+                                switch (itemConverted.type) {
+                                    case "construct":
+                                        items.constructor.items.push(itemConverted);
+                                        break;
+                                    case "method":
+                                        items.method.items.push(itemConverted);
+                                        break;
+                                    case "operator":
+                                        items.operator.items.push(itemConverted);
+                                        break;
+                                    case "enum":
+                                        items.enum.items.push(itemConverted);
+                                        break;
+                                    case "property":
+                                        items.property.items.push(itemConverted);
+                                        break;
+                                    default:
+                                        items.other.items.push(itemConverted);
+                                        break;
+                                }
+                            }
+                        }
+
+                        resolve(items);
+                    },
+                    (error) => {
+                        messageList.push(error);
+                        resolve(items);
+                    },
+                );
+            });
+        } catch (e) {
+            messageList.push(e.message);
+            return items;
+        }
+    }
 }
 
 module.exports = ProjectDispatcher;

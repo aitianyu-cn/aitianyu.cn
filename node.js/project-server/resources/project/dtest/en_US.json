@@ -1,0 +1,4 @@
+{
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK": "Tianyu C++ Test Framework",
+    "PROJECT_NAME_TIANYU_TEST_FRAMEWORK_DESC": "A small unit testing framework based on \"tianyu C++ native development library\" does not rely on any third party libraries other than the basic C++17 header file."
+}
