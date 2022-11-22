@@ -33,7 +33,7 @@ class FileService {
                 resolve({
                     state: false,
                     code: FILE_READ_CODE.NOT_ACCESSIBLE,
-                    data: `file is not accessible or not exists - ${filePath}`,
+                    data: `file is not accessible or not exists - ${pack}/${file}`,
                 });
                 return;
             }

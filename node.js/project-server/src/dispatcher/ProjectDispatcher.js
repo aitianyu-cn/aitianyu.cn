@@ -199,7 +199,7 @@ class ProjectDispatcher {
     /**
      *
      * @param {{lang: string, query: any}} query
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any[]>}
      */
@@ -233,7 +233,7 @@ class ProjectDispatcher {
     /**
      *
      * @param {{lang: string, query: any}} query
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any>}
      */
@@ -313,7 +313,7 @@ class ProjectDispatcher {
     /**
      *
      * @param {{lang: string, query: any}} query
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any>}
      */
@@ -379,7 +379,7 @@ class ProjectDispatcher {
 
     /**
      *
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any[]>}
      */
@@ -429,7 +429,7 @@ class ProjectDispatcher {
     /**
      *
      * @param {{lang: string, query: any}} query
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any>}
      */
@@ -498,7 +498,7 @@ class ProjectDispatcher {
     /**
      *
      * @param {{lang: string, query: any}} query
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<any>}
      */
@@ -576,7 +576,7 @@ class ProjectDispatcher {
      *
      * @param {string} projectName
      * @param {string} language
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {any}
      */
@@ -626,7 +626,7 @@ class ProjectDispatcher {
      * @param {string} projectName
      * @param {string} pack
      * @param {string} language
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {any}
      */
@@ -673,7 +673,7 @@ class ProjectDispatcher {
      * @param {string} pack
      * @param {string} member
      * @param {string} language
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {any}
      */
@@ -730,7 +730,7 @@ class ProjectDispatcher {
      * @param {string} dbName
      * @param {string} pack
      * @param {string} member
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<{def: any[], type: string}>}
      */
@@ -790,7 +790,7 @@ class ProjectDispatcher {
      * @param {string} pack
      * @param {string} member
      * @param {string} language
-     * @param {string[]} messageList
+     * @param {{code: number, text: string}[]} messageList
      *
      * @return {Promise<{constructor: any[], property: any[], operator: any[], method: any[]}>}
      */
