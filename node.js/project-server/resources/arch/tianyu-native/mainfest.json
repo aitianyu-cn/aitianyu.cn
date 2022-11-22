@@ -1,0 +1,13 @@
+{
+    "arch": ["architecture"],
+    "files": {
+        "core": {
+            "file": "core.md",
+            "i18n": "TIANYU_NATIVE_ARCH_DOCS_CORE"
+        },
+        "systemapi": {
+            "file": "systemapi.md",
+            "i18n": "TIANYU_NATIVE_ARCH_DOCS_SYSTEMAPI"
+        }
+    }
+}

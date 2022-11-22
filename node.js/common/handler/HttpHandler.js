@@ -2,7 +2,7 @@
 
 const { IncomingMessage, ServerResponse } = require("http");
 const { URLSearchParams } = require("url");
-const a = require("cookie-parser");
+const Console = require("../common/Console");
 const { parseCookie, parseAcceptLanguage, defaultLanguage } = require("./HttpHelper");
 const { ERROR_CODE } = require("../common/Errors");
 
@@ -139,7 +139,7 @@ class HttpHandler {
         return new Promise(async (resolve) => {
             const result = { result: "success", message: [], response: null };
 
-            console.log(query);
+            Console.log(query);
             try {
                 if (typeof url !== "string" || !!!query) {
                     result.message.push({ code: ERROR_CODE.INVALID_OPERATION, text: "Invalid operation" });

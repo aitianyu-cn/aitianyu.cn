@@ -1,0 +1,26 @@
+{
+    "default": "startPage",
+    "pdf": "",
+    "files": {
+        "startPage": {
+            "file": "StartPage",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_START_PAGE"
+        },
+        "installAndUse": {
+            "file": "InstallAndUse",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_INSTALL_AND_USE"
+        },
+        "description": {
+            "file": "Description",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_DESCRIPTION"
+        },
+        "toolHelp": {
+            "file": "ToolHelp",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_TOOLHELP"
+        },
+        "resourceHelp_i18n": {
+            "file": "ResourceHelp-i18n",
+            "i18n": "TIANYU_NATIVE_HELP_DOCS_RESOURCEHELP_I18N"
+        }
+    }
+}
