@@ -65,7 +65,7 @@ class HttpHandler {
         const originUrl = req.url;
         const urlParam = originUrl.split("?");
 
-        let query = { lang: "", query: null };
+        const query = { lang: "", query: null };
         const url = urlParam[0];
         if (urlParam.length > 1) {
             try {
@@ -88,6 +88,7 @@ class HttpHandler {
                     result: "failed",
                     message: [{ code: ERROR_CODE.GENERAL_EXCEPTIONS, text: `${error}` }],
                     response: null,
+                    lang: query.lang,
                 };
                 res.end(JSON.stringify(errorResult));
             },
@@ -124,6 +125,7 @@ class HttpHandler {
                         result: "failed",
                         message: [{ code: ERROR_CODE.GENERAL_EXCEPTIONS, text: `${error}` }],
                         response: null,
+                        lang: request.lang,
                     };
                     res.end(JSON.stringify(errorResult));
                 },
@@ -140,7 +142,7 @@ class HttpHandler {
      */
     dispatcher(url, query) {
         return new Promise(async (resolve) => {
-            const result = { result: "success", message: [], response: null };
+            const result = { result: "success", message: [], response: null, lang: query.lang };
 
             Console.log(query);
             try {
