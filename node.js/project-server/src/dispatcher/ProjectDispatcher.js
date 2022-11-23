@@ -278,13 +278,14 @@ class ProjectDispatcher {
                                                     const systemNameKey = system.toUpperCase();
                                                     binaries[system] = {
                                                         name: encodeURI(baseI18n[systemNameKey] || systemNameKey),
+                                                        source: [],
                                                     };
                                                 }
-                                                binaries[system][name] = {
+                                                binaries[system].source.push({
                                                     address: address,
                                                     url: url,
                                                     name: name,
-                                                };
+                                                });
                                             } catch {}
                                         }
                                     }
@@ -385,44 +386,52 @@ class ProjectDispatcher {
      */
     async __getAllProjects(messageList) {
         return new Promise((resolve) => {
-            this.databasePool.execute(
-                "aitianyu_base",
-                "SELECT * FROM aitianyu_base.projects;",
-                (results) => {
-                    const projects = [];
-                    if (Array.isArray(results)) {
-                        for (const item of results) {
-                            try {
-                                if (item.enable !== 1) {
-                                    continue;
-                                }
-                                const project = {
-                                    key: item.key,
-                                    project: item.project,
-                                    name: item.name,
-                                    desc: item.desc,
-                                    github: item.github,
-                                    database: item.db,
-                                };
-                                if (!!item.db && (!!!this.projectDBMap[item.key] || this.projectDBMap[item.key] !== item.db)) {
-                                    const oldDb = this.projectDBMap[item.key] || "";
-                                    this.projectDBMap[item.key] = item.db;
+            try {
+                this.databasePool.execute(
+                    "aitianyu_base",
+                    "SELECT * FROM aitianyu_base.projects;",
+                    (results) => {
+                        const projects = [];
+                        if (Array.isArray(results)) {
+                            for (const item of results) {
+                                try {
+                                    if (item.enable !== 1) {
+                                        continue;
+                                    }
+                                    const project = {
+                                        key: item.key,
+                                        project: item.project,
+                                        name: item.name,
+                                        desc: item.desc,
+                                        github: item.github,
+                                        database: item.db,
+                                    };
+                                    if (
+                                        !!item.db &&
+                                        (!!!this.projectDBMap[item.key] || this.projectDBMap[item.key] !== item.db)
+                                    ) {
+                                        const oldDb = this.projectDBMap[item.key] || "";
+                                        this.projectDBMap[item.key] = item.db;
 
-                                    this.databasePool.delete(oldDb);
-                                }
+                                        this.databasePool.delete(oldDb);
+                                    }
 
-                                projects.push(project);
-                            } catch {}
+                                    projects.push(project);
+                                } catch {}
+                            }
                         }
-                    }
 
-                    resolve(projects);
-                },
-                (error) => {
-                    messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
-                    resolve(null);
-                },
-            );
+                        resolve(projects);
+                    },
+                    (error) => {
+                        messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
+                        resolve([]);
+                    },
+                );
+            } catch (e) {
+                messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: error });
+                resolve([]);
+            }
         });
     }
 
@@ -598,8 +607,7 @@ class ProjectDispatcher {
                             for (const item of results) {
                                 const api = {
                                     name: item.name,
-                                    key: item.key || "",
-                                    cov: encodeURI(i18nReader[item.key] || item.key || ""),
+                                    generic: encodeURI(i18nReader[item.key] || item.key || ""),
                                     i18n: encodeURI(i18nReader[(item.key || "").toUpperCase()] || ""),
                                 };
 
@@ -633,8 +641,9 @@ class ProjectDispatcher {
     async __projectAPIBrowser_Namespace(projectName, pack, language, messageList) {
         return new Promise((resolve) => {
             const dbName = this.projectDBMap[projectName];
+            const decodePach = decodeURI(pack);
             try {
-                const sql = "SELECT `name` FROM " + dbName + ".types where namespace = '" + pack + "';";
+                const sql = "SELECT `name` FROM " + dbName + ".types where namespace = '" + decodePach + "';";
                 const i18n = this.i18nReader.get(language, `project/${projectName}`);
 
                 this.databasePool.execute(
@@ -680,8 +689,10 @@ class ProjectDispatcher {
     async __projectAPIBrowser_Member(projectName, pack, member, language, messageList) {
         return new Promise((resolve) => {
             const dbName = this.projectDBMap[projectName];
+            const decodePach = decodeURI(pack);
+            const decodeMember = decodeURI(member);
             try {
-                this.___projectAPIBrowser_GetMemberDefinition(dbName, pack, member, messageList).then((result) => {
+                this.___projectAPIBrowser_GetMemberDefinition(dbName, decodePach, decodeMember, messageList).then((result) => {
                     const memberDefinition = result.def;
                     const memberType = result.type;
                     if (!!!memberType || !Array.isArray(memberDefinition) || memberDefinition.length === 0) {
@@ -690,7 +701,15 @@ class ProjectDispatcher {
                     }
 
                     try {
-                        const definition = { memberDefs: [], memberItems: {}, name: "", type: "", typeI18n: "" };
+                        const definition = {
+                            memberDefs: [],
+                            memberItems: {},
+                            name: "",
+                            type: "",
+                            typeI18n: "",
+                            namespace: pack,
+                            project: projectName,
+                        };
                         const i18n = this.i18nReader.get(language, `project/${projectName}`);
                         const i18nBasic = this.i18nReader.get(language, "base");
 
@@ -703,7 +722,14 @@ class ProjectDispatcher {
                         }
 
                         if (memberDefinition.length === 1 && memberType !== "function") {
-                            this.___projectAPIBrowser_FillMemberItems(projectName, dbName, pack, member, language, messageList)
+                            this.___projectAPIBrowser_FillMemberItems(
+                                projectName,
+                                dbName,
+                                decodePach,
+                                decodeMember,
+                                language,
+                                messageList,
+                            )
                                 .then((memberItems) => {
                                     definition.memberItems = memberItems;
                                 })

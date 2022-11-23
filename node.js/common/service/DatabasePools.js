@@ -85,32 +85,33 @@ class DatabasePools {
                 delete this.sqlCache[database][sql];
             } else {
                 callback(this.sqlCache[database][sql].data);
+                return;
             }
-        } else {
-            const pool = this.get(database);
-            pool.getConnection((error, connection) => {
-                if (error) {
-                    failed?.(error);
-                } else {
-                    connection.query(sql, (error, results) => {
-                        connection.release();
-
-                        if (error) {
-                            failed?.(error);
-                        } else {
-                            if (!!results) {
-                                this.sqlCache[database][sql] = {
-                                    valid: true,
-                                    data: results,
-                                    timestamp: Date.now(),
-                                };
-                            }
-                            callback(results);
-                        }
-                    });
-                }
-            });
         }
+
+        const pool = this.get(database);
+        pool.getConnection((error, connection) => {
+            if (error) {
+                failed?.(error);
+            } else {
+                connection.query(sql, (error, results) => {
+                    connection.release();
+
+                    if (error) {
+                        failed?.(error);
+                    } else {
+                        if (!!results) {
+                            this.sqlCache[database][sql] = {
+                                valid: true,
+                                data: results,
+                                timestamp: Date.now(),
+                            };
+                        }
+                        callback(results);
+                    }
+                });
+            }
+        });
     }
 }
 

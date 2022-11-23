@@ -13,8 +13,11 @@ const { ERROR_CODE } = require("../common/Errors");
  */
 function processLanguage(req, query) {
     try {
-        const cookie = parseCookie(req.headers.cookie || "");
-        query.lang = cookie["LANGUAGE"];
+        query.lang = query.query?.["lang"];
+        if (!!!query.lang) {
+            const cookie = parseCookie(req.headers.cookie || "");
+            query.lang = cookie["LANGUAGE"];
+        }
         if (!!!query.lang) {
             query.lang = parseAcceptLanguage(req.headers["accept-language"] || "");
         }
