@@ -14,42 +14,23 @@ import { DownloadMagnet } from "./DownloadMagnet";
 import "./css/main.css";
 import { Language } from "ts-core/Language";
 import { ReactWaiting } from "tianyu-shell/ui/react/widget/control/ReactWaiting";
+import { AITIANYU_CN_OPERATION_SUCCESS, AITIANYU_CN_STATIC_FILE_SERVER } from "tianyu-server/Global";
 
-const DOWNLOAD_BACKEND_DATA_I18N = "remote-connection/resources/i18n/international";
-const DOWNLOAD_BACKEND_DATA_SOURCE = "remote-connection/project_download/downloadbrowser";
+const DOWNLOAD_BACKEND_DATA_SOURCE = "remote-project/aitianyu/cn/project/download/all";
 const messageBundle = require_msgbundle("home", "app");
 
-class CustomLanguageBundle implements IMessageBundle {
-    private source: any;
-
-    public constructor(source: any) {
-        this.source = source;
-    }
-
-    public getText(key: string): string {
-        return this.source?.[key] || key;
-    }
-}
-
 export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReactState> {
-    private language: IMessageBundle;
     private isLoaded: boolean;
-
-    // private fnDataLoadResolve!: CallbackAction;
-    // private fnDataLoadReject!: CallbackAction;
-
-    private i18nName: string;
+    private url: string;
 
     public constructor(props: IDownloadFrameProperty) {
         super(props);
 
+        this.isLoaded = false;
+
         const production = tianyuShell.core.runtime?.environment === "production";
         const language = production ? Language.toString() : "zh_CN";
-        this.i18nName = `${DOWNLOAD_BACKEND_DATA_I18N}_${language}.json`;
-
-        const cachedI18n = CacheController.get(this.i18nName);
-        this.language = (cachedI18n && new CustomLanguageBundle(cachedI18n)) || emptyMsgBundle;
-        this.isLoaded = false;
+        this.url = `${DOWNLOAD_BACKEND_DATA_SOURCE}?lang=${language}`;
 
         document.title = messageBundle.getText("HOME_PAGE_DOWNLOAD_TITLE");
     }
@@ -61,25 +42,16 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
             return;
         }
 
-        const cachedI18n = CacheController.get(this.i18nName);
-        const cachedData = CacheController.get(DOWNLOAD_BACKEND_DATA_SOURCE);
+        const cachedData = CacheController.get(this.url);
+        const fileLoader = new FetchFileLoader(this.url);
 
-        const i18nLoader = new FetchFileLoader(this.i18nName);
-        const fileLoader = new FetchFileLoader(DOWNLOAD_BACKEND_DATA_SOURCE);
-
-        Promise.all([
-            cachedI18n ? Promise.resolve() : i18nLoader.openAsync(),
-            cachedData ? Promise.resolve() : fileLoader.openAsync(),
-        ]).then((value: any[]) => {
+        (cachedData ? Promise.resolve() : fileLoader.openAsync()).then((value: any) => {
             const source = fileLoader.getResponse();
-            const i18n = cachedI18n || i18nLoader.getResponse();
-
-            this.language = new CustomLanguageBundle(i18n);
-            if (!!!cachedI18n) {
-                CacheController.cache(this.i18nName, i18n);
-            }
-            if (source) {
-                CacheController.cache(DOWNLOAD_BACKEND_DATA_SOURCE, source);
+            if (source["result"] === AITIANYU_CN_OPERATION_SUCCESS) {
+                const responseData = source["response"];
+                if (responseData) {
+                    CacheController.cache(this.url, responseData);
+                }
             }
 
             this.forceUpdate();
@@ -105,7 +77,7 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
     }
 
     private getReceiveData(): any {
-        return CacheController.get(DOWNLOAD_BACKEND_DATA_SOURCE);
+        return CacheController.get(this.url);
     }
 
     private renderLoaded(): React.ReactNode {
@@ -173,37 +145,40 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private createProjectSource(oProject: any): IDownloadMagnetItem {
         const oPlatforms: IDownloadMagnetBinaries = {};
-        for (const platformSource of oProject["binary"]) {
-            const platform: string = platformSource["system"];
+        const binary = oProject["binary"];
+        for (const binaryKey of Object.keys(binary)) {
+            const binaryItem = binary[binaryKey];
+
+            const itemName = decodeURI(binaryItem["name"] || binaryKey);
 
             const aBinaries: IDownloadBinarySource[] = [];
-            const oBinariesSource = platformSource["binary"];
-            for (const binarySource of Object.keys(oBinariesSource)) {
-                const url = oBinariesSource[binarySource];
+            const oBinariesSource = binaryItem["source"];
+            for (const binarySource of oBinariesSource) {
+                const url = binarySource.url;
 
                 let link = "";
-                switch (url["address"]) {
+                switch (binarySource["address"]) {
                     case "inner":
-                        link = `${process.env.PUBLIC_URL}/download/${url["url"]}`;
+                        link = `${AITIANYU_CN_STATIC_FILE_SERVER}/${url}`;
                         break;
                     case "web":
                     default:
-                        link = url["url"];
+                        link = url;
                         break;
                 }
 
                 aBinaries.push({
-                    name: binarySource,
+                    name: decodeURI(binarySource["name"] || ""),
                     url: link,
                 });
             }
-            oPlatforms[this.language.getText(platform)] = aBinaries;
+            oPlatforms[itemName] = aBinaries;
         }
 
         const oMagnetSource: IDownloadMagnetItem = {
             key: oProject["key"],
-            name: this.language.getText(oProject["name"]),
-            desc: this.language.getText(oProject["description"]),
+            name: decodeURI(oProject["name"]),
+            desc: decodeURI(oProject["desc"]),
             github: oProject["github"],
             bin: oPlatforms,
         };

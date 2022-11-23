@@ -9,15 +9,20 @@ export async function loadFeatureToggle(projects: string[]): Promise<void> {
         const postString = JSON.stringify(projects);
 
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", `/remote-connection/global/feature/getFeatures`);
+        xhr.open("POST", `${AITIANYU_CN_GENERIC_SERVER}/aitianyu/cn/generic/features/feature-toggle`);
         // xhr.open("POST", `${AITIANYU_CN_GENERIC_SERVER}/aitianyu/cn/generic/features/feature-toggle`);
         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhr.send(postString);
         xhr.onloadend = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const response = xhr.responseText;
-                const features = JSON.parse(response) as FeatureSourceList;
+                const resObj = JSON.parse(response);
+                const features = resObj.response as FeatureSourceList;
                 if (!!features) {
+                    for (const featureName of Object.keys(features)) {
+                        const featureItem = features[featureName];
+                        featureItem.description = decodeURI(featureItem.description);
+                    }
                     FeatureToggle.loadFeatures(features);
                 }
             }

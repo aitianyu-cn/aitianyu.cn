@@ -11,52 +11,28 @@ module.exports.proxy = {
             "^/remote-connection": "",
         },
     },
-    "/remote-connection-test": {
-        target: "http://aitianyu.cn",
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/remote-connection-test": "",
-        },
-    },
-    "/remote-user-server": {
-        target: "http://localhost:9010",
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/remote-user-server": "",
-        },
-    },
-    "/remote-global-server": {
-        target: "http://localhost:9000",
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/remote-global-server": "",
-        },
-    },
-    "/remote-assist-server": {
+    "/remote-project": {
         target: "http://localhost:9001",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-            "^/remote-assist-server": "",
+            "^/remote-project": "",
         },
     },
-    "/remote-project-server-docs": {
-        target: "http://localhost:9020",
+    "/remote-generic": {
+        target: "http://localhost:9000",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-            "^/remote-project-server-docs": "",
+            "^/remote-generic": "",
         },
     },
-    "/remote-project-server-download": {
-        target: "http://localhost:9021",
+    "/remote-authorization": {
+        target: "http://localhost:9010",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-            "^/remote-project-server-download": "",
+            "^/remote-authorization": "",
         },
     },
 };
