@@ -1,16 +1,16 @@
 /**@format */
 
 import React from "react";
+import { IProjectDownload } from "tianyu-server/model/Project.model";
 import { require_msgbundle } from "ts-core/I18n";
 import { isMobile } from "ts-core/RuntimeHelper";
 
 import "./css/magnet.css";
-import { IDownloadMagnetBinaries, IDownloadMagnetItem } from "./DownloadFrame.model";
 
-export class DownloadMagnet extends React.Component<IDownloadMagnetItem> {
+export class DownloadMagnet extends React.Component<IProjectDownload> {
     private isLoaded: boolean;
 
-    public constructor(source: IDownloadMagnetItem) {
+    public constructor(source: IProjectDownload) {
         super(source);
 
         this.isLoaded = false;
@@ -39,7 +39,7 @@ export class DownloadMagnet extends React.Component<IDownloadMagnetItem> {
                     </div>
                     <div className="empty_line"></div>
                     <div className="download_magnet_section_container">
-                        {Object.keys(this.props.bin).length > 0 ? (
+                        {Object.keys(this.props.binary).length > 0 ? (
                             <div className="download_magnet_section_shell">{this.renderPlaforms()}</div>
                         ) : (
                             <div className="download_magnet_section_nodown">
@@ -54,7 +54,7 @@ export class DownloadMagnet extends React.Component<IDownloadMagnetItem> {
 
     private renderPlaforms(): React.ReactNode[] {
         const aReactNodes: React.ReactNode[] = [];
-        const aPlatforms = Object.keys(this.props.bin);
+        const aPlatforms = Object.keys(this.props.binary);
         if (!aPlatforms || aPlatforms.length === 0) {
             return [];
         }
@@ -74,11 +74,11 @@ export class DownloadMagnet extends React.Component<IDownloadMagnetItem> {
     }
 
     private renderDownloads(platform: string): React.ReactNode[] {
-        const aDownloads = this.props.bin[platform];
+        const aDownloads = this.props.binary[platform];
         const aDownloadNodes: React.ReactNode[] = [];
 
         const mobSectionLink = isMobile() ? "download_magnet_section_link_div_mob" : "download_magnet_section_link_div";
-        for (const download of aDownloads) {
+        for (const download of aDownloads.source) {
             aDownloadNodes.push(
                 <a
                     key={download.name}

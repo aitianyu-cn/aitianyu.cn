@@ -2,15 +2,28 @@
 
 import { MapOfType } from "ts-core/Types";
 
-const _cache: MapOfType<any> = {};
+interface ICacheItem {
+    timestamp: number;
+    data: any;
+}
+
+const _cache: MapOfType<ICacheItem> = {};
 
 export class CacheController {
     public static cache(key: string, value: any): void {
-        _cache[key] = value;
+        _cache[key] = { timestamp: Date.now(), data: value };
     }
 
     public static get(key: string): any {
-        return _cache[key];
+        const value = _cache[key];
+        if (!!!value) return null;
+
+        const valid = Date.now() - value.timestamp;
+        if (valid > 300000) {
+            delete _cache[key];
+            return null;
+        }
+        return value.data;
     }
 
     public static remove(key: string): void {

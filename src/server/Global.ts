@@ -5,6 +5,7 @@ export const AITIANYU_CN_HOME_PROJECT = "aitianyu-cn-home-project";
 export const AITIANYU_CN_APPLICATION_PROJECT = "aitianyu-cn-app-project";
 
 export const AITIANYU_CN_GENERIC_SERVER = "/remote-generic";
+export const AITIANYU_CN_PROJECT_SERVER = "/remote-project";
 export const AITIANYU_CN_USER_SERVER = "/remote-authorization";
 
 export const AITIANYU_CN_STATIC_FILE_SERVER = "/remote-static-file";
