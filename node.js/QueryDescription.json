@@ -1,0 +1,43 @@
+{
+    "global": { "param": { "lang": "string" } },
+    "dispatcher": {
+        "aitianyu/cn/generic/features/feature-toggle": { "param": null },
+
+        "aitianyu/cn/project/all": { "param": null },
+        "aitianyu/cn/project/download/all": { "param": null },
+        "aitianyu/cn/project/document/all": { "param": null },
+        "aitianyu/cn/project/document/macro": {
+            "param": {
+                "project": "string",
+                "showAll": "boolean?",
+                "page": "number?",
+                "size": "number?"
+            }
+        },
+        "aitianyu/cn/project/document/api": {
+            "param": {
+                "project": "string",
+                "namespace": "string?",
+                "member": "string?"
+            }
+        },
+        "aitianyu/cn/project/document/help": {
+            "param": {
+                "project": "string"
+            }
+        },
+        "aitianyu/cn/project/document/arch": {
+            "param": {
+                "project": "string"
+            }
+        },
+
+        "aitianyu/cn/project/document/resource": {
+            "param": {
+                "project": "string",
+                "option": "string",
+                "file": "string"
+            }
+        }
+    }
+}

@@ -451,6 +451,9 @@ class ProjectDispatcher {
             }
 
             const project = query.query["project"];
+            const showAll = !!query.query["showAll"];
+            const requirePage = showAll ? 1 : Number.parseInt(query.query["page"]) || 1;
+            const pageSize = query.query["size"] || 30;
             const hasProject = !!this.projectDBMap[project];
             const oPromise = !hasProject ? this.__getAllProjects(messageList) : Promise.resolve();
 
@@ -463,44 +466,84 @@ class ProjectDispatcher {
                     resolve(null);
                     return;
                 }
-
                 const dbName = this.projectDBMap[project];
-                try {
-                    const sql = "SELECT * FROM " + dbName + ".macrodef;";
-                    const i18nReader = this.i18nReader.get(query.lang, `project/${project}`);
-                    const baseI18n = this.i18nReader.get(query.lang, "base");
 
+                const getTotalPromise = new Promise((done) => {
+                    const sql = "SELECT count(*) as total FROM " + dbName + ".macrodef;";
                     this.databasePool.execute(
                         dbName,
                         sql,
-                        (macrodefs) => {
-                            const macrodefinitions = [];
-                            for (const def of macrodefs) {
+                        (totalRec) => {
+                            let total = 0;
+                            for (const rec of totalRec) {
                                 try {
-                                    const definition = {
-                                        macro: def.macro,
-                                        value: def.value,
-                                        file: def.file,
-                                        i18n: encodeURI(i18nReader[def.macro] || def.macro),
-                                    };
-                                    macrodefinitions.push(definition);
+                                    total = rec["total"] || 0;
                                 } catch {}
                             }
 
-                            resolve({
-                                data: macrodefinitions,
-                                title: encodeURI(baseI18n["MACRO_DEFINE_TITLE"] || "Macro-Def List"),
-                            });
+                            done(total);
                         },
                         (error) => {
                             messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
-                            resolve(null);
+                            done(0);
                         },
                     );
-                } catch (e) {
-                    messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
-                    resolve(null);
-                }
+                });
+
+                getTotalPromise.then((totalRows) => {
+                    const i18nReader = this.i18nReader.get(query.lang, `project/${project}`);
+                    const baseI18n = this.i18nReader.get(query.lang, "base");
+
+                    const startRow = showAll ? 0 : (requirePage - 1) * pageSize;
+                    const totalPages = showAll ? 1 : Math.round(totalRows / pageSize);
+                    if (showAll || (totalRows !== 0 && requirePage <= totalPages)) {
+                        try {
+                            const sql =
+                                "SELECT * FROM " +
+                                dbName +
+                                ".macrodef" +
+                                (showAll ? ";" : " limit " + startRow + "," + pageSize + ";");
+
+                            this.databasePool.execute(
+                                dbName,
+                                sql,
+                                (macrodefs) => {
+                                    const macrodefinitions = [];
+                                    for (const def of macrodefs) {
+                                        try {
+                                            const definition = {
+                                                macro: def.macro,
+                                                value: def.value,
+                                                file: def.file,
+                                                i18n: encodeURI(i18nReader[def.macro] || def.macro),
+                                            };
+                                            macrodefinitions.push(definition);
+                                        } catch {}
+                                    }
+
+                                    resolve({
+                                        info: { totalPages: totalPages, currentPage: requirePage, totalRow: totalRows },
+                                        data: macrodefinitions,
+                                        title: encodeURI(baseI18n["MACRO_DEFINE_TITLE"] || "Macro-Def List"),
+                                    });
+                                },
+                                (error) => {
+                                    messageList.push({ code: ERROR_CODE.DATABASE_EXCEPTION, text: error });
+                                    resolve(null);
+                                },
+                            );
+                        } catch (e) {
+                            messageList.push({ code: ERROR_CODE.SYSTEM_EXCEPTIONS, text: e.message });
+                            resolve(null);
+                        }
+                    } else {
+                        resolve({
+                            info: { totalPages: totalPages, currentPage: requirePage, totalRow: totalRows },
+                            data: [],
+                            title: encodeURI(baseI18n["MACRO_DEFINE_TITLE"] || "Macro-Def List"),
+                        });
+                    }
+                });
             });
         });
     }
