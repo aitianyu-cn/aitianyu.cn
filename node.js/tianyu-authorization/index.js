@@ -29,4 +29,4 @@ const server = createServer(
     },
 );
 
-server.listen(9010, "[::]");
+server.listen(9010, "0.0.0.0");
