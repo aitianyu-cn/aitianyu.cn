@@ -3,32 +3,24 @@
 module.exports.extensions = [".ts", ".js", ".css", ".view.json", ".i18n.js", ".tsx", "png", "svg"];
 
 module.exports.proxy = {
-    "/remote-connection": {
-        target: "http://aitianyu.cn",
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/remote-connection": "",
-        },
-    },
-    "/remote-project": {
-        target: "http://localhost:9001",
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/remote-project": "",
-        },
-    },
     "/remote-generic": {
-        target: "http://localhost:9000",
+        target: "http://server.tencent.backend.aitianyu.cn:9000",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
             "^/remote-generic": "",
         },
     },
+    "/remote-project": {
+        target: "http://server.tencent.backend.aitianyu.cn:9001",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-project": "",
+        },
+    },
     "/remote-authorization": {
-        target: "http://localhost:9010",
+        target: "http://server.tencent.backend.aitianyu.cn:9010",
         ws: true,
         changeOrigin: true,
         pathRewrite: {

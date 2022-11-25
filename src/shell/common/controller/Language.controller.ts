@@ -6,7 +6,8 @@ export async function loadLanguages(url: string, ignoreFail?: boolean): Promise<
     const fetchFile = new FetchFileLoader(url);
 
     return new Promise<void>((resolve, reject) => {
-        fetchFile.openAsync().then((value: any) => {
+        fetchFile.openAsync().then((response: any) => {
+            const value = response.response;
             if (!!!value && !!!ignoreFail) {
                 reject();
                 return;

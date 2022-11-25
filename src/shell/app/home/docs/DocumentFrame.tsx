@@ -54,7 +54,10 @@ export class DocumentFrame extends React.Component<IDocumentProperty, IReactStat
     public override render(): React.ReactNode {
         return (
             <div className="pending_docs_outter">
-                <div className="pending_docs_inner">{this.renderFrame()}</div>
+                {/* <div className="pending_docs_inner">{this.renderFrame()}</div> */}
+                <div className="pending_docs_inner">
+                    <h1>{messageBundle.getText("HOME_PAGE_DOCUMENT_FRAME_PENDING")}</h1>
+                </div>
             </div>
         );
     }

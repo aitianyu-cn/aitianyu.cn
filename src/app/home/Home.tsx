@@ -20,20 +20,7 @@ function onDependencyLoadFailed(fnResolve: CallbackAction): void {
 }
 
 async function render(Dependency: typeof import("tianyu-app/home/DependencyLoader"), resolve: CallbackAction) {
-    Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
-    Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
-    Dependency.FeatureToggle.addFeature(Dependency.REACT_NAVIGATION_PERFORMANCE_TOGGLE);
-    Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_PERFORMANCE_TOGGLE);
-    Dependency.FeatureToggle.enable(Dependency.REACT_NAVIGATION_DEVELOP_TOGGLE);
-    Dependency.FeatureToggle.addFeature("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE");
-    Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_MOB_AUTO_CLOSE");
-    Dependency.FeatureToggle.addFeature("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
-    Dependency.FeatureToggle.enable("REACT_HORIZONTAL_NAVIGATION_NARROW_HOVER_OPEN");
-    Dependency.FeatureToggle.addFeature("TIANYU_CN_BETA_INTERNAL_READY");
-    Dependency.FeatureToggle.enable("TIANYU_CN_BETA_INTERNAL_READY");
-
     Dependency.Router.init();
-
     Promise.all([
         import("tianyu-shell/ui/react/modules/navigation/ReactHorizontalNavigation"),
         import("tianyu-shell/ui/react/modules/content/ReactNavigationContent"),
@@ -97,7 +84,7 @@ async function onHomePageIniting(): Promise<void> {
         import("./DependencyLoader").then(
             (Dependency) => {
                 Promise.all([
-                    Dependency.loadLanguages("/remote-connection/resources/i18n/languages.json", true),
+                    Dependency.loadLanguages("/remote-generic/aitianyu/cn/generic/language/language-alls", true),
                     Dependency.loadFeatureToggle(),
                 ]).then(
                     () => {
