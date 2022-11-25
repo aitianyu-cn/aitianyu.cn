@@ -1,6 +1,6 @@
 /**@format */
 
-module.exports.mode = "development";
+module.exports.mode = "production";
 module.exports.watchOptions = {
     poll: 1000,
     aggregateTimeout: 1000,

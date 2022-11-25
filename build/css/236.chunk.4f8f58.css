@@ -1,0 +1,1 @@
+.r_n_c_b{animation:r_n_c_b_in .25s forwards;height:100vh;overflow-x:hidden;overflow-y:auto;position:fixed;width:100%;z-index:var(--ts_ui_major_base_zindex)}.r_n_c_e{height:50px;width:100%}.r_n_c_c{height:calc(100vh - 50px);width:100%}@keyframes r_n_c_b_in{0%{transform:translate3d(0,-100%,0)}to{transform:translateZ(0)}}
