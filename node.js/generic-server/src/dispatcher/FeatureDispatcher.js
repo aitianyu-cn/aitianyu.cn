@@ -35,7 +35,7 @@ class FeatureDispatcher {
             try {
                 this.databasePool.execute(
                     "aitianyu_base",
-                    "SELECT `name`, `enable`, `desc`, `dep` FROM aitianyu_base.feature;",
+                    "SELECT `name`, `enable`, `desc`, `dep`, `version`, `require` FROM aitianyu_base.feature;",
                     (results) => {
                         const features = {};
                         if (Array.isArray(results)) {
@@ -45,8 +45,8 @@ class FeatureDispatcher {
                                     const featureItem = {
                                         description: encodeURI(item.desc),
                                         defaultOn: !!item.enable,
-                                        version: "",
-                                        reqId: "",
+                                        version: item.version || "9999.99",
+                                        reqId: item.require || "AITY-0000",
                                         depFeature: [],
                                     };
 
