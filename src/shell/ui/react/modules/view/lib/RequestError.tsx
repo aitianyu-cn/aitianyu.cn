@@ -34,7 +34,7 @@ export class RequestError extends React.Component<IRequestErrorProperty, IReactS
         return (
             <div className="request_error_base">
                 <img
-                    className={isMobile() ? "request_error_page_img_mob" : "request_error_page_img"}
+                    className={isMobile ? "request_error_page_img_mob" : "request_error_page_img"}
                     src={themeColor === "dark" ? ErrorImgDark : ErrorImgLight}
                     alt={messageBundle.getText("REQUEST_ERROR_PAGE_IMG_ALT")}
                     onClick={this.onRefreshClick}

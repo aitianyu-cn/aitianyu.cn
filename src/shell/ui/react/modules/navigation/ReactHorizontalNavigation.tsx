@@ -504,7 +504,7 @@ class ReactHorizontalNavigationNarrowContext extends React.Component<IReactHoriz
 
         return (
             <div
-                className={isMobile() ? "r_hn_n_na_c_b_m" : "r_hn_n_na_c_b"}
+                className={isMobile ? "r_hn_n_na_c_b_m" : "r_hn_n_na_c_b"}
                 onMouseEnter={this.props.fnMouseMoveIn}
                 onMouseLeave={this.props.fnMouseMoveOut}>
                 <div className="r_hn_n_na_c_in r_hn_na_c_i_c">

@@ -94,6 +94,14 @@ export async function loadProjectAllDownloads(): Promise<IProjectDownload[]> {
     });
 }
 
+export function getProjectAllDocumentFromCache(): IProjectDocument[] | null {
+    const url = `${AITIANYU_CN_PROJECT_SERVER}/aitianyu/cn/project/document/all`;
+    const localLanguage = Language.toString();
+    const cachedData = CacheController.get(`${url}/${localLanguage}`);
+
+    return cachedData;
+}
+
 export async function loadProjectAllDocument(): Promise<IProjectDocument[]> {
     return new Promise<IProjectDocument[]>((resolve) => {
         const url = `${AITIANYU_CN_PROJECT_SERVER}/aitianyu/cn/project/document/all`;

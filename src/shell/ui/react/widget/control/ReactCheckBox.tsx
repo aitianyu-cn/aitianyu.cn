@@ -10,8 +10,6 @@ export interface IReactCheckBoxProperty extends IReactControlProperty {
     value: string;
 }
 
-const isMob = isMobile();
-
 export class ReactCheckBox extends React.Component<IReactCheckBoxProperty, IReactState> implements IMultiSelectorEntity {
     private selector: IMutliSelector;
     private disabled: boolean;

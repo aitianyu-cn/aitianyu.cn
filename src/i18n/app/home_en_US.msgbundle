@@ -42,6 +42,8 @@ HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=There are currently no resources av
 
 HOME_PAGE_DOCUMENT_TITLE=Docs - Help
 HOME_PAGE_DOCUMENT_FRAME_PENDING=Page maintenance, please visit aitianyu.cn
+HOME_PAGE_DOCUMENT_FRAME_NO_PROJECT=No Project is currently available
+HOME_PAGE_DOCUMENT_FRAME_PROJECT_NO_OPTIONS=There is no documentation in this project
 
 ###########################################################################
 # homepage - internal message

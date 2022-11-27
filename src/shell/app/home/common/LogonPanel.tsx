@@ -34,12 +34,11 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
     }
 
     public override render(): React.ReactNode {
-        const isMob = isMobile();
         const inputStyle = {
             width: "100%",
-            fontSize: isMob ? "18px" : "15px",
-            borderRadius: isMob ? "10px" : "10px",
-            borderStyle: isMob ? "solid" : "none",
+            fontSize: isMobile ? "18px" : "15px",
+            borderRadius: isMobile ? "10px" : "10px",
+            borderStyle: isMobile ? "solid" : "none",
             backgroundColor: "transparent",
             background: "node",
             outline: "none",
@@ -49,7 +48,7 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
             marginRight: "0",
             marginLeft: "auto",
         };
-        if (!isMob) {
+        if (!isMobile) {
             inputContainer["borderBottomColor"] = "var(--ts_ui_blk_4)";
             inputContainer["borderBottomWidth"] = "1px";
             inputContainer["borderBottomStyle"] = "solid";
@@ -62,8 +61,8 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
                         <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "15px" }}>
                             <h1 style={{ textAlign: "center" }}>{messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_TITLE")}</h1>
                         </div>
-                        <div style={{ fontSize: isMob ? "18px" : "15px", width: "fit-content" }}>
-                            <div className={isMob ? "" : "h_i_logon_input_container"}>
+                        <div style={{ fontSize: isMobile ? "18px" : "15px", width: "fit-content" }}>
+                            <div className={isMobile ? "" : "h_i_logon_input_container"}>
                                 <div style={{ marginRight: "10px" }}>
                                     {messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_USER_ITEM")}
                                 </div>
@@ -76,7 +75,7 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
                                     />
                                 </div>
                             </div>
-                            <div className={isMob ? "" : "h_i_logon_input_container"}>
+                            <div className={isMobile ? "" : "h_i_logon_input_container"}>
                                 <div style={{ marginRight: "10px" }}>
                                     {messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_PW_ITEM")}
                                 </div>
@@ -92,18 +91,18 @@ export class LogonPanel extends React.Component<ILogonPanelProperty, IReactState
                             </div>
                             <div className="h_i_logon_addition_button">
                                 <div
-                                    className={isMob ? "h_i_logon_addition_button_i_mob" : "h_i_logon_addition_button_i"}
+                                    className={isMobile ? "h_i_logon_addition_button_i_mob" : "h_i_logon_addition_button_i"}
                                     onClick={this.props.fnLoginRequire}>
                                     {messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_LOGIN")}
                                 </div>
                                 <div
-                                    className={isMob ? "h_i_logon_addition_button_i_mob" : "h_i_logon_addition_button_i"}
+                                    className={isMobile ? "h_i_logon_addition_button_i_mob" : "h_i_logon_addition_button_i"}
                                     onClick={this.props.fnForgetPassword}>
                                     {messageBundle.getText("HOME_PAGE_INTERNAL_LOGON_FORGET_PW")}
                                 </div>
                             </div>
                             <button
-                                className={isMob ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
+                                className={isMobile ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
                                 type={"button"}
                                 onClick={this.onLogon.bind(this)}>
                                 <div style={{ margin: "auto" }}>

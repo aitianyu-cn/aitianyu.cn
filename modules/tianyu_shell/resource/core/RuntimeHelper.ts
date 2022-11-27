@@ -2,7 +2,7 @@
 
 declare const navigator: any;
 
-export function isMobile(): boolean {
+function _isMobile(): boolean {
     // to check the user agent data in Edge
     if (navigator.userAgentData?.mobile) {
         return true;
@@ -25,3 +25,5 @@ export function isMobile(): boolean {
 
     return false;
 }
+
+export const isMobile: boolean = _isMobile();

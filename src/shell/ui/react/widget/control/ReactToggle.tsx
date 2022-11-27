@@ -48,13 +48,13 @@ export class ReactToggle extends React.Component<IReactToggleProperty, IReactSta
     }
 
     public override render(): React.ReactNode {
-        const { isMob, baseStyle, innerStyle, selected, buttonStyle } = this.generateStyles();
+        const { isMobile, baseStyle, innerStyle, selected, buttonStyle } = this.generateStyles();
 
         return (
             <div style={baseStyle}>
                 <div style={innerStyle}>
-                    <div style={selected} onClick={isMob ? this.onClick.bind(this) : undefined}>
-                        <div style={buttonStyle} onClick={isMob ? undefined : this.onClick.bind(this)} />
+                    <div style={selected} onClick={isMobile ? this.onClick.bind(this) : undefined}>
+                        <div style={buttonStyle} onClick={isMobile ? undefined : this.onClick.bind(this)} />
                     </div>
                 </div>
             </div>
@@ -66,7 +66,6 @@ export class ReactToggle extends React.Component<IReactToggleProperty, IReactSta
     }
 
     private generateStyles() {
-        const isMob = isMobile();
         const baseStyle = {
             ...this.props.style,
             height: this.actualSize,
@@ -97,7 +96,7 @@ export class ReactToggle extends React.Component<IReactToggleProperty, IReactSta
             marginLeft: this.marginLeft,
         };
 
-        return { isMob, baseStyle, innerStyle, selected, buttonStyle };
+        return { isMobile, baseStyle, innerStyle, selected, buttonStyle };
     }
 
     private onClick(): void {
