@@ -75,6 +75,12 @@ module.exports = function () {
             from: ERROR_CODES[errorCode].from || [],
             errorCode: errorCode,
             favicon: ERROR_PAGE_ICON,
+            tianyuShell: {
+                coreSupport: true,
+                config: {
+                    language: true,
+                },
+            },
         };
 
         exportPages[`error_${errorCode}`] = page;
