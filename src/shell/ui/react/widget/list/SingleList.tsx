@@ -5,23 +5,23 @@ import { guid } from "ts-core/Guid";
 import { isMobile } from "ts-core/RuntimeHelper";
 import { CallbackActionT, MapOfString } from "ts-core/Types";
 
-export interface ISingleListViewProperty {
+export interface ISingleListProperty {
     id?: string;
     defaultValue?: string;
     source: MapOfString;
     onValueChanged: CallbackActionT<string>;
 }
 
-export interface ISingleListViewAPI {
+export interface ISingleListAPI {
     getSelection(): string;
     getSelections(): string[];
 }
 
-export class SingleListView extends React.Component<ISingleListViewProperty, IReactState> implements ISingleListViewAPI {
+export class SingleList extends React.Component<ISingleListProperty, IReactState> implements ISingleListAPI {
     private selectedVaue: string;
     private instanceId: string;
 
-    public constructor(props: ISingleListViewProperty) {
+    public constructor(props: ISingleListProperty) {
         super(props);
 
         this.instanceId = props.id || guid();
@@ -29,7 +29,7 @@ export class SingleListView extends React.Component<ISingleListViewProperty, IRe
     }
 
     public override render(): React.ReactNode {
-        return isMobile() ? this.renderForMobile() : this.renderForNormal();
+        return isMobile ? this.renderForMobile() : this.renderForNormal();
     }
 
     private renderForMobile(): React.ReactNode {

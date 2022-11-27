@@ -12,6 +12,7 @@ import { BasicFrame } from "./module/BasicFrame";
 import { ArchitectureFrame } from "./module/ArchitectureFrame";
 import { HelpFrame } from "./module/HelpFrame";
 import { MacrodefineFrame } from "./module/MacrodefineFrame";
+import { FeatureToggle } from "ts-core/FeatureToggle";
 
 const messageBundle = require_msgbundle("home", "app");
 
@@ -54,15 +55,18 @@ export class DocumentFrame extends React.Component<IDocumentProperty, IReactStat
     public override render(): React.ReactNode {
         return (
             <div className="pending_docs_outter">
-                {/* <div className="pending_docs_inner">{this.renderFrame()}</div> */}
-                <div className="pending_docs_inner">
-                    <h1>{messageBundle.getText("HOME_PAGE_DOCUMENT_FRAME_PENDING")}</h1>
-                </div>
+                <div style={{ height: "30px", width: "100%" }} />
+                <div className="pending_docs_inner">{this.renderFrame()}</div>
+                <div style={{ height: "30px", width: "100%" }} />
             </div>
         );
     }
 
     private renderFrame(): React.ReactNode {
+        if (!FeatureToggle.isActive("AITIANYU_CN_WEB_DOCUMENT_SUPPORT")) {
+            return <BasicFrame />;
+        }
+
         switch (this.hashTarget) {
             case "api":
                 return <APIFrame />;
@@ -101,6 +105,7 @@ export class DocumentFrame extends React.Component<IDocumentProperty, IReactStat
         }
 
         hashUrl = hashUrl.substring(5, hashUrl.length);
+        hashUrl = hashUrl.split("?")[0];
 
         if (hashUrl === "api" || hashUrl.startsWith("api/")) this.hashTarget = "api";
         else if (hashUrl === "help" || hashUrl.startsWith("help/")) this.hashTarget = "help";

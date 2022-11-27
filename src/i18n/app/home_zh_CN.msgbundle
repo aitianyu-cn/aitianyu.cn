@@ -42,6 +42,8 @@ HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT=当前没有可用于下载的资�
 
 HOME_PAGE_DOCUMENT_TITLE=文档 - 帮助
 HOME_PAGE_DOCUMENT_FRAME_PENDING=页面维护中，请访问aitianyu.cn
+HOME_PAGE_DOCUMENT_FRAME_NO_PROJECT=当前没有可用的项目
+HOME_PAGE_DOCUMENT_FRAME_PROJECT_NO_OPTIONS=当前项目没有文档
 
 ###########################################################################
 # homepage - internal message

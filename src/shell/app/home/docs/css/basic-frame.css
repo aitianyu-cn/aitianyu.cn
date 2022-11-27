@@ -1,0 +1,30 @@
+.docs_selector_no_project {
+  text-align: center;
+  /* display: grid; */
+  width: 100%;
+
+  font-size: 30px;
+  color: #afafaf;
+  user-select: none;
+}
+
+.docs_selector_list_base_mob,
+.docs_selector_list_base {
+  width: 95%;
+  height: max-content;
+
+  overflow: auto;
+  flex-wrap: wrap;
+  display: block;
+  white-space: wrap;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  justify-content: center;
+
+  text-align: center;
+  align-content: center;
+
+  animation: inner_page_enter 0.5s forwards ease-in-out;
+}

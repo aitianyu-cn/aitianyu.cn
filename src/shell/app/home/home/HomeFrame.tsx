@@ -36,7 +36,7 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
                     <section></section>
                     <div className="page_home_main_def_inner_container">{this.renderEmtpy()}</div>
                 </div>
-                {!isMobile() && (
+                {!isMobile && (
                     <div className="page_home_main_def_footer">
                         <Footer />
                     </div>

@@ -13,13 +13,12 @@ import { isMobile } from "ts-core/RuntimeHelper";
 import { CallbackAction } from "ts-core/Types";
 
 const messageBundle = require_msgbundle("home", "app");
-const isMob = isMobile();
 
 const inputStyle = {
     width: "100%",
-    fontSize: isMob ? "18px" : "15px",
-    borderRadius: isMob ? "10px" : "10px",
-    borderStyle: isMob ? "solid" : "none",
+    fontSize: isMobile ? "18px" : "15px",
+    borderRadius: isMobile ? "10px" : "10px",
+    borderStyle: isMobile ? "solid" : "none",
     backgroundColor: "transparent",
     background: "node",
     outline: "none",
@@ -82,10 +81,10 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
                         <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "15px" }}>
                             <h1 style={{ textAlign: "center" }}>{messageBundle.getText("HOME_PAGE_INTERNAL_RETRIEVE_TITLE")}</h1>
                         </div>
-                        <div style={{ fontSize: isMob ? "18px" : "15px", width: "fit-content" }}>
+                        <div style={{ fontSize: isMobile ? "18px" : "15px", width: "fit-content" }}>
                             {this.renderInputItem("HOME_PAGE_INTERNAL_RETRIEVE_EMAIL_ITEM", this.emailInput, "email")}
                             <button
-                                className={isMob ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
+                                className={isMobile ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
                                 type={"button"}
                                 onClick={this.onRetrieve.bind(this)}>
                                 <div style={{ margin: "auto" }}>
@@ -107,7 +106,7 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
                         <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "15px" }}>
                             <h1 style={{ textAlign: "center" }}>{messageBundle.getText("HOME_PAGE_INTERNAL_VERIFY_TITLE")}</h1>
                         </div>
-                        <div style={{ fontSize: isMob ? "18px" : "15px", width: "fit-content" }}>
+                        <div style={{ fontSize: isMobile ? "18px" : "15px", width: "fit-content" }}>
                             <div style={{ marginRight: "auto", marginLeft: "auto" }}>
                                 {messageBundle.getText("HOME_PAGE_INTERNAL_LOG_VERIFY_HINTS")}
                             </div>
@@ -117,7 +116,7 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
                             </div>
                             {this.renderInputItem("HOME_PAGE_INTERNAL_LOG_VERIFY_ITEM", this.verifyInput)}
                             <button
-                                className={isMob ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
+                                className={isMobile ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
                                 type={"button"}
                                 onClick={this.onVerify.bind(this)}>
                                 <div style={{ margin: "auto" }}>
@@ -139,13 +138,13 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
                         <div style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "15px" }}>
                             <h1 style={{ textAlign: "center" }}>{messageBundle.getText("HOME_PAGE_INTERNAL_CHANGE_PW_TITLE")}</h1>
                         </div>
-                        <div style={{ fontSize: isMob ? "18px" : "15px", width: "fit-content" }}>
+                        <div style={{ fontSize: isMobile ? "18px" : "15px", width: "fit-content" }}>
                             <div style={{ marginRight: "auto", marginLeft: "auto" }}>
                                 {CacheController.get("HOME_PAGE_INTERNAL_LOGIN_EMAIL_ITEM")}
                             </div>
                             {this.renderInputItem("HOME_PAGE_INTERNAL_CHANGE_PW_ITEM", this.pwInput, "password")}
                             <button
-                                className={isMob ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
+                                className={isMobile ? "h_i_logon_on_button_mob" : "h_i_logon_on_button"}
                                 type={"button"}
                                 onClick={this.onChangePW.bind(this)}>
                                 <div style={{ margin: "auto" }}>
@@ -165,7 +164,7 @@ export class RetrievePassword extends React.Component<IRetrievePasswordProperty,
         type?: React.HTMLInputTypeAttribute,
     ): React.ReactNode {
         return (
-            <div className={isMob ? "" : "h_i_logon_input_container"}>
+            <div className={isMobile ? "" : "h_i_logon_input_container"}>
                 <div style={{ marginRight: "10px" }}>{messageBundle.getText(title)}</div>
                 <div style={inputContainer}>
                     <input title={title} ref={ref} type={type} style={inputStyle} defaultValue={CacheController.get(title)} />

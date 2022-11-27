@@ -99,9 +99,10 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
             return [];
         }
 
+        const emptyString = messageBundle.getText("HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT");
         const aProjectNodes: React.ReactNode[] = [];
         for (const project of oProjectSource) {
-            const oMagnet = new DownloadMagnet(project);
+            const oMagnet = new DownloadMagnet({ ...project, optionEmptyText: emptyString });
             aProjectNodes.push(oMagnet.render());
         }
 

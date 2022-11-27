@@ -17,7 +17,7 @@ export class ReactHorizontalNavigationItem extends ReactNavigationItem {
         // classListOfText.push(this.assist ? "r_hni_t_a" : "r_hni_t_n");
 
         const basicStyle: string[] = ["r_hni_b"];
-        basicStyle.push(this.select ? (isMobile() ? "r_hni_b_s_m" : "r_hni_b_s") : "r_hni_b_us");
+        basicStyle.push(this.select ? (isMobile ? "r_hni_b_s_m" : "r_hni_b_s") : "r_hni_b_us");
 
         return (
             <div className={basicStyle.join(" ")} key={this.id} onClick={this.onClick.bind(this)}>

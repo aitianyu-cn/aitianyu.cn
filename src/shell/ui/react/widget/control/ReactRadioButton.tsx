@@ -16,8 +16,6 @@ export interface IReactRadioButtonProperty extends IReactControlProperty {
     insideMargin?: number | string;
 }
 
-const isMob = isMobile();
-
 export class ReactRadioButton extends React.Component<IReactRadioButtonProperty, IReactState> {
     private selector: ISingleSelector;
     private isLoaded: boolean;
@@ -83,8 +81,8 @@ export class ReactRadioButton extends React.Component<IReactRadioButtonProperty,
             userSelect: "none" as any,
         };
         return (
-            <div style={radioBaseStyle} onClick={isMob ? this.onSelect.bind(this) : undefined}>
-                <div style={radioContainerStyle} onClick={isMob ? undefined : this.onSelect.bind(this)}>
+            <div style={radioBaseStyle} onClick={isMobile ? this.onSelect.bind(this) : undefined}>
+                <div style={radioContainerStyle} onClick={isMobile ? undefined : this.onSelect.bind(this)}>
                     <div style={radioButtonStyle} />
                 </div>
                 <div style={radioTextStyle}>{this.props.value}</div>

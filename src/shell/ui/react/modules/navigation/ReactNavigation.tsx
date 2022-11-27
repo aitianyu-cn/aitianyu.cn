@@ -68,7 +68,7 @@ export class ReactNavigation extends ReactModule<IReactNavigationProps> {
         this.itemSource = {};
         this.isLoaded = false;
         this.inNarrowMode = false;
-        this.isMobileMode = isMobile();
+        this.isMobileMode = isMobile;
         this.isNoMatched = false;
 
         this.currentPagHeight = 0;
