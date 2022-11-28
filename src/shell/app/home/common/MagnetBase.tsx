@@ -19,7 +19,7 @@ export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Co
         const options = this.renderOptions();
 
         return (
-            <div key={this.props.key} className="magnet_tip_main_container">
+            <div key={this.props.id} className="magnet_tip_main_container">
                 <div className="magnet_tip_main_container_inner">
                     <div className={mobProjectLink}>
                         <div className="magnet_tip_project_name">

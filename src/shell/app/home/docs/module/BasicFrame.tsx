@@ -1,7 +1,7 @@
 /**@format */
 
 import React from "react";
-import { renderLoading } from "./GeneralWidget";
+import { renderLoading } from "tianyu-shell/ui/react/widget/GeneralWidget";
 import {
     getProjectAllDocumentFromCache,
     loadProjectAllDocument,
@@ -67,7 +67,17 @@ export class BasicFrame extends React.Component<IReactProperty, IReactState> {
         return (
             <div className={isMobile ? "docs_selector_list_base_mob" : "docs_selector_list_base"}>
                 {data.map((value: IProjectDocument) => {
-                    return <DocumentMagnet {...value} github="" optionEmptyText={emptyText} />;
+                    return (
+                        <DocumentMagnet
+                            id={value.key}
+                            options={value.options}
+                            project={value.project}
+                            desc={value.desc}
+                            name={value.name}
+                            github=""
+                            optionEmptyText={emptyText}
+                        />
+                    );
                 })}
             </div>
         );

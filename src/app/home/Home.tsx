@@ -89,6 +89,7 @@ async function onHomePageIniting(): Promise<void> {
                 ]).then(
                     () => {
                         const userOnloadSupportToggle = Dependency.FeatureToggle.isActive("TIANYU_CN_BETA_USER_ON_LOAD_SUPPORT");
+                        // Dependency.FeatureToggle.enable("AITIANYU_CN_WEB_DOCUMENT_SUPPORT");
                         (userOnloadSupportToggle ? Dependency.loadUserLogonState() : Promise.resolve()).finally(() => {
                             const aPromisesBeforeRender: Promise<void>[] = [];
 

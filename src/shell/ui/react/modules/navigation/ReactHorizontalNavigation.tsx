@@ -175,7 +175,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
             this.navigationItemsClassification({ normalItems: normalItems, assistItems: assistItems });
         }
 
-        const iosMode = isIOS() || true;
+        const iosMode = isIOS || true;
 
         let iosMenuAlt: string = "";
         let iosMenuIcon: string = "";

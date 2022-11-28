@@ -2,7 +2,7 @@
 
 declare const navigator: any;
 
-export function isIOS() {
+function _isIOS() {
     const sUserAgent = navigator.userAgent.toLowerCase();
 
     const bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
@@ -10,3 +10,5 @@ export function isIOS() {
 
     return bIsIpad || bIsIphoneOs;
 }
+
+export const isIOS: boolean = _isIOS();
