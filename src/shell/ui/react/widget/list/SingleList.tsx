@@ -6,8 +6,6 @@ import { IListWidgetProperty } from "tianyu-shell/common/model/ListWidget.model"
 import { isMobile } from "ts-core/RuntimeHelper";
 import { ListBase } from "./ListBase";
 
-import DROPDOWN_ICON from "./res/dropdown.svg";
-
 export class SingleList extends ListBase {
     private expand: boolean;
 
@@ -46,7 +44,7 @@ export class SingleList extends ListBase {
             <div>
                 <div>{this.props.source[this.selectedValue]}</div>
                 <div>
-                    <div dangerouslySetInnerHTML={{ __html: DROPDOWN_ICON }} />
+                    <div />
                 </div>
             </div>
         );
