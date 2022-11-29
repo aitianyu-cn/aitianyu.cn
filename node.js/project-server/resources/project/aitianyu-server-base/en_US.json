@@ -1,0 +1,4 @@
+{
+    "PROJECT_NPM_NAME_SERVER_BASE": "Basic Local Service Lib for NodeJs",
+    "PROJECT_NPM_NAME_SERVER_BASE_DESC": "Service wrapper for local NodeJs, including the MySql operation interface, multilingual operation interface, file operation interface, and Http network interface, as well as their associated handlers."
+}
