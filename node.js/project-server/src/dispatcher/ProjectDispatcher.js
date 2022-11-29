@@ -216,6 +216,7 @@ class ProjectDispatcher {
                             name: encodeURI(i18n[project.name] || project.name),
                             desc: encodeURI(i18n[project.desc] || project.desc),
                             github: project.github,
+                            type: project.type || null,
                         };
 
                         formattedProjects.push(formattedItem);
@@ -340,6 +341,7 @@ class ProjectDispatcher {
                                             project: project.project,
                                             name: encodeURI(i18n[project.name] || project.name),
                                             desc: encodeURI(i18n[project.desc] || project.desc),
+                                            type: project.type || null,
                                             options: {},
                                         };
 
