@@ -6,6 +6,9 @@ const HttpHandler = require("../../../common/handler/HttpHandler");
 const { PROJECT_ERROR_CODE } = require("../common/Errors");
 const { ERROR_CODE } = require("../../../common/common/Errors");
 
+/**@type {string[]} */
+const _download_excludes = ["node-modules"];
+
 /**
  *
  * @param {string} member
@@ -246,6 +249,9 @@ class ProjectDispatcher {
 
                 let oPromise = Promise.resolve();
                 for (const project of projects) {
+                    const type = project.type || "";
+                    if (_download_excludes.includes(type)) continue;
+
                     const i18n = this.i18nReader.get(query.lang, `project/${project.key}`);
                     const sql =
                         "SELECT `system`, `name`, `address`, `url` FROM aitianyu_base.project_downloads where `key`='" +
