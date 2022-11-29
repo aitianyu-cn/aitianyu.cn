@@ -413,6 +413,7 @@ class ProjectDispatcher {
                                         desc: item.desc,
                                         github: item.github,
                                         database: item.db,
+                                        type: item.type,
                                     };
                                     if (
                                         !!item.db &&
