@@ -30,8 +30,11 @@ class I18nReader {
             return this.readers[file];
         }
 
-        const reader = require(file);
-        this.readers[file] = reader;
+        let reader = {};
+        try {
+            reader = require(file);
+            this.readers[file] = reader;
+        } catch {}
 
         return reader;
     }
