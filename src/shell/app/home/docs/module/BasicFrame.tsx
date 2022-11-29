@@ -6,12 +6,14 @@ import {
     getProjectAllDocumentFromCache,
     loadProjectAllDocument,
 } from "tianyu-server/controller/project/ProjectDocument.controller";
-import { IProjectDocument } from "tianyu-server/model/Project.model";
+import { IProjectDocument, IProjectDocumentOption } from "tianyu-server/model/Project.model";
 import { require_msgbundle } from "ts-core/I18n";
 import { isMobile } from "ts-core/RuntimeHelper";
 import { DocumentMagnet } from "../widget/DocumentMagnet";
+import { DocumentSimpleMagnet } from "../widget/DocumentSimpleMagnet";
 
 import "../css/basic-frame.css";
+import "../css/simple-magnet.css";
 
 export class BasicFrame extends React.Component<IReactProperty, IReactState> {
     private isLoaded: boolean;
@@ -67,17 +69,34 @@ export class BasicFrame extends React.Component<IReactProperty, IReactState> {
         return (
             <div className={isMobile ? "docs_selector_list_base_mob" : "docs_selector_list_base"}>
                 {data.map((value: IProjectDocument) => {
-                    return (
-                        <DocumentMagnet
-                            id={value.key}
-                            options={value.options}
-                            project={value.project}
-                            desc={value.desc}
-                            name={value.name}
-                            github=""
-                            optionEmptyText={emptyText}
-                        />
-                    );
+                    if (!!!value.type) {
+                        return (
+                            <DocumentMagnet
+                                id={value.key}
+                                options={value.options}
+                                project={value.project}
+                                desc={value.desc}
+                                name={value.name}
+                                github=""
+                                optionEmptyText={emptyText}
+                            />
+                        );
+                    } else {
+                        const helpOption = value.options.find((item: IProjectDocumentOption) => {
+                            return item.target.toLowerCase() === "help" ? item : undefined;
+                        });
+                        return (
+                            <DocumentSimpleMagnet
+                                id={value.key}
+                                project={value.project}
+                                desc={value.desc}
+                                name={value.name}
+                                type={value.type}
+                                hasHelp={!!helpOption}
+                                helpText={helpOption?.name || ""}
+                            />
+                        );
+                    }
                 })}
             </div>
         );

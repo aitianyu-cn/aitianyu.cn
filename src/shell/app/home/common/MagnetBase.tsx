@@ -4,7 +4,7 @@ import React from "react";
 import { IMagnetPropertyBase } from "tianyu-server/model/Project.model";
 import { isMobile } from "ts-core/RuntimeHelper";
 
-export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Component<T> {
+export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Component<T, IReactState> {
     protected isLoaded: boolean;
 
     public constructor(source: T) {

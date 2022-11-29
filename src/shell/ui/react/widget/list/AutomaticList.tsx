@@ -6,7 +6,7 @@ import { IListWidgetProperty } from "tianyu-shell/common/model/ListWidget.model"
 import { isMobile } from "ts-core/RuntimeHelper";
 import { ListBase } from "./ListBase";
 
-export class SingleList extends ListBase {
+export class AutomaticList extends ListBase {
     private expand: boolean;
 
     public constructor(props: IListWidgetProperty) {

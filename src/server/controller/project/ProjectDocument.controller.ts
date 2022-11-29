@@ -140,6 +140,7 @@ export async function loadProjectAllDocument(): Promise<IProjectDocument[]> {
                             key: documentSource.key || "",
                             name: decodeURI(documentSource.name || ""),
                             project: documentSource.project || "",
+                            type: documentSource.type || "",
                             options: [],
                         };
 

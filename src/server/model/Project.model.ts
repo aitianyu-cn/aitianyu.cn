@@ -55,6 +55,7 @@ export interface IProjectDocument {
     key: string;
     name: string;
     project: string;
+    type: string;
     options: IProjectDocumentOption[];
 }
 
