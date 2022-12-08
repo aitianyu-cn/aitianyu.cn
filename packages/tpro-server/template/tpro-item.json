@@ -1,0 +1,41 @@
+{
+    "description": "",
+    "attachment": [
+        {
+            "name": "",
+            "file": "",
+            "time": "",
+            "size": ""
+        }
+    ],
+    "votes": [""],
+    "watchers": [""],
+    "links": [
+        {
+            "id": "Unique Id",
+            "type": "parent-of | relates-to | child-of | blocked-by"
+        }
+    ],
+    "audit": [
+        {
+            "time": "",
+            "user": "",
+            "type": "change | link | create | transition | comment",
+            "data": {
+                "comment": "string",
+                "create": null,
+                "link": "string",
+                "transition": {
+                    "from": "",
+                    "to": ""
+                },
+                "change": [
+                    {
+                        "item": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}

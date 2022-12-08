@@ -7,7 +7,8 @@
         "build": "rimraf dist/ && tsc && npm run build-remove-types && npm run build-copy-files",
         "start-generic": "ts-node packages/generic-server/index.ts",
         "start-project": "ts-node packages/project-server/index.ts",
-        "start-pm": "ts-node packages/project-management-server/index.ts",
+        "start-authorization": "ts-node packages/tianyu-authorization/index.ts",
+        "start-pm": "ts-node packages/tpro-server/index.ts",
         "build-copy-files": "copyfiles packages/**/resources/** packages/**/src/config/** dist",
         "build-remove-types": "rimraf ./dist/**/*.d.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,6 +26,7 @@
         "level-sublevel": "^6.6.5",
         "mysql": "^2.18.1",
         "path": "^0.12.7",
+        "perf_hooks": "0.0.1",
         "url-search-params": "^1.1.0"
     },
     "devDependencies": {

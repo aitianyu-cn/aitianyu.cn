@@ -2,19 +2,19 @@
 
 import { createServer, DatabasePools, HttpHandler } from "aitianyu-server-base";
 import { IncomingMessage, ServerResponse } from "http";
-import { LoginDispatcher } from "./src/dispatcher/LoginDispatcher";
-import { LogonDispatcher } from "./src/dispatcher/LogonDispatcher";
+import { RegisterDispatcher } from "./src/dispatcher/RegisterDispatcher";
+import { OnlineDispatcher } from "./src/dispatcher/OnlineDispatcher";
 
 const dbConfig = require("./src/config/mysql.config.json");
 
 const databasePool = new DatabasePools(dbConfig);
 const handler = new HttpHandler();
 
-const loginDispatcher = new LoginDispatcher(databasePool);
+const loginDispatcher = new RegisterDispatcher(databasePool);
 loginDispatcher.createDispatches(handler);
 
-const logonDispatcher = new LogonDispatcher(databasePool);
-logonDispatcher.createDispatches(handler);
+const onlineDispatcher = new OnlineDispatcher(databasePool);
+onlineDispatcher.createDispatches(handler);
 
 const server = createServer(
     (req: IncomingMessage, res: ServerResponse) => {

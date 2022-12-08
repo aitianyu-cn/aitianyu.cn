@@ -7,7 +7,7 @@
 import { DatabasePools } from "aitianyu-server-base";
 import { HttpHandler } from "aitianyu-server-base";
 
-export class LoginDispatcher {
+export class RegisterDispatcher {
     private dbPool: DatabasePools;
 
     public constructor(databasePool: DatabasePools) {
