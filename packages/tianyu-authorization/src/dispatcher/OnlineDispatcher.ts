@@ -4,8 +4,8 @@
  * User logon - user and password verify
  */
 
-import { DatabasePools, IHttpQuery, IHttpResponseError, MapOfString, MapOfType } from "aitianyu-server-base";
-import { HttpHandler } from "aitianyu-server-base";
+import { DatabasePools, IHttpQuery, IHttpResponseError, MapOfString, MapOfType } from "@aitianyu.cn/server-base";
+import { HttpHandler } from "@aitianyu.cn/server-base";
 import { resolve } from "path";
 import { guid } from "../common/Guid";
 import { ONLINE_RESULT, ONLINE_RESULT_MESSAGE } from "../common/OnlineResults";

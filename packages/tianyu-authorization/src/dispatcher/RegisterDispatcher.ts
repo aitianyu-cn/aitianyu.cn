@@ -4,8 +4,8 @@
  * User login - user register and password retrieve
  */
 
-import { DatabasePools } from "aitianyu-server-base";
-import { HttpHandler } from "aitianyu-server-base";
+import { DatabasePools } from "@aitianyu.cn/server-base";
+import { HttpHandler } from "@aitianyu.cn/server-base";
 
 export class RegisterDispatcher {
     private dbPool: DatabasePools;

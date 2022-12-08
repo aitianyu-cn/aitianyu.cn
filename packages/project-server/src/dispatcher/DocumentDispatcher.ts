@@ -1,6 +1,6 @@
 /**@format */
 
-import { ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError } from "aitianyu-server-base";
+import { ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
 import { IQuery } from "../common/Types";
 

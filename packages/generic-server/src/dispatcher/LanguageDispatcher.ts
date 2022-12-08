@@ -1,6 +1,6 @@
 /**@format */
 
-import { DatabasePools, ERROR_CODE, HttpHandler, IHttpQuery, IHttpResponseError } from "aitianyu-server-base";
+import { DatabasePools, ERROR_CODE, HttpHandler, IHttpQuery, IHttpResponseError } from "@aitianyu.cn/server-base";
 
 export class LanguageDispatcher {
     private databasePool: DatabasePools;

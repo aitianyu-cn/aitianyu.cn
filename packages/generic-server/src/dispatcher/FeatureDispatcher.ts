@@ -1,6 +1,6 @@
 /**@format */
 
-import { DatabasePools, ERROR_CODE, HttpHandler, IHttpQuery, IHttpResponseError, MapOfType } from "aitianyu-server-base";
+import { DatabasePools, ERROR_CODE, HttpHandler, IHttpQuery, IHttpResponseError, MapOfType } from "@aitianyu.cn/server-base";
 
 export class FeatureDispatcher {
     private databasePool: DatabasePools;

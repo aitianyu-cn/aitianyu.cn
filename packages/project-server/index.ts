@@ -1,7 +1,7 @@
 /**@format */
 
 import path from "path";
-import { createServer, DatabasePools, FileService, HttpHandler, I18nReader } from "aitianyu-server-base";
+import { createServer, DatabasePools, FileService, HttpHandler, I18nReader } from "@aitianyu.cn/server-base";
 import { IncomingMessage, ServerResponse } from "http";
 import { DocumentDispatcher } from "./src/dispatcher/DocumentDispatcher";
 import { FilesDispatcher } from "./src/dispatcher/FilesDispatcher";

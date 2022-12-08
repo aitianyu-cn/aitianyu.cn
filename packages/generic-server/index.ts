@@ -1,6 +1,6 @@
 /**@format */
 
-import { createServer, DatabasePools, HttpHandler } from "aitianyu-server-base";
+import { createServer, DatabasePools, HttpHandler } from "@aitianyu.cn/server-base";
 import { IncomingMessage, ServerResponse } from "http";
 import { FeatureDispatcher } from "./src/dispatcher/FeatureDispatcher";
 import { LanguageDispatcher } from "./src/dispatcher/LanguageDispatcher";

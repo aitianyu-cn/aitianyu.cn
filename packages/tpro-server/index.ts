@@ -1,7 +1,7 @@
 /**@format */
 
 import { IncomingMessage, ServerResponse } from "http";
-import { createServer, DatabasePools, FileService, HttpHandler, I18nReader } from "aitianyu-server-base";
+import { createServer, DatabasePools, FileService, HttpHandler, I18nReader } from "@aitianyu.cn/server-base";
 
 const handler = new HttpHandler();
 

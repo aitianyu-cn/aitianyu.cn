@@ -1,6 +1,6 @@
 /**@format */
 
-import { DatabasePools, ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError, MapOfString } from "aitianyu-server-base";
+import { DatabasePools, ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError, MapOfString } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
 import { IQuery } from "../common/Types";
 
