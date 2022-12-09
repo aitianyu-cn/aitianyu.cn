@@ -6,6 +6,7 @@ export const ONLINE_RESULT = {
     WRONG_USER: -2,
     WRONG_PW: -3,
     LOCAL_USING: -4,
+    INACCESSIBLE: -5,
     SYSTEM_WRONG: -100,
 };
 
@@ -15,7 +16,8 @@ export const ONLINE_RESULT_MESSAGE = {
     LOST_LOCATION: 1002,
 };
 
-export enum OnlineState {
-    ONLINE = 1,
-    OFFLINE = 0,
-}
+export const ONLINE_STATE = {
+    ONLINE: 1,
+    OFFLINE: 0,
+    ERROR: -1,
+};

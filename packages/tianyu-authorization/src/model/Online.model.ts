@@ -8,3 +8,9 @@ export interface IOnlineLoginResult {
     token?: string;
     message: (number | string)[];
 }
+
+export interface IOnlineStatusResult {
+    state: number;
+    valid: boolean;
+    active: number;
+}
