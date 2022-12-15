@@ -1,6 +1,6 @@
 /**@format */
 
-export interface IQuery {
+export interface IHttpQuery {
     lang: string;
     query: any;
 }

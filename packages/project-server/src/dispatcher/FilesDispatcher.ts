@@ -2,7 +2,7 @@
 
 import { FileService, HttpHandler, IHttpResponseError } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
-import { IQuery } from "../common/Types";
+import { IHttpQuery } from "@aitianyu.cn/server-base";
 
 export class FilesDispatcher {
     private fileServer: FileService;
@@ -15,7 +15,7 @@ export class FilesDispatcher {
         handler.setRouter("aitianyu/cn/project/document/resource", this._getFile.bind(this));
     }
 
-    private async _getFile(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _getFile(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             const option = query.query["option"];
             const project = query.query["project"];

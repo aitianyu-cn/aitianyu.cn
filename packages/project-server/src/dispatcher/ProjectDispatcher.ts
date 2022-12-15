@@ -2,7 +2,7 @@
 
 import { DatabasePools, ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError, MapOfString } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
-import { IQuery } from "../common/Types";
+import { IHttpQuery } from "@aitianyu.cn/server-base";
 
 const _download_excludes: string[] = ["node-modules"];
 
@@ -177,7 +177,7 @@ export class ProjectDispatcher {
         handler.setRouter("aitianyu/cn/project/document/api", this._projectAPIBrowserDispatcher.bind(this));
     }
 
-    private async _allProjectsDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _allProjectsDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             this.__getAllProjects(messageList).then((projects: any) => {
                 try {
@@ -205,7 +205,7 @@ export class ProjectDispatcher {
         });
     }
 
-    private async _projectDownloadsDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectDownloadsDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             this.__getAllProjects(messageList).then((projects: any) => {
                 const downloadItems: any[] = [];
@@ -282,7 +282,7 @@ export class ProjectDispatcher {
         });
     }
 
-    private async _projectBrowserDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectBrowserDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             this.__getAllProjects(messageList).then((projects: any) => {
                 try {
@@ -395,7 +395,7 @@ export class ProjectDispatcher {
         });
     }
 
-    private async _projectMacrodefDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectMacrodefDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             if (!!!query.query?.["project"]) {
                 messageList.push({ code: PROJECT_ERROR_CODE.NO_PROJECT_NAME, text: "error: no project name provided" });
@@ -501,7 +501,7 @@ export class ProjectDispatcher {
         });
     }
 
-    private async _projectAPIBrowserDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectAPIBrowserDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         /**
          * 定义query
          *  {

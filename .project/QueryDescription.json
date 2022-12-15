@@ -51,7 +51,7 @@
         },
         "authorization": {
             "description": "tianyu authorization server for all users of tianyu projects, tianyu applications, etc...",
-            "port": 9000,
+            "port": 9010,
             "dispatcher": {
                 "aitianyu/cn/authorization/online/login": {
                     "param": {
@@ -73,8 +73,20 @@
         },
         "tpro": {
             "description": "tianyu project management application server.",
-            "port": 9100,
+            "port": 9110,
             "dispatcher": {}
+        },
+        "gitool": {
+            "description": "data source for github auto backup, snapshot tool.",
+            "port": 9100,
+            "dispatcher": {
+                "aitianyu/cn/git/tool/helper/source": {
+                    "param": {
+                        "server": "string",
+                        "token": "string"
+                    }
+                }
+            }
         }
     }
 }

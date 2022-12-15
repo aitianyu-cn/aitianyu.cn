@@ -2,7 +2,7 @@
 
 import { ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
-import { IQuery } from "../common/Types";
+import { IHttpQuery } from "@aitianyu.cn/server-base";
 
 export class DocumentDispatcher {
     private i18nReader: I18nReader;
@@ -18,7 +18,7 @@ export class DocumentDispatcher {
         handler.setRouter("aitianyu/cn/project/document/arch", this._projectArchitectureDispatcher.bind(this));
     }
 
-    private async _projectArchitectureDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectArchitectureDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             const project = query.query["project"];
             if (!!!project) {
@@ -72,7 +72,7 @@ export class DocumentDispatcher {
         });
     }
 
-    private async _projectHelpDocsDispatcher(query: IQuery, messageList: IHttpResponseError[]): Promise<any> {
+    private async _projectHelpDocsDispatcher(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<any> {
         return new Promise((resolve) => {
             const project = query.query["project"];
             if (!!!project) {
