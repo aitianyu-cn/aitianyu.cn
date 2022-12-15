@@ -1,0 +1,29 @@
+{
+    "SOURCE": "源代码",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "API": "API文档",
+    "ARCHITECTURE": "项目架构",
+    "HELPER": "帮助",
+    "MACRODEF": "宏定义文档",
+
+    "MACRO_DEFINE_TITLE": "宏定义列表",
+    "API_TITLE": "API 参考",
+
+    "CLASS": "类",
+    "INTERFACE": "接口",
+    "FUNCTION": "方法/委托",
+    "ENUM": "枚举",
+    "DELEGATE": "函数指针/函数委托",
+    "STRUCT": "结构体",
+    "PROPERTY": "公共变量/常量",
+    "MACRO_DEF": "宏定义",
+
+    "ITEM_CONSTRUCT": "构造函数",
+    "ITEM_PROPERTY": "属性",
+    "ITEM_OPERATOR": "运算符重载",
+    "ITEM_METHOD": "方法",
+    "ITEM_ENUM_VALUE": "枚举值"
+}

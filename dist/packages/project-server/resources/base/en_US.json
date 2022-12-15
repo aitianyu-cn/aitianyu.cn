@@ -1,0 +1,29 @@
+{
+    "SOURCE": "Source Code",
+    "WINDOWS": "Windows",
+    "LINUX": "Linux",
+    "MACOS": "MacOS",
+
+    "API": "API Document",
+    "ARCHITECTURE": "Project Architecture",
+    "HELPER": "Help",
+    "MACRODEF": "Macro Define",
+
+    "MACRO_DEFINE_TITLE": "Macro Definition List",
+    "API_TITLE": "API Reference",
+
+    "CLASS": "Class",
+    "INTERFACE": "Interface",
+    "FUNCTION": "Function/Delegate",
+    "ENUM": "Enum",
+    "DELEGATE": "Function Pointer/Delegate",
+    "STRUCT": "Structure",
+    "PROPERTY": "Public Variables/Constants",
+    "MACRO_DEF": "Macrodef",
+
+    "ITEM_CONSTRUCT": "Constructor",
+    "ITEM_PROPERTY": "Property",
+    "ITEM_OPERATOR": "Operator",
+    "ITEM_METHOD": "Method",
+    "ITEM_ENUM_VALUE": "Enum Value"
+}

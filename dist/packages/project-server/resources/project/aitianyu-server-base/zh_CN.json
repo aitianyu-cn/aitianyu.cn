@@ -1,0 +1,4 @@
+{
+    "PROJECT_NPM_NAME_SERVER_BASE": "NodeJs本地服务基本库",
+    "PROJECT_NPM_NAME_SERVER_BASE_DESC": "用于本地NodeJs的服务包装，包含MySql操作接口、多语言操作接口、文件操作接口和Http网络接口以及其相关的处理助手。"
+}

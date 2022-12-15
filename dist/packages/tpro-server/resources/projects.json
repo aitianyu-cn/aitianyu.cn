@@ -1,0 +1,18 @@
+{
+    "test-project": {
+        "id": "TP",
+        "database": "tianyu-project-management",
+        "description": "this is a test project for \"tianyu project management\" tool.",
+        "groups": {
+            "default": {
+                "id": "00",
+                "table": ""
+            },
+            "development": {
+                "id": "04",
+                "table": ""
+            }
+        },
+        "configuration": {}
+    }
+}
