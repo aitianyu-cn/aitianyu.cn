@@ -406,7 +406,7 @@ export class ProjectDispatcher {
             const project = query.query["project"];
             const showAll = !!query.query["showAll"];
             const requirePage = showAll ? 1 : Number.parseInt(query.query["page"]) || 1;
-            const pageSize = query.query["size"] || 30;
+            const pageSize = Number(query.query["size"]) || 30;
             const hasProject = !!this.projectDBMap[project];
             const oPromise = !hasProject ? this.__getAllProjects(messageList) : Promise.resolve();
 
