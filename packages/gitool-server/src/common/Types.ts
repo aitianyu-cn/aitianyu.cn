@@ -1,6 +1,6 @@
 /**@format */
 
-import { MapOfType } from "@aitianyu.cn/server-base";
+import { MapOfType } from "@aitianyu.cn/types";
 
 export type GitSourcePerUserPeriod = "day" | "week" | "month" | "quarter" | "half-year" | "year";
 

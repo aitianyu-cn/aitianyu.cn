@@ -1,8 +1,9 @@
 /**@format */
 
-import { DatabasePools, ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError, MapOfString } from "@aitianyu.cn/server-base";
+import { DatabasePools, ERROR_CODE, HttpHandler, I18nReader, IHttpResponseError } from "@aitianyu.cn/server-base";
 import { PROJECT_ERROR_CODE } from "../common/Errors";
 import { IHttpQuery } from "@aitianyu.cn/server-base";
+import { MapOfString } from "@aitianyu.cn/types";
 
 const _download_excludes: string[] = ["node-modules"];
 

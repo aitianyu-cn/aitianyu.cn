@@ -1,6 +1,7 @@
 /**@format */
 
-import { DatabasePools, HttpHandler, IHttpQuery, IHttpResponseError, MapOfType } from "@aitianyu.cn/server-base";
+import { DatabasePools, HttpHandler, IHttpQuery, IHttpResponseError } from "@aitianyu.cn/server-base";
+import { MapOfType } from "@aitianyu.cn/types";
 import { GitSourcePerUserPeriod, IGitSourceRepo, IGitSourceResponse } from "../common/Types";
 
 type UsersConfigType = MapOfType<{ period: GitSourcePerUserPeriod | null; excludes: string[] }>;
