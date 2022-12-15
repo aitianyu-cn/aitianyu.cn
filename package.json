@@ -18,7 +18,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@aitianyu.cn/server-base": "^1.0.1",
+        "@aitianyu.cn/server-base": "^1.0.2",
         "@aitianyu.cn/types": "^0.0.1",
         "cookie-parser": "^1.4.6",
         "cuid": "^2.1.8",
