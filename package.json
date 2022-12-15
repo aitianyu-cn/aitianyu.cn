@@ -10,7 +10,7 @@
         "start-authorization": "ts-node packages/tianyu-authorization/index.ts",
         "start-pm": "ts-node packages/tpro-server/index.ts",
         "start-gitool": "ts-node packages/gitool-server/index.ts",
-        "build-copy-files": "copyfiles packages/**/resources/** packages/**/src/config/** dist",
+        "build-copy-files": "copyfiles ./packages/**/resources/**/*.* ./packages/**/src/config/**/*.* ./dist",
         "build-remove-types": "rimraf ./dist/**/*.d.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
