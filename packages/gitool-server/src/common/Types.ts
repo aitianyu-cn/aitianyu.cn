@@ -13,6 +13,7 @@ export interface IGitSourceRepo {
 export interface IGitSourcePerUser {
     period: GitSourcePerUserPeriod | null;
     excludes: string[];
+    snapshot: boolean;
 
     repos: MapOfType<IGitSourceRepo>;
 }
@@ -21,4 +22,14 @@ export interface IGitSourceResponse {
     valid: boolean;
     publicPath: string;
     sources: MapOfType<IGitSourcePerUser>;
+}
+
+export interface IGitRunningResult {
+    times: string;
+    result: boolean;
+    message: string;
+}
+
+export interface IGetRunningResult extends IGitRunningResult {
+    server: string;
 }

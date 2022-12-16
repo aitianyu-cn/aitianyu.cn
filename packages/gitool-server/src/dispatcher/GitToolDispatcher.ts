@@ -2,9 +2,15 @@
 
 import { DatabasePools, HttpHandler, IHttpQuery, IHttpResponseError } from "@aitianyu.cn/server-base";
 import { MapOfType } from "@aitianyu.cn/types";
+import { Errors } from "../common/Error";
 import { GitSourcePerUserPeriod, IGitSourceRepo, IGitSourceResponse } from "../common/Types";
 
-type UsersConfigType = MapOfType<{ period: GitSourcePerUserPeriod | null; excludes: string[] }>;
+type UsersConfigType = MapOfType<{ period: GitSourcePerUserPeriod | null; excludes: string[]; snapshot: boolean }>;
+interface IServerUser {
+    period: GitSourcePerUserPeriod | null;
+    excludes: string[] | null;
+    snapshot: boolean;
+}
 
 export class GitToolDispatcher {
     private databasePools: DatabasePools;
@@ -27,19 +33,22 @@ export class GitToolDispatcher {
                 const publicPath = await this.__verifyServer(serverId, tokenId);
                 if (typeof publicPath === "string") {
                     result.publicPath = publicPath;
-                    const users: string[] = await this.__getAllUsersOfServer(serverId);
+                    const users: MapOfType<IServerUser> = await this.__getAllUsersOfServer(serverId);
                     const userConfigs: UsersConfigType = await this.__getAllUsersConfig(users);
                     for (const user of Object.keys(userConfigs)) {
                         const repos: MapOfType<IGitSourceRepo> = await this.__getReposOfUser(user);
                         result.sources[user] = {
                             period: userConfigs[user].period,
                             excludes: userConfigs[user].excludes,
+                            snapshot: userConfigs[user].snapshot,
                             repos: repos,
                         };
                     }
                 } else {
                     result.valid = false;
                 }
+            } catch (e) {
+                messageList.push({ code: Errors.ERROR, text: (e as any)?.message || "error" });
             } finally {
                 resolve(result);
             }
@@ -70,7 +79,7 @@ export class GitToolDispatcher {
                                 repos[repo] = {
                                     ssh: ssh,
                                     remote: remote,
-                                    excludes: excludes.split(","),
+                                    excludes: !!!excludes ? [] : excludes.split(","),
                                 };
                             }
                         }
@@ -85,8 +94,9 @@ export class GitToolDispatcher {
         });
     }
 
-    private async __getAllUsersConfig(users: string[]): Promise<UsersConfigType> {
+    private async __getAllUsersConfig(serverUsers: MapOfType<IServerUser>): Promise<UsersConfigType> {
         return new Promise<UsersConfigType>((resolve) => {
+            const users = Object.keys(serverUsers);
             const configs: UsersConfigType = {};
             if (users.length === 0) {
                 resolve(configs);
@@ -105,8 +115,9 @@ export class GitToolDispatcher {
                             const exclude: string = item["excludes"] || "";
                             if (!!user) {
                                 configs[user] = {
-                                    period: period,
-                                    excludes: exclude.split(","),
+                                    period: serverUsers[user]?.period || period,
+                                    excludes: serverUsers[user]?.excludes || !!!exclude ? [] : exclude.split(","),
+                                    snapshot: !!serverUsers[user]?.snapshot,
                                 };
                             }
                         }
@@ -121,27 +132,33 @@ export class GitToolDispatcher {
         });
     }
 
-    private async __getAllUsersOfServer(server: string): Promise<string[]> {
-        return new Promise<string[]>((resolve) => {
-            const users: string[] = [];
-
+    private async __getAllUsersOfServer(server: string): Promise<MapOfType<IServerUser>> {
+        return new Promise<MapOfType<IServerUser>>((resolve) => {
             if (!!server) {
                 const sql = `SELECT * FROM \`git-helper\`.accessible WHERE server='${server}' AND valid='1';`;
                 this.databasePools.execute(
                     "git-helper",
                     sql,
                     (result: any) => {
+                        const users: MapOfType<IServerUser> = {};
                         if (Array.isArray(result) && result.length > 0) {
                             for (const item of result) {
-                                const user = item["user"];
-                                user && users.push(user);
+                                const user = item["user"] || "";
+                                const exclude: string = item["excludes"] || "";
+                                if (user) {
+                                    users[user] = {
+                                        period: item["period"] || null,
+                                        excludes: !!exclude ? exclude.split(",") : null,
+                                        snapshot: !!item["snapshot"],
+                                    };
+                                }
                             }
                         }
 
                         resolve(users);
                     },
                     (_error: string) => {
-                        resolve(users);
+                        resolve({});
                     },
                 );
             }
@@ -155,7 +172,7 @@ export class GitToolDispatcher {
                 return;
             }
 
-            const sql = `SELECT * FROM \`git-helper\`.authorize WHERE server='${server}' AND token='${token}';`;
+            const sql = `SELECT * FROM \`git-helper\`.authorize WHERE server='${server}' AND token='${token}' AND valid='1';`;
             this.databasePools.execute(
                 "git-helper",
                 sql,
