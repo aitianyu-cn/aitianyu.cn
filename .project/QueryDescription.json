@@ -5,7 +5,11 @@
             "description": "tianyu generic server for global definitions.",
             "port": 9000,
             "dispatcher": {
-                "aitianyu/cn/generic/features/feature-toggle": { "param": null }
+                "aitianyu/cn/generic/features/feature-toggle": {
+                    "param": {
+                        "project": "string?"
+                    }
+                }
             }
         },
         "project": {
@@ -49,6 +53,40 @@
                 }
             }
         },
+        "remote": {
+            "description": "tianyu local server remote connection service.",
+            "port": 9002,
+            "dispatcher": {
+                "aitianyu/cn/remote/server": {
+                    "param": {
+                        "action": "string",
+                        "server": "string",
+                        "token": "string",
+                        "template for action": {
+                            "update/add": {
+                                "connector": {
+                                    "network name": {
+                                        "ip": "string",
+                                        "auth": ["string"]
+                                    }
+                                }
+                            },
+                            "remove": {
+                                "auth": ["string"],
+                                "network name": "string"
+                            }
+                        }
+                    }
+                },
+                "aitianyu/cn/remote/get-server": {
+                    "param": {
+                        "auth": "string?",
+                        "token": "string",
+                        "server": ["string"]
+                    }
+                }
+            }
+        },
         "authorization": {
             "description": "tianyu authorization server for all users of tianyu projects, tianyu applications, etc...",
             "port": 9010,
@@ -71,11 +109,6 @@
                 }
             }
         },
-        "tpro": {
-            "description": "tianyu project management application server.",
-            "port": 9110,
-            "dispatcher": {}
-        },
         "gitool": {
             "description": "data source for github auto backup, snapshot tool.",
             "port": 9100,
@@ -87,6 +120,11 @@
                     }
                 }
             }
+        },
+        "tpro": {
+            "description": "tianyu project management application server.",
+            "port": 9110,
+            "dispatcher": {}
         }
     }
 }
