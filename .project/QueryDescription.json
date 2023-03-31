@@ -87,6 +87,87 @@
                     }
                 }
             }
+        },
+        "app": {
+            "image-selector": {
+                "description": "provide selector for images.",
+                "port": 9200,
+                "dispatcher": {
+                    "aitianyu/cn/app/image/selector/createToken": {
+                        "param": {
+                            "name": "string"
+                        },
+                        "return": "string - return the token"
+                    },
+                    "aitianyu/cn/app/image/selector/releaseToken": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": "string"
+                    },
+
+                    "aitianyu/cn/app/image/selector/uploader": {
+                        "param": {
+                            "token": "string",
+                            "images": [
+                                {
+                                    "name": "string",
+                                    "id": "string",
+                                    "image": "base64:"
+                                }
+                            ]
+                        },
+                        "return": "string - return the status"
+                    },
+                    "aitianyu/cn/app/image/selector/getter/selected": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": [
+                            {
+                                "name": "string",
+                                "id": "string"
+                            }
+                        ]
+                    },
+                    "aitianyu/cn/app/image/selector/getter/list": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": [
+                            {
+                                "all": ["string"],
+                                "selected": ["string"]
+                            }
+                        ]
+                    },
+                    "aitianyu/cn/app/image/selector/getter/images": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        },
+                        "return": [
+                            {
+                                "id": "string",
+                                "image": "base64:"
+                            }
+                        ]
+                    },
+
+                    "aitianyu/cn/app/image/selector/select": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        }
+                    },
+                    "aitianyu/cn/app/image/selector/unselect": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        }
+                    }
+                }
+            }
         }
     }
 }

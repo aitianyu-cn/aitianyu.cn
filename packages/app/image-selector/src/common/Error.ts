@@ -1,0 +1,7 @@
+/**@format */
+
+export const Errors = {
+    CONTROL_TOKEN_PARAM_LOST: 30000,
+    CONTROL_CREATE_TOKEN_RES_GENERATE: 30001,
+    CONTROL_RES_EXCEPTION: 30010,
+};
