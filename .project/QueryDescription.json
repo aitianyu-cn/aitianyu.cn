@@ -175,6 +175,7 @@
                         },
                         "return": [
                             {
+                                "valid": "boolean",
                                 "all": ["string"],
                                 "selected": ["string"]
                             }
@@ -187,7 +188,7 @@
                         },
                         "return": [
                             {
-                                "id": "string",
+                                "name": "string",
                                 "image": "base64:"
                             }
                         ]

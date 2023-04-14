@@ -71,25 +71,42 @@ export class ControlDispatcher {
     private async _releaseToken(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string> {
         return new Promise<string>((resolve) => {
             const token = query.query["token"];
-            if (!!!token) {
+            const safe = query.query["safe"];
+            if (!!!token || !!!safe) {
                 messageList.push({
                     code: Errors.CONTROL_TOKEN_PARAM_LOST,
-                    text: "no matched parameter - require name and safe item in query",
+                    text: "no matched parameter - require token and safe item in query",
                 });
                 resolve("failed");
                 return;
             }
 
             const resource = path.resolve(baseDir, `${token}.json`);
-            fs.access(resource, (error: NodeJS.ErrnoException | null) => {
+            fs.readFile(resource, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     resolve("invalid-token");
                     return;
                 }
 
-                fs.rm(resource, { force: true }, (error: NodeJS.ErrnoException | null) => {
-                    resolve(error ? "failed" : "success");
-                });
+                const data = typeof rawData === "string" ? rawData : rawData.toString("utf-8");
+                try {
+                    const configJson: IImageRecorder = JSON.parse(data);
+                    if (configJson.safe !== safe) {
+                        resolve("invalid-safe");
+                        return;
+                    }
+
+                    fs.rm(resource, { force: true }, (error: NodeJS.ErrnoException | null) => {
+                        resolve(error ? "failed" : "success");
+                    });
+                } catch {
+                    messageList.push({
+                        code: Errors.CONTROL_RES_EXCEPTION,
+                        text: "resource exception - could not handle required resource",
+                    });
+                    resolve("failed");
+                    return;
+                }
             });
         });
     }

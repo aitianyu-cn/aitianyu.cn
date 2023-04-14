@@ -26,13 +26,15 @@ export class UploaderDispatcher {
             if (!!!token) {
                 messageList.push({
                     code: Errors.CONTROL_TOKEN_PARAM_LOST,
-                    text: "no matched parameter - require name and safe item in query",
+                    text: "no matched parameter - require token",
                 });
                 resolve("failed");
                 return;
             }
 
-            const images: IQueryImages[] = this._parseImages(query.query["images"]);
+            const images: IQueryImages[] = Array.isArray(query.query["images"])
+                ? (query.query["images"] as IQueryImages[])
+                : this._parseImages(query.query["images"]);
             if (0 === images.length) {
                 resolve("success");
                 return;
@@ -53,7 +55,7 @@ export class UploaderDispatcher {
                 try {
                     const configJson: IImageRecorder = JSON.parse(data);
                     for (const imageItem of images) {
-                        configJson.images[imageItem.id] = imageItem;
+                        configJson.images[imageItem.id] = { name: imageItem.name, data: encodeURI(imageItem.data) };
                     }
 
                     try {

@@ -13,3 +13,14 @@ export interface IImageRecorder {
     images: MapOfType<IImageRecorderItem>;
     selected: string[];
 }
+
+export interface IImageGetList {
+    valid: boolean;
+    all: string[];
+    selected: string[];
+}
+
+export interface IImageGets {
+    name: string;
+    image: string;
+}
