@@ -10,8 +10,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OnlineDispatcher = void 0;
 const server_base_1 = require("@aitianyu.cn/server-base");
 const Definitions_1 = require("../common/Definitions");
-const Guid_1 = require("../common/Guid");
 const OnlineResults_1 = require("../common/OnlineResults");
+const types_1 = require("@aitianyu.cn/types");
 const TOKEN_OUT_TIME = 2592000000;
 const ERROR_CODE = {
     INVALID_OPERATION: 20000,
@@ -61,7 +61,7 @@ class OnlineDispatcher {
             }
             else {
                 try {
-                    const token = (0, Guid_1.guid)();
+                    const token = (0, types_1.guid)();
                     await this.__loginOrUpdateToken(verifyResult, location, token);
                     result.token = token;
                     result.email = verifyResult.email;

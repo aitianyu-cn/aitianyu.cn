@@ -2,6 +2,7 @@
 /**@format */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GitToolDispatcher = void 0;
+const Error_1 = require("../common/Error");
 class GitToolDispatcher {
     constructor(dbPool) {
         this.databasePools = dbPool;
@@ -25,6 +26,7 @@ class GitToolDispatcher {
                         result.sources[user] = {
                             period: userConfigs[user].period,
                             excludes: userConfigs[user].excludes,
+                            snapshot: userConfigs[user].snapshot,
                             repos: repos,
                         };
                     }
@@ -32,6 +34,9 @@ class GitToolDispatcher {
                 else {
                     result.valid = false;
                 }
+            }
+            catch (e) {
+                messageList.push({ code: Error_1.Errors.ERROR, text: e?.message || "error" });
             }
             finally {
                 resolve(result);
@@ -57,7 +62,7 @@ class GitToolDispatcher {
                             repos[repo] = {
                                 ssh: ssh,
                                 remote: remote,
-                                excludes: excludes.split(","),
+                                excludes: !!!excludes ? [] : excludes.split(","),
                             };
                         }
                     }
@@ -68,8 +73,9 @@ class GitToolDispatcher {
             });
         });
     }
-    async __getAllUsersConfig(users) {
+    async __getAllUsersConfig(serverUsers) {
         return new Promise((resolve) => {
+            const users = Object.keys(serverUsers);
             const configs = {};
             if (users.length === 0) {
                 resolve(configs);
@@ -84,8 +90,9 @@ class GitToolDispatcher {
                         const exclude = item["excludes"] || "";
                         if (!!user) {
                             configs[user] = {
-                                period: period,
-                                excludes: exclude.split(","),
+                                period: serverUsers[user]?.period || period,
+                                excludes: serverUsers[user]?.excludes || !!!exclude ? [] : exclude.split(","),
+                                snapshot: !!serverUsers[user]?.snapshot,
                             };
                         }
                     }
@@ -98,19 +105,26 @@ class GitToolDispatcher {
     }
     async __getAllUsersOfServer(server) {
         return new Promise((resolve) => {
-            const users = [];
             if (!!server) {
                 const sql = `SELECT * FROM \`git-helper\`.accessible WHERE server='${server}' AND valid='1';`;
                 this.databasePools.execute("git-helper", sql, (result) => {
+                    const users = {};
                     if (Array.isArray(result) && result.length > 0) {
                         for (const item of result) {
-                            const user = item["user"];
-                            user && users.push(user);
+                            const user = item["user"] || "";
+                            const exclude = item["excludes"] || "";
+                            if (user) {
+                                users[user] = {
+                                    period: item["period"] || null,
+                                    excludes: !!exclude ? exclude.split(",") : null,
+                                    snapshot: !!item["snapshot"],
+                                };
+                            }
                         }
                     }
                     resolve(users);
                 }, (_error) => {
-                    resolve(users);
+                    resolve({});
                 });
             }
         });
@@ -121,7 +135,7 @@ class GitToolDispatcher {
                 resolve(null);
                 return;
             }
-            const sql = `SELECT * FROM \`git-helper\`.authorize WHERE server='${server}' AND token='${token}';`;
+            const sql = `SELECT * FROM \`git-helper\`.authorize WHERE server='${server}' AND token='${token}' AND valid='1';`;
             this.databasePools.execute("git-helper", sql, (result) => {
                 const publicPath = Array.isArray(result) && result.length > 0 ? result[0].public ?? "" : null;
                 resolve(publicPath);
