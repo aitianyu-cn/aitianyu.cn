@@ -32,9 +32,10 @@ export class ControlDispatcher {
             }
 
             const token = guid();
-            if (!fs.existsSync(baseDir)) {
+            const sourcePath = path.resolve(baseDir, token);
+            if (!fs.existsSync(sourcePath)) {
                 try {
-                    fs.mkdirSync(path.resolve(baseDir, token), { recursive: true });
+                    fs.mkdirSync(sourcePath, { recursive: true });
                 } catch {
                     messageList.push({
                         code: Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
@@ -52,7 +53,7 @@ export class ControlDispatcher {
                 selected: [],
             };
             try {
-                fs.writeFileSync(path.resolve(baseDir, token, `setting.json`), JSON.stringify(configJson), {
+                fs.writeFileSync(path.resolve(sourcePath, `setting.json`), JSON.stringify(configJson), {
                     encoding: "utf-8",
                 });
             } catch {
@@ -97,7 +98,7 @@ export class ControlDispatcher {
                         return;
                     }
 
-                    fs.rmdir(basePath, (error: NodeJS.ErrnoException | null) => {
+                    fs.rm(basePath, { recursive: true }, (error: NodeJS.ErrnoException | null) => {
                         resolve(error ? "failed" : "success");
                     });
                 } catch {

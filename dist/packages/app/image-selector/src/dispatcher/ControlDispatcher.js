@@ -51,9 +51,10 @@ class ControlDispatcher {
                 return;
             }
             const token = (0, types_1.guid)();
-            if (!fs.existsSync(Configures_1.baseDir)) {
+            const sourcePath = path.resolve(Configures_1.baseDir, token);
+            if (!fs.existsSync(sourcePath)) {
                 try {
-                    fs.mkdirSync(path.resolve(Configures_1.baseDir, token), { recursive: true });
+                    fs.mkdirSync(sourcePath, { recursive: true });
                 }
                 catch {
                     messageList.push({
@@ -71,7 +72,7 @@ class ControlDispatcher {
                 selected: [],
             };
             try {
-                fs.writeFileSync(path.resolve(Configures_1.baseDir, token, `setting.json`), JSON.stringify(configJson), {
+                fs.writeFileSync(path.resolve(sourcePath, `setting.json`), JSON.stringify(configJson), {
                     encoding: "utf-8",
                 });
             }
@@ -112,7 +113,7 @@ class ControlDispatcher {
                         resolve("invalid-safe");
                         return;
                     }
-                    fs.rmdir(basePath, (error) => {
+                    fs.rm(basePath, { recursive: true }, (error) => {
                         resolve(error ? "failed" : "success");
                     });
                 }
