@@ -27,6 +27,14 @@ module.exports.proxy = {
             "^/remote-authorization": "",
         },
     },
+    "/remote-imageSelector": {
+        target: "http://localhost:9200",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-imageSelector": "",
+        },
+    },
 };
 
 module.exports.static = [

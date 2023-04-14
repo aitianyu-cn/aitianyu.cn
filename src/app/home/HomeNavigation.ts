@@ -3,14 +3,11 @@
 import { DocumentFrame, propCreater as DocumentFramePropCreater } from "tianyu-shell/app/home/Document.loader";
 import { DownloadFrame, propCreater as DownloadFramePropCreater } from "tianyu-shell/app/home/Download.loader";
 import { HomeFrame, propCreater as HomeFramePropCreater } from "tianyu-shell/app/home/Home.loader";
-import { InternalFrame, propCreater as InternalFramePropCreater } from "tianyu-shell/app/home/Internal.loader";
-import { SettingFrame, propCreater as SettingFramePropCreater } from "tianyu-shell/app/home/Setting.loader";
 import { ThemeFrame, propCreater as ThemeFramePropCreater } from "tianyu-shell/app/home/Theme.loader";
 import { LanguageFrame } from "tianyu-shell/app/home/language/LanguageFrame";
 import { IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
 import { IMessageBundle } from "ts-core/I18n";
 import { MapOfType } from "ts-core/Types";
-import { TestComp } from "./TestComp";
 
 export const fontSizeMap: Record<number, number> = {
     [0]: 15,

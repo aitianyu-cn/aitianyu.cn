@@ -4,10 +4,11 @@ import React from "react";
 import { require_msgbundle } from "ts-core/I18n";
 import { IDownloadFrameProperty } from "./DownloadFrame.model";
 import { DownloadMagnet } from "./DownloadMagnet";
-import "./css/main.css";
 import { ReactWaiting } from "tianyu-shell/ui/react/widget/control/ReactWaiting";
 import { loadProjectAllDownloads } from "tianyu-server/controller/project/ProjectDocument.controller";
 import { IProjectDownload } from "tianyu-server/model/Project.model";
+
+import "./css/main.css";
 
 const messageBundle = require_msgbundle("home", "app");
 
@@ -102,7 +103,15 @@ export class DownloadFrame extends React.Component<IDownloadFrameProperty, IReac
         const emptyString = messageBundle.getText("HOME_PAGE_DOWNLOAD_FRAME_NO_DOWNLOAD_PROJECT");
         const aProjectNodes: React.ReactNode[] = [];
         for (const project of oProjectSource) {
-            const oMagnet = new DownloadMagnet({ ...project, optionEmptyText: emptyString });
+            const oMagnet = new DownloadMagnet({
+                id: project.key,
+                project: project.project,
+                desc: project.desc,
+                github: project.github,
+                binary: project.binary,
+                name: project.name,
+                optionEmptyText: emptyString,
+            });
             aProjectNodes.push(oMagnet.render());
         }
 

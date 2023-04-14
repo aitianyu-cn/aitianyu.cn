@@ -1,11 +1,12 @@
 /**@format */
 
+import { IBlockChart, IBlockRegionChart } from "tianyu-shell/common/model/Chart.model";
 import { MapOfType } from "ts-core/Types";
 
 export interface IMagnetPropertyBase {
     project: string;
     name: string;
-    key: string;
+    id: string;
     github: string;
     desc: string;
 
@@ -54,5 +55,21 @@ export interface IProjectDocument {
     key: string;
     name: string;
     project: string;
+    type: string;
     options: IProjectDocumentOption[];
+}
+
+export interface IProjectDocumentHelp {
+    default: string;
+    files: MapOfType<{ file: string; i18n: string }>;
+}
+
+export interface IProjectDocumentArchitectureBlock {
+    total: IBlockChart;
+    items: MapOfType<IBlockRegionChart>;
+}
+
+export interface IProjectDocumentArchitecture {
+    arch: IProjectDocumentArchitectureBlock[];
+    files: MapOfType<{ file: string; i18n: string }>;
 }

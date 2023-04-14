@@ -1,0 +1,11 @@
+IMAGE_SELECTOR_TITLE=Image Selector
+IMAGE_SELECTOR_TITLE_LOADING=Loading
+IMAGE_SELECTOR_TITLE_COUNT=Count
+NOT_SUPPORT_FOR_MOBILE=The current application does not support mobile devices. Please use the desktop to access the application
+INVALID_IMAGE_SELECTOR_TOKEN=The entered link does not exist
+
+SELECT_IMG_FAILED=The selection failed. Please try again later.
+UNSELECT_IMG_FAILED=The unselection failed. Please try again later.
+
+SELECTOR_SOURCE_TITLE=Source Pictures
+SELECTOR_SELECTED_TITLE=Selected Pictures

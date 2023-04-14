@@ -43,10 +43,10 @@ export class XMLHttpFileLoader<ResponseType> extends FileLoaderBase<ResponseType
         this.onerror = callback;
     }
 
-    public override open(): void {
+    public override open(type: "Get" | "Post" = "Get"): void {
         try {
             const request = new XMLHttpRequest();
-            request.open("get", this.url);
+            request.open(type, this.url);
             request.send(this.send);
             request.onload = () => {
                 if (request.status === 200) {
@@ -65,11 +65,11 @@ export class XMLHttpFileLoader<ResponseType> extends FileLoaderBase<ResponseType
         }
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public override openAsync(): Promise<any> {
+    public override openAsync(type: "Get" | "Post" = "Get"): Promise<any> {
         return new Promise<any>((resolve, reject) => {
             try {
                 const request = new XMLHttpRequest();
-                request.open("get", this.url);
+                request.open(type, this.url);
                 request.send(this.send);
                 request.onload = () => {
                     if (request.status === 200) {

@@ -2,10 +2,18 @@
 
 import { CacheController } from "tianyu-shell/common/controller/Cache.controller";
 import { AITIANYU_CN_PROJECT_SERVER } from "tianyu-server/Global";
-import { IAllProjectItem, IProjectDocument, IProjectDocumentOption, IProjectDownload } from "tianyu-server/model/Project.model";
+import {
+    IAllProjectItem,
+    IProjectDocument,
+    IProjectDocumentArchitecture,
+    IProjectDocumentArchitectureBlock,
+    IProjectDocumentHelp,
+    IProjectDocumentOption,
+    IProjectDownload,
+} from "tianyu-server/model/Project.model";
 import { Language } from "ts-core/Language";
 import { parseProjectDownload } from "tianyu-server/utilities/ProjectDocumentHelper";
-import { MapOfString } from "ts-core/Types";
+import { IBlockRegionChart } from "tianyu-shell/common/model/Chart.model";
 
 export async function loadAllProjects(): Promise<IAllProjectItem[]> {
     return new Promise<IAllProjectItem[]>((resolve) => {
@@ -132,6 +140,7 @@ export async function loadProjectAllDocument(): Promise<IProjectDocument[]> {
                             key: documentSource.key || "",
                             name: decodeURI(documentSource.name || ""),
                             project: documentSource.project || "",
+                            type: documentSource.type || "",
                             options: [],
                         };
 
@@ -159,6 +168,115 @@ export async function loadProjectAllDocument(): Promise<IProjectDocument[]> {
     });
 }
 
-export async function loadProjectDocument(type: string, query: MapOfString): Promise<string> {
-    return new Promise<string>((resolve) => {});
+export async function loadProjectDocumentHelp(project: string): Promise<IProjectDocumentHelp | null> {
+    return new Promise<IProjectDocumentHelp | null>((resolve) => {
+        const localLanguage = Language.toString();
+        const url = `${AITIANYU_CN_PROJECT_SERVER}/aitianyu/cn/project/document/help?project=${project}&lang=${localLanguage}`;
+        const cachedData = CacheController.get(url);
+        if (!!cachedData) {
+            resolve(cachedData);
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        xhr.send();
+        xhr.onloadend = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const results: IProjectDocumentHelp = { default: "", files: {} };
+                const responseText = xhr.responseText;
+                const resObj = JSON.parse(responseText);
+
+                const response = resObj["response"];
+                if (!!response) {
+                    results.default = response.default || "";
+                    for (const key of Object.keys(response.files || {})) {
+                        const value = response.files[key];
+                        if (!!value.file && !!value.i18n) {
+                            results.files[key] = { file: value.file, i18n: decodeURI(value.i18n) };
+                        }
+                    }
+                }
+
+                const filesKeys = Object.keys(results.files);
+                if (!!!results.default && filesKeys.length > 0) results.default = filesKeys[0];
+                if (!!results.default && filesKeys.length > 0) CacheController.cache(url, results);
+
+                resolve(results);
+            }
+
+            resolve(null);
+        };
+    });
+}
+
+export async function loadProjectDocumentArch(project: string): Promise<IProjectDocumentArchitecture | null> {
+    return new Promise<IProjectDocumentArchitecture | null>((resolve) => {
+        const localLanguage = Language.toString();
+        const url = `${AITIANYU_CN_PROJECT_SERVER}/aitianyu/cn/project/document/help?project=${project}&lang=${localLanguage}`;
+        const cachedData = CacheController.get(url);
+        if (!!cachedData) {
+            resolve(cachedData);
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        xhr.send();
+        xhr.onloadend = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const results: IProjectDocumentArchitecture = { arch: [], files: {} };
+                const responseText = xhr.responseText;
+                const resObj = JSON.parse(responseText);
+
+                const response = resObj["response"] as IProjectDocumentArchitecture;
+                if (!!response) {
+                    for (const key of Object.keys(response.files || {})) {
+                        const value = response.files[key];
+                        results.files[key] = { file: value.file, i18n: decodeURI(value.i18n) };
+                    }
+
+                    if (Array.isArray(response.arch)) {
+                        for (const archItem of response.arch || []) {
+                            const archItemTotal = archItem.total;
+                            const archItemItems = archItem.items;
+                            if (!!!archItemTotal?.row || !!!archItemTotal?.col || !!!archItemItems) continue;
+
+                            const arch: IProjectDocumentArchitectureBlock = {
+                                total: { row: archItemTotal.row, col: archItemTotal.col },
+                                items: {},
+                            };
+                            for (const key of Object.keys(archItemItems)) {
+                                const value = archItemItems[key];
+                                const decodeValue: IBlockRegionChart = {
+                                    row: value.row,
+                                    col: value.col,
+                                    backgroundColor: value.backgroundColor,
+                                    borderRadiusBottomLeft: value.borderRadiusBottomLeft,
+                                    borderRadiusBottomRigth: value.borderRadiusBottomRigth,
+                                    borderRadiusTopLeft: value.borderRadiusTopLeft,
+                                    borderRadiusTopRigth: value.borderRadiusTopRigth,
+                                    i18n: decodeURI(value.i18n),
+                                    rowSpan: value.rowSpan,
+                                    colSpan: value.colSpan,
+                                };
+
+                                arch.items[key] = decodeValue;
+                            }
+
+                            if (Object.keys(arch.items).length > 0) results.arch.push(arch);
+                        }
+                    }
+                }
+
+                if (Object.keys(results.files).length > 0 && results.arch.length > 0) CacheController.cache(url, results);
+
+                resolve(results);
+            }
+
+            resolve(null);
+        };
+    });
 }

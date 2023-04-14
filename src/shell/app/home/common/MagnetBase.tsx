@@ -4,7 +4,7 @@ import React from "react";
 import { IMagnetPropertyBase } from "tianyu-server/model/Project.model";
 import { isMobile } from "ts-core/RuntimeHelper";
 
-export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Component<T> {
+export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Component<T, IReactState> {
     protected isLoaded: boolean;
 
     public constructor(source: T) {
@@ -19,7 +19,7 @@ export abstract class MagnetBase<T extends IMagnetPropertyBase> extends React.Co
         const options = this.renderOptions();
 
         return (
-            <div key={this.props.key} className="magnet_tip_main_container">
+            <div key={this.props.id} className="magnet_tip_main_container">
                 <div className="magnet_tip_main_container_inner">
                     <div className={mobProjectLink}>
                         <div className="magnet_tip_project_name">
