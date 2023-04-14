@@ -14,9 +14,9 @@ import {
     ERROR_CODE as SERVER_ERROR_CODE,
 } from "@aitianyu.cn/server-base";
 import { OperationResult } from "../common/Definitions";
-import { guid } from "../common/Guid";
 import { ONLINE_RESULT, ONLINE_RESULT_MESSAGE, ONLINE_STATE } from "../common/OnlineResults";
 import { IOnlineLoginResult, IOnlineStatusResult } from "../model/Online.model";
+import { guid } from "@aitianyu.cn/types";
 
 const TOKEN_OUT_TIME = 2592000000;
 

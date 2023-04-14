@@ -5,7 +5,11 @@
             "description": "tianyu generic server for global definitions.",
             "port": 9000,
             "dispatcher": {
-                "aitianyu/cn/generic/features/feature-toggle": { "param": null }
+                "aitianyu/cn/generic/features/feature-toggle": {
+                    "param": {
+                        "project": "string?"
+                    }
+                }
             }
         },
         "project": {
@@ -49,6 +53,40 @@
                 }
             }
         },
+        "remote": {
+            "description": "tianyu local server remote connection service.",
+            "port": 9002,
+            "dispatcher": {
+                "aitianyu/cn/remote/server": {
+                    "param": {
+                        "action": "string",
+                        "server": "string",
+                        "token": "string",
+                        "template for action": {
+                            "update/add": {
+                                "connector": {
+                                    "network name": {
+                                        "ip": "string",
+                                        "auth": ["string"]
+                                    }
+                                }
+                            },
+                            "remove": {
+                                "auth": ["string"],
+                                "network name": "string"
+                            }
+                        }
+                    }
+                },
+                "aitianyu/cn/remote/get-server": {
+                    "param": {
+                        "auth": "string?",
+                        "token": "string",
+                        "server": ["string"]
+                    }
+                }
+            }
+        },
         "authorization": {
             "description": "tianyu authorization server for all users of tianyu projects, tianyu applications, etc...",
             "port": 9010,
@@ -71,11 +109,6 @@
                 }
             }
         },
-        "tpro": {
-            "description": "tianyu project management application server.",
-            "port": 9110,
-            "dispatcher": {}
-        },
         "gitool": {
             "description": "data source for github auto backup, snapshot tool.",
             "port": 9100,
@@ -84,6 +117,94 @@
                     "param": {
                         "server": "string",
                         "token": "string"
+                    }
+                }
+            }
+        },
+        "tpro": {
+            "description": "tianyu project management application server.",
+            "port": 9110,
+            "dispatcher": {}
+        },
+
+        "app": {
+            "image-selector": {
+                "description": "provide selector for images.",
+                "port": 9200,
+                "dispatcher": {
+                    "aitianyu/cn/app/image/selector/createToken": {
+                        "param": {
+                            "name": "string"
+                        },
+                        "return": "string - return the token"
+                    },
+                    "aitianyu/cn/app/image/selector/releaseToken": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": "string"
+                    },
+
+                    "aitianyu/cn/app/image/selector/uploader": {
+                        "param": {
+                            "token": "string",
+                            "images": [
+                                {
+                                    "name": "string",
+                                    "id": "string",
+                                    "image": "base64:"
+                                }
+                            ]
+                        },
+                        "return": "string - return the status"
+                    },
+                    "aitianyu/cn/app/image/selector/getter/selected": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": [
+                            {
+                                "name": "string",
+                                "id": "string"
+                            }
+                        ]
+                    },
+                    "aitianyu/cn/app/image/selector/getter/list": {
+                        "param": {
+                            "token": "string"
+                        },
+                        "return": [
+                            {
+                                "valid": "boolean",
+                                "all": ["string"],
+                                "selected": ["string"]
+                            }
+                        ]
+                    },
+                    "aitianyu/cn/app/image/selector/getter/images": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        },
+                        "return": [
+                            {
+                                "name": "string",
+                                "image": "base64:"
+                            }
+                        ]
+                    },
+
+                    "aitianyu/cn/app/image/selector/select": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        }
+                    },
+                    "aitianyu/cn/app/image/selector/unselect": {
+                        "param": {
+                            "token": "string",
+                            "images": ["string"]
+                        }
                     }
                 }
             }
