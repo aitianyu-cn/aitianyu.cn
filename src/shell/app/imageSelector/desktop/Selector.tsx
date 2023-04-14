@@ -56,7 +56,7 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
     }
 
     public componentDidMount(): void {
-        if (this.isLoaded || this.hasError) {
+        if (this.isLoaded || this.hasError || !!!this.token) {
             return;
         }
 
@@ -175,7 +175,9 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
                         for (const img of imageRes.all) {
                             aPromise.push(
                                 (async () => {
-                                    await this._loadImage(img);
+                                    try {
+                                        await this._loadImage(img);
+                                    } catch {}
                                     loaded++;
                                     document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
                                         "IMAGE_SELECTOR_TITLE_LOADING",
