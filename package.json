@@ -10,6 +10,7 @@
         "start-authorization": "ts-node packages/tianyu-authorization/index.ts",
         "start-pm": "ts-node packages/tpro-server/index.ts",
         "start-gitool": "ts-node packages/gitool-server/index.ts",
+        "start-app-imgsel": "ts-node packages/app/image-selector/index.ts",
         "build-copy-files": "copyfiles ./packages/**/resources/**/*.* ./packages/**/src/config/**/*.* ./dist",
         "build-remove-types": "rimraf ./dist/**/*.d.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,8 +19,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@aitianyu.cn/server-base": "^1.0.2",
-        "@aitianyu.cn/types": "^0.0.1",
+        "@aitianyu.cn/server-base": "latest",
+        "@aitianyu.cn/types": "latest",
         "cookie-parser": "^1.4.6",
         "cuid": "^2.1.8",
         "fs": "^0.0.1-security",

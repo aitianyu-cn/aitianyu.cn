@@ -44,7 +44,7 @@ export class SelectionDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const resource = path.resolve(baseDir, token, `setting.json`);
             fs.readFile(resource, { encoding: "utf-8" }, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({
@@ -59,7 +59,7 @@ export class SelectionDispatcher {
                 try {
                     const configJson: IImageRecorder = JSON.parse(data);
                     for (const image of images) {
-                        if (!!!configJson.images[image]) {
+                        if (!configJson.images.includes(image)) {
                             messageList.push({
                                 code: Errors.CONTROL_IMAGE_NOT_FOUND,
                                 text: `image not found - could not found image: ${image}`,
@@ -74,7 +74,7 @@ export class SelectionDispatcher {
                     }
 
                     try {
-                        fs.writeFileSync(path.resolve(baseDir, `${token}.json`), JSON.stringify(configJson), {
+                        fs.writeFileSync(resource, JSON.stringify(configJson), {
                             encoding: "utf-8",
                         });
                     } catch {
@@ -126,7 +126,7 @@ export class SelectionDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const resource = path.resolve(baseDir, token, "setting.json");
             fs.readFile(resource, { encoding: "utf-8" }, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({
@@ -149,7 +149,7 @@ export class SelectionDispatcher {
                     }
 
                     try {
-                        fs.writeFileSync(path.resolve(baseDir, `${token}.json`), JSON.stringify(configJson), {
+                        fs.writeFileSync(resource, JSON.stringify(configJson), {
                             encoding: "utf-8",
                         });
                     } catch {

@@ -10,7 +10,7 @@ export interface IImageRecorderItem {
 export interface IImageRecorder {
     name: string;
     safe: string;
-    images: MapOfType<IImageRecorderItem>;
+    images: string[];
     selected: string[];
 }
 

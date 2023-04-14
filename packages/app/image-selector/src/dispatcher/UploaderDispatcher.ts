@@ -40,7 +40,8 @@ export class UploaderDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const basePath = path.resolve(baseDir, token);
+            const resource = path.resolve(basePath, `setting.json`);
             fs.readFile(resource, { encoding: "utf-8" }, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({
@@ -55,20 +56,33 @@ export class UploaderDispatcher {
                 try {
                     const configJson: IImageRecorder = JSON.parse(data);
                     for (const imageItem of images) {
-                        configJson.images[imageItem.id] = { name: imageItem.name, data: encodeURI(imageItem.data) };
-                    }
+                        if (configJson.images.includes(imageItem.id)) {
+                            continue;
+                        }
+                        configJson.images.push(imageItem.id);
 
-                    try {
-                        fs.writeFileSync(path.resolve(baseDir, `${token}.json`), JSON.stringify(configJson), {
-                            encoding: "utf-8",
-                        });
-                    } catch {
-                        messageList.push({
-                            code: Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
-                            text: "system error - handle resource failed",
-                        });
-                        resolve("failed");
-                        return;
+                        try {
+                            fs.writeFileSync(path.resolve(basePath, `${imageItem.id}.base64`), encodeURI(imageItem.data), {
+                                encoding: "utf-8",
+                            });
+                        } catch {
+                            messageList.push({
+                                code: Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
+                                text: `save error - save image(${imageItem.id}) failed`,
+                            });
+                        }
+                    }
+                    if (images.length !== messageList.length) {
+                        try {
+                            fs.writeFileSync(resource, JSON.stringify(configJson), {
+                                encoding: "utf-8",
+                            });
+                        } catch {
+                            messageList.push({
+                                code: Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
+                                text: "system error - handle resource failed",
+                            });
+                        }
                     }
 
                     resolve("success");

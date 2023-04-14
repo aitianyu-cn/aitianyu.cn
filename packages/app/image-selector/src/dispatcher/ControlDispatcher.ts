@@ -34,7 +34,7 @@ export class ControlDispatcher {
             const token = guid();
             if (!fs.existsSync(baseDir)) {
                 try {
-                    fs.mkdirSync(baseDir, { recursive: true });
+                    fs.mkdirSync(path.resolve(baseDir, token), { recursive: true });
                 } catch {
                     messageList.push({
                         code: Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
@@ -48,11 +48,11 @@ export class ControlDispatcher {
             const configJson: IImageRecorder = {
                 name: name,
                 safe: safe,
-                images: {},
+                images: [],
                 selected: [],
             };
             try {
-                fs.writeFileSync(path.resolve(baseDir, `${token}.json`), JSON.stringify(configJson), {
+                fs.writeFileSync(path.resolve(baseDir, token, `setting.json`), JSON.stringify(configJson), {
                     encoding: "utf-8",
                 });
             } catch {
@@ -81,7 +81,8 @@ export class ControlDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const basePath = path.resolve(baseDir, token);
+            const resource = path.resolve(basePath, `setting.json`);
             fs.readFile(resource, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     resolve("invalid-token");
@@ -96,7 +97,7 @@ export class ControlDispatcher {
                         return;
                     }
 
-                    fs.rm(resource, { force: true }, (error: NodeJS.ErrnoException | null) => {
+                    fs.rmdir(basePath, (error: NodeJS.ErrnoException | null) => {
                         resolve(error ? "failed" : "success");
                     });
                 } catch {

@@ -42,7 +42,8 @@ export class GetterDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const basePath = path.resolve(baseDir, token);
+            const resource = path.resolve(basePath, `setting.json`);
             fs.readFile(resource, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({ code: Errors.CONTROL_TOKEN_INVAILD, text: "invalid token" });
@@ -54,7 +55,17 @@ export class GetterDispatcher {
                 try {
                     const configJson: IImageRecorder = JSON.parse(data);
                     for (const image of images) {
-                        const data = configJson.images[image];
+                        const imageFile = path.resolve(basePath, `${image}.base64`);
+                        if (!configJson.images.includes(image) || !fs.existsSync(imageFile)) {
+                            messageList.push({
+                                code: Errors.CONTROL_IMAGE_NOT_FOUND,
+                                text: `image not found - could not found image: ${image}`,
+                            });
+
+                            continue;
+                        }
+
+                        const data = fs.readFileSync(imageFile).toString("utf-8");
                         if (!!!data) {
                             messageList.push({
                                 code: Errors.CONTROL_IMAGE_NOT_FOUND,
@@ -64,7 +75,7 @@ export class GetterDispatcher {
                             continue;
                         }
 
-                        result.push({ name: data.name, image: data.data });
+                        result.push({ name: image, image: data });
                     }
                     resolve(result);
                 } catch {
@@ -92,7 +103,7 @@ export class GetterDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const resource = path.resolve(baseDir, token, "setting.json");
             fs.readFile(resource, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({ code: Errors.CONTROL_TOKEN_INVAILD, text: "invalid token" });
@@ -103,7 +114,7 @@ export class GetterDispatcher {
                 const data = typeof rawData === "string" ? rawData : rawData.toString("utf-8");
                 try {
                     const configJson: IImageRecorder = JSON.parse(data);
-                    result.all = Object.keys(configJson.images);
+                    result.all = configJson.images;
                     result.selected = configJson.selected;
                     result.valid = true;
                     resolve(result);
@@ -132,7 +143,7 @@ export class GetterDispatcher {
                 return;
             }
 
-            const resource = path.resolve(baseDir, `${token}.json`);
+            const resource = path.resolve(baseDir, token, "setting.json");
             fs.readFile(resource, (error: NodeJS.ErrnoException | null, rawData: string | Buffer) => {
                 if (error) {
                     messageList.push({ code: Errors.CONTROL_TOKEN_INVAILD, text: "invalid token" });
