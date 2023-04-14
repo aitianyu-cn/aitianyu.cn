@@ -173,19 +173,26 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
                         this.selected = imageRes.selected;
                         const aPromise: Promise<void>[] = [];
                         for (const img of imageRes.all) {
-                            aPromise.push(
-                                (async () => {
-                                    try {
-                                        await this._loadImage(img);
-                                    } catch {}
-                                    loaded++;
-                                    document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
-                                        "IMAGE_SELECTOR_TITLE_LOADING",
-                                    )}(${loaded}/${imageRes.all.length})`;
-                                })(),
-                            );
+                            // aPromise.push(
+                            //     (async () => {
+                            //         try {
+                            //             await this._loadImage(img);
+                            //         } catch {}
+                            //         loaded++;
+                            //         document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
+                            //             "IMAGE_SELECTOR_TITLE_LOADING",
+                            //         )}(${loaded}/${imageRes.all.length})`;
+                            //     })(),
+                            // );
+                            try {
+                                await this._loadImage(img);
+                            } catch {}
+                            loaded++;
+                            document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
+                                "IMAGE_SELECTOR_TITLE_LOADING",
+                            )}(${loaded}/${imageRes.all.length})`;
                         }
-                        await Promise.all(aPromise);
+                        // await Promise.all(aPromise);
                         document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
                             "IMAGE_SELECTOR_TITLE_COUNT",
                         )}(${imageRes.all.length})`;
@@ -200,15 +207,17 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
     }
 
     private async _loadImage(images: string): Promise<void> {
-        const loader = new XMLHttpFileLoader<any>(IMAGE_GET_SRC_URL);
-        const payload = { token: this.token, images: [images] };
-        loader.setSend(JSON.stringify(payload));
-        const response = JSON.parse(await loader.openAsync("Post"));
-        if (response["response"]) {
-            const imagePair = response["response"] as IImageGets[];
-            for (const image of imagePair) {
-                this.images[image.name] = image.image;
+        const url = `${IMAGE_GET_SRC_URL}?token=${this.token}&images=${images}`;
+        try {
+            const loader = new FetchFileLoader(url);
+            const response = await loader.openAsync();
+            if (response["response"]) {
+                const imagePair = response["response"] as IImageGets[];
+                for (const image of imagePair) {
+                    this.images[image.name] = image.image;
+                }
             }
+        } finally {
         }
     }
 
