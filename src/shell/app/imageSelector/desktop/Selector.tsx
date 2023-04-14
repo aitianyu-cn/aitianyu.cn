@@ -56,7 +56,7 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
     }
 
     public componentDidMount(): void {
-        if (this.isLoaded) {
+        if (this.isLoaded || this.hasError) {
             return;
         }
 
@@ -183,11 +183,6 @@ export class ImageSelector extends React.Component<IReactProperty, IReactState> 
                                 })(),
                             );
                         }
-                        aPromise.push(
-                            new Promise<void>((resolve) => {
-                                setTimeout(resolve, 20000);
-                            }),
-                        );
                         await Promise.all(aPromise);
                         document.title = `${messageBundle.getText("IMAGE_SELECTOR_TITLE")} - ${messageBundle.getText(
                             "IMAGE_SELECTOR_TITLE_COUNT",
