@@ -31,7 +31,7 @@ export class ControlDispatcher {
                 return;
             }
 
-            const token = guid();
+            const token = guid().toLowerCase();
             if (!fs.existsSync(baseDir)) {
                 try {
                     fs.mkdirSync(path.resolve(baseDir, token), { recursive: true });
@@ -70,7 +70,7 @@ export class ControlDispatcher {
 
     private async _releaseToken(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string> {
         return new Promise<string>((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const safe = query.query["safe"];
             if (!!!token || !!!safe) {
                 messageList.push({
