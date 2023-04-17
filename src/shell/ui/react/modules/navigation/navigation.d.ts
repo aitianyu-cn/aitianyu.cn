@@ -8,6 +8,7 @@ interface IReactNavigationSourceItem {
     iconType: ReactNavigationSourceIconType;
     assist: boolean;
     index: number;
+    url?: string;
 }
 
 interface IReactNavigationSource {

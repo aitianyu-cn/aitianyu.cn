@@ -37,6 +37,14 @@ export async function getNavigationSource(messageBundle: IMessageBundle): Promis
             index: 0,
         },
 
+        "/back": {
+            key: messageBundle.getText("IMAGE_PAGE_NAVIGATION_BACKTO_TY"),
+            icon: SOURCES.back,
+            iconType: "inline",
+            assist: true,
+            index: -1,
+            url: `${window.location.protocol}//${window.location.host}`,
+        },
         "/language": {
             key: messageBundle.getText("IMAGE_PAGE_NAVIGATION_LANGUAGE"),
             icon: SOURCES.language,

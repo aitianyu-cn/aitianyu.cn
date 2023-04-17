@@ -1,4 +1,5 @@
 HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=Loading Please wait...
+HOME_PAGE_NAVIGATION_JUMP_NOT_SUPPORT=The selected page does not support jumping from the home page!
 
 ###########################################################################
 # global message

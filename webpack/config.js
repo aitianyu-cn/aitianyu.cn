@@ -28,7 +28,7 @@ module.exports.proxy = {
         },
     },
     "/remote-imageSelector": {
-        target: "http://localhost:9200",
+        target: "http://127.0.0.1:9200",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
