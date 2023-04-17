@@ -5,8 +5,6 @@
 
     "application/imageSelector": "app/imageSelector/ImageSelector.tsx",
     "application/image": "app/image/Image.tsx",
-    "application/image/gallery": "app/image/gallery/Gallery.tsx",
-    "application/image/educate": "app/image/educate/Educate.tsx",
 
     "admin/admin": "admin/Admin.ts",
 

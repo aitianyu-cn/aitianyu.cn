@@ -28,60 +28,6 @@ const pageInfo = {
             },
         },
     },
-    imageGallery: {
-        title: "影像展区",
-        template: "app/index.html",
-        filename: "application/image/gallery/index.html",
-        favicon: "src/page/res/aitianyu.ico",
-        chunks: ["application/image/gallery"],
-        from: [
-            {
-                regexp: /^\/application\/image\/gallery$/,
-                hash: null,
-            },
-        ],
-        tianyuShell: {
-            coreSupport: true,
-            config: {
-                language: true,
-                ui: {
-                    message: true,
-                    dialog: true,
-                    background: true,
-                },
-                storage: true,
-                featureToggle: true,
-                performance: true,
-            },
-        },
-    },
-    imageEducate: {
-        title: "影像学校",
-        template: "app/index.html",
-        filename: "application/image/educate/index.html",
-        favicon: "src/page/res/aitianyu.ico",
-        chunks: ["application/image/educate"],
-        from: [
-            {
-                regexp: /^\/application\/image\/educate$/,
-                hash: null,
-            },
-        ],
-        tianyuShell: {
-            coreSupport: true,
-            config: {
-                language: true,
-                ui: {
-                    message: true,
-                    dialog: true,
-                    background: true,
-                },
-                storage: true,
-                featureToggle: true,
-                performance: true,
-            },
-        },
-    },
     imageSelector: {
         title: "图片选择器",
         template: "app/index.html",

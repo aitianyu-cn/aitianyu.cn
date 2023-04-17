@@ -3,8 +3,8 @@
 import { DocumentFrame, propCreater as DocumentFramePropCreater } from "tianyu-shell/app/home/Document.loader";
 import { DownloadFrame, propCreater as DownloadFramePropCreater } from "tianyu-shell/app/home/Download.loader";
 import { HomeFrame, propCreater as HomeFramePropCreater } from "tianyu-shell/app/home/Home.loader";
-import { ThemeFrame, propCreater as ThemeFramePropCreater } from "tianyu-shell/app/home/Theme.loader";
-import { LanguageFrame } from "tianyu-shell/app/home/language/LanguageFrame";
+import { ThemeFrame, propCreater as ThemeFramePropCreater } from "tianyu-shell/app/general/Theme.loader";
+import { LanguageFrame } from "tianyu-shell/app/general/language/LanguageFrame";
 import { IReactContentRouter } from "tianyu-shell/ui/react/modules/content/Interface";
 import { IMessageBundle } from "ts-core/I18n";
 import { MapOfType } from "ts-core/Types";
