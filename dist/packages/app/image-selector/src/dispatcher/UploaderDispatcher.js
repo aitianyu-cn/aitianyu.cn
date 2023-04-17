@@ -41,8 +41,9 @@ class UploaderDispatcher {
     }
     async _uploadImages(query, messageList) {
         return new Promise((resolve) => {
-            const token = query.query["token"];
-            if (!!!token) {
+            const token = query.query["token"] && query.query["token"].toLowerCase();
+            const safe = query.query["safe"];
+            if (!!!token || !!!safe) {
                 messageList.push({
                     code: Error_1.Errors.CONTROL_TOKEN_PARAM_LOST,
                     text: "no matched parameter - require token",
@@ -71,37 +72,46 @@ class UploaderDispatcher {
                 const data = typeof rawData === "string" ? rawData : rawData.toString("utf-8");
                 try {
                     const configJson = JSON.parse(data);
-                    for (const imageItem of images) {
-                        if (configJson.images.includes(imageItem.id)) {
-                            continue;
+                    if (configJson.safe === safe) {
+                        for (const imageItem of images) {
+                            if (configJson.images.includes(imageItem.id)) {
+                                continue;
+                            }
+                            configJson.images.push(imageItem.id);
+                            try {
+                                fs.writeFileSync(path_1.default.resolve(basePath, `${imageItem.id}.base64`), encodeURI(imageItem.data), {
+                                    encoding: "utf-8",
+                                });
+                            }
+                            catch {
+                                messageList.push({
+                                    code: Error_1.Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
+                                    text: `save error - save image(${imageItem.id}) failed`,
+                                });
+                            }
                         }
-                        configJson.images.push(imageItem.id);
-                        try {
-                            fs.writeFileSync(path_1.default.resolve(basePath, `${imageItem.id}.base64`), encodeURI(imageItem.data), {
-                                encoding: "utf-8",
-                            });
+                        if (images.length !== messageList.length) {
+                            try {
+                                fs.writeFileSync(resource, JSON.stringify(configJson), {
+                                    encoding: "utf-8",
+                                });
+                            }
+                            catch {
+                                messageList.push({
+                                    code: Error_1.Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
+                                    text: "system error - handle resource failed",
+                                });
+                            }
                         }
-                        catch {
-                            messageList.push({
-                                code: Error_1.Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
-                                text: `save error - save image(${imageItem.id}) failed`,
-                            });
-                        }
+                        resolve("success");
                     }
-                    if (images.length !== messageList.length) {
-                        try {
-                            fs.writeFileSync(resource, JSON.stringify(configJson), {
-                                encoding: "utf-8",
-                            });
-                        }
-                        catch {
-                            messageList.push({
-                                code: Error_1.Errors.CONTROL_CREATE_TOKEN_RES_GENERATE,
-                                text: "system error - handle resource failed",
-                            });
-                        }
+                    else {
+                        messageList.push({
+                            code: Error_1.Errors.CONTROL_AUTHORIZE_INVAID,
+                            text: "access exception - invalid authorization",
+                        });
+                        resolve("failed");
                     }
-                    resolve("success");
                 }
                 catch {
                     messageList.push({

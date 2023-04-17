@@ -21,7 +21,7 @@ class GetterDispatcher {
     async _getImages(query, messageList) {
         return new Promise((resolve) => {
             const result = [];
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({
@@ -86,7 +86,7 @@ class GetterDispatcher {
     async _getList(query, messageList) {
         return new Promise((resolve) => {
             const result = { valid: false, all: [], selected: [] };
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             if (!!!token) {
                 messageList.push({
                     code: Error_1.Errors.CONTROL_TOKEN_PARAM_LOST,
@@ -124,7 +124,7 @@ class GetterDispatcher {
     async _getSelected(query, messageList) {
         return new Promise((resolve) => {
             const result = [];
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             if (!!!token) {
                 messageList.push({
                     code: Error_1.Errors.CONTROL_TOKEN_PARAM_LOST,

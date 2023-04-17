@@ -1,0 +1,9 @@
+{
+    "image-selector": "Tianyu Images Selector",
+    "IMAGE_SELECTOR_DESC": "Provide online photo selection service for photography. Due to the limitation of the current server bandwidth and the stability of test data, the current data loading speed is slow. Passing inside will increase the network speed.",
+
+    "image-center": "Tianyu Image Center",
+    "IMAGE_CENTER_DESC": "Tianyu Image Center provides Tianyu photography exhibition area and photography teaching area. Photography exhibition area brings you image display, original film download and other services. Photography teaching area provides the use of common equipment help and photography basic free teaching services.",
+
+    "IMAGE_SELECTOR_TOKEN": "Serial Number"
+}

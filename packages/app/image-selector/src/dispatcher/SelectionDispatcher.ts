@@ -19,7 +19,7 @@ export class SelectionDispatcher {
 
     private async _selectImages(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string> {
         return new Promise<string>((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({
@@ -101,7 +101,7 @@ export class SelectionDispatcher {
 
     private async _unSelectImages(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string> {
         return new Promise<string>((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({

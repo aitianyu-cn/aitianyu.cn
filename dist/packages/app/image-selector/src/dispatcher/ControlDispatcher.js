@@ -89,7 +89,7 @@ class ControlDispatcher {
     }
     async _releaseToken(query, messageList) {
         return new Promise((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const safe = query.query["safe"];
             if (!!!token || !!!safe) {
                 messageList.push({

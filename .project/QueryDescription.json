@@ -9,6 +9,12 @@
                     "param": {
                         "project": "string?"
                     }
+                },
+                "aitianyu/cn/generic/language/language-alls": {
+                    "param": null
+                },
+                "aitianyu/cn/generic/home/navigation": {
+                    "param": null
                 }
             }
         },
@@ -134,13 +140,15 @@
                 "dispatcher": {
                     "aitianyu/cn/app/image/selector/createToken": {
                         "param": {
-                            "name": "string"
+                            "name": "string",
+                            "safe": "string"
                         },
                         "return": "string - return the token"
                     },
                     "aitianyu/cn/app/image/selector/releaseToken": {
                         "param": {
-                            "token": "string"
+                            "token": "string",
+                            "safe": "string"
                         },
                         "return": "string"
                     },
@@ -148,6 +156,7 @@
                     "aitianyu/cn/app/image/selector/uploader": {
                         "param": {
                             "token": "string",
+                            "safe": "string",
                             "images": [
                                 {
                                     "name": "string",

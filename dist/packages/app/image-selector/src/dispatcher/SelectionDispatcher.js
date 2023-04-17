@@ -19,7 +19,7 @@ class SelectionDispatcher {
     }
     async _selectImages(query, messageList) {
         return new Promise((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({
@@ -95,7 +95,7 @@ class SelectionDispatcher {
     }
     async _unSelectImages(query, messageList) {
         return new Promise((resolve) => {
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({

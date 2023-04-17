@@ -21,7 +21,7 @@ export class GetterDispatcher {
     private async _getImages(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<IImageGets[]> {
         return new Promise<IImageGets[]>((resolve) => {
             const result: IImageGets[] = [];
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             const queryImages = query.query["images"];
             if (!!!token) {
                 messageList.push({
@@ -93,7 +93,7 @@ export class GetterDispatcher {
     private async _getList(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<IImageGetList> {
         return new Promise<IImageGetList>((resolve) => {
             const result: IImageGetList = { valid: false, all: [], selected: [] };
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             if (!!!token) {
                 messageList.push({
                     code: Errors.CONTROL_TOKEN_PARAM_LOST,
@@ -133,7 +133,7 @@ export class GetterDispatcher {
     private async _getSelected(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string[]> {
         return new Promise<string[]>((resolve) => {
             const result: string[] = [];
-            const token = query.query["token"];
+            const token = query.query["token"] && query.query["token"].toLowerCase();
             if (!!!token) {
                 messageList.push({
                     code: Errors.CONTROL_TOKEN_PARAM_LOST,
