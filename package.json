@@ -11,7 +11,8 @@
     "author": "aitianyu.cn",
     "license": "ISC",
     "dependencies": {
-        "@aitianyu.cn/types": "0.0.1",
+        "@aitianyu.cn/types": "latest",
+        "@aitianyu.cn/tianyu-store": "latest",
         "babel-loader": "^8.2.5",
         "core-js": "^3.23.3",
         "cross-env": "^7.0.3",
