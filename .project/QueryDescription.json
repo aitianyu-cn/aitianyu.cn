@@ -216,6 +216,70 @@
                         }
                     }
                 }
+            },
+            "daily": {
+                "description": "provide daily service for key-days, members, and etc.",
+                "port": 9300,
+                "dispatcher": {
+                    "aitianyu/cn/app/daily/infar/generator/author": {
+                        "param": {
+                            "name": "string",
+                            "key": "string"
+                        },
+                        "return": "string"
+                    },
+                    "aitianyu/cn/app/daily/infar/generator/subAuthor": {
+                        "param": {
+                            "author": "string",
+                            "name": "string",
+                            "key": "string"
+                        },
+                        "return": "string"
+                    },
+                    "aitianyu/cn/app/daily/infar/getUser": {
+                        "param": {
+                            "author": "string",
+                            "key": "string"
+                        },
+                        "return": "string"
+                    },
+
+                    "aitianyu/cn/app/daily/timer/record": {
+                        "param": {
+                            "author": "string",
+                            "time": "string",
+                            "summary": "string",
+                            "description": "string"
+                        }
+                    },
+                    "aitianyu/cn/app/daily/timer/get": {
+                        "param": {
+                            "author": "string",
+                            "summary": "string"
+                        },
+                        "return": [
+                            {
+                                "time": "string",
+                                "during": "number",
+                                "summary": "string",
+                                "description": "string"
+                            }
+                        ]
+                    },
+                    "aitianyu/cn/app/daily/timer/getAll": {
+                        "param": {
+                            "author": "string"
+                        },
+                        "return": [
+                            {
+                                "time": "string",
+                                "during": "number",
+                                "summary": "string",
+                                "description": "string"
+                            }
+                        ]
+                    }
+                }
             }
         }
     }
