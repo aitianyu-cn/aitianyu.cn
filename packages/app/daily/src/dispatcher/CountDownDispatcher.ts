@@ -4,6 +4,9 @@ import { IHttpDispatchInstance, DatabasePools, HttpHandler, IHttpQuery, IHttpRes
 import { getUserByAuthor } from "../common/AuthorHelper";
 import { ICountDownTime } from "../common/Types";
 
+const MillisecondStep = 1;
+const SecondStep = 1000;
+
 export class CountDownDispatcher implements IHttpDispatchInstance {
     private databasePool: DatabasePools;
 
@@ -14,6 +17,7 @@ export class CountDownDispatcher implements IHttpDispatchInstance {
     createDispatches(handler: HttpHandler): void {
         handler.setRouter("aitianyu/cn/app/daily/timer/countDown", this._countDown.bind(this));
         handler.setRouter("aitianyu/cn/app/daily/timer/setCount", this._setCount.bind(this));
+        handler.setRouter("aitianyu/cn/app/daily/timer/getTime", this._getTime.bind(this));
     }
 
     private async _countDown(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<string> {
@@ -107,8 +111,7 @@ export class CountDownDispatcher implements IHttpDispatchInstance {
                 sql,
                 (result) => {
                     let time: ICountDownTime = {
-                        year: "",
-                        month: "",
+                        neg: false,
                         day: "",
                         hour: "",
                         min: "",
@@ -120,7 +123,17 @@ export class CountDownDispatcher implements IHttpDispatchInstance {
                         const date = result[0]["date"]?.toString() || "0000-00-00 00:00:00.000";
                         const target = new Date(date);
                         const current = new Date();
-                        const timeSpan = target.;
+
+                        time.neg = target.getTime() < current.getTime();
+                        const timeSpan = (time.neg ? -1 : 1) * target.getTime() - current.getTime();
+
+                        time.milisec = (timeSpan % 1000).toString();
+                        time.sec = Math.trunc((timeSpan / 1000) % 60).toString();
+                        time.min = Math.trunc((timeSpan / 60000) % 60).toString();
+                        time.hour = Math.trunc((timeSpan / 3600000) % 24).toString();
+                        time.day = Math.trunc(timeSpan / 3600000 / 24).toString();
+
+                        time.formatted = `${time.day}:${time.hour}:${time.min}:${time.sec}.${time.milisec}`;
                     }
                     resolve(time);
                 },

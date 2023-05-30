@@ -24,8 +24,7 @@ export interface ITimerGetRecord {
 }
 
 export interface ICountDownTime {
-    year: string;
-    month: string;
+    neg: boolean;
     day: string;
     hour: string;
     min: string;

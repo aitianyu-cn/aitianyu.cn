@@ -293,6 +293,21 @@
                             "date": "string"
                         },
                         "return": "string"
+                    },
+                    "aitianyu/cn/app/daily/timer/getTime": {
+                        "param": {
+                            "author": "string",
+                            "key": "string"
+                        },
+                        "return": {
+                            "neg": "boolean",
+                            "day": "string",
+                            "hour": "string",
+                            "min": "string",
+                            "sec": "string",
+                            "milisec": "string",
+                            "formatted": "string"
+                        }
                     }
                 }
             }
