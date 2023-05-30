@@ -278,6 +278,21 @@
                                 "description": "string"
                             }
                         ]
+                    },
+                    "aitianyu/cn/app/daily/timer/countDown": {
+                        "param": {
+                            "author": "string",
+                            "key": "string"
+                        },
+                        "return": "string"
+                    },
+                    "aitianyu/cn/app/daily/timer/setCount": {
+                        "param": {
+                            "author": "string",
+                            "key": "string",
+                            "date": "string"
+                        },
+                        "return": "string"
                     }
                 }
             }

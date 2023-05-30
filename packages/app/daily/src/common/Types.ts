@@ -22,3 +22,14 @@ export interface ITimerGetRecord {
     summary: string;
     description: string;
 }
+
+export interface ICountDownTime {
+    year: string;
+    month: string;
+    day: string;
+    hour: string;
+    min: string;
+    sec: string;
+    milisec: string;
+    formatted: string;
+}
