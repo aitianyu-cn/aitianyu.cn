@@ -151,6 +151,7 @@ export class ReactHorizontalNavigation extends ReactNavigation {
                 fontSize: this.fontSize,
                 assist: sourceItem.assist,
                 iconType: sourceItem.iconType,
+                url: sourceItem.url || "",
             });
             this.items[sourceKey] = itemInstance;
         }

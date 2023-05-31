@@ -22,6 +22,8 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
     protected fontSize: number;
     protected assist: boolean;
 
+    protected url?: string;
+
     private isloaded: boolean;
 
     public constructor(props?: IReactNavigationItemProperty) {
@@ -33,6 +35,7 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
         this.select = !!props?.["selected"];
         this.assist = !!props?.["assist"];
         this.iconType = (props?.["iconType"] as ReactNavigationSourceIconType) || "url";
+        this.url = props?.["url"]?.toString();
 
         this.isloaded = false;
 
@@ -162,6 +165,10 @@ export class ReactNavigationItem extends ReactModule<IReactNavigationItemPropert
     }
 
     protected onClick(): void {
-        tianyuShell.core.runtime?.router?.jump(this.id);
+        if (this.url) {
+            window.location.href = this.url;
+        } else {
+            tianyuShell.core.runtime?.router?.jump(this.id);
+        }
     }
 }

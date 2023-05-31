@@ -20,11 +20,28 @@ const _urlTypeMap: MapOfString = {
     "node-modules": "https://www.npmjs.com/package/",
 };
 
+const _idPrefixMap: MapOfString = {
+    "aitianyu-": "@aitianyu.cn/",
+};
+
 function _generateUrlByType(type: string, id: string): string {
     const url = _urlTypeMap[type];
     if (!!!url) return "";
 
-    const targetUrl = url + id;
+    let mapedPrefix = "";
+    for (const prefix of Object.keys(_idPrefixMap)) {
+        if (id.startsWith(prefix)) {
+            mapedPrefix = prefix;
+            break;
+        }
+    }
+
+    let urlId = id;
+    if (mapedPrefix) {
+        urlId = `${_idPrefixMap[mapedPrefix]}${id.substring(mapedPrefix.length)}`;
+    }
+
+    const targetUrl = url + urlId;
     return targetUrl;
 }
 

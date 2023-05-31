@@ -28,11 +28,19 @@ module.exports.proxy = {
         },
     },
     "/remote-imageSelector": {
-        target: "http://localhost:9200",
+        target: "http://127.0.0.1:9200",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
             "^/remote-imageSelector": "",
+        },
+    },
+    "/remote-daily": {
+        target: "http://server.tencent.backend.aitianyu.cn:9300",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-daily": "",
         },
     },
 };

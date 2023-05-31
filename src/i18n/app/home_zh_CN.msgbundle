@@ -1,4 +1,5 @@
 HOME_PAGE_INITIAL_LOADING_WAIT_TEXT=资源加载中 请稍后...
+HOME_PAGE_NAVIGATION_JUMP_NOT_SUPPORT=所选页面暂不支持从主页跳转哦！
 
 ###########################################################################
 # global message

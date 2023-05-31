@@ -9,7 +9,7 @@ import { require_msgbundle } from "ts-core/I18n";
 import "./css/mobile.css";
 import "./css/desktop.css";
 import { TianyuShellNotInitialException } from "ts-core/ExceptionBase";
-import { ImageSelector } from "tianyu-shell/app/imageSelector/desktop/Selector";
+import { ImageSelector } from "tianyu-shell/app/image/selector/desktop/Selector";
 
 const messageBundle = require_msgbundle("image-selector", "app");
 

@@ -2,7 +2,11 @@
     "global/home": "home/Home.tsx",
     "application/app": "app/Application.ts",
     "application/cloud": "app/cloud/CloudApp.ts",
+
     "application/imageSelector": "app/imageSelector/ImageSelector.tsx",
+    "application/image": "app/image/Image.tsx",
+    "application/daily/timer": "app/daily/Timer.tsx",
+
     "admin/admin": "admin/Admin.ts",
 
     "global/error_400": "error/400.ts",
