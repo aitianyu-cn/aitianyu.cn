@@ -1,0 +1,4 @@
+DAILY_INITIAL_LOADING_WAIT_TEXT=Loading...
+
+DAILY_TIMER_TITLE=Time Count Down
+DAILY_TIMER_INVALID=Require Time Count Down Failed

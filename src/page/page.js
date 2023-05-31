@@ -3,6 +3,7 @@
 const errorPages = require("./page.error");
 const appPages = require("./page.app");
 const imagePages = require("./page.image");
+const dailyPages = require("./page.daily");
 
 module.exports = {
     home: {
@@ -56,4 +57,5 @@ module.exports = {
     ...errorPages(),
     ...appPages(),
     ...imagePages(),
+    ...dailyPages(),
 };

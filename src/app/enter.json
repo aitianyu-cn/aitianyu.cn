@@ -5,6 +5,7 @@
 
     "application/imageSelector": "app/imageSelector/ImageSelector.tsx",
     "application/image": "app/image/Image.tsx",
+    "application/daily/timer": "app/daily/Timer.tsx",
 
     "admin/admin": "admin/Admin.ts",
 

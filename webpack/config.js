@@ -35,6 +35,14 @@ module.exports.proxy = {
             "^/remote-imageSelector": "",
         },
     },
+    "/remote-daily": {
+        target: "http://server.tencent.backend.aitianyu.cn:9300",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-daily": "",
+        },
+    },
 };
 
 module.exports.static = [
