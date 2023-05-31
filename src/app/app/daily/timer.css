@@ -20,6 +20,11 @@
   grid-template-rows: auto max-content auto;
 
   user-select: none;
+  color: var(--ts_ui_blk_2);
+  background-color: var(--ts_ui_blk_7);
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .daily_timer_text {
