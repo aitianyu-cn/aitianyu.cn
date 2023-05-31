@@ -41,7 +41,7 @@ class Timer extends React.Component<IReactProperty, IReactState> {
 
     public componentDidMount(): void {
         if (this.time) {
-            this.timer = window.setInterval(this._updateTime.bind(this), 1);
+            this.timer = window.setInterval(this._updateTime.bind(this), 0);
         }
     }
 
@@ -61,11 +61,12 @@ class Timer extends React.Component<IReactProperty, IReactState> {
         }
 
         const [day, hour, min, sec, milisec] = Timer.calculateTimes(Number(this.state["count"]));
+        const preText = this.neg ? messageBundle.getText("DAILY_TIMER_PASS") : messageBundle.getText("DAILY_TIMER_AHEAD");
         const hourString = hour > 9 ? hour.toString() : `0${hour}`;
         const minString = min > 9 ? min.toString() : `0${min}`;
         const secString = sec > 9 ? sec.toString() : `0${sec}`;
         const milisecString = milisec > 99 ? milisec.toString() : milisec > 9 ? `0${milisec}` : `00${milisec}`;
-        const formatted = `${day}:${hourString}:${minString}:${secString}.${milisecString}`;
+        const formatted = `${preText} ${day}:${hourString}:${minString}:${secString}.${milisecString}`;
         return <div className="daily_timer_text">{formatted}</div>;
     }
 
@@ -74,8 +75,9 @@ class Timer extends React.Component<IReactProperty, IReactState> {
     }
 
     private _updateTime(): void {
-        const count = Number(this.state["count"]);
-        this.setState({ count: count === 0 || count < 1000 ? 0 : count + (this.neg ? 1 : -1) });
+        const [count, neg] = Timer.calculateCount(this.time);
+        this.neg = neg;
+        this.setState({ count: count });
     }
 
     private static calculateCount(date: string): [number, boolean] {
