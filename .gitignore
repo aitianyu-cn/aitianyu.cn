@@ -106,3 +106,5 @@ build
 
 # Node.Js package-lock.json
 package-lock.json
+
+!config/build

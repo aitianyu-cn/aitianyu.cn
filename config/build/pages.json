@@ -1,0 +1,15 @@
+{
+    "home": {
+        "title": "",
+        "template": "index.html",
+        "filename": "index.html",
+        "favicon": "index_favicon.ico",
+        "chunks": ["index"],
+        "from": [
+            {
+                "regexp": "/^/$/",
+                "hash": null
+            }
+        ]
+    }
+}
