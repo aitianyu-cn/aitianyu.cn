@@ -31,7 +31,7 @@ loadI18n().finally(() => {
         },
     });
 
-    import("@aitianyu.cn/tianyu-shell/core").then((core) => {
+    Promise.all([import("@aitianyu.cn/tianyu-shell/core")]).then(([core]) => {
         //
         try {
             core.Language.parse("123");

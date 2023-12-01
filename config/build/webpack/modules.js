@@ -52,7 +52,7 @@ module.exports.rules = [
     },
     {
         test: /\.css$/i,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(bower_components)/,
         use: ["css-loader"],
     },
 ];
