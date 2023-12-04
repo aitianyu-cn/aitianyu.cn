@@ -199,5 +199,56 @@ loadI18n().finally(() => {
                 },
             },
         );
+
+        const htmlElem = core.DOM.creator({
+            id: "test_ui",
+            type: "div",
+            style: {
+                background: "red",
+                height: "100px",
+                width: "100px",
+                display: "block",
+            },
+            event: {
+                click: () => {
+                    alert("test ui click");
+                },
+            },
+            children: [
+                {
+                    id: "test_ui_c1",
+                    type: "a",
+                    innerText: "click",
+                    style: {
+                        background: "white",
+                        color: "black",
+                        height: "30px",
+                        width: "100px",
+                        display: "block",
+                    },
+                },
+                {
+                    id: "test_ui_c2",
+                    type: "div",
+                    innerText: "click",
+                    style: {
+                        background: "white",
+                        color: "black",
+                        height: "30px",
+                        width: "100px",
+                        display: "block",
+                        pointerEvents: "auto",
+                    },
+                    event: {
+                        click: (ev) => {
+                            ev.stopPropagation();
+                            alert("test ui child click");
+                        },
+                    },
+                },
+            ],
+        });
+
+        document.body.appendChild(htmlElem);
     });
 });
