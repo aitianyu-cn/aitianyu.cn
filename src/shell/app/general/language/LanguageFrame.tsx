@@ -97,7 +97,8 @@ export class LanguageFrame extends React.Component<ILanguageProperty, IReactStat
                 ) : (
                     <div
                         className="language_tip_div_unsupport"
-                        placeholder={messageBundle.getText("HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER")}>
+                        // placeholder={messageBundle.getText("HOME_PAGE_LANGUAGE_FRAME_LANGUAGE_PENDING_MOUSE_HOLDER")}
+                    >
                         {languageName}
                     </div>
                 )}

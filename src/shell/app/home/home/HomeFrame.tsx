@@ -225,6 +225,13 @@ function Footer(): JSX.Element {
                     </a>
                 </div>
             </div>
+            <div id="footerContent_CR_ICP_DCP">
+                <div>
+                    <a href="https://beian.mps.gov.cn/" target="_blank" rel="noreferrer">
+                        贵公网安备52010202003856号
+                    </a>
+                </div>
+            </div>
             <div id="footerContent_EndBeforeColorBalance"></div>
         </div>
     );

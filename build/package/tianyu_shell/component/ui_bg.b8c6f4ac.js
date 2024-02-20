@@ -1,0 +1,1 @@
+!function(){"use strict";!function(){tianyuShell.core.ui&&(tianyuShell.core.ui.background={});var i=document.createElement("div");i.classList.add("ts_ui_bg"),i.id="tianyu_shell_ui_background",document.body.appendChild(i)}()}();
