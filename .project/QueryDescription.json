@@ -310,6 +310,69 @@
                         }
                     }
                 }
+            },
+            "wedding": {
+                "description": "",
+                "port": 9400,
+                "dispatcher": {
+                    "aitianyu/cn/app/wedding/newOrUpdate": {
+                        "param": {
+                            "phone": "string",
+                            "name": "string",
+                            "count": "number"
+                        },
+                        "return": {
+                            "status": "new | update | failure",
+                            "unicode": "string"
+                        }
+                    },
+                    "aitianyu/cn/app/wedding/validation": {
+                        "param": {
+                            "phone": "string"
+                        },
+                        "return": {
+                            "status": "valid | invalid",
+                            "unicode": "string"
+                        }
+                    },
+                    "aitianyu/cn/app/wedding/admin/updateCash": {
+                        "param": {
+                            "author": "string",
+                            "key": "string",
+                            "items": [
+                                {
+                                    "phone": "string",
+                                    "cash": "number"
+                                }
+                            ]
+                        },
+                        "return": {
+                            "status": "success | failure | unstable",
+                            "items": {
+                                "phone - number": "success | failure"
+                            }
+                        }
+                    },
+                    "aitianyu/cn/app/wedding/admin/list": {
+                        "param": {
+                            "author": "string",
+                            "key": "string"
+                        },
+                        "return": {
+                            "count": "number",
+                            "items": [
+                                {
+                                    "phone": "string",
+                                    "name": "string",
+                                    "count": "number",
+                                    "cash": "number",
+                                    "unicode": "string",
+                                    "valid": "boolean"
+                                }
+                            ]
+                        }
+                    }
+                }
             }
         }
     }
