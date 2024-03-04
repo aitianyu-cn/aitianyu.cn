@@ -39,7 +39,7 @@ export class UserDispatcher implements IHttpDispatchInstance {
             };
         }
 
-        const dbInfo = await this._getPerson(phone);
+        const dbInfo = await this._getPerson(phone, messageList);
         const level: UserCashLevel = dbInfo.exist ? this._validCash(dbInfo.money) : "NULL";
         return {
             status: level === "NULL" ? "invalid" : "valid ",
@@ -62,15 +62,15 @@ export class UserDispatcher implements IHttpDispatchInstance {
             };
         }
 
-        const dbInfo = await this._getPerson(phone);
+        const dbInfo = await this._getPerson(phone, messageList);
         if (dbInfo.exist) {
-            const updateResult = await this._updateInfo(phone, name, count, dbInfo);
+            const updateResult = await this._updateInfo(phone, name, count, dbInfo, messageList);
             return {
                 status: updateResult ? "update" : "failure",
                 unicode: updateResult ? dbInfo.unicode : "",
             };
         } else {
-            const unicode = await this._addNew(phone, name, count);
+            const unicode = await this._addNew(phone, name, count, messageList);
             return {
                 status: unicode ? "new" : "failure",
                 unicode: unicode,
@@ -78,7 +78,7 @@ export class UserDispatcher implements IHttpDispatchInstance {
         }
     }
 
-    private async _getPerson(phone: string): Promise<IGetPerson> {
+    private async _getPerson(phone: string, messageList: IHttpResponseError[]): Promise<IGetPerson> {
         return new Promise<IGetPerson>((resolve) => {
             // const sql = `SELECT * FROM wedding.master WHERE phone='${phone}';`;
             const sql = `SELECT 
@@ -94,8 +94,9 @@ export class UserDispatcher implements IHttpDispatchInstance {
                 sql,
                 (result) => {
                     const valid = Boolean(Array.isArray(result) && result.length);
-                    const count = Number.parseInt(result[0]["count"]);
-                    const money = Number.parseInt(result[0]["money"]);
+                    console.log(result);
+                    const count = valid ? Number.parseInt(result[0]["count"]) : 0;
+                    const money = valid ? Number.parseInt(result[0]["money"]) : 0;
 
                     resolve({
                         exist: valid,
@@ -105,24 +106,40 @@ export class UserDispatcher implements IHttpDispatchInstance {
                         money: isNaN(money) ? 0 : money,
                     });
                 },
-                (_error) => {
+                (error) => {
+                    messageList.push({
+                        code: -1,
+                        text: typeof error === "string" ? error : (error as any)?.mesage || "get person from phone failed",
+                    });
                     resolve({ exist: false, unicode: "", name: "", count: 0, money: 0 });
                 },
             );
         });
     }
 
-    private async _updateInfo(phone: string, name: string, count: string, preInfo: IGetPerson): Promise<boolean> {
+    private async _updateInfo(
+        phone: string,
+        name: string,
+        count: string,
+        preInfo: IGetPerson,
+        messageList: IHttpResponseError[],
+    ): Promise<boolean> {
         const sql = `UPDATE wedding.master SET name='${name || preInfo.name}', count=${
             count || preInfo.count || 0
         } WHERE phone='${phone}';`;
         return this.databasePool.executeAsync("wedding", sql).then(
             async () => true,
-            async () => false,
+            async (error) => {
+                messageList.push({
+                    code: -1,
+                    text: typeof error === "string" ? error : (error as any)?.mesage || "update info failed",
+                });
+                return Promise.resolve(false);
+            },
         );
     }
 
-    private async _addNew(phone: string, name: string, count: string): Promise<string> {
+    private async _addNew(phone: string, name: string, count: string, messageList: IHttpResponseError[]): Promise<string> {
         const insertMasterSql = `INSERT INTO wedding.master VALUES('${phone}', '${name}', ${count});`;
         return this.databasePool.executeAsync("wedding", insertMasterSql).then(
             async () => {
@@ -130,10 +147,22 @@ export class UserDispatcher implements IHttpDispatchInstance {
                 const insertCashSql = `INSERT INTO wedding.cash VALUES('${phone}', 0, '${unicode}');`;
                 return this.databasePool.executeAsync("wedding", insertCashSql).then(
                     async () => unicode,
-                    async () => "",
+                    async (error) => {
+                        messageList.push({
+                            code: -1,
+                            text: typeof error === "string" ? error : (error as any)?.mesage || "add new unicode code failed",
+                        });
+                        return Promise.resolve("");
+                    },
                 );
             },
-            async () => "",
+            async (error) => {
+                messageList.push({
+                    code: -1,
+                    text: typeof error === "string" ? error : (error as any)?.mesage || "add new info failed",
+                });
+                return Promise.resolve("");
+            },
         );
     }
 

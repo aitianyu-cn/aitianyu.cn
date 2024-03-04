@@ -12,6 +12,7 @@
         "start-gitool": "ts-node packages/gitool-server/index.ts",
         "start-app-imgsel": "ts-node packages/app/image-selector/index.ts",
         "start-app-daily": "ts-node packages/app/daily/index.ts",
+        "start-app-wedding": "ts-node packages/app/wedding/index.ts",
         "build-copy-files": "copyfiles ./packages/**/resources/**/*.* ./packages/**/src/config/**/*.* ./dist",
         "build-remove-types": "rimraf ./dist/**/*.d.ts",
         "test": "echo \"Error: no test specified\" && exit 1"

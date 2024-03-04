@@ -3,7 +3,7 @@
 import { createrServerByHandle, DatabasePools, HttpHandler } from "@aitianyu.cn/server-base";
 import { UserDispatcher } from "./dispatcher/UserDispatcher";
 
-const dbConfig = require("./src/config/mysql.config.json");
+const dbConfig = require("./config/mysql.config.json");
 
 const handler = new HttpHandler();
 const databasePool = new DatabasePools(dbConfig);
