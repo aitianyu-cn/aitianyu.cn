@@ -10,9 +10,9 @@ export class AdminDispatcher implements IHttpDispatchInstance {
     }
 
     createDispatches(handler: HttpHandler): void {
-        handler.setRouter("aitianyu/cn/app/wedding/admin/updateCash", this._updateCash.bind(this));
-        handler.setRouter("aitianyu/cn/app/wedding/admin/list", this._list.bind(this));
+        // handler.setRouter("aitianyu/cn/app/wedding/admin/updateCash", this._updateCash.bind(this));
+        // handler.setRouter("aitianyu/cn/app/wedding/admin/list", this._list.bind(this));
     }
 
-    private async _updateCash(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<IUserValidationResponse>;
+    // private async _updateCash(query: IHttpQuery, messageList: IHttpResponseError[]): Promise<IUserValidationResponse>;
 }

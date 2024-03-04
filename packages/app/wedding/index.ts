@@ -10,7 +10,7 @@ const databasePool = new DatabasePools(dbConfig);
 
 const userDispatcher = new UserDispatcher(databasePool);
 
-handler.addDispatcher(userDispatcher);
+handler.registerDispatcher(userDispatcher);
 
 const server = createrServerByHandle(handler);
 server.listen(9400, "0.0.0.0");

@@ -1,3 +1,3 @@
 /**@format */
 
-export interface 
+export interface IAdminResponseBase {}
