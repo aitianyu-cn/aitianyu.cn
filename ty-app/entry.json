@@ -1,0 +1,5 @@
+{
+    "application/imageSelector": "imageSelector/ImageSelector.tsx",
+    "application/image": "image/Image.tsx",
+    "application/daily/timer": "daily/Timer.tsx"
+}
