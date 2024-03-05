@@ -1,6 +1,6 @@
 /**@format */
 
-import { loading } from "../ty-common/shell/infra/Loading";
+import { loading } from "ty-infra/core/Loading";
 
 async function homepage() {
     return new Promise<void>((resolve) => {
@@ -11,7 +11,7 @@ async function homepage() {
 }
 
 loading().then(({ Log }) => {
-    import(/*webpackChunkName: "aitianyu-cn/global/initialization" */ "../ty-common/shell/ui/native/widget/Waiting")
+    import(/*webpackChunkName: "aitianyu-cn/global/initialization" */ "ty-infra/ui/native/widget/Waiting")
         .then(({ WaitingDialog }) => {
             WaitingDialog.withDialog(homepage);
         })

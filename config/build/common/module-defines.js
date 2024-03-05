@@ -94,7 +94,7 @@ module.exports.rules = [
                 },
             },
         ],
-        include: [path.resolve(PATH_HANDLER.TIANYU_COMMON_ENTRY, "shell/ui/res")],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
     },
     {
         test: /\.gif$/,
@@ -107,7 +107,7 @@ module.exports.rules = [
                 },
             },
         ],
-        include: [path.resolve(PATH_HANDLER.TIANYU_COMMON_ENTRY, "shell/ui/res")],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
     },
     {
         test: /\.png$/,
@@ -120,7 +120,8 @@ module.exports.rules = [
                 },
             },
         ],
-        include: [path.resolve(PATH_HANDLER.TIANYU_COMMON_ENTRY, "shell/ui/res")],
+        // include: [path.resolve(PATH_HANDLER.TIANYU_INFRA_ENTRY, "shell/ui/res")],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
     },
     {
         test: /\.svg$/,
@@ -129,6 +130,6 @@ module.exports.rules = [
                 loader: "svg-inline-loader",
             },
         ],
-        include: [path.resolve(PATH_HANDLER.TIANYU_COMMON_ENTRY, "shell/ui/res")],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
     },
 ];

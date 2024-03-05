@@ -1,10 +1,10 @@
 /**@format */
 
 import { guid } from "@aitianyu.cn/types";
-import * as MessageBundle from "../../../i18n/MessageBundle";
 import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
+import * as MessageBundle from "ty-infra/i18n/MessageBundle";
 
-import "../../css/waitingDialog.css";
+import "ty-infra/ui/css/waitingDialog.css";
 
 const WAITING_DIALOG_IMG = require("../../res/waiting.gif").default;
 

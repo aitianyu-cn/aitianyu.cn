@@ -15,6 +15,7 @@ const TIANYU_PROJECT_ENTRY = path.join(PROJECT_ROOT, "ty-home");
 const TIANYU_APPLICATION_ENTRY = path.join(PROJECT_ROOT, "ty-app");
 /** 项目公共配置文件、公共组件根目录入口 */
 const TIANYU_COMMON_ENTRY = path.join(PROJECT_ROOT, "ty-common");
+const TIANYU_INFRA_ENTRY = path.join(PROJECT_ROOT, "ty-infra");
 
 module.exports = {
     PROJECT_ROOT: PROJECT_ROOT,
@@ -25,4 +26,5 @@ module.exports = {
     TIANYU_PROJECT_ENTRY: TIANYU_PROJECT_ENTRY,
     TIANYU_APPLICATION_ENTRY: TIANYU_APPLICATION_ENTRY,
     TIANYU_COMMON_ENTRY: TIANYU_COMMON_ENTRY,
+    TIANYU_INFRA_ENTRY: TIANYU_INFRA_ENTRY,
 };

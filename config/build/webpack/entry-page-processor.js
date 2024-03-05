@@ -2,8 +2,8 @@
 
 const { ArrayHelper } = require("@aitianyu.cn/types");
 
-const entries = require("../../../ty-common/entry.json");
-const pages = require("../../../ty-common/page");
+const entries = require("../../../ty-infra/entry.json");
+const pages = require("../../../ty-infra/page");
 
 /**
  * 获取页面信息与入口信息

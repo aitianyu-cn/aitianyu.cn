@@ -1,5 +1,5 @@
 {
-    "include": ["tianyu"],
+    "include": ["ty-common", "ty-home", "ty-infra"],
     "exclude": ["node_modules"],
     "compilerOptions": {
         "composite": true,
@@ -20,6 +20,11 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "outDir": "./dist",
-        "paths": {}
+        "paths": {
+            "ty-app/*": ["ty-app/*"],
+            "ty-common/*": ["ty-common/*"],
+            "ty-home/*": ["ty-home/*"],
+            "ty-infra/*": ["ty-infra/*"]
+        }
     }
 }

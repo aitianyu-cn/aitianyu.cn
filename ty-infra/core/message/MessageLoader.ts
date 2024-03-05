@@ -17,7 +17,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     DEFAULT_LANGUAGE,
                     "home",
                     require.context(
-                        "../../../../ty-home",
+                        "../../../ty-home",
                         true,
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/,
                     ),
@@ -42,7 +42,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     "zh_CN",
                     "home",
                     require.context(
-                        "../../../../ty-home",
+                        "../../../ty-home",
                         true,
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/,
                     ),
@@ -67,7 +67,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     "en_US",
                     "home",
                     require.context(
-                        "../../../../ty-home",
+                        "../../../ty-home",
                         true,
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/,
                     ),
