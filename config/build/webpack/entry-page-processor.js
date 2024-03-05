@@ -2,7 +2,15 @@
 
 const { ArrayHelper } = require("@aitianyu.cn/types");
 
-function _EntryAndPageProcessor(entries, pages) {
+const entries = require("../../../ty-common/entry.json");
+const pages = require("../../../ty-common/page");
+
+/**
+ * 获取页面信息与入口信息
+ *
+ * @returns 返回页面与入口信息
+ */
+function entryAndPageProcessor() {
     const pageOutter = {};
     // const rewrites = [];
 
@@ -24,7 +32,7 @@ function _EntryAndPageProcessor(entries, pages) {
 
     const requiredChunks = ArrayHelper.merge(...chunksList);
     const errorChunks = [];
-    const entriesOutter = [];
+    const entriesOutter = {};
     for (const requiredChunk of requiredChunks) {
         if (entries[requiredChunk]) {
             entriesOutter[requiredChunk] = entries[requiredChunk];
@@ -41,22 +49,4 @@ function _EntryAndPageProcessor(entries, pages) {
     };
 }
 
-function homeProcessor() {
-    const homeEntries = require("../../../ty-home/entry.json");
-    const homePages = require("../../../ty-home/page");
-
-    return _EntryAndPageProcessor(homeEntries, homePages);
-}
-
-function appProcessor() {
-    const appEntries = require("../../../ty-app/entry.json");
-    const appPages = require("../../../ty-app/page");
-
-    return _EntryAndPageProcessor(appEntries, appPages);
-}
-
-function handler() {
-    const entries = {};
-}
-
-module.exports.handler = handler;
+module.exports.processor = entryAndPageProcessor;

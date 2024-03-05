@@ -1,7 +1,7 @@
 /**@format */
 
 const pageInfo = {
-    timer: {
+    wedding: {
         title: "LOVE & YOU",
         template: "html/index.html",
         filename: "application/wedding/index.html",

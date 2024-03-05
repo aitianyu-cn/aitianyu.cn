@@ -29,4 +29,6 @@ const optimize = {
     minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin()],
 };
 
-module.exports.optimize = optimize;
+module.exports.handler = function () {
+    return optimize;
+};

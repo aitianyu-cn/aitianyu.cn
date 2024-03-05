@@ -1,0 +1,15 @@
+{
+    "global/home": "home/Home.tsx",
+
+    "global/error_400": "home/error/400.ts",
+    "global/error_403": "home/error/403.ts",
+    "global/error_404": "home/error/404.ts",
+    "global/error_500": "home/error/500.ts",
+    "global/error_502": "home/error/502.ts",
+    "global/error_503": "home/error/503.ts",
+
+    "application/imageSelector": "app/imageSelector/Index.tsx",
+    "application/image": "app/image/Index.tsx",
+    "application/daily/timer": "app/daily/Index.tsx",
+    "application/wedding": "app/wedding/Index.tsx"
+}
