@@ -1,5 +1,5 @@
 {
-    "include": ["ty-common", "ty-home", "ty-infra"],
+    "include": ["ty-common", "ty-home", "ty-infra", "define.d.ts"],
     "exclude": ["node_modules"],
     "compilerOptions": {
         "composite": true,
@@ -10,7 +10,7 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": false,
+        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "node",

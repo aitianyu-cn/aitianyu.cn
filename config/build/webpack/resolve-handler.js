@@ -28,7 +28,5 @@ module.exports.handler = function () {
         // fallback: fallback,
     };
 
-    console.log(JSON.stringify(alias));
-
     return resolve;
 };

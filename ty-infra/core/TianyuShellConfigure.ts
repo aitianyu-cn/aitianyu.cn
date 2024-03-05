@@ -15,6 +15,9 @@ export const TianyuShellConfigure: ITianyuShellInitial = {
     },
     runtime: {
         globalCache: true,
+        support: {
+            router: true,
+        },
     },
     ui: {
         core: {

@@ -6,6 +6,7 @@ const numericChecker = require("../common/numeric-checker");
 const PATH_HANDLER = require("../common/path-handler");
 const ENVIRONMENT = require("../../../environment");
 const PROXY = require("../../../proxy");
+const REMOTE_SERVERS = require("../../../ty-infra/server/remote-servers");
 
 const historyApiFallback = {
     rewrites: [],
@@ -23,6 +24,19 @@ function devServerStaticFiles() {
     return statics;
 }
 
+function devProxyTranslator() {
+    const proxy = {};
+    for (const server of Object.keys(REMOTE_SERVERS)) {
+        const remote = REMOTE_SERVERS[server];
+        const proxyInfo = PROXY[server];
+        if (remote && proxyInfo) {
+            proxy[remote] = proxyInfo;
+        }
+    }
+
+    return proxy;
+}
+
 module.exports.handler = function () {
     const envHost = numericChecker.check(ENVIRONMENT.devServer.host);
     const envPort = numericChecker.check(ENVIRONMENT.devServer.port);
@@ -31,7 +45,7 @@ module.exports.handler = function () {
     const devPort = envPort || process.env.DEV_SERVER_PORT || 8080;
 
     const config = {
-        proxy: PROXY || {},
+        proxy: devProxyTranslator(),
         historyApiFallback: historyApiFallback,
         compress: ENVIRONMENT.mode !== "development",
         hot: ENVIRONMENT.mode === "development",

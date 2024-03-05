@@ -1,5 +1,5 @@
 {
-    "global/home": "home/Home.tsx",
+    "global/home": "home/Home.ts",
 
     "global/error_400": "home/error/400.ts",
     "global/error_403": "home/error/403.ts",
