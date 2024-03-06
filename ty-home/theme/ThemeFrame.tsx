@@ -8,11 +8,12 @@ import { createSingleSelectorGroup } from "ty-infra/ui/controller/SingleSelectio
 import { Theme } from "@aitianyu.cn/tianyu-shell/core";
 import { ReactRadioButton } from "ty-infra/ui/react/control/ReactRadioButton";
 import { ReactToggle } from "ty-infra/ui/react/control/ReactToggle";
-import * as MessageBundle from "ty-infra/ui/i18n/MessageBundle";
+import * as MessageBundle from "ty-home/i18n/MessageBundle";
 
 import "../css/theme.css";
+import { Compatibility } from "@aitianyu.cn/tianyu-shell/infra";
 
-const _themeList: string[] = ["tianyu_default", "tianyu_red", "tianyu_green", "tianyu_purple", "tianyu_mono"];
+const _themeList: string[] = Compatibility.themeCompatibility();
 
 export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
     private themeGroup: ISingleSelectorController;
@@ -136,8 +137,8 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
 
     private translateThemeName(theme: string): string {
         const defaultThemeI18n = `HOME_PAGE_THEME_FRAME_THEME_${theme.toUpperCase()}`;
-        const defaultThemeI18nTrans = MessageBundle.getText(defaultThemeI18n);
-        return MessageBundle.getText(defaultThemeI18n) === defaultThemeI18n ? theme.replaceAll("_", " ") : defaultThemeI18nTrans;
+        const defaultThemeI18nTrans = MessageBundle.getText(defaultThemeI18n.replace("-", "_"));
+        return defaultThemeI18nTrans;
     }
 
     private onStateChanged(name: string, state: boolean): void {
@@ -162,5 +163,6 @@ export class ThemeFrame extends React.Component<IThemeProperty, IReactState> {
                 true,
             );
         }
+        this.forceUpdate();
     }
 }

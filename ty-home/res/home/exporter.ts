@@ -1,10 +1,10 @@
 /**@format */
 
-import HOME from "../home.svg";
+import HOME from "ty-infra/ui/res/home.svg";
 import DOWNLOAD from "./download.svg";
 import DOCUMENT from "./document.svg";
-import LANGUAGE from "../language.svg";
-import THEME from "../theme.svg";
+import LANGUAGE from "ty-infra/ui/res/language.svg";
+import THEME from "ty-infra/ui/res/theme.svg";
 import SETTING from "./setting.svg";
 import INTERNAL from "./internal.svg";
 

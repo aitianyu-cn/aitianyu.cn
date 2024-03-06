@@ -1,5 +1,5 @@
 {
-    "include": ["ty-common", "ty-home", "ty-infra", "define.d.ts"],
+    "include": ["ty-common", "ty-home", "ty-infra", "ty-app", "define.d.ts"],
     "exclude": ["node_modules"],
     "compilerOptions": {
         "composite": true,

@@ -94,7 +94,7 @@ module.exports.rules = [
                 },
             },
         ],
-        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY, PATH_HANDLER.TIANYU_PROJECT_ENTRY, PATH_HANDLER.TIANYU_APPLICATION_ENTRY],
     },
     {
         test: /\.gif$/,
@@ -107,7 +107,7 @@ module.exports.rules = [
                 },
             },
         ],
-        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY, PATH_HANDLER.TIANYU_PROJECT_ENTRY, PATH_HANDLER.TIANYU_APPLICATION_ENTRY],
     },
     {
         test: /\.png$/,
@@ -121,7 +121,7 @@ module.exports.rules = [
             },
         ],
         // include: [path.resolve(PATH_HANDLER.TIANYU_INFRA_ENTRY, "shell/ui/res")],
-        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY, PATH_HANDLER.TIANYU_PROJECT_ENTRY, PATH_HANDLER.TIANYU_APPLICATION_ENTRY],
     },
     {
         test: /\.svg$/,
@@ -130,6 +130,6 @@ module.exports.rules = [
                 loader: "svg-inline-loader",
             },
         ],
-        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY],
+        include: [PATH_HANDLER.TIANYU_INFRA_ENTRY, PATH_HANDLER.TIANYU_PROJECT_ENTRY, PATH_HANDLER.TIANYU_APPLICATION_ENTRY],
     },
 ];

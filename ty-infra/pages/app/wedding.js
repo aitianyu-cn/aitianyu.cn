@@ -9,7 +9,7 @@ const pageInfo = {
         chunks: ["application/wedding"],
         from: [
             {
-                regexp: /^\/application\/daily\/timer$/,
+                regexp: /^\/application\/wedding$/,
                 hash: null,
             },
         ],

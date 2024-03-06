@@ -84,8 +84,8 @@ export class HomeFrame extends React.Component<IHomeFrameProperty, IReactState> 
 
     private renderHeader(): React.ReactNode {
         const themeColor = Theme.getCustome()?.color || Theme.getDefault()?.color || "dark";
-        const language = Utils.Processor.getCoreConfigure().environment !== "production" ? "default" : Language.toString();
-        const homePageImg = require(`../../ty-infra/ui/res/home/logo/aitianyu.logo.${language}_${themeColor}.gif`).default;
+        const language = Language.toString();
+        const homePageImg = require(`../res/home/logo/aitianyu.logo.${language}_${themeColor}.gif`).default;
 
         return (
             <div className="page_home_main_def_static">

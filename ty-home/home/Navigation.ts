@@ -3,7 +3,7 @@
 import { MapOfType } from "@aitianyu.cn/types";
 import { IReactContentRouter } from "ty-infra/ui/model/Content";
 import { IReactNavigationSource } from "ty-infra/ui/model/Navigation";
-import * as MessageBundle from "ty-infra/ui/i18n/MessageBundle";
+import * as MessageBundle from "ty-home/i18n/MessageBundle";
 import { LanguageFrame } from "ty-home/language/LanguageFrame";
 import { ThemeFrame } from "ty-home/theme/ThemeFrame";
 import { propCreater as ThemeFramePropCreater } from "ty-home/theme/ThemeFrame.controller";
@@ -18,7 +18,7 @@ export const fontSizeMap: Record<number, number> = {
 
 export async function getNavigationSource(): Promise<IReactNavigationSource> {
     return new Promise<IReactNavigationSource>((resolve, reject) => {
-        import("ty-infra/ui/res/home/exporter").then(({ SOURCES }) => {
+        import("ty-home/res/home/exporter").then(({ SOURCES }) => {
             const value: IReactNavigationSource = {
                 "/home": {
                     key: MessageBundle.getText("HOME_PAGE_NAVIGATION_HOME"),
