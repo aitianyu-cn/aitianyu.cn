@@ -22,6 +22,15 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/,
                     ),
                 );
+                setI18nModuleCache(
+                    DEFAULT_LANGUAGE,
+                    "app",
+                    require.context(
+                        "../../../ty-app",
+                        true,
+                        /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/,
+                    ),
+                );
             },
             "aitianyu-cn/i18n/default",
         ),
@@ -47,6 +56,15 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/,
                     ),
                 );
+                setI18nModuleCache(
+                    "zh_CN",
+                    "app",
+                    require.context(
+                        "../../../ty-app",
+                        true,
+                        /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/,
+                    ),
+                );
             },
             "aitianyu-cn/i18n/zh_CN",
         ),
@@ -68,6 +86,15 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     "home",
                     require.context(
                         "../../../ty-home",
+                        true,
+                        /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/,
+                    ),
+                );
+                setI18nModuleCache(
+                    "en_US",
+                    "app",
+                    require.context(
+                        "../../../ty-app",
                         true,
                         /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/,
                     ),

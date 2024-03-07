@@ -5,7 +5,7 @@ const pageInfo = {
         title: "LOVE & YOU",
         template: "html/index.html",
         filename: "application/wedding/index.html",
-        favicon: "html/aitianyu.ico",
+        favicon: "html/wedding_icon.ico",
         chunks: ["application/wedding"],
         from: [
             {
