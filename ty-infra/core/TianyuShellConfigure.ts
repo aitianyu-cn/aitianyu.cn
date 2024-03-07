@@ -1,6 +1,6 @@
 /**@format */
 
-import { ITianyuShellInitial } from "@aitianyu.cn/tianyu-shell/*";
+import { ITianyuShellInitial } from "@aitianyu.cn/tianyu-shell";
 
 export const TianyuShellConfigure: ITianyuShellInitial = {
     core: {
@@ -11,6 +11,10 @@ export const TianyuShellConfigure: ITianyuShellInitial = {
         version: "0.0.0.1",
         plugin: {
             globalize: true,
+        },
+        sync: {
+            compatibility: true,
+            proxy: "/remote-resources",
         },
     },
     runtime: {

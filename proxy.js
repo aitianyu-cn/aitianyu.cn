@@ -49,4 +49,12 @@ module.exports = {
             "^/remote-wedding": "",
         },
     },
+    AITIANYU_CN_RESOURCES: {
+        target: "http://resource.aitianyu.cn/resources",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/remote-resources": "",
+        },
+    },
 };
