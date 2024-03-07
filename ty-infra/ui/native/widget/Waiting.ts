@@ -1,13 +1,14 @@
 /**@format */
 
 import { guid } from "@aitianyu.cn/types";
-import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
+import { Log, isMobile } from "@aitianyu.cn/tianyu-shell/core";
 import * as MessageBundle from "ty-infra/i18n/MessageBundle";
 
 import "ty-infra/ui/css/waitingDialog.css";
 import { IWaitingDialogImage, IWaitingDialogOptions } from "ty-infra/ui/model/Waiting";
 
-const WAITING_DIALOG_IMG = require("../../res/waiting.gif").default;
+// const WAITING_DIALOG_IMG = require("../../res/waiting.gif").default;
+import WAITING_DIALOG_IMG from "ty-infra/ui/res/waiting.svg";
 
 export class WaitingDialog {
     private waitingText?: string;
@@ -43,18 +44,18 @@ export class WaitingDialog {
         content.classList.add("wait_dialog_b");
 
         let img;
-        if (this.waitingImg?.type === "svg") {
-            img = document.createElement("div");
-            img.innerHTML = this.waitingImg.data;
-        } else {
+        if (this.waitingImg?.type === "base64" && this.waitingImg?.data) {
             img = document.createElement("img");
-            img.src = this.waitingImg?.data ?? WAITING_DIALOG_IMG;
+            img.src = this.waitingImg.data;
             img.alt = MessageBundle.getText("WAITING_DIALOG_AI_ALT");
+        } else {
+            img = document.createElement("div");
+            img.innerHTML = this.waitingImg?.data ?? WAITING_DIALOG_IMG;
         }
         if (this.options?.styles) {
             img.classList.add(...this.options?.styles);
         } else {
-            img.classList.add("wait_dialog_ai");
+            img.classList.add("wait_dialog_ai", "wait_dialog_ai_anm");
         }
 
         const header = document.createElement("h4");
@@ -83,13 +84,13 @@ export class WaitingDialog {
         content.id = dialogId;
 
         document.body.appendChild(content);
-        console.log("load start");
+        Log.debug("Tianyu Shell Global Loading Start.", true);
 
         const runnerPromise = fnRunner();
 
         const fnFinishWait = () => {
             document.body.removeChild(content);
-            console.log("load done");
+            Log.debug("Tianyu Shell Global Loading Done.", true);
         };
 
         runnerPromise.finally(fnFinishWait);
