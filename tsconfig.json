@@ -1,0 +1,30 @@
+{
+    "include": ["ty-common", "ty-home", "ty-infra", "ty-app", "define.d.ts"],
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "composite": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": false,
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "outDir": "./dist",
+        "paths": {
+            "ty-app/*": ["ty-app/*"],
+            "ty-common/*": ["ty-common/*"],
+            "ty-home/*": ["ty-home/*"],
+            "ty-infra/*": ["ty-infra/*"]
+        }
+    }
+}

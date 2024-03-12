@@ -1,0 +1,41 @@
+.wedding_waiting_dialog {
+  animation: wedding_waiting_dialog_anm 1.5s infinite;
+}
+
+@keyframes wedding_waiting_dialog_anm {
+  0% {
+    opacity: 100%;
+    transform: scale(1);
+    /* transform: rotateY(0deg); */
+  }
+  10% {
+    opacity: 20%;
+    transform: scale(0.9);
+    /* transform: rotateY(0deg); */
+  }
+  20% {
+    opacity: 100%;
+    transform: scale(1);
+    /* transform: rotateY(0deg); */
+  }
+  30% {
+    opacity: 20%;
+    transform: scale(0.9);
+    /* transform: rotateY(0deg); */
+  }
+  40% {
+    opacity: 100%;
+    transform: scale(1);
+    /* transform: rotateY(360deg); */
+  }
+  60% {
+    opacity: 100%;
+    transform: scale(1);
+    /* transform: rotateY(360deg); */
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+    transform: rotateY(0deg);
+  }
+}
