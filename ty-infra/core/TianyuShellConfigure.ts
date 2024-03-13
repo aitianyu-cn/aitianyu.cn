@@ -16,6 +16,9 @@ export const TianyuShellConfigure: ITianyuShellInitial = {
             compatibility: true,
             proxy: "/remote-resources",
         },
+        language: {
+            domain: ".aitianyu.cn",
+        },
     },
     runtime: {
         globalCache: true,
@@ -26,6 +29,9 @@ export const TianyuShellConfigure: ITianyuShellInitial = {
     ui: {
         core: {
             support: true,
+        },
+        theme: {
+            domain: ".aitianyu.cn",
         },
     },
 };
